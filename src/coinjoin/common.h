@@ -117,9 +117,9 @@ constexpr bool IsCollateralAmount(CAmount nInputAmount)
 
 constexpr int CalculateAmountPriority(CAmount nInputAmount)
 {
-    if (auto optDenom = ranges::find_if_opt(GetStandardDenominations(), [&nInputAmount](const auto& denom) {
-        return nInputAmount == denom;
-    })) {
+    if (nInputAmount < 0 || nInputAmount > MAX_MONEY) return 0;
+    if (auto optDenom = ranges::find_if_opt(GetStandardDenominations(),
+                                          [&nInputAmount](const auto& denom) { return nInputAmount == denom; })) {
         return (float)COIN / *optDenom * 10000;
     }
     if (nInputAmount < COIN) {

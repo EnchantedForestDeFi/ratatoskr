@@ -49,6 +49,7 @@ public:
 
     void Start();
     void Stop();
+    void InitializeCurrentBlockTip(const CBlockIndex* tip, bool ibd);
 
 protected:
     // CValidationInterface

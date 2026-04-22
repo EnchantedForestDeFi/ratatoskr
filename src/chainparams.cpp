@@ -190,7 +190,7 @@ public:
         consensus.nGovernanceFilterElements = 15000;
         consensus.nMasternodeMinimumConfirmations = 15;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x00003de188a8adceb53fc354fc79f1c1e1bf86c62ceab31d73c25b9ecd799cf8");
+        consensus.BIP34Hash = uint256S("0x00001059e1c1b34440ea46fcc1a3deb84e827f061ecf06f5013056219a66a4df");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP147Height = 0;
@@ -276,30 +276,17 @@ public:
         //   7. Commit as "consensus: finalize Ratatoskr mainnet genesis block"
         //   8. Tag v1.0.0-alpha; chain is launch-ready.
         //
-        // Ratatoskr mainnet genesis — nTime set to 2026-04-20 UTC so the
-        // daemon can boot before the June 1 public launch date. Genesis
-        // timestamp is informational; "launch" is when the first external
+        // Ratatoskr mainnet genesis — MINED 2026-04-22 (nTime 2026-04-20 UTC).
+        // Genesis nTime is backdated so the daemon can boot before the June 1
+        // public launch announcement. "Launch" is when the first external
         // miner connects and mines block 1 on/after June 1, 2026.
-        genesis = CreateGenesisBlock(1777000000, 0, 0x1e3fffff, 1, 10 * COIN);
+        //   nTime:  1777000000
+        //   nNonce: 152968
+        //   nBits:  0x1e3fffff
+        //   reward: 10 RATR (unspendable by convention)
+        genesis = CreateGenesisBlock(1777000000, 152968, 0x1e3fffff, 1, 10 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMP: mainnet genesis miner. Remove once mined values are baked in.
-        {
-            arith_uint256 target;
-            target.SetCompact(genesis.nBits);
-            while (UintToArith256(genesis.GetHash()) > target) {
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) ++genesis.nTime;
-            }
-            consensus.hashGenesisBlock = genesis.GetHash();
-            fprintf(stderr, "\n=== MAINNET GENESIS FOUND ===\n"
-                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
-                    genesis.nTime, genesis.nNonce,
-                    consensus.hashGenesisBlock.ToString().c_str(),
-                    genesis.hashMerkleRoot.ToString().c_str());
-            fflush(stderr);
-            abort();
-        }
-        assert(consensus.hashGenesisBlock == uint256S("0x00003de188a8adceb53fc354fc79f1c1e1bf86c62ceab31d73c25b9ecd799cf8"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00001059e1c1b34440ea46fcc1a3deb84e827f061ecf06f5013056219a66a4df"));
         assert(genesis.hashMerkleRoot == uint256S("0xa9b59ab92bf13d7349c1ddd39db75b19c58fa15b98ace6f2af3de725e3aa97fe"));
 
         // Note that of those which support the service bits prefix, most only support a subset of

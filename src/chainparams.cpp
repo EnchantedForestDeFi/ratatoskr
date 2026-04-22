@@ -342,7 +342,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"SjfjYwTJCUZAuzEhUh4LvbG48DAt5rqq2b"};
+        vSporkAddresses = {"RKexdLvbo5W9NPfDKphhkTjXUbedx5U8yk"};
         nMinSporkKeys = 1;
 
         nCreditPoolPeriodBlocks = 576;

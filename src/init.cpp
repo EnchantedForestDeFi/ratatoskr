@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
+﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2026 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
@@ -183,7 +183,7 @@ static const char* DEFAULT_ASMAP_FILENAME="ip_asn.map";
 /**
  * The PID file facilities.
  */
-static const char* BITCOIN_PID_FILENAME = "smartiecoind.pid";
+static const char* BITCOIN_PID_FILENAME = "ratatoskrd.pid";
 
 static fs::path GetPidFile(const ArgsManager& args)
 {
@@ -1646,7 +1646,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
         // Initialize addrman
         assert(!node.addrman);
-        uiInterface.InitMessage(_("Loading P2P addresses…").translated);
+        uiInterface.InitMessage(_("Loading P2P addressesâ€¦").translated);
         if (const auto error{LoadAddrman(*node.netgroupman, args, node.addrman)}) {
             return InitError(*error);
         }
@@ -1979,7 +1979,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
         const bool fReset = fReindex;
         bilingual_str strLoadError;
 
-        uiInterface.InitMessage(_("Loading block index…").translated);
+        uiInterface.InitMessage(_("Loading block indexâ€¦").translated);
         const auto load_block_index_start_time{SteadyClock::now()};
         std::optional<ChainstateLoadingError> maybe_load_error;
         try {
@@ -2087,7 +2087,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
             std::optional<ChainstateLoadVerifyError> maybe_verify_error;
             try {
-                uiInterface.InitMessage(_("Verifying blocks…").translated);
+                uiInterface.InitMessage(_("Verifying blocksâ€¦").translated);
                 auto check_blocks = args.GetIntArg("-checkblocks", DEFAULT_CHECKBLOCKS);
                 if (chainman.m_blockman.m_have_pruned && check_blocks > MIN_BLOCKS_TO_KEEP) {
                     LogWarning("pruned datadir may not have more than %d blocks; only checking available blocks\n",
@@ -2300,7 +2300,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
         if (!fReindex) {
             LOCK(cs_main);
             for (CChainState* chainstate : chainman.GetAll()) {
-                uiInterface.InitMessage(_("Pruning blockstore…").translated);
+                uiInterface.InitMessage(_("Pruning blockstoreâ€¦").translated);
                 chainstate->PruneAndFlush();
             }
         }

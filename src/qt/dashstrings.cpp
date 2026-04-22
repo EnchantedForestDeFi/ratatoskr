@@ -1,4 +1,4 @@
-
+﻿
 
 #include <QtGlobal>
 
@@ -11,7 +11,7 @@
 static const char UNUSED *dash_strings[] = {
 QT_TRANSLATE_NOOP("smartiecoin-core", "The %s developers"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
-"%s corrupt. Try using the wallet tool smartiecoin-wallet to salvage or restoring a "
+"%s corrupt. Try using the wallet tool ratatoskr-wallet to salvage or restoring a "
 "backup."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "%s file contains all private keys from this wallet. Do not share it with "
@@ -69,7 +69,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", ""
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Error: Dumpfile identifier record is incorrect. Got \"%s\", expected \"%s\"."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
-"Error: Dumpfile version is not supported. This version of smartiecoin-wallet only "
+"Error: Dumpfile version is not supported. This version of ratatoskr-wallet only "
 "supports version 1 dumpfiles. Got dumpfile with version %s"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Failed to create backup, file already exists! This could happen if you "
@@ -287,10 +287,10 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Failed to verify database"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Fee needed > fee paid"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Fee rate (%s) is lower than the minimum fee rate setting (%s)"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Found enough users, signing ( waiting %s )"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Found enough users, signing…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Found enough users, signingâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Host %s on unsupported network"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Ignoring duplicate -wallet %s."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Importing…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Importingâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Incompatible mode."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Incompatible version."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Incorrect -rescan mode, falling back to default value"),
@@ -317,16 +317,16 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Invalid spork address specified with -spo
 QT_TRANSLATE_NOOP("smartiecoin-core", "Last queue was created too recently."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Last successful action was too recent."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Listening for incoming connections failed (listen returned error %s)"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Loading P2P addresses…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Loading banlist…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Loading block index…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Loading wallet…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Loading P2P addressesâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Loading banlistâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Loading block indexâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Loading walletâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Lock is already in place."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Masternode queue is full."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Masternode:"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Missing input transaction information."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Missing solving data for estimating transaction size"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Mixing in progress…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Mixing in progressâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Need to specify a port with -whitebind: '%s'"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "No Masternodes detected."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "No addresses available"),
@@ -344,10 +344,10 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Port must be between %d and %d, supplied 
 QT_TRANSLATE_NOOP("smartiecoin-core", "Prune cannot be configured with a negative value."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Prune mode is incompatible with -disablegovernance=false."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Prune mode is incompatible with -txindex."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Pruning blockstore…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Pruning blockstoreâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Reducing -maxconnections from %d to %d, because of system limitations."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Replaying blocks…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Rescanning…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Replaying blocksâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Rescanningâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "SQLiteDatabase: Failed to execute statement to verify database: %s"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "SQLiteDatabase: Failed to prepare statement to verify database: %s"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "SQLiteDatabase: Failed to read database verification error: %s"),
@@ -361,11 +361,11 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Specified -walletdir \"%s\" does not exis
 QT_TRANSLATE_NOOP("smartiecoin-core", "Specified -walletdir \"%s\" is a relative path"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Specified -walletdir \"%s\" is not a directory"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Specified blocks directory \"%s\" does not exist."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Starting network threads…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Starting network threadsâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Submitted to masternode, waiting in queue %s"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Synchronization finished"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Synchronizing blockchain…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Synchronizing governance objects…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Synchronizing blockchainâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Synchronizing governance objectsâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "The source code is available from %s."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "The specified config file %s does not exist"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "The transaction amount is too small to pay the fee"),
@@ -374,7 +374,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "This is expected because you are running 
 QT_TRANSLATE_NOOP("smartiecoin-core", "This is experimental software."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "This is the minimum transaction fee you pay on every transaction."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "This is the transaction fee you will pay if you send a transaction."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Topping up keypool…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Topping up keypoolâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction amount too small"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction amounts must not be negative"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction change output index out of range"),
@@ -385,7 +385,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction must have at least one recipi
 QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction needs a change address, but we can't generate it."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction not valid."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Transaction too large"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Trying to connect…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Trying to connectâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Unable to bind to %s on this computer (bind returned error %s)"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Unable to bind to %s on this computer. %s is probably already running."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Unable to create the PID file '%s': %s"),
@@ -408,16 +408,16 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Unsupported URL scheme, must begin with u
 QT_TRANSLATE_NOOP("smartiecoin-core", "Unsupported global logging level -loglevel=%s. Valid values: %s."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Unsupported logging category %s=%s."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "User Agent comment (%s) contains unsafe characters."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Verifying blocks…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Verifying wallet(s)…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Verifying blocksâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Verifying wallet(s)â€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Very low number of keys left: %d"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet is locked."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet needed to be rewritten: restart %s to complete"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Warning: can't use %s and %s together, will prefer %s"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Warning: incorrect parameter %s, path must exist! Using default path."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wasn't able to create wallet backup folder %s!"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Will retry…"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Wiping wallet transactions…"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Will retryâ€¦"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Wiping wallet transactionsâ€¦"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "You are starting with governance validation disabled."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "You can not disable governance validation on a masternode."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "You can not start a masternode with wallet enabled."),

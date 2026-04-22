@@ -1,9 +1,9 @@
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+﻿# Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2014-2018 The Dash Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/smartiecoin-qt
+bin_PROGRAMS += qt/ratatoskr-qt
 
 if BUILD_BITCOIN_GUI
   bin_PROGRAMS += smartiecoin-gui
@@ -391,7 +391,7 @@ QT_RES_FONTS = \
 
 QT_RES_ANIMATION = $(wildcard $(srcdir)/qt/res/animation/spinner-*.png)
 
-BITCOIN_QT_RC = qt/res/smartiecoin-qt-res.rc
+BITCOIN_QT_RC = qt/res/ratatoskr-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -DQT_NO_KEYWORDS -DQT_USE_QSTRINGBUILDER
 
@@ -417,7 +417,7 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 $(QT_MOC): $(QT_FORMS_H)
 $(qt_libbitcoinqt_a_OBJECTS) $(qt_smartiecoin_qt_OBJECTS) $(smartiecoin_gui_OBJECTS): | $(QT_MOC)
 
-# smartiecoin-qt and smartiecoin-gui binaries #
+# ratatoskr-qt and smartiecoin-gui binaries #
 bitcoin_qt_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QR_CFLAGS)
 bitcoin_qt_cxxflags = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
@@ -487,9 +487,9 @@ CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda 
 CLEANFILES += $(CLEAN_QT)
 
 smartiecoin_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_smartiecoin_qt_OBJECTS) qt/smartiecoin-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_smartiecoin_qt_OBJECTS) qt/ratatoskr-qt$(EXEEXT) $(LIBBITCOINQT)
 
-smartiecoin_qt : qt/smartiecoin-qt$(EXEEXT)
+smartiecoin_qt : qt/ratatoskr-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC) || (echo "uic $(UIC) not found, but is required for generating ui headers"; exit 1)

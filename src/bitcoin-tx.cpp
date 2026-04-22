@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+﻿// Copyright (c) 2009-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -102,14 +102,14 @@ static int AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || HelpRequested(gArgs) || gArgs.IsArgSet("-version")) {
         // First part of help message is specific to this utility
-        std::string strUsage = PACKAGE_NAME " smartiecoin-tx utility version " + FormatFullVersion() + "\n";
+        std::string strUsage = PACKAGE_NAME " ratatoskr-tx utility version " + FormatFullVersion() + "\n";
 
         if (gArgs.IsArgSet("-version")) {
             strUsage += FormatParagraph(LicenseInfo());
         } else {
             strUsage += "\n"
-                "Usage:  smartiecoin-tx [options] <hex-tx> [commands]  Update hex-encoded Smartiecoin transaction\n"
-                "or:     smartiecoin-tx [options] -create [commands]   Create hex-encoded Smartiecoin transaction\n"
+                "Usage:  ratatoskr-tx [options] <hex-tx> [commands]  Update hex-encoded Smartiecoin transaction\n"
+                "or:     ratatoskr-tx [options] -create [commands]   Create hex-encoded Smartiecoin transaction\n"
                 "\n";
             strUsage += gArgs.GetHelpMessage();
         }

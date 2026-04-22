@@ -1,4 +1,4 @@
-﻿# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2014-2018 The Dash Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -415,7 +415,7 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_ratatoskr_qt_OBJECTS) $(smartiecoin_gui_OBJECTS): | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_ratatoskr_qt_OBJECTS) $(ratatoskr_gui_OBJECTS): | $(QT_MOC)
 
 # ratatoskr-qt and smartiecoin-gui binaries #
 bitcoin_qt_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
@@ -446,12 +446,12 @@ qt_ratatoskr_qt_LDADD = $(bitcoin_qt_ldadd)
 qt_ratatoskr_qt_LDFLAGS = $(bitcoin_qt_ldflags)
 qt_ratatoskr_qt_LIBTOOLFLAGS = $(bitcoin_qt_libtoolflags)
 
-smartiecoin_gui_CPPFLAGS = $(bitcoin_qt_cppflags)
-smartiecoin_gui_CXXFLAGS = $(bitcoin_qt_cxxflags)
-smartiecoin_gui_SOURCES = $(bitcoin_qt_sources) init/bitcoin-gui.cpp
-smartiecoin_gui_LDADD = $(bitcoin_qt_ldadd) $(LIBBITCOIN_IPC) $(LIBBITCOIN_UTIL) $(LIBMULTIPROCESS_LIBS)
-smartiecoin_gui_LDFLAGS = $(bitcoin_qt_ldflags)
-smartiecoin_gui_LIBTOOLFLAGS = $(bitcoin_qt_libtoolflags)
+ratatoskr_gui_CPPFLAGS = $(bitcoin_qt_cppflags)
+ratatoskr_gui_CXXFLAGS = $(bitcoin_qt_cxxflags)
+ratatoskr_gui_SOURCES = $(bitcoin_qt_sources) init/bitcoin-gui.cpp
+ratatoskr_gui_LDADD = $(bitcoin_qt_ldadd) $(LIBBITCOIN_IPC) $(LIBBITCOIN_UTIL) $(LIBMULTIPROCESS_LIBS)
+ratatoskr_gui_LDFLAGS = $(bitcoin_qt_ldflags)
+ratatoskr_gui_LIBTOOLFLAGS = $(bitcoin_qt_libtoolflags)
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)

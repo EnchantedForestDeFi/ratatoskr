@@ -1,4 +1,4 @@
-﻿This directory contains the source code for the Smartiecoin Core graphical user interface (GUI). It uses the [Qt](https://www1.qt.io/developers/) cross-platform framework.
+This directory contains the source code for the Smartiecoin Core graphical user interface (GUI). It uses the [Qt](https://www1.qt.io/developers/) cross-platform framework.
 
 The current precise version for Qt 5 is specified in [qt.mk](/depends/packages/qt.mk). Qt 4 is not supported.
 

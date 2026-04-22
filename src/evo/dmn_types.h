@@ -29,14 +29,26 @@ struct mntype_struct
     const std::string_view description;
 };
 
+// Ratatoskr MN tiers
+//   Regular MN:  7,500 RATR collateral,  1x voting weight
+//   EvoNode:    30,000 RATR collateral,  4x voting weight (matches Dash's proven ratio)
+//
+// Rationale: 7,500 = 0.0075% of 100M supply, sits between Dash (0.0056%) and
+// Firo (0.0047%) — the two longest-surviving MN coins. At $0.01 launch price
+// that's $75 entry cost for a regular MN, well above the $21/yr Nodes24
+// hosting opex. Accessible to miners converting mining rewards to MN positions.
+//
+// Future upgrades: governance-editable raise-only with grandfathering,
+// activated in v1.1 hard fork. Existing MNs always remain valid at their
+// registered collateral.
 constexpr auto Regular = mntype_struct{
     .voting_weight = 1,
-    .collat_amount = 15000 * COIN,
+    .collat_amount = 7500 * COIN,
     .description = "Regular",
 };
 constexpr auto Evo = mntype_struct{
-    .voting_weight = 5,
-    .collat_amount = 75000 * COIN,
+    .voting_weight = 4,
+    .collat_amount = 30000 * COIN,
     .description = "Evo",
 };
 constexpr auto Invalid = mntype_struct{

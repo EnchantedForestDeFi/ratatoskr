@@ -29,16 +29,16 @@ if test -n "$PKG_CONFIG_LIBDIR"; then
   PKG_CONFIG="env PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR $PKG_CONFIG"
 fi
 
-BITCOIN_DAEMON_NAME=smartiecoind
-BITCOIN_GUI_NAME=smartiecoin-qt
+BITCOIN_DAEMON_NAME=ratatoskrd
+BITCOIN_GUI_NAME=ratatoskr-qt
 BITCOIN_TEST_NAME=test_dash
-BITCOIN_CLI_NAME=smartiecoin-cli
-BITCOIN_TX_NAME=smartiecoin-tx
-BITCOIN_UTIL_NAME=smartiecoin-util
-BITCOIN_WALLET_TOOL_NAME=smartiecoin-wallet
+BITCOIN_CLI_NAME=ratatoskr-cli
+BITCOIN_TX_NAME=ratatoskr-tx
+BITCOIN_UTIL_NAME=ratatoskr-util
+BITCOIN_WALLET_TOOL_NAME=ratatoskr-wallet
 dnl Multi Process
-BITCOIN_MP_NODE_NAME=smartiecoin-node
-BITCOIN_MP_GUI_NAME=smartiecoin-gui
+BITCOIN_MP_NODE_NAME=ratatoskr-node
+BITCOIN_MP_GUI_NAME=ratatoskr-gui
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 dnl This is also the default as-of libtool 2.4.7

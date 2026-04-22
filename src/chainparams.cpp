@@ -18,6 +18,8 @@
 #include <arith_uint256.h>
 
 #include <assert.h>
+#include <cstdlib>
+#include <iostream>
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -279,6 +281,43 @@ public:
         // Daemon refuses to start until these match; that's the intended safety gate.
         genesis = CreateGenesisBlock(1777584000, 0, 0x1e3fffff, 1, 10 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+
+        // === TEMPORARY GENESIS MINER (remove after first successful mine) ===
+        // If hashGenesisBlock is still the all-zeros placeholder we've never mined.
+        // Iterate nNonce until block hash satisfies nBits target. Print + exit.
+        if (consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")
+            || true /* always run miner until we replace this block with real values */) {
+            arith_uint256 hashTarget;
+            hashTarget.SetCompact(genesis.nBits);
+            std::cerr << "Mining mainnet genesis block...\n";
+            std::cerr << "  pszTimestamp: \"Ratatoskr 22/Apr/2026 - miners first, governance bounded, treasury aligned\"\n";
+            std::cerr << "  nTime:  " << genesis.nTime << "\n";
+            std::cerr << "  nBits:  " << std::hex << genesis.nBits << std::dec << "\n";
+            std::cerr << "  target: " << hashTarget.ToString() << "\n";
+            uint32_t nonce = 0;
+            while (true) {
+                genesis.nNonce = nonce;
+                arith_uint256 h = UintToArith256(genesis.GetHash());
+                if (h <= hashTarget) {
+                    std::cerr << "\n========================================\n";
+                    std::cerr << "MAINNET GENESIS FOUND!\n";
+                    std::cerr << "  nNonce:           " << nonce << "\n";
+                    std::cerr << "  hashGenesisBlock: 0x" << genesis.GetHash().GetHex() << "\n";
+                    std::cerr << "  hashMerkleRoot:   0x" << genesis.hashMerkleRoot.GetHex() << "\n";
+                    std::cerr << "========================================\n";
+                    std::exit(0);
+                }
+                if ((nonce % 50000) == 0)
+                    std::cerr << "  ...nonce=" << nonce << "\n";
+                nonce++;
+                if (nonce == 0) {  // wrapped — gave up
+                    std::cerr << "FAILED to mine — nonce wrapped. Increase nBits target.\n";
+                    std::exit(1);
+                }
+            }
+        }
+        // === END TEMPORARY GENESIS MINER ===
+
         assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
         assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
 

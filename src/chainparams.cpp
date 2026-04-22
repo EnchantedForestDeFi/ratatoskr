@@ -230,13 +230,14 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xe4;
-        pchMessageStart[1] = 0xba;
-        pchMessageStart[2] = 0x93;
-        pchMessageStart[3] = 0xc7;
-        nDefaultPort = 8383;
-        nDefaultPlatformP2PPort = 29256;
-        nDefaultPlatformHTTPPort = 29257;
+        // Ratatoskr network magic: 0xac 0xc0 0xf0 0x52  (distinct from SMT 0xe4 0xba 0x93 0xc7)
+        pchMessageStart[0] = 0xac;
+        pchMessageStart[1] = 0xc0;
+        pchMessageStart[2] = 0xf0;
+        pchMessageStart[3] = 0x52;
+        nDefaultPort = 9393;
+        nDefaultPlatformP2PPort = 39256;
+        nDefaultPlatformHTTPPort = 39257;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 1;
@@ -255,13 +256,14 @@ public:
         vSeeds.emplace_back("207.180.230.125");
         vSeeds.emplace_back("smartiescoin.com");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,82);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
+        // Ratatoskr address prefixes — addresses start with 'R'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);   // 'R...'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,188);
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x20, 0xBD, 0x3A};
+        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x20, 0xB9, 0x00};
 
-        nExtCoinType = 5;
+        nExtCoinType = 530;  // Ratatoskr BIP44 coin type (SLIP-0044 registration target)
 
         vFixedSeeds.clear();
 
@@ -393,11 +395,12 @@ public:
         consensus.nMinimumChainWork = uint256();
         consensus.defaultAssumeValid = uint256();
 
-        pchMessageStart[0] = 0xf2;
-        pchMessageStart[1] = 0xd3;
-        pchMessageStart[2] = 0xb4;
-        pchMessageStart[3] = 0xe5;
-        nDefaultPort = 19383;
+        // Ratatoskr testnet magic (distinct from Ratatoskr mainnet + SMT testnet)
+        pchMessageStart[0] = 0xad;
+        pchMessageStart[1] = 0xc1;
+        pchMessageStart[2] = 0xf1;
+        pchMessageStart[3] = 0x53;
+        nDefaultPort = 19393;
         nDefaultPlatformP2PPort = 32000;
         nDefaultPlatformHTTPPort = 32001;
         nPruneAfterHeight = 1000;

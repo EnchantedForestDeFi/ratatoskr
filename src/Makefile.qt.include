@@ -415,7 +415,7 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_smartiecoin_qt_OBJECTS) $(smartiecoin_gui_OBJECTS): | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_ratatoskr_qt_OBJECTS) $(smartiecoin_gui_OBJECTS): | $(QT_MOC)
 
 # ratatoskr-qt and smartiecoin-gui binaries #
 bitcoin_qt_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
@@ -439,12 +439,12 @@ bitcoin_qt_ldadd += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(
 bitcoin_qt_ldflags = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 bitcoin_qt_libtoolflags = $(AM_LIBTOOLFLAGS) --tag CXX
 
-qt_smartiecoin_qt_CPPFLAGS = $(bitcoin_qt_cppflags)
-qt_smartiecoin_qt_CXXFLAGS = $(bitcoin_qt_cxxflags)
-qt_smartiecoin_qt_SOURCES = $(bitcoin_qt_sources) init/bitcoin-qt.cpp
-qt_smartiecoin_qt_LDADD = $(bitcoin_qt_ldadd)
-qt_smartiecoin_qt_LDFLAGS = $(bitcoin_qt_ldflags)
-qt_smartiecoin_qt_LIBTOOLFLAGS = $(bitcoin_qt_libtoolflags)
+qt_ratatoskr_qt_CPPFLAGS = $(bitcoin_qt_cppflags)
+qt_ratatoskr_qt_CXXFLAGS = $(bitcoin_qt_cxxflags)
+qt_ratatoskr_qt_SOURCES = $(bitcoin_qt_sources) init/bitcoin-qt.cpp
+qt_ratatoskr_qt_LDADD = $(bitcoin_qt_ldadd)
+qt_ratatoskr_qt_LDFLAGS = $(bitcoin_qt_ldflags)
+qt_ratatoskr_qt_LIBTOOLFLAGS = $(bitcoin_qt_libtoolflags)
 
 smartiecoin_gui_CPPFLAGS = $(bitcoin_qt_cppflags)
 smartiecoin_gui_CXXFLAGS = $(bitcoin_qt_cxxflags)
@@ -486,10 +486,10 @@ CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda 
 
 CLEANFILES += $(CLEAN_QT)
 
-smartiecoin_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_smartiecoin_qt_OBJECTS) qt/ratatoskr-qt$(EXEEXT) $(LIBBITCOINQT)
+ratatoskr_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_ratatoskr_qt_OBJECTS) qt/ratatoskr-qt$(EXEEXT) $(LIBBITCOINQT)
 
-smartiecoin_qt : qt/ratatoskr-qt$(EXEEXT)
+ratatoskr_qt : qt/ratatoskr-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC) || (echo "uic $(UIC) not found, but is required for generating ui headers"; exit 1)

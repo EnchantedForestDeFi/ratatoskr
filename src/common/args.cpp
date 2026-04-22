@@ -36,7 +36,7 @@
 #include <utility>
 #include <variant>
 
-const char * const BITCOIN_CONF_FILENAME = "smartiecoin.conf";
+const char * const BITCOIN_CONF_FILENAME = "ratatoskr.conf";
 const char * const BITCOIN_SETTINGS_FILENAME = "settings.json";
 
 ArgsManager gArgs;
@@ -737,12 +737,12 @@ bool HasTestOption(const ArgsManager& args, const std::string& test_option)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows: C:\Users\Username\AppData\Roaming\SmartiecoinCore
-    // macOS: ~/Library/Application Support/SmartiecoinCore
-    // Unix-like: ~/.smartiecoincore
+    // Windows: C:\Users\Username\AppData\Roaming\RatatoskrCore
+    // macOS: ~/Library/Application Support/RatatoskrCore
+    // Unix-like: ~/.ratatoskrcore
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "SmartiecoinCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "RatatoskrCore";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -752,10 +752,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef __APPLE__
     // macOS
-    return pathRet / "Library/Application Support/SmartiecoinCore";
+    return pathRet / "Library/Application Support/RatatoskrCore";
 #else
     // Unix-like
-    return pathRet / ".smartiecoincore";
+    return pathRet / ".ratatoskrcore";
 #endif
 #endif
 }

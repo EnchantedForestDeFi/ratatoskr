@@ -86,13 +86,19 @@ before MN economics go live.
 - **First superblock**: block 30,000 (was 27,700).
 
 ### Treasury
-- 10% of every block subsidy flows continuously to a multisig treasury
-  wallet.
+- 10% of every block subsidy flows continuously to a treasury wallet
+  (hardware-wallet-secured, single-sig at v1.0 — see limitations below).
 - Treasury purpose: primarily Elexium gauge participation (EX lock ladder,
-  protocol-owned liquidity in wRATR pools, tactical bribes), plus
+  protocol-owned liquidity in wRATR/NUTTY pool, tactical bribes), plus
   operational needs.
-- Routine bribe deployment at multisig discretion; anything outside this
-  scope requires masternode vote.
+- Primary LP pair at launch: wRATR/NUTTY on Elexium (operator controls
+  both sides of the pair). Future pairs (wRATR/ALPH, wRATR/EX, wRATR/USDC)
+  optional expansion based on partnership interest.
+- Monthly on-chain treasury reports posted publicly. All treasury
+  addresses public from launch.
+- Routine bribe + LP deployment at operator discretion within documented
+  scope; anything outside this scope (audits, listings, NFT program,
+  etc.) requires masternode vote.
 
 ## Known limitations (v1.0.0-alpha)
 
@@ -119,6 +125,22 @@ before MN economics go live.
 4. **Bridge to Alephium is separate infrastructure.** The bridge is an
    independent service (operator-run) and not part of the Ratatoskr
    consensus. Bridge security is documented in the bridge repository.
+
+5. **Treasury is single-signature at v1.0.** The treasury wallet is held
+   on a hardware wallet by the operator, not a multisig. This is an
+   intentional choice: multisig security only works with engaged cosigners
+   capable of evaluating transactions, and the Ratatoskr community at
+   launch is too small to credibly fill cosigner roles. Planned upgrade
+   path: transition to 2-of-3 multisig at v1.1+ once trusted community
+   contributors emerge (6-12 months post-launch estimated).
+   Mitigations in the interim:
+   - All treasury addresses publicly posted from launch day
+   - Monthly on-chain treasury report published to the public Discord
+   - Treasury spending scope documented; anything outside scope requires
+     a masternode vote regardless of single-sig control
+   - Hardware wallet + offline seed backup (multiple physical locations)
+   - Clear disclosure: this release note, the README, and the whitepaper
+     all name this limitation so users can evaluate it
 
 ## Supported platforms
 

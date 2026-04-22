@@ -49,9 +49,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef SMARTIECOIN_CONFIG_H])
-AH_TOP([#define SMARTIECOIN_CONFIG_H])
-AH_BOTTOM([#endif //SMARTIECOIN_CONFIG_H])
+AH_TOP([#ifndef RATATOSKR_CONFIG_H])
+AH_TOP([#define RATATOSKR_CONFIG_H])
+AH_BOTTOM([#endif //RATATOSKR_CONFIG_H])
 
 dnl Automake init set-up and checks
 AM_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
@@ -258,7 +258,7 @@ AC_ARG_WITH([mpgen],
 
 AC_ARG_ENABLE([multiprocess],
   [AS_HELP_STRING([--enable-multiprocess],
-  [build multiprocess smartiecoin-node, smartiecoin-wallet, and smartiecoin-gui executables in addition to monolithic smartiecoind and smartiecoin-qt executables. Requires libmultiprocess library. Experimental (default is no)])],
+  [build multiprocess ratatoskr-node, ratatoskr-wallet, and ratatoskr-gui executables in addition to monolithic ratatoskrd and ratatoskr-qt executables. Requires libmultiprocess library. Experimental (default is no)])],
   [enable_multiprocess=$enableval],
   [enable_multiprocess=no])
 
@@ -741,31 +741,31 @@ CORE_CPPFLAGS="$CORE_CPPFLAGS -DHAVE_BUILD_INFO -DGSL_NO_IOSTREAMS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build smartiecoin-cli smartiecoin-tx smartiecoin-util smartiecoin-wallet (default=yes)])],
+  [build ratatoskr-cli ratatoskr-tx ratatoskr-util ratatoskr-wallet (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
 AC_ARG_ENABLE([util-cli],
   [AS_HELP_STRING([--enable-util-cli],
-  [build smartiecoin-cli])],
+  [build ratatoskr-cli])],
   [build_bitcoin_cli=$enableval],
   [build_bitcoin_cli=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-tx],
   [AS_HELP_STRING([--enable-util-tx],
-  [build smartiecoin-tx])],
+  [build ratatoskr-tx])],
   [build_bitcoin_tx=$enableval],
   [build_bitcoin_tx=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-wallet],
   [AS_HELP_STRING([--enable-util-wallet],
-  [build smartiecoin-wallet])],
+  [build ratatoskr-wallet])],
   [build_bitcoin_wallet=$enableval],
   [build_bitcoin_wallet=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-util],
   [AS_HELP_STRING([--enable-util-util],
-  [build smartiecoin-util])],
+  [build ratatoskr-util])],
   [build_bitcoin_util=$enableval],
   [build_bitcoin_util=$build_bitcoin_utils])
 
@@ -777,7 +777,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build smartiecoind daemon (default=yes)])],
+  [build ratatoskrd daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -1132,7 +1132,7 @@ AC_CHECK_DECLS([getifaddrs, freeifaddrs],[CHECK_SOCKET],,
     #include <ifaddrs.h>]
 )
 
-dnl These are used for daemonization in smartiecoind
+dnl These are used for daemonization in ratatoskrd
 AC_CHECK_DECLS([fork])
 AC_CHECK_DECLS([setsid])
 
@@ -1756,23 +1756,23 @@ if test "$build_multiprocess" != "no"; then
   AC_SUBST(MPGEN_PREFIX)
 fi
 
-AC_MSG_CHECKING([whether to build smartiecoind])
+AC_MSG_CHECKING([whether to build ratatoskrd])
 AM_CONDITIONAL([BUILD_BITCOIND], [test $build_bitcoind = "yes"])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build smartiecoin-cli])
+AC_MSG_CHECKING([whether to build ratatoskr-cli])
 AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test $build_bitcoin_cli = "yes"])
 AC_MSG_RESULT($build_bitcoin_cli)
 
-AC_MSG_CHECKING([whether to build smartiecoin-tx])
+AC_MSG_CHECKING([whether to build ratatoskr-tx])
 AM_CONDITIONAL([BUILD_BITCOIN_TX], [test $build_bitcoin_tx = "yes"])
 AC_MSG_RESULT($build_bitcoin_tx)
 
-AC_MSG_CHECKING([whether to build smartiecoin-wallet])
+AC_MSG_CHECKING([whether to build ratatoskr-wallet])
 AM_CONDITIONAL([BUILD_BITCOIN_WALLET], [test $build_bitcoin_wallet = "yes"])
 AC_MSG_RESULT($build_bitcoin_wallet)
 
-AC_MSG_CHECKING([whether to build smartiecoin-util])
+AC_MSG_CHECKING([whether to build ratatoskr-util])
 AM_CONDITIONAL([BUILD_BITCOIN_UTIL], [test $build_bitcoin_util = "yes"])
 AC_MSG_RESULT($build_bitcoin_util)
 
@@ -1888,7 +1888,7 @@ if test "$bitcoin_enable_qt" != "no"; then
     AC_MSG_WARN([xgettext is required to update qt translations])
   fi
 
-  AC_MSG_CHECKING([whether to build test_smartiecoin-qt])
+  AC_MSG_CHECKING([whether to build test_ratatoskr-qt])
   if test "$use_gui_tests$bitcoin_enable_qt_test" = "yesyes"; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
@@ -1897,7 +1897,7 @@ if test "$bitcoin_enable_qt" != "no"; then
   fi
 fi
 
-AC_MSG_CHECKING([whether to build test_smartiecoin])
+AC_MSG_CHECKING([whether to build test_ratatoskr])
 if test "$use_tests" = "yes"; then
   if test "$enable_fuzz" = "yes"; then
     AC_MSG_RESULT([no, because fuzzing is enabled])
@@ -2110,7 +2110,7 @@ echo "  with zmq        = $use_zmq"
 if test $enable_fuzz = "no"; then
     echo "  with test       = $use_tests"
 else
-    echo "  with test       = not building test_smartiecoin because fuzzing is enabled"
+    echo "  with test       = not building test_ratatoskr because fuzzing is enabled"
 fi
 echo "  with fuzz binary= $enable_fuzz_binary"
 echo "  with bench      = $use_bench"

@@ -1,4 +1,4 @@
-# Unit tests
+﻿# Unit tests
 
 The sources in this directory are unit test cases. Boost includes a
 unit testing framework, and since Smartiecoin Core already uses Boost, it makes
@@ -43,7 +43,7 @@ test_dash --log_level=all --run_test=getarg_tests
 
 `log_level` controls the verbosity of the test framework, which logs when a
 test case is entered, for example. `test_dash` also accepts the command
-line arguments accepted by `smartiecoind`. Use `--` to separate both types of
+line arguments accepted by `ratatoskrd`. Use `--` to separate both types of
 arguments:
 
 ```bash

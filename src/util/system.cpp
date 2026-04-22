@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
+﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
@@ -317,7 +317,7 @@ bool ArgsManager::ParseParameters(int argc, const char* const argv[], std::strin
 
     for (int i = 1; i < argc; i++) {
         std::string key(argv[i]);
-        if (key == "-") break; //smartiecoin-tx using stdin
+        if (key == "-") break; //ratatoskr-tx using stdin
 
 #ifdef MAC_OSX
         // At the first time when a user gets the "App downloaded from the

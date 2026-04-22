@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Satoshi Nakamoto
+﻿// Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
@@ -431,7 +431,7 @@ static RPCHelpMan upgradetohd()
                     throw JSONRPCError(RPC_WALLET_PASSPHRASE_INCORRECT, "Error: The wallet passphrase entered is incorrect. "
                                                                         "It contains a null character (ie - a zero byte). "
                                                                         "If the passphrase was set with a version of this software prior to 23.0, "
-                                                                        "please try again with only the characters up to — but not including — "
+                                                                        "please try again with only the characters up to â€” but not including â€” "
                                                                         "the first null character. If this is successful, please set a new "
                                                                         "passphrase to avoid this issue in the future.");
                 }
@@ -493,7 +493,7 @@ static RPCHelpMan upgradetohd()
         return "Make sure that you have backup of your mnemonic. "
                "Your mnemonic passphrase contains a null character (ie - a zero byte). "
                "If the passphrase was created with a version of this software prior to 23.0, "
-               "please try again with only the characters up to — but not including — "
+               "please try again with only the characters up to â€” but not including â€” "
                "the first null character. If this is successful, please set a new "
                "passphrase to avoid this issue in the future.";
     }
@@ -505,7 +505,7 @@ static RPCHelpMan loadwallet()
 {
     return RPCHelpMan{"loadwallet",
                 "\nLoads a wallet from a wallet file or directory."
-                "\nNote that all wallet command-line options used when starting smartiecoind will be"
+                "\nNote that all wallet command-line options used when starting ratatoskrd will be"
                 "\napplied to the new wallet (eg, rescan, etc).\n",
                 {
                     {"filename", RPCArg::Type::STR, RPCArg::Optional::NO, "The wallet directory or .dat file."},
@@ -815,7 +815,7 @@ static RPCHelpMan wipewallettxes()
     const size_t STEPS{20};
     const size_t BATCH_SIZE = std::max(WALLET_SIZE / STEPS, size_t(1000));
 
-    pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactions…").translated, pwallet->GetDisplayName()), 0);
+    pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactionsâ€¦").translated, pwallet->GetDisplayName()), 0);
 
     for (size_t progress = 0; progress < STEPS; ++progress) {
         std::vector<uint256> vHashIn;
@@ -829,21 +829,21 @@ static RPCHelpMan wipewallettxes()
         }
 
         if (vHashIn.size() > 0 && pwallet->ZapSelectTx(vHashIn, vHashOut) != DBErrors::LOAD_OK) {
-            pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactions…").translated, pwallet->GetDisplayName()), 100);
+            pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactionsâ€¦").translated, pwallet->GetDisplayName()), 100);
             throw JSONRPCError(RPC_WALLET_ERROR, "Could not properly delete transactions.");
         }
 
         CHECK_NONFATAL(vHashOut.size() == vHashIn.size());
 
         if (pwallet->IsAbortingRescan() || pwallet->chain().shutdownRequested()) {
-            pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactions…").translated, pwallet->GetDisplayName()), 100);
+            pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactionsâ€¦").translated, pwallet->GetDisplayName()), 100);
             throw JSONRPCError(RPC_MISC_ERROR, "Wiping was aborted by user.");
         }
 
-        pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactions…").translated, pwallet->GetDisplayName()), std::max(1, std::min(99, int(progress * 100 / STEPS))));
+        pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactionsâ€¦").translated, pwallet->GetDisplayName()), std::max(1, std::min(99, int(progress * 100 / STEPS))));
     }
 
-    pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactions…").translated, pwallet->GetDisplayName()), 100);
+    pwallet->ShowProgress(strprintf("%s " + _("Wiping wallet transactionsâ€¦").translated, pwallet->GetDisplayName()), 100);
 
     return UniValue::VNULL;
 },

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+﻿// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -266,7 +266,7 @@ bool Intro::showIfNeeded(bool& did_show_intro, int64_t& prune_MiB)
     }
     /* Only override -datadir if different from the default, to make it possible to
      * override -datadir in the smartiecoin.conf file in the default data directory
-     * (to be consistent with smartiecoind behavior)
+     * (to be consistent with ratatoskrd behavior)
      */
     if(dataDir != GUIUtil::getDefaultDataDirectory()) {
         gArgs.SoftSetArg("-datadir", fs::PathToString(GUIUtil::QStringToPath(dataDir))); // use OS locale for path setting

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+﻿// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -71,7 +71,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
         ui->helpMessage->setVisible(false);
     } else if (helpMode == cmdline) {
         setWindowTitle(tr("Command-line options"));
-        QString header = "Usage: smartiecoin-qt [command-line options] [URI]\n\n"
+        QString header = "Usage: ratatoskr-qt [command-line options] [URI]\n\n"
                          "Optional URI is a Smartiecoin address in BIP21 URI format.\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
@@ -196,7 +196,7 @@ ShutdownWindow::ShutdownWindow(QWidget *parent, Qt::WindowFlags f):
 
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(new QLabel(
-        tr("%1 is shutting down…").arg(PACKAGE_NAME) + "<br /><br />" +
+        tr("%1 is shutting downâ€¦").arg(PACKAGE_NAME) + "<br /><br />" +
         tr("Do not shut down the computer until this window disappears.")));
     setLayout(layout);
 

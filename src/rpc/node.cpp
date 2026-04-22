@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Satoshi Nakamoto
+﻿// Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
@@ -1028,7 +1028,7 @@ static RPCHelpMan echo(const std::string& name)
                 "\nSimply echo back the input arguments. This command is for testing.\n"
                 "\nIt will return an internal bug report when arg9='trigger_internal_bug' is passed.\n"
                 "\nThe difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in "
-                "smartiecoin-cli and the GUI. There is no server-side difference.",
+                "ratatoskr-cli and the GUI. There is no server-side difference.",
         {
             {"arg0", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, ""},
             {"arg1", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, ""},

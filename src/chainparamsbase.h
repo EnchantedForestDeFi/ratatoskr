@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2020 The Bitcoin Core developers
+﻿// Copyright (c) 2014-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 class ArgsManager;
 
 /**
- * CBaseChainParams defines the base parameters (shared between smartiecoin-cli and dashd)
+ * CBaseChainParams defines the base parameters (shared between ratatoskr-cli and dashd)
  * of a given instance of the Smartiecoin system.
  */
 class CBaseChainParams

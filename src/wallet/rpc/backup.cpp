@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+﻿// Copyright (c) 2009-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -543,7 +543,7 @@ RPCHelpMan importwallet()
 
         // Use uiInterface.ShowProgress instead of pwallet.ShowProgress because pwallet.ShowProgress has a cancel button tied to AbortRescan which
         // we don't want for this progress bar showing the import progress. uiInterface.ShowProgress does not have a cancel button.
-        pwallet->chain().showProgress(strprintf("%s " + _("Importing…").translated, pwallet->GetDisplayName()), 0, false); // show progress dialog in GUI
+        pwallet->chain().showProgress(strprintf("%s " + _("Importingâ€¦").translated, pwallet->GetDisplayName()), 0, false); // show progress dialog in GUI
         std::vector<std::tuple<CKey, int64_t, bool, std::string>> keys;
         std::vector<std::pair<CScript, int64_t>> scripts;
         while (file.good()) {
@@ -706,7 +706,7 @@ RPCHelpMan importelectrumwallet()
     int64_t nFilesize = std::max((int64_t)1, (int64_t)file.tellg());
     file.seekg(0, file.beg);
 
-    pwallet->ShowProgress(_("Importing…").translated, 0); // show progress dialog in GUI
+    pwallet->ShowProgress(_("Importingâ€¦").translated, 0); // show progress dialog in GUI
 
     // Electrum backups were modified to include a prefix before the private key
     // The new format of the private_key field is: "prefix:private key"
@@ -1663,7 +1663,7 @@ RPCHelpMan importmulti()
                                       "block from time %d, which is after or within %d seconds of key creation, and "
                                       "could contain transactions pertaining to the key. As a result, transactions "
                                       "and coins using this key may not appear in the wallet. This error could be "
-                                      "caused by pruning or data corruption (see smartiecoind log for details) and could "
+                                      "caused by pruning or data corruption (see ratatoskrd log for details) and could "
                                       "be dealt with by downloading and rescanning the relevant blocks (see -reindex "
                                       "and -rescan options).",
                                 GetImportTimestamp(request, now), scannedTime - TIMESTAMP_WINDOW - 1, TIMESTAMP_WINDOW)));
@@ -1961,7 +1961,7 @@ RPCHelpMan importdescriptors() {
                                       "block from time %d, which is after or within %d seconds of key creation, and "
                                       "could contain transactions pertaining to the desc. As a result, transactions "
                                       "and coins using this desc may not appear in the wallet. This error could be "
-                                      "caused by pruning or data corruption (see smartiecoind log for details) and could "
+                                      "caused by pruning or data corruption (see ratatoskrd log for details) and could "
                                       "be dealt with by downloading and rescanning the relevant blocks (see -reindex "
                                       "and -rescan options).",
                                 GetImportTimestamp(request, now), scanned_time - TIMESTAMP_WINDOW - 1, TIMESTAMP_WINDOW)));

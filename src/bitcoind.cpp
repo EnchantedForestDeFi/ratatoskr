@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
+﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
@@ -135,7 +135,7 @@ static bool AppInit(NodeContext& node, int argc, char* argv[])
         if (args.IsArgSet("-version")) {
             strUsage += FormatParagraph(LicenseInfo());
         } else {
-            strUsage += "\nUsage:  smartiecoind [options]             Start " PACKAGE_NAME "\n"
+            strUsage += "\nUsage:  ratatoskrd [options]             Start " PACKAGE_NAME "\n"
                 "\n";
             strUsage += args.GetHelpMessage();
         }
@@ -171,7 +171,7 @@ static bool AppInit(NodeContext& node, int argc, char* argv[])
         // Error out when loose non-argument tokens are encountered on command line
         for (int i = 1; i < argc; i++) {
             if (!IsSwitchChar(argv[i][0])) {
-                return InitError(Untranslated(strprintf("Command line contains unexpected token '%s', see smartiecoind -h for a list of options.\n", argv[i])));
+                return InitError(Untranslated(strprintf("Command line contains unexpected token '%s', see ratatoskrd -h for a list of options.\n", argv[i])));
             }
         }
 
@@ -180,7 +180,7 @@ static bool AppInit(NodeContext& node, int argc, char* argv[])
             return false;
         }
 
-        // -server defaults to true for smartiecoind but not for the GUI so do this here
+        // -server defaults to true for ratatoskrd but not for the GUI so do this here
         args.SoftSetBoolArg("-server", true);
         // Set this early so that parameter interactions go to console
         InitLogging(args);
@@ -273,7 +273,7 @@ MAIN_FUNCTION
 
     SetupEnvironment();
 
-    // Connect smartiecoind signal handlers
+    // Connect ratatoskrd signal handlers
     noui_connect();
 
     return (AppInit(node, argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE);

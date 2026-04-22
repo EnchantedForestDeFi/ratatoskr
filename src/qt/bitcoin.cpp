@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+﻿// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2025 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -229,7 +229,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 }
 
 static int qt_argc = 1;
-static const char* qt_argv = "smartiecoin-qt";
+static const char* qt_argv = "ratatoskr-qt";
 
 BitcoinApplication::BitcoinApplication()
     : QApplication(qt_argc, const_cast<char**>(&qt_argv))
@@ -582,10 +582,10 @@ int GuiMain(int argc, char* argv[])
             return EXIT_FAILURE;
         }
         if (invalid_token) {
-            InitError(Untranslated(strprintf("Command line contains unexpected token '%s', see smartiecoin-qt -h for a list of options.", argv[i])));
+            InitError(Untranslated(strprintf("Command line contains unexpected token '%s', see ratatoskr-qt -h for a list of options.", argv[i])));
             QMessageBox::critical(nullptr, PACKAGE_NAME,
                                   // message cannot be translated because translations have not been initialized
-                                  QString::fromStdString("Command line contains unexpected token '%1', see smartiecoin-qt -h for a list of options.").arg(QString::fromStdString(argv[i])));
+                                  QString::fromStdString("Command line contains unexpected token '%1', see ratatoskr-qt -h for a list of options.").arg(QString::fromStdString(argv[i])));
             return EXIT_FAILURE;
         }
     }
@@ -815,7 +815,7 @@ int GuiMain(int argc, char* argv[])
         if (app.baseInitialize()) {
             app.requestInitialize();
 #if defined(Q_OS_WIN)
-            WinShutdownMonitor::registerShutdownBlockReason(QObject::tr("%1 didn't yet exit safely…").arg(PACKAGE_NAME), (HWND)app.getMainWinId());
+            WinShutdownMonitor::registerShutdownBlockReason(QObject::tr("%1 didn't yet exit safelyâ€¦").arg(PACKAGE_NAME), (HWND)app.getMainWinId());
 #endif
             app.exec();
             rv = app.getReturnValue();

@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2021 The Bitcoin Core developers
+﻿// Copyright (c) 2019-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(logging_timer)
     SetMockTime(1);
     auto micro_timer = BCLog::Timer<std::chrono::microseconds>("tests", "end_msg");
     SetMockTime(2);
-    BOOST_CHECK_EQUAL(micro_timer.LogMsg("test micros"), "tests: test micros (1000000μs)");
+    BOOST_CHECK_EQUAL(micro_timer.LogMsg("test micros"), "tests: test micros (1000000Î¼s)");
 
     SetMockTime(1);
     auto ms_timer = BCLog::Timer<std::chrono::milliseconds>("tests", "end_msg");
@@ -234,7 +234,7 @@ BOOST_FIXTURE_TEST_CASE(logging_Conf, LogSetup)
         ResetLogger();
         ArgsManager args;
         args.AddArg("-loglevel", "...", ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
-        const char* argv_test[] = {"smartiecoind", "-loglevel=debug"};
+        const char* argv_test[] = {"ratatoskrd", "-loglevel=debug"};
         std::string err;
         BOOST_REQUIRE(args.ParseParameters(2, argv_test, err));
         init::SetLoggingLevel(args);
@@ -246,7 +246,7 @@ BOOST_FIXTURE_TEST_CASE(logging_Conf, LogSetup)
         ResetLogger();
         ArgsManager args;
         args.AddArg("-loglevel", "...", ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
-        const char* argv_test[] = {"smartiecoind", "-loglevel=net:trace"};
+        const char* argv_test[] = {"ratatoskrd", "-loglevel=net:trace"};
         std::string err;
         BOOST_REQUIRE(args.ParseParameters(2, argv_test, err));
         init::SetLoggingLevel(args);
@@ -263,7 +263,7 @@ BOOST_FIXTURE_TEST_CASE(logging_Conf, LogSetup)
         ResetLogger();
         ArgsManager args;
         args.AddArg("-loglevel", "...", ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
-        const char* argv_test[] = {"smartiecoind", "-loglevel=debug", "-loglevel=net:trace", "-loglevel=http:info"};
+        const char* argv_test[] = {"ratatoskrd", "-loglevel=debug", "-loglevel=net:trace", "-loglevel=http:info"};
         std::string err;
         BOOST_REQUIRE(args.ParseParameters(4, argv_test, err));
         init::SetLoggingLevel(args);

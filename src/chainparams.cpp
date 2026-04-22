@@ -607,6 +607,23 @@ public:
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         genesis = CreateGenesisBlock(1771811700, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        // TEMP: devnet genesis miner. Remove once mined values are baked in.
+        {
+            arith_uint256 target;
+            target.SetCompact(genesis.nBits);
+            while (UintToArith256(genesis.GetHash()) > target) {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0) ++genesis.nTime;
+            }
+            consensus.hashGenesisBlock = genesis.GetHash();
+            fprintf(stderr, "\n=== DEVNET GENESIS FOUND ===\n"
+                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
+                    genesis.nTime, genesis.nNonce,
+                    consensus.hashGenesisBlock.ToString().c_str(),
+                    genesis.hashMerkleRoot.ToString().c_str());
+            fflush(stderr);
+            abort();
+        }
         assert(consensus.hashGenesisBlock == uint256S("0x3c618bd5a35ddc7d671d0c18b8cb0bac10ef247684a50adf8036e3f425c4f5fc"));
         assert(genesis.hashMerkleRoot == uint256S("0x072861beb07d25c57fe602de96d33df74186b55f1ea430eba353ce3877e3b45f"));
 

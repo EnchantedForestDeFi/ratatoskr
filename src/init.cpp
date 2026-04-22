@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
 // Copyright (c) 2014-2026 The Smartiecoin Core developers
 // Distributed under the MIT software license, see the accompanying

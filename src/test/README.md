@@ -1,4 +1,4 @@
-﻿# Unit tests
+# Unit tests
 
 The sources in this directory are unit test cases. Boost includes a
 unit testing framework, and since Smartiecoin Core already uses Boost, it makes

@@ -161,15 +161,21 @@ public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
         consensus.nSubsidyHalvingInterval = 1030596;
-        consensus.nMasternodePaymentsStartBlock = 50;
-        consensus.nMasternodePaymentsIncreaseBlock = 101;
-        consensus.nMasternodePaymentsIncreasePeriod = 262800;
+
+        // Ratatoskr activation schedule (60s blocks):
+        //   Block 0      - Chain launch, miners earn 60% of subsidy
+        //   Block 25,000 - ~17 days: MN payments start (hashrate stabilizes first)
+        //   Block 30,000 - ~21 days: First superblock / governance activates
+        //   Block 21,600 - ~15 days: Superblock cycle (biweekly treasury batches)
+        consensus.nMasternodePaymentsStartBlock = 25000;
+        consensus.nMasternodePaymentsIncreaseBlock = 101;      // legacy, unused after reward split commit
+        consensus.nMasternodePaymentsIncreasePeriod = 262800;  // legacy, unused after reward split commit
         consensus.nInstantSendConfirmationsRequired = 2;
         consensus.nInstantSendKeepLock = 24;
-        consensus.nBudgetPaymentsStartBlock = 27600;
+        consensus.nBudgetPaymentsStartBlock = 29900;
         consensus.nBudgetPaymentsCycleBlocks = 21600;
         consensus.nBudgetPaymentsWindowBlocks = 100;
-        consensus.nSuperblockStartBlock = 27700;
+        consensus.nSuperblockStartBlock = 30000;
         consensus.nSuperblockStartHash = uint256();
         consensus.nSuperblockCycle = 21600;
         consensus.nSuperblockMaturityWindow = 1662;
@@ -183,9 +189,9 @@ public:
         consensus.BIP147Height = 0;
         consensus.CSVHeight = 0;
         consensus.DIP0001Height = 2;
-        // Enable deterministic masternodes shortly after genesis on the reset chain.
+        // Deterministic MNs registered from genesis; enforcement gate aligns with MN payments start
         consensus.DIP0003Height = 2;
-        consensus.DIP0003EnforcementHeight = 50;
+        consensus.DIP0003EnforcementHeight = 25000;
         consensus.DIP0003EnforcementHash = uint256();
         consensus.DIP0008Height = 2;
         consensus.BRRHeight = 20000;

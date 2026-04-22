@@ -6,7 +6,7 @@
 bin_PROGRAMS += qt/ratatoskr-qt
 
 if BUILD_BITCOIN_GUI
-  bin_PROGRAMS += smartiecoin-gui
+  bin_PROGRAMS += ratatoskr-gui
 endif
 
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
@@ -118,7 +118,7 @@ QT_MOC = \
   qt/rpcconsole.moc
 
 QT_QRC_CPP = qt/qrc_bitcoin.cpp
-QT_QRC = qt/smartiecoin.qrc
+QT_QRC = qt/ratatoskr.qrc
 QT_QRC_LOCALE_CPP = qt/qrc_dash_locale.cpp
 QT_QRC_LOCALE = qt/dash_locale.qrc
 
@@ -417,7 +417,7 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 $(QT_MOC): $(QT_FORMS_H)
 $(qt_libbitcoinqt_a_OBJECTS) $(qt_ratatoskr_qt_OBJECTS) $(ratatoskr_gui_OBJECTS): | $(QT_MOC)
 
-# ratatoskr-qt and smartiecoin-gui binaries #
+# ratatoskr-qt and ratatoskr-gui binaries #
 bitcoin_qt_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QR_CFLAGS)
 bitcoin_qt_cxxflags = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
@@ -480,7 +480,7 @@ $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(QT_RES_ICONS) $(QT_RES_IMAGES) $(QT_RES_CSS) $(QT_RES_FONTS) $(QT_RES_ANIMATION)
 	@test -f $(RCC) || (echo "rcc $(RCC) not found, but is required for generating qrc cpp files"; exit 1)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name smartiecoin --format-version 1 $< > $@
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name ratatoskr --format-version 1 $< > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_dash_locale.qrc qt/res/css/colors/*
 

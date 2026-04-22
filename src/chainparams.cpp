@@ -390,7 +390,7 @@ public:
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x0000306ccbb9a170674fc7edd86b987ca6031c66ad673f405d81dc08828e07e6");
+        consensus.BIP34Hash = uint256S("0x00000af01588b7d2eb7450b339a1d76978f85f5588ad76c4fdfe5fb099403838");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP147Height = 0;
@@ -449,27 +449,11 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 1;
 
-        // Ratatoskr testnet genesis — nTime mainnet + 60s. Same rationale.
-        genesis = CreateGenesisBlock(1777000060, 0, 0x1e3fffff, 1, 50 * COIN);
+        // Ratatoskr testnet genesis — nTime mainnet + 60s. Same backdating rationale.
+        //   nNonce: 146753
+        genesis = CreateGenesisBlock(1777000060, 146753, 0x1e3fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMP: testnet genesis miner. Remove once mined values are baked in.
-        {
-            arith_uint256 target;
-            target.SetCompact(genesis.nBits);
-            while (UintToArith256(genesis.GetHash()) > target) {
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) ++genesis.nTime;
-            }
-            consensus.hashGenesisBlock = genesis.GetHash();
-            fprintf(stderr, "\n=== TESTNET GENESIS FOUND ===\n"
-                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
-                    genesis.nTime, genesis.nNonce,
-                    consensus.hashGenesisBlock.ToString().c_str(),
-                    genesis.hashMerkleRoot.ToString().c_str());
-            fflush(stderr);
-            abort();
-        }
-        assert(consensus.hashGenesisBlock == uint256S("0x0000306ccbb9a170674fc7edd86b987ca6031c66ad673f405d81dc08828e07e6"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000af01588b7d2eb7450b339a1d76978f85f5588ad76c4fdfe5fb099403838"));
         assert(genesis.hashMerkleRoot == uint256S("0x90483249bee4d0203d8047c1c2dbfd2c200d62b4543de0e3db18fccb3bdaef5a"));
 
         vFixedSeeds.clear();

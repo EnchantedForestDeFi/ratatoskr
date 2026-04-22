@@ -190,8 +190,7 @@ public:
         consensus.nGovernanceFilterElements = 15000;
         consensus.nMasternodeMinimumConfirmations = 15;
         consensus.BIP34Height = 0;
-        // Placeholder — update to match finalized mainnet genesis hash after mining.
-        consensus.BIP34Hash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        consensus.BIP34Hash = uint256S("0x00003de188a8adceb53fc354fc79f1c1e1bf86c62ceab31d73c25b9ecd799cf8");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP147Height = 0;
@@ -277,49 +276,17 @@ public:
         //   7. Commit as "consensus: finalize Ratatoskr mainnet genesis block"
         //   8. Tag v1.0.0-alpha; chain is launch-ready.
         //
-        // Hashes below are PLACEHOLDERS and will NOT match until genesis is mined.
-        // Daemon refuses to start until these match; that's the intended safety gate.
-        genesis = CreateGenesisBlock(1777584000, 0, 0x1e3fffff, 1, 10 * COIN);
+        // Ratatoskr mainnet genesis — MINED 2026-04-22 on x86_64 Linux.
+        //   nTime:           1777584000 (2026-04-28 00:00:00 UTC)
+        //   nNonce:          56237 (~56k iterations, found in seconds)
+        //   nBits:           0x1e3fffff
+        //   nVersion:        1
+        //   reward:          10 RATR (unspendable by convention)
+        //   pszTimestamp:    "Ratatoskr 22/Apr/2026 - miners first, governance bounded, treasury aligned"
+        genesis = CreateGenesisBlock(1777584000, 56237, 0x1e3fffff, 1, 10 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-
-        // === TEMPORARY GENESIS MINER (remove after first successful mine) ===
-        // If hashGenesisBlock is still the all-zeros placeholder we've never mined.
-        // Iterate nNonce until block hash satisfies nBits target. Print + exit.
-        if (consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")
-            || true /* always run miner until we replace this block with real values */) {
-            arith_uint256 hashTarget;
-            hashTarget.SetCompact(genesis.nBits);
-            std::cerr << "Mining mainnet genesis block...\n";
-            std::cerr << "  pszTimestamp: \"Ratatoskr 22/Apr/2026 - miners first, governance bounded, treasury aligned\"\n";
-            std::cerr << "  nTime:  " << genesis.nTime << "\n";
-            std::cerr << "  nBits:  " << std::hex << genesis.nBits << std::dec << "\n";
-            std::cerr << "  target: " << hashTarget.ToString() << "\n";
-            uint32_t nonce = 0;
-            while (true) {
-                genesis.nNonce = nonce;
-                arith_uint256 h = UintToArith256(genesis.GetHash());
-                if (h <= hashTarget) {
-                    std::cerr << "\n========================================\n";
-                    std::cerr << "MAINNET GENESIS FOUND!\n";
-                    std::cerr << "  nNonce:           " << nonce << "\n";
-                    std::cerr << "  hashGenesisBlock: 0x" << genesis.GetHash().GetHex() << "\n";
-                    std::cerr << "  hashMerkleRoot:   0x" << genesis.hashMerkleRoot.GetHex() << "\n";
-                    std::cerr << "========================================\n";
-                    std::exit(0);
-                }
-                if ((nonce % 50000) == 0)
-                    std::cerr << "  ...nonce=" << nonce << "\n";
-                nonce++;
-                if (nonce == 0) {  // wrapped — gave up
-                    std::cerr << "FAILED to mine — nonce wrapped. Increase nBits target.\n";
-                    std::exit(1);
-                }
-            }
-        }
-        // === END TEMPORARY GENESIS MINER ===
-
-        assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
-        assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00003de188a8adceb53fc354fc79f1c1e1bf86c62ceab31d73c25b9ecd799cf8"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa9b59ab92bf13d7349c1ddd39db75b19c58fa15b98ace6f2af3de725e3aa97fe"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.

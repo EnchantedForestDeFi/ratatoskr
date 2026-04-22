@@ -123,33 +123,33 @@ EXTRA_LIBRARIES += \
   $(LIBBITCOIN_ZMQ)
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += smartiecoind
+  bin_PROGRAMS += ratatoskrd
 endif
 
 if BUILD_BITCOIN_NODE
-  bin_PROGRAMS += smartiecoin-node
+  bin_PROGRAMS += ratatoskr-node
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += smartiecoin-cli
+  bin_PROGRAMS += ratatoskr-cli
 endif
 
 if BUILD_BITCOIN_TX
-  bin_PROGRAMS += smartiecoin-tx
+  bin_PROGRAMS += ratatoskr-tx
 endif
 
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += smartiecoin-wallet
+  bin_PROGRAMS += ratatoskr-wallet
 endif
 endif
 
 if BUILD_BITCOIN_UTIL
-  bin_PROGRAMS += smartiecoin-util
+  bin_PROGRAMS += ratatoskr-util
 endif
 
 .PHONY: FORCE check-symbols check-security
-# smartiecoin core #
+# ratatoskr core #
 BITCOIN_CORE_H = \
   active/context.h \
   active/dkgsession.h \
@@ -1039,14 +1039,14 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# smartiecoind & smartiecoin-node binaries #
+# ratatoskrd & ratatoskr-node binaries #
 bitcoin_daemon_sources = bitcoind.cpp
 bitcoin_bin_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 bitcoin_bin_cxxflags = $(AM_CXXFLAGS) $(PIE_FLAGS)
 bitcoin_bin_ldflags = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-bitcoin_daemon_sources += smartiecoind-res.rc
+bitcoin_daemon_sources += ratatoskrd-res.rc
 endif
 
 bitcoin_bin_ldadd = \
@@ -1064,48 +1064,48 @@ bitcoin_bin_ldadd = \
 
 bitcoin_bin_ldadd += $(BACKTRACE_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(SQLITE_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(GMP_LIBS)
 
-smartiecoind_SOURCES = $(bitcoin_daemon_sources) init/bitcoind.cpp
-smartiecoind_CPPFLAGS = $(bitcoin_bin_cppflags)
-smartiecoind_CXXFLAGS = $(bitcoin_bin_cxxflags)
-smartiecoind_LDFLAGS = $(bitcoin_bin_ldflags)
-smartiecoind_LDADD = $(LIBBITCOIN_NODE) $(bitcoin_bin_ldadd)
+ratatoskrd_SOURCES = $(bitcoin_daemon_sources) init/bitcoind.cpp
+ratatoskrd_CPPFLAGS = $(bitcoin_bin_cppflags)
+ratatoskrd_CXXFLAGS = $(bitcoin_bin_cxxflags)
+ratatoskrd_LDFLAGS = $(bitcoin_bin_ldflags)
+ratatoskrd_LDADD = $(LIBBITCOIN_NODE) $(bitcoin_bin_ldadd)
 
-smartiecoin_node_SOURCES = $(bitcoin_daemon_sources) init/bitcoin-node.cpp
-smartiecoin_node_CPPFLAGS = $(bitcoin_bin_cppflags)
-smartiecoin_node_CXXFLAGS = $(bitcoin_bin_cxxflags)
-smartiecoin_node_LDFLAGS = $(bitcoin_bin_ldflags)
-smartiecoin_node_LDADD = $(LIBBITCOIN_NODE) $(bitcoin_bin_ldadd) $(LIBBITCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
+ratatoskr_node_SOURCES = $(bitcoin_daemon_sources) init/bitcoin-node.cpp
+ratatoskr_node_CPPFLAGS = $(bitcoin_bin_cppflags)
+ratatoskr_node_CXXFLAGS = $(bitcoin_bin_cxxflags)
+ratatoskr_node_LDFLAGS = $(bitcoin_bin_ldflags)
+ratatoskr_node_LDADD = $(LIBBITCOIN_NODE) $(bitcoin_bin_ldadd) $(LIBBITCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
 
-# smartiecoin-cli binary #
-smartiecoin_cli_SOURCES = bitcoin-cli.cpp
-smartiecoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-smartiecoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-smartiecoin_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# ratatoskr-cli binary #
+ratatoskr_cli_SOURCES = bitcoin-cli.cpp
+ratatoskr_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+ratatoskr_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ratatoskr_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-smartiecoin_cli_SOURCES += smartiecoin-cli-res.rc
+ratatoskr_cli_SOURCES += ratatoskr-cli-res.rc
 endif
 
-smartiecoin_cli_LDADD = \
+ratatoskr_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
-smartiecoin_cli_LDADD += $(BACKTRACE_LIBS) $(EVENT_LIBS) $(GMP_LIBS)
+ratatoskr_cli_LDADD += $(BACKTRACE_LIBS) $(EVENT_LIBS) $(GMP_LIBS)
 #
 
-# smartiecoin-tx binary #
-smartiecoin_tx_SOURCES = bitcoin-tx.cpp
-smartiecoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-smartiecoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-smartiecoin_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# ratatoskr-tx binary #
+ratatoskr_tx_SOURCES = bitcoin-tx.cpp
+ratatoskr_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+ratatoskr_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ratatoskr_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-smartiecoin_tx_SOURCES += smartiecoin-tx-res.rc
+ratatoskr_tx_SOURCES += ratatoskr-tx-res.rc
 endif
 
-smartiecoin_tx_LDADD = \
+ratatoskr_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -1114,16 +1114,16 @@ smartiecoin_tx_LDADD = \
   $(LIBDASHBLS) \
   $(LIBSECP256K1)
 
-smartiecoin_tx_LDADD += $(BACKTRACE_LIBS) $(GMP_LIBS)
+ratatoskr_tx_LDADD += $(BACKTRACE_LIBS) $(GMP_LIBS)
 #
 
-# smartiecoin-wallet binary #
-smartiecoin_wallet_SOURCES = bitcoin-wallet.cpp
-smartiecoin_wallet_SOURCES += init/bitcoin-wallet.cpp
-smartiecoin_wallet_CPPFLAGS = $(bitcoin_bin_cppflags)
-smartiecoin_wallet_CXXFLAGS = $(bitcoin_bin_cxxflags)
-smartiecoin_wallet_LDFLAGS = $(bitcoin_bin_ldflags)
-smartiecoin_wallet_LDADD = \
+# ratatoskr-wallet binary #
+ratatoskr_wallet_SOURCES = bitcoin-wallet.cpp
+ratatoskr_wallet_SOURCES += init/bitcoin-wallet.cpp
+ratatoskr_wallet_CPPFLAGS = $(bitcoin_bin_cppflags)
+ratatoskr_wallet_CXXFLAGS = $(bitcoin_bin_cxxflags)
+ratatoskr_wallet_LDFLAGS = $(bitcoin_bin_ldflags)
+ratatoskr_wallet_LDADD = \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -1140,21 +1140,21 @@ smartiecoin_wallet_LDADD = \
   $(GMP_LIBS)
 
 if TARGET_WINDOWS
-smartiecoin_wallet_SOURCES += smartiecoin-wallet-res.rc
+ratatoskr_wallet_SOURCES += ratatoskr-wallet-res.rc
 endif
 #
 
-# smartiecoin-util binary #
-smartiecoin_util_SOURCES = bitcoin-util.cpp
-smartiecoin_util_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-smartiecoin_util_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-smartiecoin_util_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# ratatoskr-util binary #
+ratatoskr_util_SOURCES = bitcoin-util.cpp
+ratatoskr_util_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+ratatoskr_util_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ratatoskr_util_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-smartiecoin_util_SOURCES += bitcoin-util-res.rc
+ratatoskr_util_SOURCES += bitcoin-util-res.rc
 endif
 
-smartiecoin_util_LDADD = \
+ratatoskr_util_LDADD = \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
   $(LIBUNIVALUE) \
@@ -1163,7 +1163,7 @@ smartiecoin_util_LDADD = \
   $(LIBSECP256K1) \
   $(BACKTRACE_LIBS)
 
-smartiecoin_util_LDADD += $(BOOST_LIBS)
+ratatoskr_util_LDADD += $(BOOST_LIBS)
 #
 
 # dashconsensus library #

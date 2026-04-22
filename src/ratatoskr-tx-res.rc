@@ -14,14 +14,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Smartiecoin"
-            VALUE "FileDescription",    "smartiecoin-tx (CLI Smartiecoin transaction editor utility)"
+            VALUE "CompanyName",        "Ratatoskr"
+            VALUE "FileDescription",    "ratatoskr-tx (CLI Ratatoskr transaction editor utility)"
             VALUE "FileVersion",        PACKAGE_VERSION
-            VALUE "InternalName",       "smartiecoin-tx"
+            VALUE "InternalName",       "ratatoskr-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "smartiecoin-tx.exe"
-            VALUE "ProductName",        "smartiecoin-tx"
+            VALUE "OriginalFilename",   "ratatoskr-tx.exe"
+            VALUE "ProductName",        "ratatoskr-tx"
             VALUE "ProductVersion",     PACKAGE_VERSION
         END
     END

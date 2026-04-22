@@ -849,27 +849,14 @@ public:
         UpdateDIP3ParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
+        // Ratatoskr regtest genesis — MINED 2026-04-22 on x86_64 Linux.
+        //   nTime:   1590000000 (upstream Dash regtest timestamp, kept for test compat)
+        //   nNonce:  2
+        //   reward:  50 RATR
         genesis = CreateGenesisBlock(1590000000, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMP: regtest genesis miner. Remove once mined values are baked in.
-        {
-            arith_uint256 target;
-            target.SetCompact(genesis.nBits);
-            while (UintToArith256(genesis.GetHash()) > target) {
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) ++genesis.nTime;
-            }
-            consensus.hashGenesisBlock = genesis.GetHash();
-            fprintf(stderr, "\n=== REGTEST GENESIS FOUND ===\n"
-                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
-                    genesis.nTime, genesis.nNonce,
-                    consensus.hashGenesisBlock.ToString().c_str(),
-                    genesis.hashMerkleRoot.ToString().c_str());
-            fflush(stderr);
-            abort();
-        }
-        assert(consensus.hashGenesisBlock == uint256S("0x50a7e63369ce239a81c4aa9e296ef8edefc8d469a0b8f6c743581c07309a1230"));
-        assert(genesis.hashMerkleRoot == uint256S("0x072861beb07d25c57fe602de96d33df74186b55f1ea430eba353ce3877e3b45f"));
+        assert(consensus.hashGenesisBlock == uint256S("0x4a305bdbacf6ea5fd4bb1d43ad539394c12cc29ccc15b25d9f612ca02c541d84"));
+        assert(genesis.hashMerkleRoot == uint256S("0x90483249bee4d0203d8047c1c2dbfd2c200d62b4543de0e3db18fccb3bdaef5a"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();

@@ -389,7 +389,7 @@ public:
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x00000d1c0d49da7a3f8c90fb6cd46e2f50c7f22c04fec8c33a7c2184b7a1ebb0");
+        consensus.BIP34Hash = uint256S("0x0000306ccbb9a170674fc7edd86b987ca6031c66ad673f405d81dc08828e07e6");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP147Height = 0;
@@ -448,32 +448,15 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 1;
 
-        // Ratatoskr testnet genesis. Same mining procedure as mainnet — see
-        // CMainParams for instructions. Testnet timestamp slightly later than
-        // mainnet so the two chains have distinct headers even if magic matched.
-        // Testnet uses 50 RATR initial reward (typical for testnet to help
-        // testers get balances faster) vs mainnet's 10.
-        genesis = CreateGenesisBlock(1777584060, 0, 0x1e3fffff, 1, 50 * COIN);
+        // Ratatoskr testnet genesis — MINED 2026-04-22 on x86_64 Linux.
+        //   nTime:   1777584060 (mainnet + 60s, distinct header even if magic matched)
+        //   nNonce:  127025
+        //   nBits:   0x1e3fffff
+        //   reward:  50 RATR (higher than mainnet's 10 so testers get balances faster)
+        genesis = CreateGenesisBlock(1777584060, 127025, 0x1e3fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMP: testnet genesis miner. Remove once mined values are baked in.
-        {
-            arith_uint256 target;
-            target.SetCompact(genesis.nBits);
-            while (UintToArith256(genesis.GetHash()) > target) {
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) ++genesis.nTime;
-            }
-            consensus.hashGenesisBlock = genesis.GetHash();
-            fprintf(stderr, "\n=== TESTNET GENESIS FOUND ===\n"
-                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
-                    genesis.nTime, genesis.nNonce,
-                    consensus.hashGenesisBlock.ToString().c_str(),
-                    genesis.hashMerkleRoot.ToString().c_str());
-            fflush(stderr);
-            abort();
-        }
-        assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
-        assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000306ccbb9a170674fc7edd86b987ca6031c66ad673f405d81dc08828e07e6"));
+        assert(genesis.hashMerkleRoot == uint256S("0x90483249bee4d0203d8047c1c2dbfd2c200d62b4543de0e3db18fccb3bdaef5a"));
 
         vFixedSeeds.clear();
 

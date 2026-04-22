@@ -605,27 +605,14 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1771811700, 0, 0x207fffff, 1, 50 * COIN);
+        // Ratatoskr devnet genesis — MINED 2026-04-22 on x86_64 Linux.
+        //   nTime:   1771811700
+        //   nNonce:  1 (0x207fffff is trivial difficulty — finds immediately)
+        //   reward:  50 RATR
+        genesis = CreateGenesisBlock(1771811700, 1, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMP: devnet genesis miner. Remove once mined values are baked in.
-        {
-            arith_uint256 target;
-            target.SetCompact(genesis.nBits);
-            while (UintToArith256(genesis.GetHash()) > target) {
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) ++genesis.nTime;
-            }
-            consensus.hashGenesisBlock = genesis.GetHash();
-            fprintf(stderr, "\n=== DEVNET GENESIS FOUND ===\n"
-                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
-                    genesis.nTime, genesis.nNonce,
-                    consensus.hashGenesisBlock.ToString().c_str(),
-                    genesis.hashMerkleRoot.ToString().c_str());
-            fflush(stderr);
-            abort();
-        }
-        assert(consensus.hashGenesisBlock == uint256S("0x3c618bd5a35ddc7d671d0c18b8cb0bac10ef247684a50adf8036e3f425c4f5fc"));
-        assert(genesis.hashMerkleRoot == uint256S("0x072861beb07d25c57fe602de96d33df74186b55f1ea430eba353ce3877e3b45f"));
+        assert(consensus.hashGenesisBlock == uint256S("0x4c3ad99781bd5921fbd887d5cec828b9f4aedd07d15613b8b3220bba1b70fde4"));
+        assert(genesis.hashMerkleRoot == uint256S("0x90483249bee4d0203d8047c1c2dbfd2c200d62b4543de0e3db18fccb3bdaef5a"));
 
         devnetGenesis = FindDevNetGenesisBlock(genesis, 50 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
@@ -864,6 +851,23 @@ public:
 
         genesis = CreateGenesisBlock(1590000000, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        // TEMP: regtest genesis miner. Remove once mined values are baked in.
+        {
+            arith_uint256 target;
+            target.SetCompact(genesis.nBits);
+            while (UintToArith256(genesis.GetHash()) > target) {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0) ++genesis.nTime;
+            }
+            consensus.hashGenesisBlock = genesis.GetHash();
+            fprintf(stderr, "\n=== REGTEST GENESIS FOUND ===\n"
+                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
+                    genesis.nTime, genesis.nNonce,
+                    consensus.hashGenesisBlock.ToString().c_str(),
+                    genesis.hashMerkleRoot.ToString().c_str());
+            fflush(stderr);
+            abort();
+        }
         assert(consensus.hashGenesisBlock == uint256S("0x50a7e63369ce239a81c4aa9e296ef8edefc8d469a0b8f6c743581c07309a1230"));
         assert(genesis.hashMerkleRoot == uint256S("0x072861beb07d25c57fe602de96d33df74186b55f1ea430eba353ce3877e3b45f"));
 

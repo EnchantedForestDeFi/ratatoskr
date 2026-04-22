@@ -276,15 +276,29 @@ public:
         //   7. Commit as "consensus: finalize Ratatoskr mainnet genesis block"
         //   8. Tag v1.0.0-alpha; chain is launch-ready.
         //
-        // Ratatoskr mainnet genesis — MINED 2026-04-22 on x86_64 Linux.
-        //   nTime:           1777584000 (2026-04-28 00:00:00 UTC)
-        //   nNonce:          56237 (~56k iterations, found in seconds)
-        //   nBits:           0x1e3fffff
-        //   nVersion:        1
-        //   reward:          10 RATR (unspendable by convention)
-        //   pszTimestamp:    "Ratatoskr 22/Apr/2026 - miners first, governance bounded, treasury aligned"
-        genesis = CreateGenesisBlock(1777584000, 56237, 0x1e3fffff, 1, 10 * COIN);
+        // Ratatoskr mainnet genesis — nTime set to 2026-04-20 UTC so the
+        // daemon can boot before the June 1 public launch date. Genesis
+        // timestamp is informational; "launch" is when the first external
+        // miner connects and mines block 1 on/after June 1, 2026.
+        genesis = CreateGenesisBlock(1777000000, 0, 0x1e3fffff, 1, 10 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        // TEMP: mainnet genesis miner. Remove once mined values are baked in.
+        {
+            arith_uint256 target;
+            target.SetCompact(genesis.nBits);
+            while (UintToArith256(genesis.GetHash()) > target) {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0) ++genesis.nTime;
+            }
+            consensus.hashGenesisBlock = genesis.GetHash();
+            fprintf(stderr, "\n=== MAINNET GENESIS FOUND ===\n"
+                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
+                    genesis.nTime, genesis.nNonce,
+                    consensus.hashGenesisBlock.ToString().c_str(),
+                    genesis.hashMerkleRoot.ToString().c_str());
+            fflush(stderr);
+            abort();
+        }
         assert(consensus.hashGenesisBlock == uint256S("0x00003de188a8adceb53fc354fc79f1c1e1bf86c62ceab31d73c25b9ecd799cf8"));
         assert(genesis.hashMerkleRoot == uint256S("0xa9b59ab92bf13d7349c1ddd39db75b19c58fa15b98ace6f2af3de725e3aa97fe"));
 
@@ -448,13 +462,26 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 1;
 
-        // Ratatoskr testnet genesis — MINED 2026-04-22 on x86_64 Linux.
-        //   nTime:   1777584060 (mainnet + 60s, distinct header even if magic matched)
-        //   nNonce:  127025
-        //   nBits:   0x1e3fffff
-        //   reward:  50 RATR (higher than mainnet's 10 so testers get balances faster)
-        genesis = CreateGenesisBlock(1777584060, 127025, 0x1e3fffff, 1, 50 * COIN);
+        // Ratatoskr testnet genesis — nTime mainnet + 60s. Same rationale.
+        genesis = CreateGenesisBlock(1777000060, 0, 0x1e3fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        // TEMP: testnet genesis miner. Remove once mined values are baked in.
+        {
+            arith_uint256 target;
+            target.SetCompact(genesis.nBits);
+            while (UintToArith256(genesis.GetHash()) > target) {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0) ++genesis.nTime;
+            }
+            consensus.hashGenesisBlock = genesis.GetHash();
+            fprintf(stderr, "\n=== TESTNET GENESIS FOUND ===\n"
+                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
+                    genesis.nTime, genesis.nNonce,
+                    consensus.hashGenesisBlock.ToString().c_str(),
+                    genesis.hashMerkleRoot.ToString().c_str());
+            fflush(stderr);
+            abort();
+        }
         assert(consensus.hashGenesisBlock == uint256S("0x0000306ccbb9a170674fc7edd86b987ca6031c66ad673f405d81dc08828e07e6"));
         assert(genesis.hashMerkleRoot == uint256S("0x90483249bee4d0203d8047c1c2dbfd2c200d62b4543de0e3db18fccb3bdaef5a"));
 

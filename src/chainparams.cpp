@@ -455,6 +455,23 @@ public:
         // testers get balances faster) vs mainnet's 10.
         genesis = CreateGenesisBlock(1777584060, 0, 0x1e3fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        // TEMP: testnet genesis miner. Remove once mined values are baked in.
+        {
+            arith_uint256 target;
+            target.SetCompact(genesis.nBits);
+            while (UintToArith256(genesis.GetHash()) > target) {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0) ++genesis.nTime;
+            }
+            consensus.hashGenesisBlock = genesis.GetHash();
+            fprintf(stderr, "\n=== TESTNET GENESIS FOUND ===\n"
+                    "  nTime:   %u\n  nNonce:  %u\n  hash:    %s\n  merkle:  %s\n\n",
+                    genesis.nTime, genesis.nNonce,
+                    consensus.hashGenesisBlock.ToString().c_str(),
+                    genesis.hashMerkleRoot.ToString().c_str());
+            fflush(stderr);
+            abort();
+        }
         assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
         assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
 

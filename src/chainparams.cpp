@@ -77,7 +77,12 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Decentralised Smartiecoin fork 02/05/2024";
+    // Ratatoskr genesis message: dated statement proving chain did not exist before this moment.
+    // Keep under 100 chars. Updated at final pre-launch genesis re-mine.
+    const char* pszTimestamp = "Ratatoskr 22/Apr/2026 - miners first, governance bounded, treasury aligned";
+    // Genesis output script — coins from block 0 are provably unspendable by convention
+    // (no one holds the private key for this pubkey, same pattern as Bitcoin's genesis).
+    // Retained from upstream Smartiecoin/Dash; sibling chains share this unspendability property.
     const CScript genesisOutputScript = CScript() << ParseHex("047c710e7564a5453701704289f25aa069b0da96e3c02dd735af20e7ac02433b82247624f70cb82c9f2550dfdeb36ae1ffefe06422d6dd49ac34c95cecd64b8c26") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -183,7 +188,8 @@ public:
         consensus.nGovernanceFilterElements = 15000;
         consensus.nMasternodeMinimumConfirmations = 15;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x00003aa43e9605a58b926822c0e9dfdc0e43d2b6691ec58fc763f72a25e03655");
+        // Placeholder — update to match finalized mainnet genesis hash after mining.
+        consensus.BIP34Hash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP147Height = 0;
@@ -248,10 +254,33 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1771811462, 275448, 0x1e3fffff, 1, 10 * COIN);
+        // Ratatoskr mainnet genesis.
+        //
+        // Parameters:
+        //   nTime   : 1777584000 = 2026-04-28 00:00:00 UTC (placeholder — set to
+        //             final launch day ~1 hour before block 0 at re-mine time)
+        //   nNonce  : 0 (placeholder — will be mined)
+        //   nBits   : 0x1e3fffff (low difficulty for easy genesis mining)
+        //   nVer    : 1
+        //   reward  : 10 RATR (unspendable by convention, no one holds the key)
+        //
+        // TO MINE + FINALIZE (pre-launch):
+        //   1. Build daemon: ./autogen.sh && ./configure && make
+        //   2. Run: ./src/ratatoskrd -printtoconsole
+        //   3. Daemon will fail the hashGenesisBlock assert and print the correct
+        //      nNonce, hashGenesisBlock, and hashMerkleRoot values.
+        //   4. Copy those values into this file (update the three lines below).
+        //   5. Rebuild; assert should now pass.
+        //   6. Update BIP34Hash earlier in CMainParams to new hashGenesisBlock too.
+        //   7. Commit as "consensus: finalize Ratatoskr mainnet genesis block"
+        //   8. Tag v1.0.0-alpha; chain is launch-ready.
+        //
+        // Hashes below are PLACEHOLDERS and will NOT match until genesis is mined.
+        // Daemon refuses to start until these match; that's the intended safety gate.
+        genesis = CreateGenesisBlock(1777584000, 0, 0x1e3fffff, 1, 10 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00003aa43e9605a58b926822c0e9dfdc0e43d2b6691ec58fc763f72a25e03655"));
-        assert(genesis.hashMerkleRoot == uint256S("0x233980ab7b1153d283b0d20e9a7901fe4a5e1d9355f6b67b5d42d60a9d8a8caf"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -413,10 +442,15 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1771811560, 6047, 0x1e3fffff, 1, 50 * COIN);
+        // Ratatoskr testnet genesis. Same mining procedure as mainnet — see
+        // CMainParams for instructions. Testnet timestamp slightly later than
+        // mainnet so the two chains have distinct headers even if magic matched.
+        // Testnet uses 50 RATR initial reward (typical for testnet to help
+        // testers get balances faster) vs mainnet's 10.
+        genesis = CreateGenesisBlock(1777584060, 0, 0x1e3fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000d1c0d49da7a3f8c90fb6cd46e2f50c7f22c04fec8c33a7c2184b7a1ebb0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x072861beb07d25c57fe602de96d33df74186b55f1ea430eba353ce3877e3b45f"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
 
         vFixedSeeds.clear();
 

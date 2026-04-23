@@ -903,7 +903,7 @@ QToolBar > QToolButton:disabled {
 
 QToolBar QLabel#lblToolbarLogo {
     padding: 12px;
-    image: url(':/images/smartiecoin_logo_toolbar');
+    image: url(':/images/ratatoskr_logo_toolbar');
     height: 2.5em;
 }
 

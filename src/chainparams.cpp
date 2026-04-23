@@ -186,6 +186,15 @@ public:
         consensus.nSuperblockStartHash = uint256();
         consensus.nSuperblockCycle = 21600;
         consensus.nSuperblockMaturityWindow = 1662;
+        // Ratatoskr per-block treasury drip: 10% of subsidy, from block 1 onwards.
+        // TODO(v1.0.0-final): replace placeholder treasuryPaymentScript below with the
+        // actual treasury address script generated via air-gapped keygen before mainnet launch.
+        consensus.nTreasuryPaymentStartBlock = 1;
+        consensus.nTreasuryPaymentPercentage = 10;
+        // PLACEHOLDER: OP_RETURN-"RATR" burn script. Any value sent here is unspendable.
+        // MUST BE REPLACED with a real P2PKH/P2SH treasury script in a follow-up commit
+        // before mainnet launch on 2026-06-01.
+        consensus.treasuryPaymentScript = CScript() << OP_RETURN << ParseHex("52415452");
         consensus.nGovernanceMinQuorum = 2;
         consensus.nGovernanceFilterElements = 15000;
         consensus.nMasternodeMinimumConfirmations = 15;
@@ -386,6 +395,10 @@ public:
         consensus.nSuperblockStartHash = uint256(); // do not check this on testnet
         consensus.nSuperblockCycle = 21600;
         consensus.nSuperblockMaturityWindow = 1662;
+        // Ratatoskr treasury drip (testnet: placeholder, burn script)
+        consensus.nTreasuryPaymentStartBlock = 1;
+        consensus.nTreasuryPaymentPercentage = 10;
+        consensus.treasuryPaymentScript = CScript() << OP_RETURN << ParseHex("52415452");
         consensus.nGovernanceMinQuorum = 1;
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
@@ -541,6 +554,10 @@ public:
         consensus.nSuperblockStartHash = uint256(); // do not check this on devnet
         consensus.nSuperblockCycle = 24; // Superblocks can be issued hourly on devnet
         consensus.nSuperblockMaturityWindow = 8;
+        // Ratatoskr treasury drip (devnet)
+        consensus.nTreasuryPaymentStartBlock = 1;
+        consensus.nTreasuryPaymentPercentage = 10;
+        consensus.treasuryPaymentScript = CScript() << OP_RETURN << ParseHex("52415452");
         consensus.nGovernanceMinQuorum = 1;
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
@@ -778,6 +795,11 @@ public:
         consensus.nSuperblockStartHash = uint256(); // do not check this on regtest
         consensus.nSuperblockCycle = 20;
         consensus.nSuperblockMaturityWindow = 10;
+        // Ratatoskr treasury drip: disabled by default on regtest (preserves existing
+        // reward-math tests). Tests that want it enabled can flip via UpdateTreasuryParameters.
+        consensus.nTreasuryPaymentStartBlock = std::numeric_limits<int>::max();
+        consensus.nTreasuryPaymentPercentage = 10;
+        consensus.treasuryPaymentScript = CScript() << OP_RETURN << ParseHex("52415452");
         consensus.nGovernanceMinQuorum = 1;
         consensus.nGovernanceFilterElements = 100;
         consensus.nMasternodeMinimumConfirmations = 1;

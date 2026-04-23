@@ -8,6 +8,7 @@
 
 #include <uint256.h>
 #include <llmq/params.h>
+#include <script/script.h>
 
 #include <limits>
 #include <vector>
@@ -110,6 +111,13 @@ struct Params {
     uint256 nSuperblockStartHash;
     int nSuperblockCycle; // in blocks
     int nSuperblockMaturityWindow; // in blocks
+    /** Per-block treasury drip (Ratatoskr): fixed percentage of block subsidy
+     *  paid to a hardcoded treasury script on every block from nTreasuryPaymentStartBlock onwards.
+     *  Coexists with the (Dash-inherited) superblock infra, which is retained for
+     *  non-treasury governance-funded payouts. */
+    int nTreasuryPaymentStartBlock;
+    int nTreasuryPaymentPercentage; // e.g. 10 == 10% of subsidy
+    CScript treasuryPaymentScript;  // hardcoded recipient
     int nGovernanceMinQuorum; // Min absolute vote count to trigger an action
     int nGovernanceFilterElements;
     int nMasternodeMinimumConfirmations;

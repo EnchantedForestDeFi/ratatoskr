@@ -61,9 +61,9 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
         QString linkStyle = GUIUtil::getThemedStyleQString(GUIUtil::ThemedStyle::TS_COMMAND);
         QString smtFooter = "<br><br>"
             "<b>" + tr("Smartiecoin resources") + "</b><br>"
-            + tr("Website") + ": <a style=\"" + linkStyle + "\" href=\"https://smartiecoin.com\">smartiecoin.com</a><br>"
-            + tr("Source code") + ": <a style=\"" + linkStyle + "\" href=\"https://github.com/SmartiesCoin/Smartiecoin\">github.com/SmartiesCoin/Smartiecoin</a><br>"
-            + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://explorer.smartiecoin.com\">explorer.smartiecoin.com</a>";
+            + tr("Website") + ": <a style=\"" + linkStyle + "\" href=\"https://ratatoskr.enchantedforestdefi.com\">ratatoskr.enchantedforestdefi.com</a><br>"
+            + tr("Source code") + ": <a style=\"" + linkStyle + "\" href=\"https://github.com/EnchantedForestDeFi/ratatoskr\">github.com/EnchantedForestDeFi/ratatoskr</a><br>"
+            + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">explorer.ratatoskr.enchantedforestdefi.com</a>";
 
         text = version + "\n" + QString::fromStdString(FormatParagraph(licenseInfo));
         ui->aboutMessage->setText(version + "<br><br>" + licenseInfoHTML + smtFooter);
@@ -151,7 +151,7 @@ For more information, see the <a style=\"%2\" href=\"%3\">%1 documentation</a>."
         )
         .arg(strCoinJoinName)
         .arg(GUIUtil::getThemedStyleQString(GUIUtil::ThemedStyle::TS_COMMAND))
-        .arg("https://github.com/SmartiesCoin/Smartiecoin")
+        .arg("https://github.com/EnchantedForestDeFi/ratatoskr")
         );
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);

@@ -11,7 +11,7 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>smartiecoin.icns</string>
+  <string>ratatoskr.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>
@@ -31,15 +31,15 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Smartiecoin-Qt</string>
+  <string>Ratatoskr-Qt</string>
   <key>CFBundleName</key>
-  <string>Smartiecoin-Qt</string>
+  <string>Ratatoskr-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.smartiecoin.Smartiecoin-Qt</string>
+  <string>org.ratatoskr.Ratatoskr-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -47,10 +47,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.smartiecoin.SmartiecoinPayment</string>
+      <string>org.ratatoskr.RatatoskrPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>smartiecoin</string>
+        <string>ratatoskr</string>
       </array>
     </dict>
   </array>

@@ -23,3 +23,14 @@ MAIN_FUNCTION
 {
     return GuiMain(argc, argv);
 }
+
+#if defined(WIN32)
+// WinMain shim for the Windows GUI subsystem (-mwindows).
+// Qt normally provides this via libqtmain, but our depends build
+// doesn't produce it, so we inline the equivalent here. __argc and
+// __argv are provided by the mingw CRT.
+extern "C" int __stdcall WinMain(struct HINSTANCE__*, struct HINSTANCE__*, char*, int)
+{
+    return main(__argc, __argv);
+}
+#endif

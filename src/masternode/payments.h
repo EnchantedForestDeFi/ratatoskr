@@ -30,6 +30,15 @@ namespace Consensus { struct Params; }
  */
 CAmount PlatformShare(const CAmount masternodeReward);
 
+/**
+ * Ratatoskr per-block treasury drip helper.
+ * Returns the treasury payment amount for the given height (0 if before
+ * nTreasuryPaymentStartBlock). Calculated as blockSubsidy * percentage / 100.
+ * Does NOT include the masternode/miner share — treasury is carved out of the
+ * same blockSubsidy.
+ */
+CAmount GetTreasuryPayment(int nBlockHeight, const CAmount blockSubsidy, const Consensus::Params& consensusParams);
+
 class CMNPaymentsProcessor
 {
 private:

@@ -30,6 +30,16 @@ CAmount PlatformShare(const CAmount reward)
     return platformReward;
 }
 
+CAmount GetTreasuryPayment(int nBlockHeight, const CAmount blockSubsidy, const Consensus::Params& consensusParams)
+{
+    if (nBlockHeight < consensusParams.nTreasuryPaymentStartBlock) return 0;
+    if (consensusParams.nTreasuryPaymentPercentage <= 0) return 0;
+    if (consensusParams.treasuryPaymentScript.empty()) return 0;
+    const CAmount amount = blockSubsidy * consensusParams.nTreasuryPaymentPercentage / 100;
+    assert(MoneyRange(amount));
+    return amount;
+}
+
 [[nodiscard]] bool CMNPaymentsProcessor::GetBlockTxOuts(const CBlockIndex* pindexPrev, const CAmount blockSubsidy, const CAmount feeReward,
                                                         std::vector<CTxOut>& voutMasternodePaymentsRet)
 {
@@ -282,6 +292,24 @@ bool CMNPaymentsProcessor::IsBlockPayeeValid(const CTransaction& txNew, const CB
 {
     const int nBlockHeight = pindexPrev  == nullptr ? 0 : pindexPrev->nHeight + 1;
 
+    // Ratatoskr: enforce per-block treasury drip. Coinbase MUST contain an output
+    // to the hardcoded treasury script with value >= expected treasury amount.
+    const CAmount expectedTreasury = GetTreasuryPayment(nBlockHeight, blockSubsidy, m_consensus_params);
+    if (expectedTreasury > 0) {
+        bool fTreasuryPaid = false;
+        for (const auto& txout : txNew.vout) {
+            if (txout.scriptPubKey == m_consensus_params.treasuryPaymentScript && txout.nValue >= expectedTreasury) {
+                fTreasuryPaid = true;
+                break;
+            }
+        }
+        if (!fTreasuryPaid) {
+            LogPrintf("CMNPaymentsProcessor::%s -- ERROR! Missing or insufficient treasury payment at height %d (expected >= %lld)\n",
+                      __func__, nBlockHeight, expectedTreasury);
+            return false;
+        }
+    }
+
     // Check for correct masternode payment
     if (IsTransactionValid(txNew, pindexPrev, blockSubsidy, feeReward)) {
         LogPrint(BCLog::MNPAYMENTS, "CMNPaymentsProcessor::%s -- Valid masternode payment at height %d: %s", __func__, nBlockHeight, txNew.ToString()); /* Continued */
@@ -351,6 +379,17 @@ void CMNPaymentsProcessor::FillBlockPayments(CMutableTransaction& txNew, const C
 
     txNew.vout.insert(txNew.vout.end(), voutMasternodePaymentsRet.begin(), voutMasternodePaymentsRet.end());
     txNew.vout.insert(txNew.vout.end(), voutSuperblockPaymentsRet.begin(), voutSuperblockPaymentsRet.end());
+
+    // Ratatoskr: per-block treasury drip. Carved out of the same blockSubsidy as
+    // the miner + MN share. Appended as an additional coinbase output and subtracted
+    // from the miner's vout[0] to keep total coinbase value equal to subsidy + fees.
+    const CAmount treasuryAmount = GetTreasuryPayment(nBlockHeight, blockSubsidy, m_consensus_params);
+    if (treasuryAmount > 0) {
+        txNew.vout.emplace_back(treasuryAmount, m_consensus_params.treasuryPaymentScript);
+        txNew.vout[0].nValue -= treasuryAmount;
+        LogPrint(BCLog::MNPAYMENTS, "CMNPaymentsProcessor::%s -- treasury drip h=%d amount=%lld\n",
+                 __func__, nBlockHeight, treasuryAmount);
+    }
 
     std::string voutMasternodeStr;
     for (const auto& txout : voutMasternodePaymentsRet) {

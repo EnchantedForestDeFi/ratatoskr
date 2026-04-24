@@ -114,9 +114,15 @@ Masternode collateral:
 - **Regular MN**: 7,500 RATR (1× voting weight)
 - **EvoNode**: 30,000 RATR (4× voting weight)
 
-These values target ~0.005% of total supply per MN — slightly tighter than
-Dash (0.0056%) and looser than Firo (0.0047%), drawing on those two chains'
-survival of MN-coin market cycles.
+These values put each Regular MN at ~0.0075% of total supply and each
+EvoNode at ~0.030%. For comparison, Dash's standard MN collateral is
+~0.0056% of supply and Firo's is ~0.0048%. Ratatoskr's Regular tier is
+therefore *looser* (higher per-MN share of supply) than both — a
+deliberate trade-off that lowers the entry cost in RATR-denominated
+terms and keeps the MN set accessible to miners who accumulate rewards
+from mining. Supply percentage alone is a crude metric; actual
+accessibility depends on market price and mining yield, both of which
+the 60/30/10 split is tuned to preserve.
 
 ---
 
@@ -149,7 +155,8 @@ described in §2.4.
 
 | Block | Event |
 |---|---|
-| 0 | Chain genesis, treasury drip begins |
+| 0 | Chain genesis (hardcoded, not mined) |
+| 1 | First mineable block; treasury drip begins |
 | 2 | DIP0001/0003/0008 base protocol features |
 | 20,000 | DIP0020/0024, V19/V20 upgrades |
 | 25,000 | Masternode payments activate (~17 days post-launch) |
@@ -209,18 +216,22 @@ stranding existing MN operators.
 
 ## 6. Bridge to Alephium
 
-Ratatoskr launches with a native bridge to Alephium, providing:
+Ratatoskr includes a native bridge to Alephium, activating at or shortly
+after mainnet liveness:
 
 - **RATR → wRATR**: deposit native RATR on Ratatoskr, mint wRATR (a token
-  contract) on Alephium's group 3 shard
+  contract) on Alephium
 - **wRATR → RATR**: burn wRATR on Alephium, receive native RATR
 - **Custodial model at v1.0**: single-operator hardware-wallet-secured
   custodian (Ledger-backed)
 - **Published limits**: per-tx and daily caps at launch, raised as
   operational confidence grows
 
-The bridge is adapted from the existing, mainnet-proven Smartiecoin-Alephium
-bridge, with asset identifiers and contract state migrated for RATR.
+The bridge is adapted from the existing, mainnet-proven Smartiecoin ↔
+Alephium bridge (bidirectional verified April 2026), with asset
+identifiers and contract state migrated for RATR. Bridge activation may
+lag chain liveness by up to 72 hours if final testing requires it; this
+will be announced in Discord rather than gating the chain launch.
 
 ### 6.1 Why Alephium
 
@@ -364,9 +375,9 @@ more capital than they can afford to lose.
 
 ## 10. Team and Transparency
 
-Ratatoskr is operated by the same team behind the Smartiecoin-Alephium
-bridge, which has been operational on mainnet since late 2025 without
-custodian incident. The operator is a single individual with published
+Ratatoskr is operated by the same team behind the Smartiecoin ↔ Alephium
+bridge, which has been operational on mainnet since Q1 2026 (bidirectional
+operation verified April 2026) without custodian incident. The operator is a single individual with published
 contact (GitHub: `EnchantedForestDeFi` org, email: `NexusAether@protonmail.com`,
 Discord: EnchantedForestDeFi server).
 

@@ -30,36 +30,57 @@ jobs:
 
       - name: Install Homebrew dependencies
         run: |
+          set -euxo pipefail
           brew update
           brew install \
             automake libtool boost gmp pkg-config libevent \
-            miniupnpc libnatpmp zeromq qrencode
+            miniupnpc libnatpmp zeromq qrencode \
+            berkeley-db@5 sqlite3 python@3
           brew --version
           clang --version
 
-      - name: Autogen + configure (CLI-only for alpha; wallet + GUI deferred)
-        env:
-          BREW_PREFIX: ${{ runner.temp == '' && '/opt/homebrew' || '/opt/homebrew' }}
+      - name: Autogen
         run: |
+          set -euxo pipefail
           ./autogen.sh
+
+      - name: Configure (full log, stops on error)
+        run: |
+          set -euxo pipefail
           BREW_PREFIX=$(brew --prefix)
+          BDB_PREFIX=$(brew --prefix berkeley-db@5)
+          echo "Using BREW_PREFIX=$BREW_PREFIX"
+          echo "Using BDB_PREFIX=$BDB_PREFIX"
+          # --with-incompatible-bdb lets us use modern BDB (>=5) instead of 4.8.
+          # Wallets created/read by this build use newer BDB format; acceptable
+          # for alpha but noted in release notes.
           ./configure \
             --disable-tests \
             --disable-bench \
             --disable-gui-tests \
             --without-gui \
-            --disable-wallet \
+            --with-incompatible-bdb \
+            BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-5" \
+            BDB_CFLAGS="-I${BDB_PREFIX}/include" \
             CPPFLAGS="-I${BREW_PREFIX}/include" \
-            LDFLAGS="-L${BREW_PREFIX}/lib" 2>&1 | tail -25
+            LDFLAGS="-L${BREW_PREFIX}/lib"
 
       - name: Build
         run: |
-          make -j$(sysctl -n hw.logicalcpu) 2>&1 | tail -20
+          set -euxo pipefail
+          make -j$(sysctl -n hw.logicalcpu)
+
+      - name: Verify build artifacts exist
+        run: |
+          set -euxo pipefail
+          ls -l src/ratatoskrd src/ratatoskr-cli src/ratatoskr-tx
+          file src/ratatoskrd
 
       - name: Smoke-test binary
         run: |
-          ./src/ratatoskrd --version | head -5
-          ./src/ratatoskr-cli --version | head -1
+          set -euxo pipefail
+          ./src/ratatoskrd --version
+          ./src/ratatoskr-cli --version
 
       - name: Determine version label
         id: version
@@ -130,10 +151,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Notes for future iterations:
-      # - Wallet + Qt GUI are disabled here for simplicity. A full-feature build
-      #   requires resolving Berkeley DB 4.8 on Apple Silicon (either
-      #   --with-incompatible-bdb + brew install berkeley-db@5, or full depends
-      #   build). Skipped for v1.0.0-alpha.
+      # - Qt GUI wallet is still disabled (--without-gui). Adding Qt on Apple
+      #   Silicon means brew install qt@5 + --with-gui=qt5. Deferred until there
+      #   is demonstrated user demand for a macOS Qt build.
+      # - Wallet support IS enabled via --with-incompatible-bdb with BDB 5.
+      #   Wallets created by this build use BDB 5 format; not backward-compatible
+      #   with BDB 4.8 wallets from official Dash binaries. Noted in release notes.
       # - Code signing is not performed. Users may see Gatekeeper warnings on
       #   first run; they can allow via System Settings → Privacy & Security.
       #   Proper signing requires Apple Developer Program ($99/yr) for

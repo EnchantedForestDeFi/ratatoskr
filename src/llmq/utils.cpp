@@ -46,11 +46,13 @@ struct MasternodeScore {
     arith_uint256 m_score;
     CDeterministicMNCPtr m_node;
 
-    // Explicit constructor for std::vector::emplace_back via std::construct_at.
+    // Explicit constructors for std::vector operations via std::construct_at.
     // Apple Clang (macOS) is strict about C++20 aggregate initialization through
-    // construct_at and requires a real constructor; GCC (Linux) is more permissive
-    // and accepts aggregate init. Adding this constructor makes the code portable
-    // across both compilers without functional change.
+    // construct_at and requires real constructors; GCC (Linux) is more permissive
+    // and accepts aggregate init. The default ctor is needed for vector::resize(),
+    // the two-arg ctor for vector::emplace_back(). Explicitly declaring them
+    // makes the code portable across both compilers without functional change.
+    MasternodeScore() = default;
     MasternodeScore(arith_uint256 score, CDeterministicMNCPtr node)
         : m_score(std::move(score)), m_node(std::move(node)) {}
 };

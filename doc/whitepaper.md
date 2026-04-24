@@ -240,7 +240,10 @@ Alephium is a scalable sharded UTXO-based smart contract platform with:
 - Stateful contracts (Ralph language)
 - Native token issuance (tokens are first-class on Alephium)
 - Low transaction fees (sub-cent)
-- Established DeFi ecosystem (Elexium ve(3,3) DEX, existing liquidity)
+- Established DeFi ecosystem (Elexium ve(3,3) DEX, existing liquidity),
+  with additional first-party venues such as [PowFi](https://powfi.alephium.org/)
+  — an Alephium-native DEX from the core team, currently on testnet —
+  expected to broaden the ecosystem as they reach mainnet
 - BTC-aligned security model (no pre-mine, PoW-secured)
 
 The bridge specifically enables RATR holders to participate in Elexium gauge
@@ -418,6 +421,7 @@ June 1, 2026.
 - yespower: https://www.openwall.com/yespower/
 - Alephium: https://alephium.org/
 - Elexium: https://elexium.finance/
+- PowFi (Alephium-native DEX, testnet): https://powfi.alephium.org/
 - EnchantedForestDeFi: https://enchantedforestdefi.com
 
 ## Appendix B: Technical Parameters (Quick Reference)

@@ -56,14 +56,24 @@ registered with), and capped at +50% per raise with a 90-day cooldown.
 Treasury
 --------
 
-10% of every block subsidy flows as a continuous drip to a multisig wallet
-(2-of-3 cosigners). Treasury purpose is primarily **Elexium gauge
-participation** — building an EX lock ladder for voting + rebase rewards,
-seeding protocol-owned liquidity in wRATR pools, and tactical bribes to
-direct emissions to Ratatoskr-benefiting pools.
+10% of every block subsidy flows as a continuous drip to the treasury
+address, baked into consensus (no biweekly superblock gating, no governance
+approval required for accrual — it's always funded, always on-chain).
 
-Routine bribe deployment is at multisig discretion; any spending outside
-this scope requires a masternode vote.
+**v1.0 launch: single-sig, air-gapped cold key.** Address published in the
+release notes and signed with the treasury key before mainnet so anyone
+can independently verify control.
+
+**v1.1+ roadmap: 2-of-3 multisig.** Single-sig at v1.0 is a deliberate
+scope limit — the 5 keys and hardware-wallet workflow for multisig are
+treated as a follow-up, not a launch blocker.
+
+Treasury purpose is primarily **Elexium gauge participation** — building
+an EX lock ladder for voting + rebase rewards, seeding protocol-owned
+liquidity in wRATR pools, and tactical bribes to direct emissions to
+Ratatoskr-benefiting pools. Routine deployment is at operator discretion
+within this scope at v1.0; broader spending requires a masternode vote
+once governance activates at block 30,000.
 
 License
 -------
@@ -94,7 +104,7 @@ are in [./doc/](/doc):
 - **NetBSD**: [./doc/build-netbsd.md](/doc/build-netbsd.md)
 
 Binaries built: `ratatoskrd`, `ratatoskr-qt`, `ratatoskr-cli`, `ratatoskr-tx`,
-`ratatoskr-util`, `ratatoskr-wallet`, `ratatoskr-node`, `ratatoskr-gui`.
+`ratatoskr-util`, `ratatoskr-wallet`, `ratatoskr-node`.
 
 Config file: `ratatoskr.conf`
 Data directory: `%APPDATA%\RatatoskrCore` (Windows), `~/Library/Application Support/RatatoskrCore` (macOS), `~/.ratatoskrcore` (Linux).

@@ -477,10 +477,31 @@ Ratatoskr is an alpha release. Known limitations as of v1.0.0-alpha:
    with custodial control during the bridge-in period. Multi-operator
    federation is a Phase 2 roadmap item.
 
-5. **Small initial network.** Low hashrate in the first weeks means blocks
-   could be mined with relatively inexpensive hardware. This is addressed by
-   the 25,000-block delay on MN payments, giving hashrate time to ramp up
-   before MN economics create additional attractors.
+5. **Small initial network and rented-hash exposure.** Low hashrate in
+   the first weeks means blocks could be mined with relatively inexpensive
+   hardware, and any yespower-capable rented hash from public
+   marketplaces could further concentrate block production during the
+   early window. Ratatoskr mitigates this in three layers:
+
+   - **Bounded capture.** Any attacker-captured value during the
+     pre-ChainLocks window is limited to the miner share of subsidies;
+     the treasury (10%) and post-block-25,000 masternode allocation
+     (30%) are not exposed.
+   - **ChainLocks finality.** Once the masternode network is populated
+     enough to form LLMQ signing quorums (shortly after MN payment
+     activation at block 25,000), ChainLocks sign every block and make
+     deep reorgs impossible regardless of an adversary's hashrate.
+   - **Defensive rental posture.** The operator commits to maintaining
+     an active defensive hashrate budget during the pre-ChainLocks
+     window, directing rented hash to honest mining pools. This raises
+     the effective cost of a rental-based attack and keeps block
+     production distributed even when organic hashrate is still low.
+
+   Specific attack-cost and defence-budget figures are intentionally
+   kept to internal operational planning rather than public disclosure;
+   the calculation is trivial for any interested party from public
+   marketplace rates and the subsidy schedule, but we prefer not to
+   print a target number.
 
 6. **Regulatory uncertainty.** Masternode-based coins exist in an ambiguous
    regulatory space in some jurisdictions. Users and operators are responsible

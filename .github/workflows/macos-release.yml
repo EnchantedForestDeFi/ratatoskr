@@ -88,6 +88,9 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref_type }}" == "tag" ]]; then
             VERSION="${{ github.ref_name }}"
+            # Strip leading 'v' so tag v1.0.0-alpha yields tarball ratatoskr-1.0.0-alpha-*.
+            # Matches the convention used by Bitcoin, Dash, and our manual Linux/Windows builds.
+            VERSION="${VERSION#v}"
           elif [[ -n "${{ inputs.label }}" ]]; then
             VERSION="${{ inputs.label }}"
           else

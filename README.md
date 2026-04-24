@@ -1,6 +1,16 @@
 Ratatoskr Core (RATR)
 =====================
 
+> ⚠️ **Pre-launch. Mainnet goes live 2026-06-01 00:00 UTC.**
+>
+> The current `v1.0.0-alpha` release is a **pre-launch package for pool
+> operators, seed node runners, and infrastructure partners** who want to
+> pre-stage their setup. It is **not intended for end-user mining or
+> wallet use**. The chain is not yet live; running the daemon now will
+> simply idle at height 0 with no peers. The final `v1.0.0` release
+> (with the real air-gapped treasury address baked in) will be published
+> before launch.
+
 🌰 *The squirrel that runs the tree.* 🌳
 
 Ratatoskr is a yespower Proof-of-Work cryptocurrency with deterministic

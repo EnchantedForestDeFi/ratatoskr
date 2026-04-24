@@ -1,6 +1,14 @@
 # Ratatoskr Quickstart
 
-**Download, unzip, mine. 5 minutes.**
+> ⚠️ **Pre-launch — do not follow this guide yet unless you are a pool
+> operator or infrastructure partner.**
+>
+> Mainnet launches **2026-06-01 00:00 UTC**. The current alpha release
+> is for pre-staging only. Running the daemon before mainnet goes live
+> will not produce blocks or rewards — there is no chain to mine against.
+> Bookmark this page and come back on June 1.
+
+**Download, unzip, mine. 5 minutes. (After 2026-06-01.)**
 
 This is the one-page version. The full details are in [`mining.md`](mining.md)
 (miners), [`masternode-setup.md`](masternode-setup.md) (MN operators), and

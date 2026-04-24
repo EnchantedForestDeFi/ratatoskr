@@ -253,10 +253,18 @@ operation.
 ### 6.2 Launch Pool
 
 The primary liquidity pair at launch is **wRATR/NUTTY** on Elexium. NUTTY is
-a community token operated by the same team and is used to bootstrap voting
-incentives on the wRATR pool through self-minted bribes. This is a low-cost
-mechanism to direct Elexium EX emissions toward the new pool while organic
-liquidity accumulates.
+a community token operated by the same team. At the time of RATR launch,
+NUTTY already trades across multiple Elexium pools — **NUTTY/ALPH** (with
+an active gauge vote), **NUTTY/EX**, **NUTTY/USDC**, and **NUTTY/wSMT** —
+meaning any holder of ALPH, EX, USDC, or wSMT can route into wRATR
+through NUTTY on day one, without waiting for direct wRATR legs to be
+seeded.
+
+NUTTY is also used to bootstrap voting incentives on the wRATR pool
+through self-minted bribes — a low-cost mechanism to direct Elexium EX
+emissions toward the new pool while organic liquidity accumulates. As
+wRATR usage grows, direct wRATR/ALPH and wRATR/USDC pairs are expected
+to emerge, shortening the routing path.
 
 ---
 

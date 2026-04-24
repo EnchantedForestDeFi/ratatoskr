@@ -250,28 +250,17 @@ the chain launch.
 
 #### Background
 
-Alephium launched its mainnet on **November 8, 2021**, after approximately
-four years of R&D by a Switzerland-based team led by Cheng Wang. The
-chain has operated continuously since then and is on its 4.x release
-series as of 2026.
+Alephium launched its mainnet on **November 8, 2021**, following several
+years of R&D by a Switzerland-based team. The chain has operated
+continuously since then and is on its 4.x release series as of 2026.
 
-Token distribution is **hybrid**, not a pure fair launch. Of the 1-billion
-ALPH max supply:
-
-- **86% (860M ALPH)** is mined via proof-of-work over approximately
-  82 years, starting from block 1 — open to all miners from day one
-- **14% (140M ALPH)** was allocated at genesis: 8% to past and future
-  private sales (funding R&D), 3% to community/ecosystem development,
-  3% to team and treasury. All three tranches vest quarterly over 2–4
-  years, preventing day-one dumps and aligning early holders with
-  multi-year network health.
-
-There was no retail ICO or IEO; the private sales funded development,
-mainnet mining was open to the public from launch. This sits between
-"pure fair launch" (no genesis allocation) and "VC-pre-mine" (large
-unvested insider holdings). We consider the 2-4 year vesting schedule
-and the PoW-dominant (86%) supply curve a reasonable balance for a
-project that needed capital to execute a novel architecture.
+Alephium is **PoW-secured with a mined-dominant supply curve** — 86% of
+the 1-billion ALPH maximum is emitted through proof-of-work over
+approximately 82 years, released to miners block-by-block. The remaining
+14% is a genesis allocation covering R&D funding, ecosystem development,
+and team, all subject to multi-year quarterly vesting. This keeps
+long-term issuance aligned with active network participation rather
+than insider incentives.
 
 #### What Alephium offers RATR
 
@@ -526,6 +515,9 @@ June 1, 2026.
 - Smartiecoin (fork source): https://github.com/SmartiesCoin/Smartiecoin
 - yespower: https://www.openwall.com/yespower/
 - Alephium: https://alephium.org/
+- Alephium whitepaper (BlockFlow + protocol spec): https://github.com/alephium/white-paper
+- Alephium tokenomics (official, supply schedule + genesis allocation): https://medium.com/@alephium/tokenomics-of-alephium-61d59b51029c
+- Alephium Bridge (official cross-chain path, Wormhole-fork): https://bridge.alephium.org/
 - Elexium: https://elexium.finance/
 - PowFi (Alephium-native DEX, testnet): https://powfi.alephium.org/
 - EnchantedForestDeFi: https://enchantedforestdefi.com

@@ -248,16 +248,52 @@ the chain launch.
 
 ### 6.2 Why Alephium
 
-Alephium is a scalable sharded UTXO-based smart contract platform with:
+#### Background
 
-- Stateful contracts (Ralph language)
-- Native token issuance (tokens are first-class on Alephium)
-- Low transaction fees (sub-cent)
-- **Established DeFi ecosystem** — Elexium (ve(3,3) DEX with gauge voting,
-  bribes, and EX emissions); PowFi (Alephium-native DEX from the core
-  team, currently on testnet); multi-chain bridged assets (wBTC, wETH,
-  wUSDC, wUSDT, wBNB) accessible on Alephium via `bridge.alephium.org`
-- **BTC-aligned security model** (no pre-mine, PoW-secured)
+Alephium launched its mainnet on **November 8, 2021**, after approximately
+four years of R&D by a Switzerland-based team led by Cheng Wang. The
+chain has operated continuously since then and is on its 4.x release
+series as of 2026.
+
+Token distribution is **hybrid**, not a pure fair launch. Of the 1-billion
+ALPH max supply:
+
+- **86% (860M ALPH)** is mined via proof-of-work over approximately
+  82 years, starting from block 1 — open to all miners from day one
+- **14% (140M ALPH)** was allocated at genesis: 8% to past and future
+  private sales (funding R&D), 3% to community/ecosystem development,
+  3% to team and treasury. All three tranches vest quarterly over 2–4
+  years, preventing day-one dumps and aligning early holders with
+  multi-year network health.
+
+There was no retail ICO or IEO; the private sales funded development,
+mainnet mining was open to the public from launch. This sits between
+"pure fair launch" (no genesis allocation) and "VC-pre-mine" (large
+unvested insider holdings). We consider the 2-4 year vesting schedule
+and the PoW-dominant (86%) supply curve a reasonable balance for a
+project that needed capital to execute a novel architecture.
+
+#### What Alephium offers RATR
+
+- **PoW-secured** — same consensus family as RATR. Alignment rather than
+  a PoS platform that would sit uncomfortably with a PoW chain's ethos.
+- **Sharded UTXO architecture** (BlockFlow) — closer to Bitcoin's UTXO
+  model than Ethereum's account model; state locality keeps contracts
+  simple and makes asset flow rules enforceable at the VM level
+- **Stateful contracts** in Ralph, with asset-passing annotations that
+  make bridge-style custody patterns natural
+- **Native token issuance** — tokens are first-class primitives, not
+  ERC-20 simulacra
+- **Low transaction fees** (sub-cent typical) — bridging economics work
+  for small transactions, not just whales
+- **Established DeFi ecosystem** — Elexium (ve(3,3) DEX with gauge
+  voting, bribes, and EX emissions); PowFi (Alephium-native DEX from
+  the core team, currently on testnet); multi-chain bridged assets
+  (wBTC, wETH, wUSDC, wUSDT, wBNB) accessible on Alephium via
+  `bridge.alephium.org` — the same bridge we adopt for cross-chain
+  wRATR access (§6.3)
+- **Four+ years of production operation** with active development, real
+  users, and an audited bridge — not a prototype we're betting RATR on
 
 The combination of (a) a native wRATR bridge into Alephium and (b)
 Alephium's existing bridged-in majors/stables means RATR holders can

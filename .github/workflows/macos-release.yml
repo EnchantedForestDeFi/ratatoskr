@@ -60,6 +60,7 @@ jobs:
             --disable-gui-tests \
             --without-gui \
             --with-incompatible-bdb \
+            --disable-stacktraces \
             BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-5" \
             BDB_CFLAGS="-I${BDB_PREFIX}/include" \
             CPPFLAGS="-I${BREW_PREFIX}/include" \

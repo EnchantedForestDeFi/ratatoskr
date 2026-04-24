@@ -1,5 +1,13 @@
 # Mining Ratatoskr (RATR)
 
+> ⚠️ **Pre-launch — mainnet is not yet live.**
+>
+> Ratatoskr mainnet launches **2026-06-01 00:00 UTC**. Until then,
+> downloading a binary and running it will not earn you any RATR —
+> there is no chain to mine against and no pool URLs are live yet.
+> Pool operators should read [`doc/pool-operator-spec.md`](pool-operator-spec.md)
+> to pre-stage; individual miners should wait for launch.
+
 Ratatoskr uses the **yespower** proof-of-work algorithm, which is designed for
 CPUs — no ASICs, no GPUs required (and neither would provide a speedup worth
 the complexity). Any modern CPU can mine.

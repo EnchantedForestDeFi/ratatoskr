@@ -214,57 +214,119 @@ stranding existing MN operators.
 
 ---
 
-## 6. Bridge to Alephium
+## 6. Bridge and Liquidity Strategy
 
-Ratatoskr includes a native bridge to Alephium, activating at or shortly
-after mainnet liveness:
+Ratatoskr's cross-chain architecture is deliberately concentrated: **one
+operator-run bridge** connects the Ratatoskr chain to Alephium, and
+**Alephium Bridge** (`bridge.alephium.org`) is adopted as the official
+pathway for users who want wRATR exposure on Ethereum or BNB Smart Chain.
+This lets the project focus operational attention on one bridge while
+still offering multi-chain accessibility.
 
-- **RATR → wRATR**: deposit native RATR on Ratatoskr, mint wRATR (a token
-  contract) on Alephium
-- **wRATR → RATR**: burn wRATR on Alephium, receive native RATR
-- **Custodial model at v1.0**: single-operator hardware-wallet-secured
-  custodian (Ledger-backed)
-- **Published limits**: per-tx and daily caps at launch, raised as
+### 6.1 RATR ↔ Alephium bridge (operator-run)
+
+The native bridge locks RATR on Ratatoskr and mints wRATR on Alephium
+(and burns wRATR to unlock RATR on the return trip).
+
+- **Mechanism:** lock-and-mint, with a hardware-wallet-secured custodian
+  holding locked RATR on the Ratatoskr side and a Ralph smart contract
+  handling mint/burn on the Alephium side
+- **Custodial model at v1.0:** single operator, Ledger-backed.
+  Multi-operator federation is on the Phase 2 roadmap
+- **Published limits:** per-tx and daily caps at launch, raised as
   operational confidence grows
+- **Transparency:** bridge custodian address and wRATR contract are
+  published at launch; supply parity (locked RATR vs minted wRATR) is
+  independently verifiable
 
-The bridge is adapted from the existing, mainnet-proven Smartiecoin ↔
-Alephium bridge (bidirectional verified April 2026), with asset
-identifiers and contract state migrated for RATR. Bridge activation may
-lag chain liveness by up to 72 hours if final testing requires it; this
-will be announced in Discord rather than gating the chain launch.
+The bridge is adapted from the operator's existing mainnet-proven
+Alephium bridge infrastructure (operational since Q1 2026, bidirectional
+verified April 2026), with asset identifiers and contract state
+re-parameterised for RATR. Activation may lag chain liveness by up to 72
+hours if final testing requires; announced in Discord rather than gating
+the chain launch.
 
-### 6.1 Why Alephium
+### 6.2 Why Alephium
 
 Alephium is a scalable sharded UTXO-based smart contract platform with:
 
 - Stateful contracts (Ralph language)
 - Native token issuance (tokens are first-class on Alephium)
 - Low transaction fees (sub-cent)
-- Established DeFi ecosystem (Elexium ve(3,3) DEX, existing liquidity),
-  with additional first-party venues such as [PowFi](https://powfi.alephium.org/)
-  — an Alephium-native DEX from the core team, currently on testnet —
-  expected to broaden the ecosystem as they reach mainnet
-- BTC-aligned security model (no pre-mine, PoW-secured)
+- **Established DeFi ecosystem** — Elexium (ve(3,3) DEX with gauge voting,
+  bribes, and EX emissions); PowFi (Alephium-native DEX from the core
+  team, currently on testnet); multi-chain bridged assets (wBTC, wETH,
+  wUSDC, wUSDT, wBNB) accessible on Alephium via `bridge.alephium.org`
+- **BTC-aligned security model** (no pre-mine, PoW-secured)
 
-The bridge specifically enables RATR holders to participate in Elexium gauge
-voting, LP yields, and bribes — providing yield pathways beyond masternode
-operation.
+The combination of (a) a native wRATR bridge into Alephium and (b)
+Alephium's existing bridged-in majors/stables means RATR holders can
+access BTC, ETH, USDC, or BNB exposure **without leaving Alephium**.
+Trading happens in one venue; liquidity concentrates; operational
+complexity stays low.
 
-### 6.2 Launch Pool
+### 6.3 Official cross-chain path: Alephium Bridge
 
-The primary liquidity pair at launch is **wRATR/NUTTY** on Elexium. NUTTY is
-a community token operated by the same team. At the time of RATR launch,
-NUTTY already trades across multiple Elexium pools — **NUTTY/ALPH** (with
-an active gauge vote), **NUTTY/EX**, **NUTTY/USDC**, and **NUTTY/wSMT** —
-meaning any holder of ALPH, EX, USDC, or wSMT can route into wRATR
-through NUTTY on day one, without waiting for direct wRATR legs to be
-seeded.
+For users who need wRATR presence on Ethereum or BSC specifically (for
+integration with chain-native protocols, preferred wallet support, etc.),
+the official path is:
+
+> RATR  →  wRATR-Alephium  *(operator-run bridge)*  →  wRATR-ETH / wRATR-BSC
+> *(via `bridge.alephium.org`)*
+
+Alephium Bridge is a lock-and-mint Wormhole-fork operated by the Alephium
+team and ecosystem. It handles the Alephium → EVM leg via its shared
+`BridgeToken` proxy infrastructure, and tokens bridged this way appear
+on Etherscan / BscScan with the suffix "(AlphBridge)" — a clear,
+self-labeled identifier distinguishing bridge-wrapped representations
+from any native token contracts.
+
+Ratatoskr does **not** operate independent Ethereum or BSC bridges. This
+is deliberate:
+
+- **Single canonical supply on Alephium** — no fragmentation between
+  competing wRATR representations
+- **Lower operational surface** — one bridge to secure, one gas tank
+  to maintain, one set of consensus rules to track
+- **Shared trust layer** — Alephium Bridge is audited infrastructure used
+  by the broader Alephium ecosystem; users don't depend on a small team's
+  EVM-side engineering
+
+Users who want wRATR on Ethereum or BSC are free to use Alephium Bridge
+at any time after wRATR-Alephium exists. This post-launch workflow is
+documented separately.
+
+### 6.4 Primary liquidity: Elexium
+
+The primary liquidity pair at launch is **wRATR / NUTTY** on Elexium,
+with a **wRATR / wUSDC** stable pair added for price discovery.
+
+NUTTY is a community token operated by the same team and already trades
+across multiple Elexium pools — NUTTY/ALPH (with an active gauge vote),
+NUTTY/EX, NUTTY/USDC.eth, and NUTTY/wSMT — meaning any holder of ALPH,
+EX, USDC, or wSMT can route into wRATR through NUTTY from day one,
+without waiting for additional direct wRATR legs to be seeded.
 
 NUTTY is also used to bootstrap voting incentives on the wRATR pool
 through self-minted bribes — a low-cost mechanism to direct Elexium EX
 emissions toward the new pool while organic liquidity accumulates. As
-wRATR usage grows, direct wRATR/ALPH and wRATR/USDC pairs are expected
-to emerge, shortening the routing path.
+usage grows, additional direct pairs (wRATR/ALPH, wRATR/wETH, wRATR/wBTC)
+are expected to emerge and concentrate rather than fragment liquidity,
+because all of them live on the same venue.
+
+### 6.5 What's explicitly not built
+
+To be clear on scope:
+
+- **No independent RATR ↔ Ethereum bridge.** Alephium Bridge handles it.
+- **No independent RATR ↔ BSC bridge.** Same.
+- **No Uniswap/PancakeSwap pools as primary markets.** Elexium is the
+  primary venue. Secondary-chain pools may emerge organically post-launch
+  but are not a project-operated priority.
+
+This is a concentration-over-expansion bet. If real demand for native
+cross-chain bridges materialises post-launch, the decision is
+revisitable; until then, depth on one venue beats dispersion across many.
 
 ---
 

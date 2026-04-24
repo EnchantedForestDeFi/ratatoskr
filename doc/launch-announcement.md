@@ -19,7 +19,7 @@ them overnight, and the treasury funds itself transparently every block."
 - **Max supply:** 100,000,000 RATR
 - **Initial reward:** 50 RATR/block · halves every 1,030,596 blocks (~2 years)
 - **Reward split (post block 25,000):** 60% miner / 30% masternode / 10% treasury
-- **Masternode collateral:** standard 1,000 RATR tier (per-block MN from block 25,000)
+- **Masternode tiers:** Regular 7,500 RATR (1× voting) / EvoNode 30,000 RATR (4× voting). Per-block MN payments from block 25,000
 - **Bridge:** native Alephium bridge (wRATR token) live at launch
 
 ---
@@ -60,8 +60,9 @@ Ratatoskr bakes a different social contract into consensus:
 
 ### Masternode operators
 
-- 1,000 RATR collateral. MN payments activate at block **25,000** (~17
-  days post-launch). Standard DIP0003 deterministic MN registration.
+- Two MN tiers: **Regular 7,500 RATR** (1× vote) and **EvoNode 30,000 RATR**
+  (4× vote). MN payments activate at block **25,000** (~17 days post-launch).
+  Standard DIP0003 deterministic MN registration.
 - Setup guide published before launch.
 
 ### Bridge users

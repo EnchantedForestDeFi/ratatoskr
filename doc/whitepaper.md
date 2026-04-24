@@ -85,6 +85,26 @@ Ratatoskr launches with a native bridge to Alephium, providing access to an
 established DeFi ecosystem (Elexium DEX, NUTTY, etc.) from day one. This is
 designed to give the coin immediate utility beyond pure speculative mining.
 
+### 2.6 Accessible Mining
+
+Many proof-of-work networks start out CPU- or GPU-mineable and gradually
+specialise toward ASICs as economics reward raw efficiency. It's a natural
+trajectory — the fastest hash wins — but it also raises the participation
+floor. A hobbyist with a laptop becomes a spectator; mining consolidates
+into a handful of industrial-scale operators.
+
+Ratatoskr deliberately uses **yespower**, a memory-hard CPU-optimised
+algorithm explicitly designed to resist ASIC specialisation. The goal is
+not to match any larger chain's absolute hashrate. It is to keep mining
+accessible to anyone with a modern CPU — the desktop on the desk, the
+laptop in the bag, the Mac mini on a shelf. Hardware most people
+already own. At Ratatoskr's scale, a broader base of casual participants
+matters more than raw absolute throughput.
+
+This is a deliberate "back to roots" choice for a small masternode coin.
+PoW's original promise was that anyone with a computer could participate
+in securing the network. Yespower keeps that promise real.
+
 ---
 
 ## 3. Consensus

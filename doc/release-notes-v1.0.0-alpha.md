@@ -33,6 +33,7 @@ rebalanced to keep miners profitable and governance bounded.
 |---|---|
 | `ratatoskr-1.0.0-alpha-linux-x86_64.tar.gz` | Ubuntu 22.04+ binaries (`ratatoskrd`, `ratatoskr-cli`, `ratatoskr-tx`, `ratatoskr-qt`) + docs |
 | `ratatoskr-1.0.0-alpha-win64.tar.gz` | Windows 64-bit binaries (same set) + docs |
+| `ratatoskr-1.0.0-alpha-macos-arm64.tar.gz` | macOS Apple Silicon binaries (`ratatoskrd`, `ratatoskr-cli`, `ratatoskr-tx`; no Qt GUI in alpha) + docs |
 
 Both tarballs include `doc/mining.md`, `doc/pool-operator-spec.md`,
 `doc/whitepaper.md`, `doc/launch-announcement.md`, and
@@ -93,6 +94,64 @@ before launch.
   consensus floors + gradualism caps are planned for v1.1.
 - **Placeholder treasury script in this build.** The final v1.0.0 build
   will have the real treasury address (air-gapped keygen) baked in.
+
+---
+
+## Unsigned binaries — expected OS warnings
+
+These alpha binaries are **not code-signed**. Code signing certificates
+(Apple Developer ID, Windows EV cert) are deferred until post-launch when
+the project has sustained revenue. This means your operating system will
+show security warnings on first run. **These warnings are expected and
+do not indicate malware** — but you should always verify the SHA256
+against the value published on the GitHub Release page before running.
+
+### Windows
+
+- **SmartScreen:** On first launch, Windows shows "Windows protected your
+  PC." Click **"More info"** → **"Run anyway"**.
+- **Microsoft Defender:** May briefly flag `ratatoskrd.exe` or
+  `ratatoskr-qt.exe` as "unknown publisher." Allow through Defender if
+  needed. A reputation-less binary is not the same as a flagged malicious
+  one.
+- **Browser download warning:** Edge / Chrome may warn "this file isn't
+  commonly downloaded." Click **Keep** after you've verified the SHA256.
+
+### macOS
+
+- **Gatekeeper:** On first launch, macOS shows "cannot be opened because
+  the developer cannot be verified." Go to **System Settings → Privacy &
+  Security**, scroll to the bottom, click **"Open Anyway"** next to the
+  Ratatoskr binary. Alternatively from Terminal:
+  ```bash
+  xattr -d com.apple.quarantine ./ratatoskrd
+  ```
+- **No notarization:** Apple notarization is deferred until v1.0 release
+  with real signing infra.
+
+### Linux
+
+- No OS-level signing warnings. Distribution package managers (apt, dnf)
+  are not yet targeted for alpha — raw tarball extraction only. Future
+  `.deb` and `.rpm` packages will be signed.
+
+### Verifying SHA256
+
+Always verify the tarball checksum before extracting. Checksums are
+published alongside each tarball on the GitHub Release page, in the
+project Discord `#ratatoskr` pinned message, and in the whitepaper
+appendix at release time.
+
+```bash
+# Linux / macOS
+sha256sum -c ratatoskr-1.0.0-alpha-linux-x86_64.tar.gz.sha256
+
+# Windows PowerShell
+Get-FileHash ratatoskr-1.0.0-alpha-win64.tar.gz -Algorithm SHA256
+```
+
+If the hash doesn't match the one published on the release page, **do
+not run the binaries** — report in Discord.
 
 ---
 

@@ -196,8 +196,8 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::NETCONN, "netconn"},
     {BCLog::CREDITPOOL, "creditpool"},
     {BCLog::EHF, "ehf"},
-    {BCLog::SMT, "smartiecoin"},
-    //End Smartiecoin
+    {BCLog::SMT, "ratatoskr"},
+    //End Ratatoskr
 };
 
 bool GetLogCategory(BCLog::LogFlags& flag, const std::string& str)
@@ -322,10 +322,10 @@ std::string LogCategoryToStr(BCLog::LogFlags category)
     case BCLog::LogFlags::EHF:
         return "ehf";
     case BCLog::LogFlags::SMT:
-        return "smartiecoin";
+        return "ratatoskr";
     case BCLog::LogFlags::NET_NETCONN:
         return "net|netconn";
-    /* End Smartiecoin */
+    /* End Ratatoskr */
     case BCLog::LogFlags::ALL:
         return "all";
     }

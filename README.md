@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="doc/brand/heroes/hero-canonical-mark.png" alt="Ratatoskr — the messenger that runs the tree" width="600" />
+</p>
+
 Ratatoskr Core (RATR)
 =====================
 
@@ -16,6 +20,14 @@ Ratatoskr Core (RATR)
 Ratatoskr is a yespower Proof-of-Work cryptocurrency with deterministic
 masternodes, a treasury fund for ecosystem development, and a native bridge
 to Alephium. Part of the EnchantedForestDeFi ecosystem.
+
+In Norse cosmology, **Ratatoskr** is the squirrel that runs up and down
+**Yggdrasil**, the world tree, carrying messages between the eagle at the
+crown and the serpent at the roots. The metaphor is the project: RATR is
+the messenger layer between chains. The partner chain is **Alephium** —
+phonetically cognate with **Alfheim**, one of the upper realms of
+Yggdrasil. Each future bridge endpoint becomes another realm hanging from
+the tree's branches.
 
 Built on the Smartiecoin/Dash lineage, with the tokenomics rebalanced around
 two lessons learned from prior MN coins: **miners must remain profitable for

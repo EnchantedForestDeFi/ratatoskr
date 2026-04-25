@@ -129,7 +129,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../smartiecoin.qrc"/>
+  <include location="../ratatoskr.qrc"/>
  </resources>
  <connections>
   <connection>

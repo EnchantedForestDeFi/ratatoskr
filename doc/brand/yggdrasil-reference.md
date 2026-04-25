@@ -186,6 +186,36 @@ Alternatively, **commission a derivative work** based on the
 reference. That gives you full IP ownership, which is cleaner for
 long-term brand use than a single-use stock license.
 
+### Inspirational references encountered during the AI-generation phase
+
+These third-party images shaped the visual direction the operator
+took with the Google AI map-style explainer (committed as
+`candidate-5` and any later refinements in `doc/brand/source/`).
+They are **NOT** committed to the repo and are NOT licensed for
+project use — the URLs are recorded here only so future contributors
+remember what the lineage looked like and don't accidentally treat
+the AI output as if it were the licensed reference.
+
+- **Shutterstock ID 2741654267** — antique-style Yggdrasil cosmology
+  illustration; cartographic / parchment aesthetic with the nine
+  realms shown around the world tree. Source URL pattern:
+  `https://www.shutterstock.com/image-illustration/<slug>-2741654267`
+  (search Shutterstock for the ID to retrieve). The same numerical
+  ID surfaced twice in the operator's session — once with the
+  canonical Norse names (Asgard / Niflheim / etc.) and once with
+  custom realm names ("Aurora / Aetheria / Civitas / etc.").
+  Whether those are two separate Shutterstock listings or one with
+  multiple captions has not been verified.
+
+If the operator decides to formally license one of these images
+later, follow the workflow above — commit the licensed
+full-resolution version into `doc/brand/refs/licensed/` with the
+license document, and update this section to point at it.
+
+Until then, AI-generated derivatives and original commissions are
+the only forms of "inspired by Yggdrasil cartographic art" content
+that the project ships.
+
 ---
 
 ## Pronunciation note

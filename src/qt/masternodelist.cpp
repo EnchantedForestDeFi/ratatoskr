@@ -159,7 +159,7 @@ MasternodeSetupWizard::MasternodeSetupWizard(QWidget* parent, WalletModel* walle
                                      "Flow:\n"
                                      "1. Set network and payout addresses\n"
                                      "2. Generate BLS operator key\n"
-                                     "3. Save operator key into smartiecoin.conf\n"
+                                     "3. Save operator key into ratatoskr.conf\n"
                                      "4. Register masternode transaction (ProTx)\n\n"
                                      "Tip: Use 'Auto-fill from wallet' to generate all required addresses."));
     intro_text->setWordWrap(true);
@@ -171,8 +171,8 @@ MasternodeSetupWizard::MasternodeSetupWizard(QWidget* parent, WalletModel* walle
     auto* details_layout = new QVBoxLayout(details_page);
     auto* details_form = new QFormLayout();
     m_mn_type = new QComboBox(details_page);
-    m_mn_type->addItem(tr("Regular (15,000 SMT)"), static_cast<int>(MnType::Regular));
-    m_mn_type->addItem(tr("Evo (75,000 SMT)"), static_cast<int>(MnType::Evo));
+    m_mn_type->addItem(tr("Regular (7,500 RATR)"), static_cast<int>(MnType::Regular));
+    m_mn_type->addItem(tr("Evo (30,000 RATR)"), static_cast<int>(MnType::Evo));
     details_form->addRow(tr("Masternode type"), m_mn_type);
     m_collateral_label = new QLabel(details_page);
     details_form->addRow(tr("Required collateral"), m_collateral_label);
@@ -230,7 +230,7 @@ MasternodeSetupWizard::MasternodeSetupWizard(QWidget* parent, WalletModel* walle
     auto* bls_page = new QWizardPage();
     bls_page->setTitle(tr("Operator BLS Key"));
     auto* bls_layout = new QVBoxLayout(bls_page);
-    auto* bls_text = new QLabel(tr("Generate operator key pair. The secret key will be saved to smartiecoin.conf as masternodeblsprivkey."));
+    auto* bls_text = new QLabel(tr("Generate operator key pair. The secret key will be saved to ratatoskr.conf as masternodeblsprivkey."));
     bls_text->setWordWrap(true);
     bls_layout->addWidget(bls_text);
     auto* bls_form = new QFormLayout();
@@ -325,7 +325,7 @@ bool MasternodeSetupWizard::validateInput(QString& error) const
             return false;
         }
         if (!m_wallet_model->validateAddress(value)) {
-            error = tr("%1 is not a valid Smartiecoin address.").arg(label);
+            error = tr("%1 is not a valid Ratatoskr address.").arg(label);
             return false;
         }
         return true;
@@ -423,7 +423,7 @@ bool MasternodeSetupWizard::saveOperatorSecretToConfig(QString& error)
 
     const fs::path config_path{GetConfigFile(gArgs.GetPathArg("-conf", BITCOIN_CONF_FILENAME))};
     if (config_path.empty()) {
-        error = tr("Unable to resolve smartiecoin.conf path.");
+        error = tr("Unable to resolve ratatoskr.conf path.");
         return false;
     }
     const fs::path config_dir{config_path.parent_path()};
@@ -593,7 +593,7 @@ bool MasternodeSetupWizard::registerMasternode(QString& txid, QString& error)
 void MasternodeSetupWizard::updateTypeUi()
 {
     const bool evo{currentType() == MnType::Evo};
-    m_collateral_label->setText(evo ? tr("75000 SMT") : tr("15000 SMT"));
+    m_collateral_label->setText(evo ? tr("30,000 RATR") : tr("7,500 RATR"));
     m_evo_group->setVisible(evo);
 
     // Auto-generate a random Platform Node ID when switching to Evo
@@ -613,7 +613,7 @@ void MasternodeSetupWizard::updateSummary()
     const bool evo{currentType() == MnType::Evo};
 
     lines << tr("Type: %1").arg(evo ? tr("Evo") : tr("Regular"));
-    lines << tr("Collateral: %1").arg(evo ? tr("75000 SMT") : tr("15000 SMT"));
+    lines << tr("Collateral: %1").arg(evo ? tr("30,000 RATR") : tr("7,500 RATR"));
     lines << tr("Core service: %1").arg(serviceAddress());
     lines << tr("Collateral address: %1").arg(m_collateral_address->text().trimmed());
     lines << tr("Owner address: %1").arg(m_owner_address->text().trimmed());
@@ -663,7 +663,7 @@ void MasternodeSetupWizard::accept()
     QString success = tr("Masternode registration transaction sent.\n\nTxID:\n%1").arg(txid);
     success += tr("\n\nOperator key saved to:\n%1").arg(GUIUtil::PathToQString(config_path));
     if (m_restart_required) {
-        success += tr("\n\nRestart Smartiecoin Core so local masternode service uses the new key.");
+        success += tr("\n\nRestart Ratatoskr Core so local masternode service uses the new key.");
     }
     QMessageBox::information(this, tr("MN Setup Wizard"), success);
     QWizard::accept();

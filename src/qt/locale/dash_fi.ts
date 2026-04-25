@@ -373,8 +373,8 @@
         <translation>&amp;Vastaanota</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
-        <translation>PyydÃ¤ maksuja (Luo QR koodit ja smartiecoin: URIt)</translation>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
+        <translation>PyydÃ¤ maksuja (Luo QR koodit ja ratatoskr: URIt)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -655,8 +655,8 @@
         <translation>Avaa &amp;lompakon asetustiedosto</translation>
     </message>
     <message>
-        <source>Open a smartiecoin: URI</source>
-        <translation>Avaa smartiecoin: URI</translation>
+        <source>Open a ratatoskr: URI</source>
+        <translation>Avaa ratatoskr: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -745,7 +745,7 @@
         <translation>&amp;NÃ¤ytÃ¤</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Smartiecoin network</source>
+        <source>%n active connection(s) to Ratatoskr network</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation><numerusform>%n aktiivinen yhteys SMT verkkoon</numerusform><numerusform>%n aktiivista yhteyttÃ¤ SMT verkkoon</numerusform></translation>
     </message>
@@ -1548,7 +1548,7 @@ Haluatko jatkaa?</translation>
     </message>
     <message>
         <source>&lt;h3&gt;%1 Basics&lt;/h3&gt; %1 gives you true financial privacy by obscuring the origins of your funds. All the SMT in your wallet is comprised of different "inputs" which you can think of as separate, discrete coins.&lt;br&gt; %1 uses an innovative process to mix your inputs with the inputs of two or more other people, without having your coins ever leave your wallet. You retain control of your money at all times.&lt;hr&gt; &lt;b&gt;The %1 process works like this:&lt;/b&gt;&lt;ol type="1"&gt; &lt;li&gt;%1 begins by breaking your transaction inputs down into standard denominations. These denominations are 0.001 SMT, 0.01 SMT, 0.1 SMT, 1 SMT and 10 SMT -- sort of like the paper money you use every day.&lt;/li&gt; &lt;li&gt;Your wallet then sends requests to specially configured software nodes on the network, called "masternodes." These masternodes are informed then that you are interested in mixing a certain denomination. No identifiable information is sent to the masternodes, so they never know "who" you are.&lt;/li&gt; &lt;li&gt;When two or more other people send similar messages, indicating that they wish to mix the same denomination, a mixing session begins. The masternode mixes up the inputs and instructs all three users' wallets to pay the now-transformed input back to themselves. Your wallet pays that denomination directly to itself, but in a different address (called a change address).&lt;/li&gt; &lt;li&gt;In order to fully obscure your funds, your wallet must repeat this process a number of times with each denomination. Each time the process is completed, it's called a "round." Each round of %1 makes it exponentially more difficult to determine where your funds originated.&lt;/li&gt; &lt;li&gt;This mixing process happens in the background without any intervention on your part. When you wish to make a transaction, your funds will already be mixed. No additional waiting is required.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;IMPORTANT:&lt;/b&gt; Your wallet only contains 1000 of these "change addresses." Every time a mixing event happens, up to 9 of your addresses are used up. This means those 1000 addresses last for about 100 mixing events. When 900 of them are used, your wallet must create more addresses. It can only do this, however, if you have automatic backups enabled.&lt;br&gt; Consequently, users who have backups disabled will also have %1 disabled. &lt;hr&gt;For more information, see the &lt;a style="%2" href="%3"&gt;%1 documentation&lt;/a&gt;.</source>
-        <translation>&lt;h3&gt;%1 Perusteet&lt;/h3&gt; %1 tarjoaa yksityisyyden hÃ¤mÃ¤rtÃ¤mÃ¤llÃ¤ kolikoiden alkuperÃ¤isen osoitteen. Kaikki smartiecoin:it lompakossasi muodostuvat erillisistÃ¤ "syÃ¶tteistÃ¤", joita voit ajatella erillisinÃ¤ kolikkoina.&lt;br&gt; %1 kÃ¤yttÃ¤Ã¤ innovatiivista prosessia sekoittaakseen lompakkosi syÃ¶tteet kahden muun ihmisen syÃ¶tteisiin, siirtÃ¤mÃ¤ttÃ¤ kolikoita pois lompakostasi. Kolikoiden kontrolli pysyy aina sinulla.&lt;hr&gt; &lt;b&gt; %1 prosessi toimii seuraavasti:&lt;/b&gt;&lt;ol type="1"&gt; &lt;li&gt;%1 aloittaa pilkkomalla siirtotapahtumiesi syÃ¶tteet pienemmiksi standardi arvoiksi. NÃ¤mÃ¤ arvot ovat 0.001 SMT, 0.01 SMT, 0.1 SMT, 1 SMT ja 10 SMT.&lt;/li&gt; &lt;li&gt;Sitten lompakkosi lÃ¤hettÃ¤Ã¤ pyynnÃ¶n verkon palvelimille, joita kutsutaan "masternode:iksi". Masternodet saavat tiedon ettÃ¤ haluat sekoittaa pilkottuja standardi arvoja. MitÃ¤Ã¤n tunnistetietoja ei lÃ¤hetetÃ¤ masternode:ille, ne eivÃ¤t koskaan tiedÃ¤ "kuka" olet.&lt;/li&gt; &lt;li&gt;Kun 2 tai enemmÃ¤n kÃ¤yttÃ¤jÃ¤Ã¤ ilmoittaa ettÃ¤ he haluavat myÃ¶s sekoittaa kolikoita, alkaa sekoitus-sessio. Masternodet sekoittavat standardi arvot ja ilmoittavat kaikille 3:lle kÃ¤yttÃ¤jÃ¤n lompakoille ettÃ¤ maksavat sekoitetut arvot takaisin itselleen. Lompakkosi maksaa nuo sekoitetut arvot suoraan itselleen, mutta eri osoitteeseen (vaihto-osoite).&lt;/li&gt; &lt;li&gt;Jotta kolikoiden alkuperÃ¤inen lÃ¤hde hÃ¤mÃ¤rretÃ¤Ã¤n, lompakkosi suorittaa tÃ¤mÃ¤n prosessin useita kertoja kaikilla standardi arvoilla. Aina kun prosessi on valmis, sitÃ¤ kutsutaan "kierrokseksi". Jokainen %1 kierros tekee eksponentiaalisesti vaikeammaksi lÃ¶ytÃ¤Ã¤ kolikoiden alkuperÃ¤inen osoitte.&lt;/li&gt; &lt;li&gt;TÃ¤mÃ¤ sekoitusprosessi tapahtuu taustalla ilman kÃ¤yttÃ¤jÃ¤n toimenpiteitÃ¤. Kun haluat myÃ¶hemmin tehdÃ¤ kolikoiden siirron, on ne valmiiksi sekoitettu. ErillistÃ¤ sekoitusta/odotusta ei tarvita.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;TÃ„RKEÃ„Ã„:&lt;/b&gt; Lompakkosi sisÃ¤ltÃ¤Ã¤ vain 1000 "vaihto-osoitetta". Aina kun sekoitustapahtuma tehdÃ¤Ã¤n, max 9 osoitetta kÃ¤ytetÃ¤Ã¤n. TÃ¤mÃ¤ tarkoittaa sitÃ¤ ettÃ¤ nuo 1000 osoitetta kestÃ¤Ã¤ noin 100 sekoitustapahtumaa. Kun 900 osoitetta on kÃ¤ytetty, lompakkosi tÃ¤ytyy tehdÃ¤ lisÃ¤Ã¤ osoitteita. Se voi tehdÃ¤ niitÃ¤ vain jos automaattinen varmistus on kÃ¤ytÃ¶ssÃ¤.&lt;br&gt; TÃ¤stÃ¤ seuraa ettÃ¤ jos varmistus ei ole kÃ¤ytÃ¶ssÃ¤, myÃ¶s %1 on pois kÃ¤ytÃ¶stÃ¤. &lt;hr&gt;Katso lisÃ¤tietoja &lt;a style="%2" href="%3"&gt;%1 dokumentaatiosta&lt;/a&gt;.</translation>
+        <translation>&lt;h3&gt;%1 Perusteet&lt;/h3&gt; %1 tarjoaa yksityisyyden hÃ¤mÃ¤rtÃ¤mÃ¤llÃ¤ kolikoiden alkuperÃ¤isen osoitteen. Kaikki ratatoskr:it lompakossasi muodostuvat erillisistÃ¤ "syÃ¶tteistÃ¤", joita voit ajatella erillisinÃ¤ kolikkoina.&lt;br&gt; %1 kÃ¤yttÃ¤Ã¤ innovatiivista prosessia sekoittaakseen lompakkosi syÃ¶tteet kahden muun ihmisen syÃ¶tteisiin, siirtÃ¤mÃ¤ttÃ¤ kolikoita pois lompakostasi. Kolikoiden kontrolli pysyy aina sinulla.&lt;hr&gt; &lt;b&gt; %1 prosessi toimii seuraavasti:&lt;/b&gt;&lt;ol type="1"&gt; &lt;li&gt;%1 aloittaa pilkkomalla siirtotapahtumiesi syÃ¶tteet pienemmiksi standardi arvoiksi. NÃ¤mÃ¤ arvot ovat 0.001 SMT, 0.01 SMT, 0.1 SMT, 1 SMT ja 10 SMT.&lt;/li&gt; &lt;li&gt;Sitten lompakkosi lÃ¤hettÃ¤Ã¤ pyynnÃ¶n verkon palvelimille, joita kutsutaan "masternode:iksi". Masternodet saavat tiedon ettÃ¤ haluat sekoittaa pilkottuja standardi arvoja. MitÃ¤Ã¤n tunnistetietoja ei lÃ¤hetetÃ¤ masternode:ille, ne eivÃ¤t koskaan tiedÃ¤ "kuka" olet.&lt;/li&gt; &lt;li&gt;Kun 2 tai enemmÃ¤n kÃ¤yttÃ¤jÃ¤Ã¤ ilmoittaa ettÃ¤ he haluavat myÃ¶s sekoittaa kolikoita, alkaa sekoitus-sessio. Masternodet sekoittavat standardi arvot ja ilmoittavat kaikille 3:lle kÃ¤yttÃ¤jÃ¤n lompakoille ettÃ¤ maksavat sekoitetut arvot takaisin itselleen. Lompakkosi maksaa nuo sekoitetut arvot suoraan itselleen, mutta eri osoitteeseen (vaihto-osoite).&lt;/li&gt; &lt;li&gt;Jotta kolikoiden alkuperÃ¤inen lÃ¤hde hÃ¤mÃ¤rretÃ¤Ã¤n, lompakkosi suorittaa tÃ¤mÃ¤n prosessin useita kertoja kaikilla standardi arvoilla. Aina kun prosessi on valmis, sitÃ¤ kutsutaan "kierrokseksi". Jokainen %1 kierros tekee eksponentiaalisesti vaikeammaksi lÃ¶ytÃ¤Ã¤ kolikoiden alkuperÃ¤inen osoitte.&lt;/li&gt; &lt;li&gt;TÃ¤mÃ¤ sekoitusprosessi tapahtuu taustalla ilman kÃ¤yttÃ¤jÃ¤n toimenpiteitÃ¤. Kun haluat myÃ¶hemmin tehdÃ¤ kolikoiden siirron, on ne valmiiksi sekoitettu. ErillistÃ¤ sekoitusta/odotusta ei tarvita.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;TÃ„RKEÃ„Ã„:&lt;/b&gt; Lompakkosi sisÃ¤ltÃ¤Ã¤ vain 1000 "vaihto-osoitetta". Aina kun sekoitustapahtuma tehdÃ¤Ã¤n, max 9 osoitetta kÃ¤ytetÃ¤Ã¤n. TÃ¤mÃ¤ tarkoittaa sitÃ¤ ettÃ¤ nuo 1000 osoitetta kestÃ¤Ã¤ noin 100 sekoitustapahtumaa. Kun 900 osoitetta on kÃ¤ytetty, lompakkosi tÃ¤ytyy tehdÃ¤ lisÃ¤Ã¤ osoitteita. Se voi tehdÃ¤ niitÃ¤ vain jos automaattinen varmistus on kÃ¤ytÃ¶ssÃ¤.&lt;br&gt; TÃ¤stÃ¤ seuraa ettÃ¤ jos varmistus ei ole kÃ¤ytÃ¶ssÃ¤, myÃ¶s %1 on pois kÃ¤ytÃ¶stÃ¤. &lt;hr&gt;Katso lisÃ¤tietoja &lt;a style="%2" href="%3"&gt;%1 dokumentaatiosta&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1900,12 +1900,12 @@ Haluatko jatkaa?</translation>
         <translation>Lomake</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Smartiecoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Ratatoskr network, as detailed below.</source>
         <translation>ViimeisimmÃ¤t siirtotapahtumat eivÃ¤t vÃ¤lttÃ¤mÃ¤ttÃ¤ ole vielÃ¤ nÃ¤kyvissÃ¤, ja siksi lompakon saldo voi olla vÃ¤Ã¤rin. Saldo korjaantuu oikeaksi kun lompakon synkronointi SMT verkkoon on valmis.</translation>
     </message>
     <message>
         <source>Attempting to spend SMT that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Yritys kÃ¤yttÃ¤Ã¤ smartiecoin:eja joihin vaikuttaa ei nÃ¤kyvissÃ¤ olevat siirtotapahtumat, tulevat hylÃ¤tyksi SMT verkossa.</translation>
+        <translation>Yritys kÃ¤yttÃ¤Ã¤ ratatoskr:eja joihin vaikuttaa ei nÃ¤kyvissÃ¤ olevat siirtotapahtumat, tulevat hylÃ¤tyksi SMT verkossa.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -2232,8 +2232,8 @@ Haluatko jatkaa?</translation>
         <translation>Maksimi</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Avaa automaattisesti Smartiecoin Core asiakasohjelmalle portti reitittimeen. TÃ¤mÃ¤ toimii vain jos reitittimesi tukee UPnP:tÃ¤ ja se on kÃ¤ytÃ¶ssÃ¤.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Avaa automaattisesti Ratatoskr Core asiakasohjelmalle portti reitittimeen. TÃ¤mÃ¤ toimii vain jos reitittimesi tukee UPnP:tÃ¤ ja se on kÃ¤ytÃ¶ssÃ¤.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -2248,7 +2248,7 @@ Haluatko jatkaa?</translation>
         <translation>Salli sisÃ¤Ã¤&amp;n tulevat yhteydet</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Ratatoskr network through a SOCKS5 proxy.</source>
         <translation>Kytkeydy SMT verkkoon kÃ¤yttÃ¤en SOCKS5 proxy:a.</translation>
     </message>
     <message>
@@ -2314,8 +2314,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Kartoita portti kÃ¤yttÃ¤en &amp;UPnP:tÃ¤</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Avaa Smartiecoin Core -asiakasportti reitittimessÃ¤ automaattisesti. TÃ¤mÃ¤ toimii vain jos reitittimesi tukee NAT-PMP:tÃ¤ ja se on kÃ¤ytÃ¶ssÃ¤. Ulkoinen portti voi olla satunnainen.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Avaa Ratatoskr Core -asiakasportti reitittimessÃ¤ automaattisesti. TÃ¤mÃ¤ toimii vain jos reitittimesi tukee NAT-PMP:tÃ¤ ja se on kÃ¤ytÃ¶ssÃ¤. Ulkoinen portti voi olla satunnainen.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2366,7 +2366,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>&amp;KÃ¤yttÃ¶liittymÃ¤</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Ratatoskr network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation>YhdistÃ¤ SMT-verkkoon erillisen SOCKS5-vÃ¤lityspalvelimen kautta Tor onion -palveluita varten.</translation>
     </message>
     <message>
@@ -2469,7 +2469,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Lomake</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Smartiecoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ratatoskr network after a connection is established, but this process has not completed yet.</source>
         <translation>NÃ¤ytetyt tiedot eivÃ¤t vÃ¤lttÃ¤mÃ¤ttÃ¤ ole ajan tasalla.&lt;br&gt;Lompakkosi synkronoituu automaattisesti SMT verkkoon kun&lt;br&gt;yhteys on muodostettu, mutta tÃ¤mÃ¤ prosessi ei vielÃ¤ ole valmis.</translation>
     </message>
     <message>
@@ -2832,7 +2832,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>MaksupyyntÃ¶virhe</translation>
     </message>
     <message>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
         <translation>Ei voi kÃ¤ynnistÃ¤Ã¤ Dashia: click-to-pay handler</translation>
     </message>
     <message>
@@ -2840,8 +2840,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>URI kÃ¤sittely</translation>
     </message>
     <message>
-        <source>'smartiecoin://' is not a valid URI. Use 'smartiecoin:' instead.</source>
-        <translation>'smartiecoin://' ei ole validi URI. KÃ¤ytÃ¤ sen sijaan 'smartiecoin:'.</translation>
+        <source>'ratatoskr://' is not a valid URI. Use 'ratatoskr:' instead.</source>
+        <translation>'ratatoskr://' ei ole validi URI. KÃ¤ytÃ¤ sen sijaan 'ratatoskr:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -4195,7 +4195,7 @@ LisÃ¤tietoja tÃ¤mÃ¤n konsolin kÃ¤ytÃ¶stÃ¤ saat kirjoittamalla %6.
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>Valinnainen viesti liitettÃ¤vÃ¤ksi maksupyyntÃ¶Ã¶n, joka nÃ¤ytetÃ¤Ã¤n kun pyyntÃ¶ on avattu.&lt;br&gt;Huomio: ViestiÃ¤ ei lÃ¤hetetÃ¤ maksun mukana SMT verkkoon.</translation>
     </message>
     <message>
@@ -4207,7 +4207,7 @@ LisÃ¤tietoja tÃ¤mÃ¤n konsolin kÃ¤ytÃ¶stÃ¤ saat kirjoittamalla %6.
         <translation>Valinnainen nimi liitetÃ¤Ã¤n uuteen vastaanottavaan osoitteeseen.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>Valinnainen viesti liitettÃ¤vÃ¤ksi maksupyyntÃ¶Ã¶n, joka nÃ¤ytetÃ¤Ã¤n kun pyyntÃ¶ on avattu.&lt;br&gt;Huomio: ViestiÃ¤ ei lÃ¤hetetÃ¤ maksun mukana SMT verkkoon.</translation>
     </message>
     <message>
@@ -4887,8 +4887,8 @@ LisÃ¤tietoja tÃ¤mÃ¤n konsolin kÃ¤ytÃ¶stÃ¤ saat kirjoittamalla %6.
         <translation>Viesti:</translation>
     </message>
     <message>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Smartiecoin network.</source>
-        <translation>Viesti joka liitettiin smartiecoin: URI joka tallenetaan siirtotapahtuman kanssa viitteeksi sinulle. Huomio: TÃ¤tÃ¤ viestiÃ¤ ei lÃ¤hetetÃ¤ SMT verkkoon.</translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Ratatoskr network.</source>
+        <translation>Viesti joka liitettiin ratatoskr: URI joka tallenetaan siirtotapahtuman kanssa viitteeksi sinulle. Huomio: TÃ¤tÃ¤ viestiÃ¤ ei lÃ¤hetetÃ¤ SMT verkkoon.</translation>
     </message>
 </context>
 <context>

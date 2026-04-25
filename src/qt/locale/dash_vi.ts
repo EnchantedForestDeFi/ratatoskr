@@ -373,8 +373,8 @@
         <translation>&amp;Nháº­n</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
-        <translation>YÃªu cáº§u thanh toÃ¡n (sinh mÃ£ QR vÃ  smartiecoin: URIs)</translation>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
+        <translation>YÃªu cáº§u thanh toÃ¡n (sinh mÃ£ QR vÃ  ratatoskr: URIs)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -655,8 +655,8 @@
         <translation>Má»Ÿ tá»‡p cáº¥u hÃ¬nh &amp;vÃ­</translation>
     </message>
     <message>
-        <source>Open a smartiecoin: URI</source>
-        <translation>Má»Ÿ má»™t smartiecoin: URI</translation>
+        <source>Open a ratatoskr: URI</source>
+        <translation>Má»Ÿ má»™t ratatoskr: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -745,7 +745,7 @@
         <translation>&amp;Hiá»ƒn thá»‹</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Smartiecoin network</source>
+        <source>%n active connection(s) to Ratatoskr network</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation><numerusform>%n káº¿t ná»‘i hiá»‡n thá»i tá»›i máº¡ng lÆ°á»›i cá»§a SMT</numerusform></translation>
     </message>
@@ -1900,7 +1900,7 @@ Báº¡n cÃ³ muá»‘n tiáº¿p tá»¥c khÃ´ng?</translation>
         <translation>Form</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Smartiecoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Ratatoskr network, as detailed below.</source>
         <translation>Nhá»¯ng giao dá»‹ch má»›i cÃ³ thá»ƒ chÆ°a hiá»‡n ra, vÃ  do Ä‘Ã³ sá»‘ dÆ° trong vÃ­ cá»§a báº¡n cÃ³ thá»ƒ chÆ°a chÃ­nh xÃ¡c. Nhá»¯ng thÃ´ng tin nÃ y sáº½ chÃ­nh xÃ¡c má»™t khi vÃ­ cá»§a báº¡n Ä‘Ã£ hoÃ n táº¥t viá»‡c Ä‘á»“ng bá»™ vá»›i máº¡ng lÆ°á»›i cá»§a SMT, nhÆ° cá»¥ thá»ƒ bÃªn dÆ°á»›i.</translation>
     </message>
     <message>
@@ -2232,8 +2232,8 @@ Báº¡n cÃ³ muá»‘n tiáº¿p tá»¥c khÃ´ng?</translation>
         <translation>Tá»‘i Ä‘a</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Tá»± Ä‘á»™ng má»Ÿ cá»•ng cho pháº§n má»m Smartiecoin Core trÃªn rounter. Äiá»u nÃ y chá»‰ hoáº¡t Ä‘á»™ng Ä‘Æ°á»£c khi rounter cá»§a báº¡n há»— trá»£ UpnP vÃ  tÃ­nh nÄƒng Ä‘Ã³ Ä‘Æ°á»£c báº­t lÃªn.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Tá»± Ä‘á»™ng má»Ÿ cá»•ng cho pháº§n má»m Ratatoskr Core trÃªn rounter. Äiá»u nÃ y chá»‰ hoáº¡t Ä‘á»™ng Ä‘Æ°á»£c khi rounter cá»§a báº¡n há»— trá»£ UpnP vÃ  tÃ­nh nÄƒng Ä‘Ã³ Ä‘Æ°á»£c báº­t lÃªn.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -2248,7 +2248,7 @@ Báº¡n cÃ³ muá»‘n tiáº¿p tá»¥c khÃ´ng?</translation>
         <translation>Cho phÃ©p &amp;nháº­n káº¿t ná»‘i</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Ratatoskr network through a SOCKS5 proxy.</source>
         <translation>Káº¿t ná»‘i vá»›i máº¡ng lÆ°á»›i SMT thÃ´ng qua má»™t SOCK5 proxy.</translation>
     </message>
     <message>
@@ -2314,8 +2314,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Ãnh xáº¡ cá»•ng sá»­ dá»¥ng &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Tá»± Ä‘á»™ng má»Ÿ cá»•ng á»©ng dá»¥ng Smartiecoin Core trÃªn router. Äiá»u nÃ y chá»‰ hoáº¡t Ä‘á»™ng khi router cá»§a báº¡n há»— trá»£ NAT-PMP vÃ  Ä‘Æ°á»£c báº­t. Cá»•ng ngoÃ i cÃ³ thá»ƒ lÃ  ngáº«u nhiÃªn.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Tá»± Ä‘á»™ng má»Ÿ cá»•ng á»©ng dá»¥ng Ratatoskr Core trÃªn router. Äiá»u nÃ y chá»‰ hoáº¡t Ä‘á»™ng khi router cá»§a báº¡n há»— trá»£ NAT-PMP vÃ  Ä‘Æ°á»£c báº­t. Cá»•ng ngoÃ i cÃ³ thá»ƒ lÃ  ngáº«u nhiÃªn.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2366,7 +2366,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>&amp;Hiá»ƒn thá»‹</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Ratatoskr network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation>Káº¿t ná»‘i vá»›i máº¡ng SMT thÃ´ng qua proxy SOCKS5 riÃªng cho dá»‹ch vá»¥ Tor onion.</translation>
     </message>
     <message>
@@ -2469,7 +2469,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Biá»ƒu máº«u</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Smartiecoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ratatoskr network after a connection is established, but this process has not completed yet.</source>
         <translation>ThÃ´ng tin Ä‘Æ°á»£c hiá»ƒn thá»‹ cÃ³ thá»ƒ Ä‘Ã£ lá»—i thá»i. VÃ­ cá»§a báº¡n sáº½ tá»± Ä‘á»™ng Ä‘á»“ng bá»™ vá»›i máº¡ng lÆ°á»›i SMT sau khi káº¿t ná»‘i Ä‘Æ°á»£c thiáº¿t láº­p, tuy nhiÃªn quÃ¡ trÃ¬nh nÃ y chÆ°a hoÃ n thÃ nh.</translation>
     </message>
     <message>
@@ -2832,16 +2832,16 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>YÃªu cáº§u thanh toÃ¡n bá»‹ lá»—i</translation>
     </message>
     <message>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
-        <translation>KhÃ´ng thá»ƒ khá»Ÿi Ä‘á»™ng smartiecoin: trÃ¬nh xá»­ lÃ½ click-to-pay</translation>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
+        <translation>KhÃ´ng thá»ƒ khá»Ÿi Ä‘á»™ng ratatoskr: trÃ¬nh xá»­ lÃ½ click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>xá»­ lÃ½ URI</translation>
     </message>
     <message>
-        <source>'smartiecoin://' is not a valid URI. Use 'smartiecoin:' instead.</source>
-        <translation>'smartiecoin://' khÃ´ng pháº£i lÃ  URI há»£p lá»‡. Sá»­ dá»¥ng 'smartiecoin:' thay tháº¿.</translation>
+        <source>'ratatoskr://' is not a valid URI. Use 'ratatoskr:' instead.</source>
+        <translation>'ratatoskr://' khÃ´ng pháº£i lÃ  URI há»£p lá»‡. Sá»­ dá»¥ng 'ratatoskr:' thay tháº¿.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -4195,7 +4195,7 @@ Nháº­p %5 Ä‘á»ƒ xem tá»•ng quan vá» cÃ¡c lá»‡nh cÃ³ sá
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>Má»™t thÃ´ng Ä‘iá»‡p tuá»³ chá»n Ä‘á»ƒ Ä‘Ã­nh vÃ o yÃªu cáº§u thanh toÃ¡n, nÃ³ sáº½ hiá»ƒn thá»‹ khi yÃªu cáº§u Ä‘Æ°á»£c má»Ÿ. ChÃº Ã½: ThÃ´ng Ä‘iá»‡p sáº½ khÃ´ng Ä‘Æ°á»£c gá»­i thÃ´ng qua máº¡ng lÆ°á»›i SMT.</translation>
     </message>
     <message>
@@ -4207,7 +4207,7 @@ Nháº­p %5 Ä‘á»ƒ xem tá»•ng quan vá» cÃ¡c lá»‡nh cÃ³ sá
         <translation>Má»™t nhÃ£n tuá»³ chá»n Ä‘á»ƒ liÃªn káº¿t vá»›i Ä‘á»‹a chá»‰ nháº­n má»›i.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>Má»™t thÃ´ng Ä‘iá»‡p tuá»³ chá»n Ä‘á»ƒ Ä‘Ã­nh vÃ o yÃªu cáº§u thanh toÃ¡n, nÃ³ sáº½ hiá»ƒn thá»‹ khi yÃªu cáº§u Ä‘Æ°á»£c má»Ÿ.&lt;br&gt;ChÃº Ã½: ThÃ´ng Ä‘iá»‡p sáº½ khÃ´ng Ä‘Æ°á»£c gá»­i thÃ´ng qua máº¡ng lÆ°á»›i SMT.</translation>
     </message>
     <message>
@@ -4887,8 +4887,8 @@ Nháº­p %5 Ä‘á»ƒ xem tá»•ng quan vá» cÃ¡c lá»‡nh cÃ³ sá
         <translation>ThÃ´ng Ä‘iá»‡p:</translation>
     </message>
     <message>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Smartiecoin network.</source>
-        <translation>Má»™t thÃ´ng Ä‘iá»‡p Ä‘Æ°á»£c Ä‘Ã­nh vá»›i smartiecoin: URI Ä‘Ã³ sáº½ Ä‘Æ°á»£c lÆ°u trá»¯ vá»›i cÃ¡c giao dá»‹ch cho cÃ¡c báº¡n tham kháº£o. LÆ°u Ã½: ThÃ´ng Ä‘iá»‡p nÃ y sáº½ khÃ´ng Ä‘Æ°á»£c gá»­i qua máº¡ng SMT. </translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Ratatoskr network.</source>
+        <translation>Má»™t thÃ´ng Ä‘iá»‡p Ä‘Æ°á»£c Ä‘Ã­nh vá»›i ratatoskr: URI Ä‘Ã³ sáº½ Ä‘Æ°á»£c lÆ°u trá»¯ vá»›i cÃ¡c giao dá»‹ch cho cÃ¡c báº¡n tham kháº£o. LÆ°u Ã½: ThÃ´ng Ä‘iá»‡p nÃ y sáº½ khÃ´ng Ä‘Æ°á»£c gá»­i qua máº¡ng SMT. </translation>
     </message>
 </context>
 <context>

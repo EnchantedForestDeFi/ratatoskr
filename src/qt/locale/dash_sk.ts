@@ -373,8 +373,8 @@
         <translation>&amp;PrijaÅ¥</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
-        <translation>VyÅ¾iadaÅ¥ platby (vygeneruje QR kÃ³dy a smartiecoin: URI)</translation>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
+        <translation>VyÅ¾iadaÅ¥ platby (vygeneruje QR kÃ³dy a ratatoskr: URI)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -655,8 +655,8 @@
         <translation>OtvoriÅ¥ konfiguraÄnÃ½ sÃºbor &amp;peÅˆaÅ¾enky</translation>
     </message>
     <message>
-        <source>Open a smartiecoin: URI</source>
-        <translation>OtvoriÅ¥ smartiecoin: URI</translation>
+        <source>Open a ratatoskr: URI</source>
+        <translation>OtvoriÅ¥ ratatoskr: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -745,7 +745,7 @@
         <translation>&amp;ZobraziÅ¥</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Smartiecoin network</source>
+        <source>%n active connection(s) to Ratatoskr network</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation><numerusform>%n aktÃ­vne spojenie so sieÅ¥ou SMT</numerusform><numerusform>%n aktÃ­vne spojenia so sieÅ¥ou SMT</numerusform><numerusform>%n aktÃ­vnych spojenÃ­ so sieÅ¥ou SMT</numerusform><numerusform>%n aktÃ­vnych spojenÃ­ so sieÅ¥ou SMT</numerusform></translation>
     </message>
@@ -1900,7 +1900,7 @@ Chcete pokraÄovaÅ¥?</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Smartiecoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Ratatoskr network, as detailed below.</source>
         <translation>NedÃ¡vne transakcie eÅ¡te nemusia byÅ¥ viditeÄ¾nÃ© a preto mÃ´Å¾e byÅ¥ stav vaÅ¡ej peÅˆaÅ¾enky nesprÃ¡vny. InformÃ¡cia bude sprÃ¡vna hneÄ ako vaÅ¡a peÅˆaÅ¾enka dokonÄÃ­ synchronizÃ¡ciu so sieÅ¥ou SMT. Viac detailov nÃ¡jdete niÅ¾Å¡ie.</translation>
     </message>
     <message>
@@ -2232,8 +2232,8 @@ Chcete pokraÄovaÅ¥?</translation>
         <translation>Maximum</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automaticky otvoriÅ¥ na smerovaÄi port pre Smartiecoin Core klient. Toto funguje iba ak vÃ¡Å¡ smerovaÄ  podporuje UPnP a je povolenÃ©</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automaticky otvoriÅ¥ na smerovaÄi port pre Ratatoskr Core klient. Toto funguje iba ak vÃ¡Å¡ smerovaÄ  podporuje UPnP a je povolenÃ©</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -2248,7 +2248,7 @@ Chcete pokraÄovaÅ¥?</translation>
         <translation>PovoliÅ¥ pric&amp;hÃ¡dzajÃºce spojenia</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Ratatoskr network through a SOCKS5 proxy.</source>
         <translation>PripojiÅ¥ sa do siete SMT cez proxy SOCKS5.</translation>
     </message>
     <message>
@@ -2314,8 +2314,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>MapovaÅ¥ port pomocou &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Automaticky otvoriÅ¥ na smerovaÄi port pre Smartiecoin Core klient. Toto funguje iba ak vÃ¡Å¡ smerovaÄ podporuje NAT-PMP a je povolenÃ©. ExternÃ½ port mÃ´Å¾e byÅ¥ nÃ¡hodnÃ½.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Automaticky otvoriÅ¥ na smerovaÄi port pre Ratatoskr Core klient. Toto funguje iba ak vÃ¡Å¡ smerovaÄ podporuje NAT-PMP a je povolenÃ©. ExternÃ½ port mÃ´Å¾e byÅ¥ nÃ¡hodnÃ½.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2366,7 +2366,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>&amp;Zobrazenie</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Ratatoskr network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation>PripojiÅ¥ sa k sieti SMT cez samostatnÃ© SOCKS5 proxy pre Tor onion sluÅ¾by.</translation>
     </message>
     <message>
@@ -2469,7 +2469,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Smartiecoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ratatoskr network after a connection is established, but this process has not completed yet.</source>
         <translation>ZobrazenÃ© informÃ¡cie mÃ´Å¾u byÅ¥ zastaralÃ©. VaÅ¡a peÅˆaÅ¾enka sa automaticky zosynchronizuje so sieÅ¥ou SMT akonÃ¡hle nadviaÅ¾e spojenie, avÅ¡ak tento proces eÅ¡te nebol dokonÄenÃ½.</translation>
     </message>
     <message>
@@ -2832,7 +2832,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Chyba pri vyÅ¾iadanÃ­ platby</translation>
     </message>
     <message>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
         <translation>SMT sa nedÃ¡ spustiÅ¥: click-to-pay handler</translation>
     </message>
     <message>
@@ -2840,8 +2840,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Spracovanie URI</translation>
     </message>
     <message>
-        <source>'smartiecoin://' is not a valid URI. Use 'smartiecoin:' instead.</source>
-        <translation>â€žsmartiecoin://â€œ nie je platnÃ½ URI. Namiesto toho pouÅ¾ite â€žsmartiecoin:â€œ.</translation>
+        <source>'ratatoskr://' is not a valid URI. Use 'ratatoskr:' instead.</source>
+        <translation>â€žratatoskr://â€œ nie je platnÃ½ URI. Namiesto toho pouÅ¾ite â€žratatoskr:â€œ.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -4195,7 +4195,7 @@ Pre viac informÃ¡ciÃ­ o pouÅ¾Ã­vanÃ­ tejto konzoly zadajte %6.
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>PripojiÅ¥ ku vyÅ¾iadanej platbe voliteÄ¾nÃº sprÃ¡vu, ktorÃ¡ sa zobrazÃ­, keÄ bude Å¾iadosÅ¥ otvorenÃ¡. PoznÃ¡mka: SprÃ¡va nebude poslanÃ¡ spolu s platbou cez sieÅ¥ SMT.</translation>
     </message>
     <message>
@@ -4207,7 +4207,7 @@ Pre viac informÃ¡ciÃ­ o pouÅ¾Ã­vanÃ­ tejto konzoly zadajte %6.
         <translation>VoliteÄ¾nÃ½ popis ktorÃ½ sa pridÃ¡ k tejto novej prijÃ­majÃºcej adrese.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>PripojiÅ¥ ku vyÅ¾iadanej platbe voliteÄ¾nÃº sprÃ¡vu, ktorÃ¡ sa zobrazÃ­, keÄ bude Å¾iadosÅ¥ otvorenÃ¡. &lt;br&gt;PoznÃ¡mka: SprÃ¡va nebude poslanÃ¡ spolu s platbou cez sieÅ¥ SMT.</translation>
     </message>
     <message>
@@ -4887,8 +4887,8 @@ Pre viac informÃ¡ciÃ­ o pouÅ¾Ã­vanÃ­ tejto konzoly zadajte %6.
         <translation>SprÃ¡va:</translation>
     </message>
     <message>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Smartiecoin network.</source>
-        <translation>SprÃ¡va ktorÃ¡ bola pripojenÃ¡ ku smartiecoin: URI ktorÃ¡ sa uchovÃ¡ spolu s transakciou pre vaÅ¡u referenciu. PoznÃ¡mka: TÃ¡to sprÃ¡va nebude poslanÃ¡ cez sieÅ¥ SMT.</translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Ratatoskr network.</source>
+        <translation>SprÃ¡va ktorÃ¡ bola pripojenÃ¡ ku ratatoskr: URI ktorÃ¡ sa uchovÃ¡ spolu s transakciou pre vaÅ¡u referenciu. PoznÃ¡mka: TÃ¡to sprÃ¡va nebude poslanÃ¡ cez sieÅ¥ SMT.</translation>
     </message>
 </context>
 <context>

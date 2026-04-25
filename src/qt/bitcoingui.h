@@ -177,6 +177,7 @@ private:
     QAction* showBackupsAction = nullptr;
     QAction* openAction = nullptr;
     QAction* showHelpMessageAction = nullptr;
+    QAction* showMiningInfoAction = nullptr;
     QAction* m_create_wallet_action{nullptr};
     QAction* m_open_wallet_action{nullptr};
     QMenu* m_open_wallet_menu{nullptr};
@@ -396,6 +397,8 @@ public Q_SLOTS:
 
     /** Show help message dialog */
     void showHelpMessageClicked();
+    /** Show mining info dialog */
+    void showMiningInfoClicked();
     /** Show CoinJoin help message dialog */
     void showCoinJoinHelpClicked();
 

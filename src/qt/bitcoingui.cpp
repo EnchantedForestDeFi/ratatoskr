@@ -386,7 +386,7 @@ void BitcoinGUI::createActions()
     coinJoinCoinsAction->setToolTip(coinJoinCoinsAction->statusTip());
 
     receiveCoinsAction = new QAction(tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and smartiecoin: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and ratatoskr: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
 
 #ifdef ENABLE_WALLET
@@ -466,7 +466,7 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(tr("Open &URI…"), this);
-    openAction->setStatusTip(tr("Open a smartiecoin: URI"));
+    openAction->setStatusTip(tr("Open a ratatoskr: URI"));
 
     m_open_wallet_action = new QAction(tr("Open Wallet"), this);
     m_open_wallet_action->setEnabled(false);
@@ -491,7 +491,11 @@ void BitcoinGUI::createActions()
 
     showHelpMessageAction = new QAction(tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Smartiecoin command-line options").arg(PACKAGE_NAME));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Ratatoskr command-line options").arg(PACKAGE_NAME));
+
+    showMiningInfoAction = new QAction(tr("&Mining info"), this);
+    showMiningInfoAction->setMenuRole(QAction::NoRole);
+    showMiningInfoAction->setStatusTip(tr("Show information about mining %1").arg(PACKAGE_NAME));
 
     showCoinJoinHelpAction = new QAction(tr("%1 &information").arg(strCoinJoinName), this);
     showCoinJoinHelpAction->setMenuRole(QAction::NoRole);
@@ -507,6 +511,7 @@ void BitcoinGUI::createActions()
     connect(aboutQtAction, &QAction::triggered, qApp, QApplication::aboutQt);
     connect(optionsAction, &QAction::triggered, this, &BitcoinGUI::optionsClicked);
     connect(showHelpMessageAction, &QAction::triggered, this, &BitcoinGUI::showHelpMessageClicked);
+    connect(showMiningInfoAction, &QAction::triggered, this, &BitcoinGUI::showMiningInfoClicked);
     connect(showCoinJoinHelpAction, &QAction::triggered, this, &BitcoinGUI::showCoinJoinHelpClicked);
 
     // Jump directly to tabs in RPC-console
@@ -712,6 +717,7 @@ void BitcoinGUI::createMenuBar()
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(showHelpMessageAction);
+    help->addAction(showMiningInfoAction);
     help->addAction(showCoinJoinHelpAction);
     help->addSeparator();
     help->addAction(aboutAction);
@@ -1251,6 +1257,12 @@ void BitcoinGUI::showBackups()
 void BitcoinGUI::showHelpMessageClicked()
 {
     GUIUtil::bringToFront(helpMessageDialog);
+}
+
+void BitcoinGUI::showMiningInfoClicked()
+{
+    auto dlg = new HelpMessageDialog(this, HelpMessageDialog::miningInfo);
+    GUIUtil::ShowModalDialogAsynchronously(dlg);
 }
 
 void BitcoinGUI::showCoinJoinHelpClicked()

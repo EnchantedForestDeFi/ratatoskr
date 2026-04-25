@@ -155,6 +155,63 @@ For more information, see the <a style=\"%2\" href=\"%3\">%1 documentation</a>."
         );
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);
+    } else if (helpMode == miningInfo) {
+        setWindowTitle(tr("Mining %1").arg(PACKAGE_NAME));
+
+        ui->aboutMessage->setTextFormat(Qt::RichText);
+        ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+        QString linkStyle = GUIUtil::getThemedStyleQString(GUIUtil::ThemedStyle::TS_COMMAND);
+
+        QString miningHtml =
+            "<h3>" + tr("Mining %1").arg(PACKAGE_NAME) + "</h3>"
+            + "<p>" + tr("%1 uses the <b>yespower</b> proof-of-work algorithm. yespower is "
+                         "memory-hard and CPU-friendly, designed to remain economical to mine on "
+                         "general-purpose hardware (laptops, desktops, and small servers).").arg(PACKAGE_NAME) + "</p>"
+
+            + "<h4>" + tr("Pool mining (recommended)") + "</h4>"
+            + "<p>" + tr("Most users should mine through a pool. Pools smooth out reward variance, "
+                         "and a yespower miner pointed at a pool will start contributing within minutes.") + "</p>"
+            + "<p>"
+            + tr("Up-to-date list of %1 pools").arg(PACKAGE_NAME) + ": "
+            + "<a style=\"" + linkStyle + "\" href=\"https://ratatoskr.enchantedforestdefi.com\">"
+            + "ratatoskr.enchantedforestdefi.com</a>"
+            + "</p>"
+
+            + "<h4>" + tr("Solo mining") + "</h4>"
+            + "<p>" + tr("Solo mining points a CPU miner at your own running %1 daemon. "
+                         "Block reward variance is high — only viable if you control a substantial "
+                         "fraction of network hashrate.").arg(PACKAGE_NAME) + "</p>"
+            + "<p>" + tr("Example, using a yespower-aware build of cpuminer-opt:") + "</p>"
+            + "<pre style=\"background:rgba(127,127,127,0.12);padding:6px;border-radius:4px\">"
+              "cpuminer -a yespower \\\n"
+              "  -o http://127.0.0.1:8282 \\\n"
+              "  -u &lt;rpcuser&gt; -p &lt;rpcpassword&gt;\n"
+              "  --coinbase-addr=&lt;your_RATR_receiving_address&gt;"
+              "</pre>"
+            + "<p>" + tr("Replace <code>&lt;rpcuser&gt;</code> and <code>&lt;rpcpassword&gt;</code> "
+                         "with the values from your <code>ratatoskr.conf</code> file. Use the "
+                         "<i>Receive</i> tab to copy a fresh address into <code>--coinbase-addr</code>.") + "</p>"
+            + "<p>" + tr("Default RPC port is <b>8282</b> on mainnet (<b>18282</b> on testnet).") + "</p>"
+
+            + "<h4>" + tr("Network mining stats") + "</h4>"
+            + "<p>" + tr("Open <i>Tools &rarr; Debug console</i> and run <code>getmininginfo</code> "
+                         "to see the current network hashrate, difficulty, and block height.") + "</p>"
+
+            + "<h4>" + tr("Heads up") + "</h4>"
+            + "<ul>"
+            + "<li>" + tr("Mining will use most of your CPU and warm up your machine. Use a thread "
+                         "limit (<code>-t N</code>) if you want to keep cycles free for other work.") + "</li>"
+            + "<li>" + tr("Solo blocks credit your wallet directly. Pool payouts arrive at the "
+                         "address you registered with the pool, not necessarily this wallet.") + "</li>"
+            + "<li>" + tr("This dialog is informational only — %1 does not include a built-in CPU "
+                         "miner. Use an external yespower miner (e.g. cpuminer-opt) instead.").arg(PACKAGE_NAME) + "</li>"
+            + "</ul>";
+
+        text = miningHtml;
+        ui->aboutMessage->setText(miningHtml);
+        ui->aboutMessage->setWordWrap(true);
+        ui->helpMessage->setVisible(false);
     }
 
     GUIUtil::handleCloseWindowShortcut(this);

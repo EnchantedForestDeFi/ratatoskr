@@ -25,7 +25,8 @@ public:
     enum HelpMode {
         about,
         cmdline,
-        pshelp
+        pshelp,
+        miningInfo
     };
 
     explicit HelpMessageDialog(QWidget *parent, HelpMode helpMode);

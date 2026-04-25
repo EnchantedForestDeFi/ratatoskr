@@ -20,10 +20,10 @@ static constexpr auto SHUTDOWN_POLLING_DELAY{200ms};
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* SmartiecoinGUI -- Size of icons in status bar */
+/* RatatoskrGUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 18;
 
-/* SmartiecoinGUI -- Size of button icons e.g. in SendCoinEntry or SignVerifyMessageDialog */
+/* RatatoskrGUI -- Size of button icons e.g. in SendCoinEntry or SignVerifyMessageDialog */
 static const int BUTTON_ICONSIZE = 23;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -44,12 +44,12 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 /* Duration of one full status-bar icon animation cycle in milliseconds. */
 static constexpr int STATUSBAR_ICON_CYCLE_MS{3600};
 
-#define QAPP_ORG_NAME "Smartiecoin"
+#define QAPP_ORG_NAME "Ratatoskr"
 #define QAPP_ORG_DOMAIN "ratatoskr.enchantedforestdefi.com"
-#define QAPP_APP_NAME_DEFAULT "Smartiecoin-Qt"
-#define QAPP_APP_NAME_TESTNET "Smartiecoin-Qt-testnet"
-#define QAPP_APP_NAME_DEVNET "Smartiecoin-Qt-%s"
-#define QAPP_APP_NAME_REGTEST "Smartiecoin-Qt-regtest"
+#define QAPP_APP_NAME_DEFAULT "Ratatoskr-Qt"
+#define QAPP_APP_NAME_TESTNET "Ratatoskr-Qt-testnet"
+#define QAPP_APP_NAME_DEVNET "Ratatoskr-Qt-%s"
+#define QAPP_APP_NAME_REGTEST "Ratatoskr-Qt-regtest"
 
 /* One gigabyte (GB) in bytes */
 static constexpr uint64_t GB_BYTES{1000000000};

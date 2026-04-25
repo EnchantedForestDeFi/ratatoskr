@@ -108,8 +108,8 @@ static int AppInitRawTx(int argc, char* argv[])
             strUsage += FormatParagraph(LicenseInfo());
         } else {
             strUsage += "\n"
-                "Usage:  ratatoskr-tx [options] <hex-tx> [commands]  Update hex-encoded Smartiecoin transaction\n"
-                "or:     ratatoskr-tx [options] -create [commands]   Create hex-encoded Smartiecoin transaction\n"
+                "Usage:  ratatoskr-tx [options] <hex-tx> [commands]  Update hex-encoded Ratatoskr transaction\n"
+                "or:     ratatoskr-tx [options] -create [commands]   Create hex-encoded Ratatoskr transaction\n"
                 "\n";
             strUsage += gArgs.GetHelpMessage();
         }
@@ -759,7 +759,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded Smartiecoin transaction
+            // param: hex-encoded Ratatoskr transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-")                 // "-" implies standard input
                 strHexTx = readStdin();

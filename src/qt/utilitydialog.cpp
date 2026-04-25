@@ -59,14 +59,32 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
         ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
         QString linkStyle = GUIUtil::getThemedStyleQString(GUIUtil::ThemedStyle::TS_COMMAND);
-        QString smtFooter = "<br><br>"
+
+        // Tagline shown directly under the version line.
+        QString tagline =
+            "<i>" + tr("A yespower-mineable proof-of-work masternode chain "
+                       "in the EnchantedForestDeFi ecosystem.") + "</i>";
+
+        // Lineage acknowledgement — Bitcoin -> Dash -> Smartiecoin -> Ratatoskr.
+        QString lineage = "<small>"
+            + tr("Built on the work of the Bitcoin Core, Dash Core, and "
+                 "Smartiecoin Core developers. The %1 codebase is forked "
+                 "from Smartiecoin Core and remains under the MIT license.")
+              .arg(QString{PACKAGE_NAME})
+            + "</small>";
+
+        QString ratrFooter = "<br><br>"
             "<b>" + tr("Ratatoskr resources") + "</b><br>"
             + tr("Website") + ": <a style=\"" + linkStyle + "\" href=\"https://ratatoskr.enchantedforestdefi.com\">ratatoskr.enchantedforestdefi.com</a><br>"
             + tr("Source code") + ": <a style=\"" + linkStyle + "\" href=\"https://github.com/EnchantedForestDeFi/ratatoskr\">github.com/EnchantedForestDeFi/ratatoskr</a><br>"
-            + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">explorer.ratatoskr.enchantedforestdefi.com</a>";
+            + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">explorer.ratatoskr.enchantedforestdefi.com</a><br>"
+            + tr("Bridge to Alephium") + ": <a style=\"" + linkStyle + "\" href=\"https://ratatoskrbridge.enchantedforestdefi.com\">ratatoskrbridge.enchantedforestdefi.com</a><br>"
+            + tr("Discord") + ": <a style=\"" + linkStyle + "\" href=\"https://discord.gg/SrffQVYqee\">discord.gg/SrffQVYqee</a>"
+            + "<br><br>"
+            + lineage;
 
         text = version + "\n" + QString::fromStdString(FormatParagraph(licenseInfo));
-        ui->aboutMessage->setText(version + "<br><br>" + licenseInfoHTML + smtFooter);
+        ui->aboutMessage->setText(version + "<br>" + tagline + "<br><br>" + licenseInfoHTML + ratrFooter);
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);
     } else if (helpMode == cmdline) {

@@ -182,7 +182,7 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::ALL, "1"},
     {BCLog::ALL, "all"},
 
-    //Start Smartiecoin
+    //Start Ratatoskr
     {BCLog::CHAINLOCKS, "chainlocks"},
     {BCLog::GOBJECT, "gobject"},
     {BCLog::INSTANTSEND, "instantsend"},
@@ -294,7 +294,7 @@ std::string LogCategoryToStr(BCLog::LogFlags category)
         return "blockstorage";
     case BCLog::LogFlags::TXRECONCILIATION:
         return "txreconciliation";
-    /* Start Smartiecoin */
+    /* Start Ratatoskr */
     case BCLog::LogFlags::CHAINLOCKS:
         return "chainlocks";
     case BCLog::LogFlags::GOBJECT:
@@ -469,7 +469,7 @@ void BCLog::Logger::LogPrintStr(const std::string& str, const std::string& loggi
 
     if (m_log_threadnames && m_started_new_line) {
         const auto& threadname = util::ThreadGetInternalName();
-        // 16 chars total, "smartiecoin-" is 5 of them and another 1 is a NUL terminator
+        // 16 chars total, "ratatoskr-" is 5 of them and another 1 is a NUL terminator
         str_prefixed.insert(0, "[" + strprintf("%10s", (threadname.empty() ? "unknown" : threadname)) + "] ");
     }
 

@@ -275,6 +275,19 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const NetworkStyle* networkStyle,
     }
 
     GUIUtil::handleCloseWindowShortcut(this);
+
+    // Auto-show the Welcome dialog the first time the wallet starts up.
+    // Tracked via QSettings so it only fires once. User can re-open it
+    // any time from Help -> Welcome to Ratatoskr.
+    {
+        QSettings welcome_settings;
+        if (!welcome_settings.value("fWelcomeShown", false).toBool()) {
+            welcome_settings.setValue("fWelcomeShown", true);
+            // Defer until after the main window is on-screen so the
+            // welcome modal layers on top instead of racing the show.
+            QTimer::singleShot(800, this, &BitcoinGUI::showWelcomeClicked);
+        }
+    }
 }
 
 BitcoinGUI::~BitcoinGUI()

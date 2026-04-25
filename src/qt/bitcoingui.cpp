@@ -52,6 +52,7 @@
 #include <QComboBox>
 #include <QCursor>
 #include <QDateTime>
+#include <QDesktopServices>
 #include <QDragEnterEvent>
 #include <QElapsedTimer>
 #include <QInputDialog>
@@ -497,6 +498,10 @@ void BitcoinGUI::createActions()
     showMiningInfoAction->setMenuRole(QAction::NoRole);
     showMiningInfoAction->setStatusTip(tr("Show information about mining %1").arg(PACKAGE_NAME));
 
+    openBridgeAction = new QAction(tr("&Bridge to Alephium…"), this);
+    openBridgeAction->setMenuRole(QAction::NoRole);
+    openBridgeAction->setStatusTip(tr("Open the Ratatoskr Bridge in your browser to wrap RATR to wRATR on Alephium"));
+
     showCoinJoinHelpAction = new QAction(tr("%1 &information").arg(strCoinJoinName), this);
     showCoinJoinHelpAction->setMenuRole(QAction::NoRole);
     showCoinJoinHelpAction->setStatusTip(tr("Show the %1 basic information").arg(strCoinJoinName));
@@ -512,6 +517,7 @@ void BitcoinGUI::createActions()
     connect(optionsAction, &QAction::triggered, this, &BitcoinGUI::optionsClicked);
     connect(showHelpMessageAction, &QAction::triggered, this, &BitcoinGUI::showHelpMessageClicked);
     connect(showMiningInfoAction, &QAction::triggered, this, &BitcoinGUI::showMiningInfoClicked);
+    connect(openBridgeAction, &QAction::triggered, this, &BitcoinGUI::openBridgeWebsite);
     connect(showCoinJoinHelpAction, &QAction::triggered, this, &BitcoinGUI::showCoinJoinHelpClicked);
 
     // Jump directly to tabs in RPC-console
@@ -718,6 +724,7 @@ void BitcoinGUI::createMenuBar()
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(showHelpMessageAction);
     help->addAction(showMiningInfoAction);
+    help->addAction(openBridgeAction);
     help->addAction(showCoinJoinHelpAction);
     help->addSeparator();
     help->addAction(aboutAction);
@@ -1263,6 +1270,11 @@ void BitcoinGUI::showMiningInfoClicked()
 {
     auto dlg = new HelpMessageDialog(this, HelpMessageDialog::miningInfo);
     GUIUtil::ShowModalDialogAsynchronously(dlg);
+}
+
+void BitcoinGUI::openBridgeWebsite()
+{
+    QDesktopServices::openUrl(QUrl("https://ratatoskrbridge.enchantedforestdefi.com"));
 }
 
 void BitcoinGUI::showCoinJoinHelpClicked()

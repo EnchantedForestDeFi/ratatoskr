@@ -179,6 +179,7 @@ private:
     QAction* showHelpMessageAction = nullptr;
     QAction* showMiningInfoAction = nullptr;
     QAction* openBridgeAction = nullptr;
+    QAction* showWelcomeAction = nullptr;
     QAction* m_create_wallet_action{nullptr};
     QAction* m_open_wallet_action{nullptr};
     QMenu* m_open_wallet_menu{nullptr};
@@ -402,6 +403,8 @@ public Q_SLOTS:
     void showMiningInfoClicked();
     /** Open the Ratatoskr Bridge website in the default browser */
     void openBridgeWebsite();
+    /** Show welcome / orientation dialog */
+    void showWelcomeClicked();
     /** Show CoinJoin help message dialog */
     void showCoinJoinHelpClicked();
 

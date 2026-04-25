@@ -16,7 +16,7 @@
  * for both ratatoskrd and ratatoskr-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Smartiecoin Core");
+const std::string CLIENT_NAME("Ratatoskr Core");
 
 
 #ifdef HAVE_BUILD_INFO
@@ -96,7 +96,7 @@ std::string CopyrightHolders(const std::string& strPrefix, unsigned int nStartYe
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/SmartiesCoin/Smartiecoin>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/EnchantedForestDeFi/ratatoskr>";
 
     return CopyrightHolders(_("Copyright (C)").translated, 2014, COPYRIGHT_YEAR) + "\n" +
            "\n" +

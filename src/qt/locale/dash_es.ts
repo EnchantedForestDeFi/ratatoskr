@@ -373,7 +373,7 @@
         <translation>&amp;Recibir</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
         <translation>Solicitar pagos (genera códigos QR y URIs de SMT)</translation>
     </message>
     <message>
@@ -655,7 +655,7 @@
         <translation>Abrir archivo de configuración de la &amp;billetera</translation>
     </message>
     <message>
-        <source>Open a smartiecoin: URI</source>
+        <source>Open a ratatoskr: URI</source>
         <translation>Abrir un guión: URI</translation>
     </message>
     <message>
@@ -2232,8 +2232,8 @@ Este contenido fue enviado por un usuario. Podría no coincidir con lo descrito 
         <translation>Máximo</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto del cliente Smartiecoin Core en el enrutador. Esto solo funciona cuando su enrutador admite UPnP y está habilitado.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto del cliente Ratatoskr Core en el enrutador. Esto solo funciona cuando su enrutador admite UPnP y está habilitado.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -2314,8 +2314,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Mapear puerto usando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Abre automáticamente el puerto del cliente Smartiecoin Core en el enrutador. Esto solo funciona cuando el enrutador admite NAT-PMP y está habilitado. El puerto externo puede ser aleatorio.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Abre automáticamente el puerto del cliente Ratatoskr Core en el enrutador. Esto solo funciona cuando el enrutador admite NAT-PMP y está habilitado. El puerto externo puede ser aleatorio.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2832,16 +2832,16 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Error en solicitud de pago</translation>
     </message>
     <message>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
-        <translation>No se pudo iniciar smartiecoin: manejador de pago-por-clic</translation>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
+        <translation>No se pudo iniciar ratatoskr: manejador de pago-por-clic</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Gestión de URI</translation>
     </message>
     <message>
-        <source>'smartiecoin://' is not a valid URI. Use 'smartiecoin:' instead.</source>
-        <translation>'smartiecoin://' no es un URI válido. Usa 'smartiecoin:'.</translation>
+        <source>'ratatoskr://' is not a valid URI. Use 'ratatoskr:' instead.</source>
+        <translation>'ratatoskr://' no es un URI válido. Usa 'ratatoskr:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -4887,8 +4887,8 @@ Para obtener más información sobre el uso de esta consola, escribe %6.
         <translation>Mensaje:</translation>
     </message>
     <message>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SMT network.</source>
-        <translation>Un mensaje que se adjuntó al smartiecoin: URI que será almacenada con la transacción para su referencia. Nota: Este mensaje no se enviará a través de la red SMT.</translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SMT network.</source>
+        <translation>Un mensaje que se adjuntó al ratatoskr: URI que será almacenada con la transacción para su referencia. Nota: Este mensaje no se enviará a través de la red SMT.</translation>
     </message>
 </context>
 <context>
@@ -6031,8 +6031,8 @@ Ve a Archivo &gt; Abrir billetera para cargar una billetera.
         <translation>Error al cargar %s: Se está cargando una billetera con firmante externo sin soporte de firmante externo compilado</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of smartiecoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation>Error: La versión del archivo de volcado no es compatible. Esta versión de smartiecoin-wallet solo admite archivos de volcado versión 1. Se obtuvo un archivo de volcado con versión %s</translation>
+        <source>Error: Dumpfile version is not supported. This version of ratatoskr-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation>Error: La versión del archivo de volcado no es compatible. Esta versión de ratatoskr-wallet solo admite archivos de volcado versión 1. Se obtuvo un archivo de volcado con versión %s</translation>
     </message>
     <message>
         <source>Failed to create backup, file already exists! This could happen if you restarted wallet in less than 60 seconds. You can continue if you are ok with this.</source>
@@ -6743,8 +6743,8 @@ Ve a Archivo &gt; Abrir billetera para cargar una billetera.
         <translation>La última cola se creó muy recientemente.</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool smartiecoin-wallet to salvage or restoring a backup.</source>
-        <translation>%s corrupto. Intenta usar la herramienta de billetera smartiecoin-wallet para recuperar o restaurar una copia de seguridad.</translation>
+        <source>%s corrupt. Try using the wallet tool ratatoskr-wallet to salvage or restoring a backup.</source>
+        <translation>%s corrupto. Intenta usar la herramienta de billetera ratatoskr-wallet para recuperar o restaurar una copia de seguridad.</translation>
     </message>
     <message>
         <source>%s is set very high! Fees this large could be paid on a single transaction.</source>

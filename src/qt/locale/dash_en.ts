@@ -478,8 +478,8 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
-        <translation>Request payments (generates QR codes and smartiecoin: URIs)</translation>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
+        <translation>Request payments (generates QR codes and ratatoskr: URIs)</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -836,8 +836,8 @@
     </message>
     <message>
         <location line="+20"/>
-        <source>Open a smartiecoin: URI</source>
-        <translation>Open a smartiecoin: URI</translation>
+        <source>Open a ratatoskr: URI</source>
+        <translation>Open a ratatoskr: URI</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -2827,8 +2827,8 @@ Do you wish to continue?</translation>
     </message>
     <message>
         <location line="+46"/>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -2932,8 +2932,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</translation>
     </message>
     <message>
         <location line="+32"/>
@@ -3600,8 +3600,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
-        <translation>Cannot start smartiecoin: click-to-pay handler</translation>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
+        <translation>Cannot start ratatoskr: click-to-pay handler</translation>
     </message>
     <message>
         <location line="+48"/>
@@ -3613,8 +3613,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
     </message>
     <message>
         <location line="-29"/>
-        <source>&apos;smartiecoin://&apos; is not a valid URI. Use &apos;smartiecoin:&apos; instead.</source>
-        <translation>&apos;smartiecoin://&apos; is not a valid URI. Use &apos;smartiecoin:&apos; instead.</translation>
+        <source>&apos;ratatoskr://&apos; is not a valid URI. Use &apos;ratatoskr:&apos; instead.</source>
+        <translation>&apos;ratatoskr://&apos; is not a valid URI. Use &apos;ratatoskr:&apos; instead.</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -6235,8 +6235,8 @@ For more information on using this console, type %6.
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SMT network.</source>
-        <translation>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SMT network.</translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SMT network.</source>
+        <translation>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SMT network.</translation>
     </message>
 </context>
 <context>
@@ -7682,8 +7682,8 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
     <message>
         <location line="+17"/>
-        <source>Error: Dumpfile version is not supported. This version of smartiecoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation>Error: Dumpfile version is not supported. This version of smartiecoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</translation>
+        <source>Error: Dumpfile version is not supported. This version of ratatoskr-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation>Error: Dumpfile version is not supported. This version of ratatoskr-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -8572,8 +8572,8 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
     <message>
         <location line="-304"/>
-        <source>%s corrupt. Try using the wallet tool smartiecoin-wallet to salvage or restoring a backup.</source>
-        <translation>%s corrupt. Try using the wallet tool smartiecoin-wallet to salvage or restoring a backup.</translation>
+        <source>%s corrupt. Try using the wallet tool ratatoskr-wallet to salvage or restoring a backup.</source>
+        <translation>%s corrupt. Try using the wallet tool ratatoskr-wallet to salvage or restoring a backup.</translation>
     </message>
     <message>
         <location line="+6"/>

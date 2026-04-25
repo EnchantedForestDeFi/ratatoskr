@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Smartiecoin Core developers
+// Copyright (c) 2014-2025 The Ratatoskr Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -60,7 +60,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
 
         QString linkStyle = GUIUtil::getThemedStyleQString(GUIUtil::ThemedStyle::TS_COMMAND);
         QString smtFooter = "<br><br>"
-            "<b>" + tr("Smartiecoin resources") + "</b><br>"
+            "<b>" + tr("Ratatoskr resources") + "</b><br>"
             + tr("Website") + ": <a style=\"" + linkStyle + "\" href=\"https://ratatoskr.enchantedforestdefi.com\">ratatoskr.enchantedforestdefi.com</a><br>"
             + tr("Source code") + ": <a style=\"" + linkStyle + "\" href=\"https://github.com/EnchantedForestDeFi/ratatoskr\">github.com/EnchantedForestDeFi/ratatoskr</a><br>"
             + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">explorer.ratatoskr.enchantedforestdefi.com</a>";
@@ -72,7 +72,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
     } else if (helpMode == cmdline) {
         setWindowTitle(tr("Command-line options"));
         QString header = "Usage: ratatoskr-qt [command-line options] [URI]\n\n"
-                         "Optional URI is a Smartiecoin address in BIP21 URI format.\n";
+                         "Optional URI is a Ratatoskr address in BIP21 URI format.\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();
@@ -125,7 +125,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
         ui->aboutMessage->setText(tr("\
 <h3>%1 Basics</h3> \
 %1 gives you true financial privacy by obscuring the origins of your funds. \
-All the Smartiecoin in your wallet is comprised of different \"inputs\" which you can think of as separate, discrete coins.<br> \
+All the RATR in your wallet is comprised of different \"inputs\" which you can think of as separate, discrete coins.<br> \
 %1 uses an innovative process to mix your inputs with the inputs of two or more other people, without having your coins ever leave your wallet. \
 You retain control of your money at all times.<hr> \
 <b>The %1 process works like this:</b>\

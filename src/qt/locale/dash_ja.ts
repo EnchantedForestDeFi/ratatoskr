@@ -373,8 +373,8 @@
         <translation>å…¥é‡‘ã™ã‚‹ (&amp;R)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
-        <translation>é€é‡‘ã‚’è¦æ±‚ (QRã‚³ãƒ¼ãƒ‰ã¨smartiecoin: URIã‚’ç”Ÿæˆ)</translation>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
+        <translation>é€é‡‘ã‚’è¦æ±‚ (QRã‚³ãƒ¼ãƒ‰ã¨ratatoskr: URIã‚’ç”Ÿæˆ)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -654,7 +654,7 @@
         <translation>ã‚¦ã‚©ãƒ¬ãƒƒãƒˆè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã(&amp;W)</translation>
     </message>
     <message>
-        <source>Open a smartiecoin: URI</source>
+        <source>Open a ratatoskr: URI</source>
         <translation>dashã‚’é–‹ã: URI</translation>
     </message>
     <message>
@@ -744,7 +744,7 @@
         <translation>è¡¨ç¤º(&amp;H)</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Smartiecoin network</source>
+        <source>%n active connection(s) to Ratatoskr network</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation><numerusform>%n ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³</numerusform></translation>
     </message>
@@ -1900,7 +1900,7 @@ Do you wish to continue?</source>
         <translation>ãƒ•ã‚©ãƒ¼ãƒ </translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Smartiecoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Ratatoskr network, as detailed below.</source>
         <translation>ç¢ºèªã§ããªã„æœ€æ–°ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒã‚ã‚‹ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚ã“ã‚Œã«ã‚ˆã‚Šã‚¦ã‚©ãƒ¬ãƒƒãƒˆã®æ®‹é«˜ã¯ä¸æ­£ç¢ºãªã‚‚ã®ã§ã‚ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚ã“ã®æƒ…å ±ã¯ã‚¦ã‚©ãƒ¬ãƒƒãƒˆãŒä¸€åº¦Dashã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®åŒæœŸãŒå®Œäº†ã™ã‚‹ã¨æ­£ç¢ºãªã‚‚ã®ã¨ãªã‚Šã¾ã™ã€‚è©³ç´°ã¯ä¸‹è¨˜ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</translation>
     </message>
     <message>
@@ -2232,8 +2232,8 @@ Do you wish to continue?</source>
         <translation>æœ€å¤§</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>è‡ªå‹•çš„ã«ãƒ«ãƒ¼ã‚¿ãƒ¼ã®Smartiecoin Core ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒãƒ¼ãƒˆã‚’é–‹æ”¾ã—ã¾ã™ã€‚ã“ã‚Œã¯ãƒ«ãƒ¼ã‚¿ãƒ¼ãŒUPnPæ©Ÿèƒ½ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ãŠã‚ŠUPnPæ©Ÿèƒ½ãŒæœ‰åŠ¹ãªå ´åˆã«ã®ã¿æ©Ÿèƒ½ã—ã¾ã™ã€‚</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>è‡ªå‹•çš„ã«ãƒ«ãƒ¼ã‚¿ãƒ¼ã®Ratatoskr Core ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒãƒ¼ãƒˆã‚’é–‹æ”¾ã—ã¾ã™ã€‚ã“ã‚Œã¯ãƒ«ãƒ¼ã‚¿ãƒ¼ãŒUPnPæ©Ÿèƒ½ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ãŠã‚ŠUPnPæ©Ÿèƒ½ãŒæœ‰åŠ¹ãªå ´åˆã«ã®ã¿æ©Ÿèƒ½ã—ã¾ã™ã€‚</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -2248,7 +2248,7 @@ Do you wish to continue?</source>
         <translation>å—ä¿¡æŽ¥ç¶šã‚’è¨±å¯ã™ã‚‹ (&amp;I)</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Ratatoskr network through a SOCKS5 proxy.</source>
         <translation>SOCKS5ãƒ—ãƒ­ã‚­ã‚·çµŒç”±ã§Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã«æŽ¥ç¶šã—ã¾ã™ã€‚</translation>
     </message>
     <message>
@@ -2314,7 +2314,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>UPnPã‚’ä½¿ã£ã¦ãƒãƒ¼ãƒˆã‚’å‰²ã‚Šå½“ã¦ã‚‹ (&amp;U)</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <translation>ãƒ«ãƒ¼ã‚¿ãƒ¼ä¸Šã§Dashã‚³ã‚¢ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒãƒ¼ãƒˆã‚’è‡ªå‹•çš„ã«é–‹ãã¾ã™ã€‚ã“ã‚Œã¯ã€ãƒ«ãƒ¼ã‚¿ãƒ¼ãŒNAT-PMPã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ãŠã‚Šã€æœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã«ã®ã¿æ©Ÿèƒ½ã—ã¾ã™ã€‚å¤–éƒ¨ãƒãƒ¼ãƒˆã¯ãƒ©ãƒ³ãƒ€ãƒ ã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚</translation>
     </message>
     <message>
@@ -2366,7 +2366,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>è¡¨ç¤º (&amp;D)</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Ratatoskr network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation>Torã‚ªãƒ‹ã‚ªãƒ³ã‚µãƒ¼ãƒ“ã‚¹ç”¨ã®å€‹åˆ¥ã®SOCKS5ãƒ—ãƒ­ã‚­ã‚·ã‚’çµŒç”±ã—ã¦ã€Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã«æŽ¥ç¶šã—ã¾ã™ã€‚</translation>
     </message>
     <message>
@@ -2469,7 +2469,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>ãƒ•ã‚©ãƒ¼ãƒ </translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Smartiecoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ratatoskr network after a connection is established, but this process has not completed yet.</source>
         <translation>è¡¨ç¤ºã•ã‚ŒãŸæƒ…å ±ã¯å¤ã„ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚æŽ¥ç¶šãŒç¢ºç«‹ã•ã‚Œã‚Œã°ã‚ãªãŸã®ã‚¦ã‚©ãƒ¬ãƒƒãƒˆã¯ Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã¨è‡ªå‹•çš„ã«åŒæœŸã—ã¾ã™ãŒã€ã“ã®ãƒ—ãƒ­ã‚»ã‚¹ã¯ã¾ã å®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚</translation>
     </message>
     <message>
@@ -2832,7 +2832,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>æ”¯æ‰•ã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚¨ãƒ©ãƒ¼</translation>
     </message>
     <message>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
         <translation>SMT ã‚’èµ·å‹•ã§ãã¾ã›ã‚“: click-to-pay ãƒãƒ³ãƒ‰ãƒ©ãƒ¼</translation>
     </message>
     <message>
@@ -2840,8 +2840,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>URI ã®ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°</translation>
     </message>
     <message>
-        <source>'smartiecoin://' is not a valid URI. Use 'smartiecoin:' instead.</source>
-        <translation>ã€Œsmartiecoin://ã€ã¯æœ‰åŠ¹ãªURIã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚ä»£ã‚ã‚Šã«ã€Œsmartiecoin:ã€ã‚’ä½¿ã£ã¦ãã ã•ã„ã€‚</translation>
+        <source>'ratatoskr://' is not a valid URI. Use 'ratatoskr:' instead.</source>
+        <translation>ã€Œratatoskr://ã€ã¯æœ‰åŠ¹ãªURIã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚ä»£ã‚ã‚Šã«ã€Œratatoskr:ã€ã‚’ä½¿ã£ã¦ãã ã•ã„ã€‚</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -4195,7 +4195,7 @@ For more information on using this console, type %6.
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>æ”¯æ‰•ã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒé–‹å§‹ã•ã‚ŒãŸæ™‚ã«è¡¨ç¤ºã•ã‚Œã‚‹ã€æ”¯æ‰•ã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«æ·»ä»˜ã•ã‚Œã‚‹ä»»æ„ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ã™ã€‚æ³¨æ„ï¼šã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’é€šã˜ã¦æ”¯æ‰•ã„ã¨å…±ã«é€ä¿¡ã•ã‚Œã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚</translation>
     </message>
     <message>
@@ -4207,7 +4207,7 @@ For more information on using this console, type %6.
         <translation>æ–°ã—ã„å—ã‘å–ã‚Šç”¨ã‚¢ãƒ‰ãƒ¬ã‚¹ã«ç´ã¥ãä»»æ„ã®ãƒ©ãƒ™ãƒ«ã€‚</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>æ”¯æ‰•ã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒé–‹å§‹ã•ã‚ŒãŸæ™‚ã«è¡¨ç¤ºã•ã‚Œã‚‹ã€æ”¯æ‰•ã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«æ·»ä»˜ã•ã‚Œã‚‹ä»»æ„ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ã™ã€‚æ³¨æ„ï¼šã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’é€šã˜ã¦æ”¯æ‰•ã„ã¨å…±ã«é€ä¿¡ã•ã‚Œã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚</translation>
     </message>
     <message>
@@ -4887,8 +4887,8 @@ For more information on using this console, type %6.
         <translation>ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼š</translation>
     </message>
     <message>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Smartiecoin network.</source>
-        <translation>smartiecoin: URIã«æ·»ä»˜ã•ã‚Œã¦ã„ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ã™ã€‚ã“ã‚Œã¯å‚ç…§ç”¨ã¨ã—ã¦ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã¨ã¨ã‚‚ã«ä¿å­˜ã•ã‚Œã¾ã™ã€‚æ³¨æ„ï¼šã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’çµŒç”±ã—ã¦é€ä¿¡ã•ã‚Œã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚</translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Ratatoskr network.</source>
+        <translation>ratatoskr: URIã«æ·»ä»˜ã•ã‚Œã¦ã„ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ã™ã€‚ã“ã‚Œã¯å‚ç…§ç”¨ã¨ã—ã¦ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã¨ã¨ã‚‚ã«ä¿å­˜ã•ã‚Œã¾ã™ã€‚æ³¨æ„ï¼šã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯Dashãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’çµŒç”±ã—ã¦é€ä¿¡ã•ã‚Œã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚</translation>
     </message>
 </context>
 <context>

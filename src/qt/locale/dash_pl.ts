@@ -373,8 +373,8 @@
         <translation>Odbie&amp;rz</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and smartiecoin: URIs)</source>
-        <translation>PoproÅ› o pÅ‚atnoÅ›ci (generuje kod QR oraz smartiecoin: link)</translation>
+        <source>Request payments (generates QR codes and ratatoskr: URIs)</source>
+        <translation>PoproÅ› o pÅ‚atnoÅ›ci (generuje kod QR oraz ratatoskr: link)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -655,8 +655,8 @@
         <translation>OtwÃ³rz plik &amp;konfiguracyjny portfela</translation>
     </message>
     <message>
-        <source>Open a smartiecoin: URI</source>
-        <translation>OtwÃ³rz smartiecoin: URI</translation>
+        <source>Open a ratatoskr: URI</source>
+        <translation>OtwÃ³rz ratatoskr: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -745,7 +745,7 @@
         <translation>&amp;PokaÅ¼</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Smartiecoin network</source>
+        <source>%n active connection(s) to Ratatoskr network</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation><numerusform>%n aktywne poÅ‚Ä…czenie z sieciÄ… SMT</numerusform><numerusform>%n aktywne poÅ‚Ä…czenia z sieciÄ… SMT</numerusform><numerusform>%n aktywnych poÅ‚Ä…czeÅ„ z sieciÄ… SMT</numerusform><numerusform>%n aktywne poÅ‚Ä…czenia z sieciÄ… SMT</numerusform></translation>
     </message>
@@ -1900,7 +1900,7 @@ Czy chcesz kontynuowaÄ‡?</translation>
         <translation>Formularz</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Smartiecoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Ratatoskr network, as detailed below.</source>
         <translation>Ostatnie transakcje mogÄ… jeszcze byÄ‡ niewidoczne. Saldo moÅ¼e byÄ‡ bÅ‚Ä™dne. Poprawne informacje pojawiÄ… siÄ™ po zakoÅ„czeniu synchronizacji z sieciÄ… SMT. Stan synchronizacji widzisz poniÅ¼ej.</translation>
     </message>
     <message>
@@ -2232,8 +2232,8 @@ Czy chcesz kontynuowaÄ‡?</translation>
         <translation>Maksimum</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatycznie otwÃ³rz port klienta Smartiecoin Core na ruterze. Opcja dziaÅ‚a jedynie, jeÅ¼eli router obsÅ‚uguje UPnP i funkcja UPnP jest wÅ‚Ä…czona.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatycznie otwÃ³rz port klienta Ratatoskr Core na ruterze. Opcja dziaÅ‚a jedynie, jeÅ¼eli router obsÅ‚uguje UPnP i funkcja UPnP jest wÅ‚Ä…czona.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -2248,7 +2248,7 @@ Czy chcesz kontynuowaÄ‡?</translation>
         <translation>ZezwÃ³l na przychodzÄ…ce poÅ‚Ä…czenia</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Ratatoskr network through a SOCKS5 proxy.</source>
         <translation>PoÅ‚Ä…cz siÄ™ z sieciÄ… SMT przez proxy SOCKS5.</translation>
     </message>
     <message>
@@ -2314,8 +2314,8 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Mapuj port uÅ¼ywajÄ…c &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Smartiecoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Automatycznie otwÃ³rz port klienta Smartiecoin Core na routerze. DziaÅ‚a to tylko wtedy, gdy router obsÅ‚uguje NAT-PMP i jest wÅ‚Ä…czony. Port zewnÄ™trzny moÅ¼e byÄ‡ losowy.</translation>
+        <source>Automatically open the Ratatoskr Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Automatycznie otwÃ³rz port klienta Ratatoskr Core na routerze. DziaÅ‚a to tylko wtedy, gdy router obsÅ‚uguje NAT-PMP i jest wÅ‚Ä…czony. Port zewnÄ™trzny moÅ¼e byÄ‡ losowy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2366,7 +2366,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>&amp;WyÅ›wietlanie</translation>
     </message>
     <message>
-        <source>Connect to the Smartiecoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Ratatoskr network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation>PoÅ‚Ä…cz siÄ™ z sieciÄ… SMT za pomocÄ… oddzielnego proxy SOCKS5 dla usÅ‚ug Tor onion.</translation>
     </message>
     <message>
@@ -2469,7 +2469,7 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>Formularz</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Smartiecoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ratatoskr network after a connection is established, but this process has not completed yet.</source>
         <translation>WyÅ›wietlona informacja moÅ¼e byÄ‡ przedawniona. TwÃ³j portfel automatycznie zsynchronizuje siÄ™ z sieciÄ… SMT, gdy tylko zostanie ustanowione poÅ‚Ä…czenie, jednak proces ten jeszcze siÄ™ nie zakoÅ„czyÅ‚.</translation>
     </message>
     <message>
@@ -2832,16 +2832,16 @@ https://explore.transifex.com/SMT/SMT/</translation>
         <translation>BÅ‚Ä…d Å¼Ä…dania pÅ‚atnoÅ›ci</translation>
     </message>
     <message>
-        <source>Cannot start smartiecoin: click-to-pay handler</source>
-        <translation>Nie moÅ¼na wÅ‚Ä…czyÄ‡ smartiecoin: kliknij-aby-zapÅ‚aciÄ‡ ubsÅ‚ugujÄ…cemu.</translation>
+        <source>Cannot start ratatoskr: click-to-pay handler</source>
+        <translation>Nie moÅ¼na wÅ‚Ä…czyÄ‡ ratatoskr: kliknij-aby-zapÅ‚aciÄ‡ ubsÅ‚ugujÄ…cemu.</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>ObsÅ‚uga URI</translation>
     </message>
     <message>
-        <source>'smartiecoin://' is not a valid URI. Use 'smartiecoin:' instead.</source>
-        <translation>'smartiecoin: //' nie jest prawidÅ‚owym identyfikatorem URI. Zamiast tego uÅ¼yj 'smartiecoin:'.</translation>
+        <source>'ratatoskr://' is not a valid URI. Use 'ratatoskr:' instead.</source>
+        <translation>'ratatoskr: //' nie jest prawidÅ‚owym identyfikatorem URI. Zamiast tego uÅ¼yj 'ratatoskr:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -4194,7 +4194,7 @@ Aby uzyskaÄ‡ wiÄ™cej informacji na temat korzystania z tej konsoli, wpisz 
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>Opcjonalna wiadomoÅ›Ä‡ do Å¼Ä…dania pÅ‚atnoÅ›ci. WiadomoÅ›Ä‡ wyÅ›wietli siÄ™ po otwarciu Å¼Ä…dania. PamiÄ™taj: WiadomoÅ›Ä‡ nie zostanie wysÅ‚ana razem z pÅ‚atnoÅ›ciÄ… poprzez sieÄ‡ SMT.</translation>
     </message>
     <message>
@@ -4206,7 +4206,7 @@ Aby uzyskaÄ‡ wiÄ™cej informacji na temat korzystania z tej konsoli, wpisz 
         <translation>Opcjonalna etykieta do skojarzenia z nowym adresem odbiorczym.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Smartiecoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Ratatoskr network.</source>
         <translation>Opcjonalna wiadomoÅ›Ä‡ do Å¼Ä…dania pÅ‚atnoÅ›ci. WiadomoÅ›Ä‡ wyÅ›wietli siÄ™ po otwarciu Å¼Ä…dania.&lt;br&gt; PamiÄ™taj: WiadomoÅ›Ä‡ nie zostanie wysÅ‚ana razem z pÅ‚atnoÅ›ciÄ… poprzez sieÄ‡ SMT.</translation>
     </message>
     <message>
@@ -4886,8 +4886,8 @@ Aby uzyskaÄ‡ wiÄ™cej informacji na temat korzystania z tej konsoli, wpisz 
         <translation>WiadomoÅ›Ä‡:</translation>
     </message>
     <message>
-        <source>A message that was attached to the smartiecoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Smartiecoin network.</source>
-        <translation>WiadomoÅ›Ä‡, ktÃ³ra zostaÅ‚a doÅ‚Ä…czona do smartiecoin: Link, ktÃ³ry zostanie zapisany wraz z transakcjÄ… do wglÄ…du w przyszÅ‚oÅ›ci. ZauwaÅ¼, Å¼e sama wiadomoÅ›Ä‡ nie zostanie wysÅ‚ana przez sieÄ‡ SMT.</translation>
+        <source>A message that was attached to the ratatoskr: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Ratatoskr network.</source>
+        <translation>WiadomoÅ›Ä‡, ktÃ³ra zostaÅ‚a doÅ‚Ä…czona do ratatoskr: Link, ktÃ³ry zostanie zapisany wraz z transakcjÄ… do wglÄ…du w przyszÅ‚oÅ›ci. ZauwaÅ¼, Å¼e sama wiadomoÅ›Ä‡ nie zostanie wysÅ‚ana przez sieÄ‡ SMT.</translation>
     </message>
 </context>
 <context>

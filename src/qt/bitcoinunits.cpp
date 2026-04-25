@@ -24,9 +24,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnit> unitlist;
-    unitlist.append(Unit::SMT);
-    unitlist.append(Unit::mDASH);
-    unitlist.append(Unit::uDASH);
+    unitlist.append(Unit::RATR);
+    unitlist.append(Unit::mRATR);
+    unitlist.append(Unit::uRATR);
     unitlist.append(Unit::duffs);
     return unitlist;
 }
@@ -35,9 +35,9 @@ QString BitcoinUnits::name(Unit unit)
 {
     const bool is_mainnet{Params().NetworkIDString() == CBaseChainParams::MAIN};
     switch (unit) {
-    case Unit::SMT:  return is_mainnet ? QString("SMT") : QString("tSMT");
-    case Unit::mDASH: return is_mainnet ? QString("mSMT") : QString("mtSMT");
-    case Unit::uDASH: return is_mainnet ? QString("uSMT") : QString("utSMT");
+    case Unit::RATR:  return is_mainnet ? QString("RATR") : QString("tRATR");
+    case Unit::mRATR: return is_mainnet ? QString("mRATR") : QString("mtRATR");
+    case Unit::uRATR: return is_mainnet ? QString("uRATR") : QString("utRATR");
     case Unit::duffs: return is_mainnet ? QString("duffs") : QString("tduffs");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -45,11 +45,11 @@ QString BitcoinUnits::name(Unit unit)
 
 QString BitcoinUnits::description(Unit unit)
 {
-    const QString coin_name{Params().NetworkIDString() == CBaseChainParams::MAIN ? "Smartiecoin" : "Test Smartiecoin"};
+    const QString coin_name{Params().NetworkIDString() == CBaseChainParams::MAIN ? "Ratatoskr" : "Test Ratatoskr"};
     switch (unit) {
-    case Unit::SMT:  return coin_name;
-    case Unit::mDASH: return QString("Milli-%1 (1 / 1" THIN_SP_UTF8 "000)").arg(coin_name);
-    case Unit::uDASH: return QString("Micro-%1 (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(coin_name);
+    case Unit::RATR:  return coin_name;
+    case Unit::mRATR: return QString("Milli-%1 (1 / 1" THIN_SP_UTF8 "000)").arg(coin_name);
+    case Unit::uRATR: return QString("Micro-%1 (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(coin_name);
     case Unit::duffs: return QString("Ten Nano-%1 (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(coin_name);
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -58,9 +58,9 @@ QString BitcoinUnits::description(Unit unit)
 qint64 BitcoinUnits::factor(Unit unit)
 {
     switch (unit) {
-    case Unit::SMT:  return 100'000'000;
-    case Unit::mDASH: return 100'000;
-    case Unit::uDASH: return 100;
+    case Unit::RATR:  return 100'000'000;
+    case Unit::mRATR: return 100'000;
+    case Unit::uRATR: return 100;
     case Unit::duffs: return 1;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -69,9 +69,9 @@ qint64 BitcoinUnits::factor(Unit unit)
 int BitcoinUnits::decimals(Unit unit)
 {
     switch (unit) {
-    case Unit::SMT:  return 8;
-    case Unit::mDASH: return 5;
-    case Unit::uDASH: return 2;
+    case Unit::RATR:  return 8;
+    case Unit::mRATR: return 5;
+    case Unit::uRATR: return 2;
     case Unit::duffs: return 0;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -252,9 +252,9 @@ namespace {
 qint8 ToQint8(BitcoinUnit unit)
 {
     switch (unit) {
-    case BitcoinUnit::SMT: return 0;
-    case BitcoinUnit::mDASH: return 1;
-    case BitcoinUnit::uDASH: return 2;
+    case BitcoinUnit::RATR: return 0;
+    case BitcoinUnit::mRATR: return 1;
+    case BitcoinUnit::uRATR: return 2;
     case BitcoinUnit::duffs: return 3;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -263,9 +263,9 @@ qint8 ToQint8(BitcoinUnit unit)
 BitcoinUnit FromQint8(qint8 num)
 {
     switch (num) {
-    case 0: return BitcoinUnit::SMT;
-    case 1: return BitcoinUnit::mDASH;
-    case 2: return BitcoinUnit::uDASH;
+    case 0: return BitcoinUnit::RATR;
+    case 1: return BitcoinUnit::mRATR;
+    case 2: return BitcoinUnit::uRATR;
     case 3: return BitcoinUnit::duffs;
     }
     assert(false);

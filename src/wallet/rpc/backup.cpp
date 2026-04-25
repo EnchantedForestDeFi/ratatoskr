@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Smartiecoin Core developers
+// Copyright (c) 2014-2025 The Ratatoskr Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -218,7 +218,7 @@ RPCHelpMan importaddress()
             "as change, and not show up in many RPCs.\n"
             "Note: This command is only compatible with legacy wallets. Use \"importdescriptors\" with \"addr(X)\" for descriptor wallets.\n",
                 {
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Smartiecoin address (or hex-encoded script)"},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Ratatoskr address (or hex-encoded script)"},
                     {"label", RPCArg::Type::STR, RPCArg::Default{""}, "An optional label"},
                     {"rescan", RPCArg::Type::BOOL, RPCArg::Default{true}, "Scan the chain and mempool for wallet transactions."},
                     {"p2sh", RPCArg::Type::BOOL, RPCArg::Default{false}, "Add the P2SH version of the script as well"},
@@ -290,7 +290,7 @@ RPCHelpMan importaddress()
 
             pwallet->ImportScriptPubKeys(strLabel, scripts, false /* have_solving_data */, true /* apply_label */, 1 /* timestamp */);
         } else {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Smartiecoin address or script");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ratatoskr address or script");
         }
     }
     if (fRescan)
@@ -835,7 +835,7 @@ RPCHelpMan dumpprivkey()
                 "Then the importprivkey can be used with this output\n"
                 "Note: This command is only compatible with legacy wallets.\n",
                 {
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Smartiecoin address for the private key"},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Ratatoskr address for the private key"},
                 },
                 RPCResult{
                     RPCResult::Type::STR, "key", "The private key"
@@ -859,7 +859,7 @@ RPCHelpMan dumpprivkey()
     std::string strAddress = request.params[0].get_str();
     CTxDestination dest = DecodeDestination(strAddress);
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Smartiecoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ratatoskr address");
     }
     const PKHash *pkhash= std::get_if<PKHash>(&dest);
     if (!pkhash) {
@@ -1008,7 +1008,7 @@ RPCHelpMan dumpwallet()
     file << "\n";
 
     UniValue obj(UniValue::VOBJ);
-    obj.pushKV("smartiecoincoreversion", FormatFullVersion());
+    obj.pushKV("ratatoskrcoreversion", FormatFullVersion());
     obj.pushKV("lastblockheight", wallet.GetLastBlockHeight());
     obj.pushKV("lastblockhash", wallet.GetLastBlockHash().ToString());
     obj.pushKV("lastblocktime", block_time);

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Smartiecoin Core developers
+// Copyright (c) 2014-2025 The Ratatoskr Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,7 +52,7 @@ static RPCHelpMan listaddressbalances()
         RPCResult{
             RPCResult::Type::ARR, "", "",
             {
-                {RPCResult::Type::STR_AMOUNT, "amount", "The Smartiecoin address and the amount in " + CURRENCY_UNIT},
+                {RPCResult::Type::STR_AMOUNT, "amount", "The Ratatoskr address and the amount in " + CURRENCY_UNIT},
             }
         },
         RPCExamples{
@@ -681,7 +681,7 @@ static RPCHelpMan createwallet()
         throw JSONRPCError(RPC_WALLET_ERROR, "Compiled without sqlite support (required for descriptor wallets)");
 #endif
         if (request.params[6].isNull()) {
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "The createwallet RPC requires specifying the 'load_on_startup' flag when creating descriptor wallets. Smartiecoin Core v21 introduced this requirement due to breaking changes in the createwallet RPC.");
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "The createwallet RPC requires specifying the 'load_on_startup' flag when creating descriptor wallets. Ratatoskr Core v21 introduced this requirement due to breaking changes in the createwallet RPC.");
         }
         flags |= WALLET_FLAG_DESCRIPTORS;
     }

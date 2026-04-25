@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2025 The Smartiecoin Core developers
+// Copyright (c) 2014-2025 The Ratatoskr Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -524,13 +524,13 @@ static RPCHelpMan masternodelist_helper(bool is_composite)
         "  json           - Print info in JSON format (can be additionally filtered, partial match)\n"
         "  lastpaidblock  - Print the last block height a node was paid on the network\n"
         "  lastpaidtime   - Print the last time a node was paid on the network\n"
-        "  owneraddress   - Print the masternode owner Smartiecoin address\n"
-        "  payee          - Print the masternode payout Smartiecoin address (can be additionally filtered,\n"
+        "  owneraddress   - Print the masternode owner Ratatoskr address\n"
+        "  payee          - Print the masternode payout Ratatoskr address (can be additionally filtered,\n"
         "                   partial match)\n"
         "  pubKeyOperator - Print the masternode operator public key\n"
         "  status         - Print masternode status: ENABLED / POSE_BANNED\n"
         "                   (can be additionally filtered, partial match)\n"
-        "  votingaddress  - Print the masternode voting Smartiecoin address\n",
+        "  votingaddress  - Print the masternode voting Ratatoskr address\n",
         {
             {"mode", RPCArg::Type::STR, RPCArg::DefaultHint{"json"}, "The mode to run list in"},
             {"filter", RPCArg::Type::STR, RPCArg::Default{""}, "Filter results. Partial match by outpoint by default in all modes, additional matches in some modes are also available"},
@@ -561,11 +561,11 @@ static RPCHelpMan masternodelist_helper(bool is_composite)
                 }},
                 RPCResult{"for mode = lastpaidblock", RPCResult::Type::NUM, "<height>", "Height masternode was last paid"},
                 RPCResult{"for mode = lastpaidtime", RPCResult::Type::NUM, "<time>", "Timestamp of block the masternode was last paid"},
-                RPCResult{"for mode = payee", RPCResult::Type::STR, "<addr>", "Smartiecoin address used for masternode reward payments"},
-                RPCResult{"for mode = owneraddress", RPCResult::Type::STR, "<addr>", "Smartiecoin address used for payee updates and proposal voting"},
+                RPCResult{"for mode = payee", RPCResult::Type::STR, "<addr>", "Ratatoskr address used for masternode reward payments"},
+                RPCResult{"for mode = owneraddress", RPCResult::Type::STR, "<addr>", "Ratatoskr address used for payee updates and proposal voting"},
                 RPCResult{"for mode = pubkeyoperator", RPCResult::Type::STR, "<addr>", "BLS public key used for operator signing"},
                 RPCResult{"for mode = status", RPCResult::Type::STR, "<status>", "Masternode status (human-readable string)"},
-                RPCResult{"for mode = votingaddress", RPCResult::Type::STR, "<addr>", "Smartiecoin address used for voting"},
+                RPCResult{"for mode = votingaddress", RPCResult::Type::STR, "<addr>", "Ratatoskr address used for voting"},
             }
         },
         RPCExamples{""},

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Smartiecoin Core developers
+// Copyright (c) 2014-2025 The Ratatoskr Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -50,7 +50,7 @@ static RPCHelpMan debug()
         "libevent logging is configured on startup and cannot be modified by this RPC during runtime.\n"
         "There are also a few meta-categories:\n"
         " - \"all\", \"1\" and \"\" activate all categories at once;\n"
-        " - \"smartiecoin\" activates all Smartiecoin-specific categories at once;\n"
+        " - \"ratatoskr\" activates all Ratatoskr-specific categories at once;\n"
         " - \"none\" (or \"0\") deactivates all categories at once.\n"
         "Note: If specified category doesn't match any of the above, no error is thrown.\n"
         "Note: Consider using 'logging' RPC which has more features.\n"
@@ -969,7 +969,7 @@ static RPCHelpMan logging()
             "The valid logging categories are: " + LogInstance().LogCategoriesString() + "\n"
             "In addition, the following are available as category names with special meanings:\n"
             "  - \"all\",  \"1\" : represent all logging categories.\n"
-            "  - \"smartiecoin\" activates all Smartiecoin-specific categories at once.\n"
+            "  - \"ratatoskr\" activates all Ratatoskr-specific categories at once.\n"
             "To deactivate all categories at once you can specify \"all\" in <exclude>.\n"
             "  - \"none\", \"0\" : even if other logging categories are specified, ignore all of them.\n"
             ,
@@ -991,7 +991,7 @@ static RPCHelpMan logging()
                 },
                 RPCExamples{
                     HelpExampleCli("logging", "\"[\\\"all\\\"]\" \"[\\\"http\\\"]\"")
-            + HelpExampleCli("logging", "'[\"smartiecoin\"]' '[\"llmq\",\"zmq\"]'")
+            + HelpExampleCli("logging", "'[\"ratatoskr\"]' '[\"llmq\",\"zmq\"]'")
             + HelpExampleRpc("logging", "[\"all\"], \"[libevent]\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
@@ -1079,7 +1079,7 @@ static RPCHelpMan echoipc()
                 // and spawn bitcoin-echo below instead of bitcoin-node. But
                 // using bitcoin-node avoids the need to build and install a
                 // new executable just for this one test.
-                auto init = ipc->spawnProcess("smartiecoin-node");
+                auto init = ipc->spawnProcess("ratatoskr-node");
                 echo = init->makeEcho();
                 ipc->addCleanup(*echo, [init = init.release()] { delete init; });
             } else {
@@ -1171,7 +1171,7 @@ static const CRPCCommand commands[] =
     { "addressindex",       &getaddresstxids,         },
     { "addressindex",       &getaddressbalance,       },
 
-    /* Smartiecoin features */
+    /* Ratatoskr features */
     { "ratatoskr",               &mnsync,                  },
     { "ratatoskr",               &spork,                   },
     { "ratatoskr",               &sporkupdate,             },

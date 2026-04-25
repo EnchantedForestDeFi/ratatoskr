@@ -393,10 +393,10 @@ void BitcoinGUI::stopConnectingAnimation()
 void BitcoinGUI::createActions()
 {
     sendCoinsAction = new QAction(tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Smartiecoin address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a Ratatoskr address"));
     QString strCoinJoinName = QString::fromStdString(gCoinJoinName);
     coinJoinCoinsAction = new QAction(QString("&%1").arg(strCoinJoinName), this);
-    coinJoinCoinsAction->setStatusTip(tr("Send %1 funds to a Smartiecoin address").arg(strCoinJoinName));
+    coinJoinCoinsAction->setStatusTip(tr("Send %1 funds to a Ratatoskr address").arg(strCoinJoinName));
     coinJoinCoinsAction->setToolTip(coinJoinCoinsAction->statusTip());
 
     receiveCoinsAction = new QAction(tr("&Receive"), this);
@@ -442,9 +442,9 @@ void BitcoinGUI::createActions()
     unlockWalletAction->setToolTip(tr("Unlock wallet"));
     lockWalletAction = new QAction(tr("&Lock Wallet"), this);
     signMessageAction = new QAction(tr("Sign &message…"), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Smartiecoin addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your Ratatoskr addresses to prove you own them"));
     verifyMessageAction = new QAction(tr("&Verify message…"), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Smartiecoin addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Ratatoskr addresses"));
     m_load_psbt_action = new QAction(tr("&Load PSBT from file…"), this);
     m_load_psbt_action->setStatusTip(tr("Load Partially Signed Blockchain Transaction"));
     m_load_psbt_clipboard_action = new QAction(tr("Load PSBT from &clipboard…"), this);
@@ -1438,7 +1438,7 @@ void BitcoinGUI::updateNetworkState()
     QString tooltip;
     if (fNetworkActive) {
         //: A substring of the tooltip.
-        tooltip = tr("%n active connection(s) to Smartiecoin network", "", count);
+        tooltip = tr("%n active connection(s) to Ratatoskr network", "", count);
     } else {
         tooltip = tr("Network activity disabled");
         icon = "connect_4";
@@ -1613,7 +1613,7 @@ void BitcoinGUI::updateWidth()
         ++nButtonsVisible;
     }
     // Add 30 per button as padding and use minimum 980 which is the minimum required to show all tab's contents
-    // Use nButtonsVisible + 1 <- for the smartiecoin logo
+    // Use nButtonsVisible + 1 <- for the ratatoskr logo
     int nWidth = std::max<int>(980, (nWidthWidestButton + 30) * (nButtonsVisible + 1));
     setMinimumWidth(nWidth);
 

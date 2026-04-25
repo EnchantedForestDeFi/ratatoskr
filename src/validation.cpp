@@ -828,7 +828,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
             const CTransaction* ptxConflicting = m_pool.GetConflictTx(txin.prevout);
             if (ptxConflicting)
             {
-                // Transaction conflicts with mempool and RBF doesn't exist in Smartiecoin
+                // Transaction conflicts with mempool and RBF doesn't exist in Ratatoskr
                 return state.Invalid(TxValidationResult::TX_CONFLICT, "txn-mempool-conflict");
             }
         }
@@ -1484,9 +1484,9 @@ static std::pair<CAmount, CAmount> GetBlockSubsidyHelper(int nPrevBits, int nPre
     const bool isTestnet = network == CBaseChainParams::TESTNET;
     const bool isDevnet = network == CBaseChainParams::DEVNET;
 
-    // Smartiecoin economics: mainnet/testnet use 50 SMT initial subsidy,
+    // Ratatoskr economics: mainnet/testnet use 50 SMT initial subsidy,
     // halving every nSubsidyHalvingInterval and hard-cap emission at MAX_MONEY.
-    // Keep devnet/regtest behavior aligned with Smartiecoin test tooling.
+    // Keep devnet/regtest behavior aligned with Ratatoskr test tooling.
     if (isMainnet || isTestnet) {
         static constexpr CAmount kBaseSubsidy = 50 * COIN;
         // SMT v0.1.4: use 1,000,000 halving interval after fork height (was 1,030,596)
@@ -1518,7 +1518,7 @@ static std::pair<CAmount, CAmount> GetBlockSubsidyHelper(int nPrevBits, int nPre
 
         CAmount nSuperblockPart{};
         if (nPrevHeight > consensusParams.nBudgetPaymentsStartBlock) {
-            // Smartiecoin: always use 10 % treasury regardless of V20 state
+            // Ratatoskr: always use 10 % treasury regardless of V20 state
             nSuperblockPart = nSubsidy / 10;
         }
         return {nSubsidy - nSuperblockPart, nSuperblockPart};
@@ -2210,7 +2210,7 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Chainst
     unsigned int flags = SCRIPT_VERIFY_NONE;
 
     // Start enforcing P2SH (BIP16)
-    // It always active on Smartiecoin chains
+    // It always active on Ratatoskr chains
     flags |= SCRIPT_VERIFY_P2SH;
 
     // Enforce the DERSIG (BIP66) rule
@@ -2434,7 +2434,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     // MUST process special txes before updating UTXO to ensure consistency between mempool and block processing
     std::optional<MNListUpdates> mnlist_updates_opt{std::nullopt};
     if (!m_chain_helper->special_tx->ProcessSpecialTxsInBlock(block, pindex, view, fJustCheck, fScriptChecks, state, mnlist_updates_opt)) {
-        return error("ConnectBlock(SMARTIECOIN): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("ConnectBlock(RATATOSKR): ProcessSpecialTxsInBlock for block %s failed with %s",
             pindex->GetBlockHash().ToString(), state.ToString());
     }
 
@@ -2598,12 +2598,12 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
             while (auto conflictLockOpt = m_chain_helper->ConflictingISLockIfAny(*tx)) {
                 auto [conflict_islock_hash, conflict_txid] = conflictLockOpt.value();
                 if (has_chainlock) {
-                    LogPrint(BCLog::ALL, "ConnectBlock(SMARTIECOIN): chain-locked transaction %s overrides islock %s\n", tx->GetHash().ToString(), conflict_islock_hash.ToString());
+                    LogPrint(BCLog::ALL, "ConnectBlock(RATATOSKR): chain-locked transaction %s overrides islock %s\n", tx->GetHash().ToString(), conflict_islock_hash.ToString());
                     m_chain_helper->RemoveConflictingISLockByTx(*tx);
                 } else {
                     // The node which relayed this should switch to correct chain.
                     // TODO: relay instantsend data/proof.
-                    LogPrintf("ERROR: ConnectBlock(SMARTIECOIN): transaction %s conflicts with transaction lock %s\n", tx->GetHash().ToString(), conflict_txid.ToString());
+                    LogPrintf("ERROR: ConnectBlock(RATATOSKR): transaction %s conflicts with transaction lock %s\n", tx->GetHash().ToString(), conflict_txid.ToString());
                     return state.Invalid(BlockValidationResult::BLOCK_CHAINLOCK, "conflict-tx-lock");
                 }
             }
@@ -2628,7 +2628,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
 
     if (!m_chain_helper->mn_payments->IsBlockValueValid(block, pindex->nHeight, blockSubsidy + feeReward, strError, check_superblock)) {
         // NOTE: Do not punish, the node might be missing governance data
-        LogPrintf("ERROR: ConnectBlock(SMARTIECOIN): %s\n", strError);
+        LogPrintf("ERROR: ConnectBlock(RATATOSKR): %s\n", strError);
         return state.Invalid(BlockValidationResult::BLOCK_RESULT_UNSET, "bad-cb-amount");
     }
 
@@ -2637,7 +2637,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
 
     if (!m_chain_helper->mn_payments->IsBlockPayeeValid(*block.vtx[0], pindex->pprev, blockSubsidy, feeReward, check_superblock)) {
         // NOTE: Do not punish, the node might be missing governance data
-        LogPrintf("ERROR: ConnectBlock(SMARTIECOIN): couldn't find masternode or superblock payments\n");
+        LogPrintf("ERROR: ConnectBlock(RATATOSKR): couldn't find masternode or superblock payments\n");
         return state.Invalid(BlockValidationResult::BLOCK_RESULT_UNSET, "bad-cb-payee");
     }
 
@@ -2645,7 +2645,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     LogPrint(BCLog::BENCHMARK, "      - IsBlockPayeeValid: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_4 - nTime5_3), nTimePayeeValid * MICRO, nTimePayeeValid * MILLI / nBlocksTotal);
 
     int64_t nTime5 = GetTimeMicros(); nTimeDashSpecific += nTime5 - nTime4;
-    LogPrint(BCLog::BENCHMARK, "    - Smartiecoin specific: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5 - nTime4), nTimeDashSpecific * MICRO, nTimeDashSpecific * MILLI / nBlocksTotal);
+    LogPrint(BCLog::BENCHMARK, "    - Ratatoskr specific: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5 - nTime4), nTimeDashSpecific * MICRO, nTimeDashSpecific * MILLI / nBlocksTotal);
 
     // END SMT
 
@@ -4726,7 +4726,7 @@ bool CChainState::RollforwardBlock(const CBlockIndex* pindex, CCoinsViewCache& i
     BlockValidationState state;
     std::optional<MNListUpdates> mnlist_updates_opt{std::nullopt};
     if (!m_chain_helper->special_tx->ProcessSpecialTxsInBlock(block, pindex, inputs, false /*fJustCheck*/, false /*fScriptChecks*/, state, mnlist_updates_opt)) {
-        return error("RollforwardBlock(SMARTIECOIN): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("RollforwardBlock(RATATOSKR): ProcessSpecialTxsInBlock for block %s failed with %s",
             pindex->GetBlockHash().ToString(), state.ToString());
     }
 
@@ -4796,22 +4796,22 @@ bool CChainState::RollforwardBlock(const CBlockIndex* pindex, CCoinsViewCache& i
 
     if (fAddressIndex) {
         if (!m_blockman.m_block_tree_db->WriteAddressIndex(addressIndex)) {
-            return error("RollforwardBlock(SMARTIECOIN): Failed to write address index");
+            return error("RollforwardBlock(RATATOSKR): Failed to write address index");
         }
 
         if (!m_blockman.m_block_tree_db->UpdateAddressUnspentIndex(addressUnspentIndex)) {
-            return error("RollforwardBlock(SMARTIECOIN): Failed to write address unspent index");
+            return error("RollforwardBlock(RATATOSKR): Failed to write address unspent index");
         }
     }
 
     if (fSpentIndex) {
         if (!m_blockman.m_block_tree_db->UpdateSpentIndex(spentIndex))
-            return error("RollforwardBlock(SMARTIECOIN): Failed to write transaction index");
+            return error("RollforwardBlock(RATATOSKR): Failed to write transaction index");
     }
 
     if (fTimestampIndex) {
         if (!m_blockman.m_block_tree_db->WriteTimestampIndex(CTimestampIndexKey(pindex->nTime, pindex->GetBlockHash())))
-            return error("RollforwardBlock(SMARTIECOIN): Failed to write timestamp index");
+            return error("RollforwardBlock(RATATOSKR): Failed to write timestamp index");
     }
 
     return true;
@@ -4849,7 +4849,7 @@ bool CChainState::ReplayBlocks()
         assert(pindexFork != nullptr);
         const bool fDIP0003Active = DeploymentActiveAt(*pindexOld, m_params.GetConsensus(), Consensus::DEPLOYMENT_DIP0003);
         if (fDIP0003Active && !m_evoDb.VerifyBestBlock(pindexOld->GetBlockHash())) {
-            return error("ReplayBlocks(SMARTIECOIN): Found EvoDB inconsistency");
+            return error("ReplayBlocks(RATATOSKR): Found EvoDB inconsistency");
         }
     }
 
@@ -6046,7 +6046,7 @@ bool ChainstateManager::IsQuorumTypeEnabled(const Consensus::LLMQType llmqType,
     case Consensus::LLMQType::LLMQ_25_67:
         return pindexPrev->nHeight >= TESTNET_LLMQ_25_67_ACTIVATION_HEIGHT;
 
-    // Smartiecoin small-network quorums: enabled after nSMTSmallQuorumsHeight (block 45,000)
+    // Ratatoskr small-network quorums: enabled after nSMTSmallQuorumsHeight (block 45,000)
     case Consensus::LLMQType::LLMQ_10_60:
         return pindexPrev->nHeight >= GetConsensus().nSMTSmallQuorumsHeight;
     case Consensus::LLMQType::LLMQ_10_75:

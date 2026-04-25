@@ -12,7 +12,7 @@ class ArgsManager;
 
 /**
  * CBaseChainParams defines the base parameters (shared between ratatoskr-cli and dashd)
- * of a given instance of the Smartiecoin system.
+ * of a given instance of the Ratatoskr system.
  */
 class CBaseChainParams
 {

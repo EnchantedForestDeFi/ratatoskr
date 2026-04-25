@@ -473,18 +473,18 @@ public:
 
         vSeeds.clear();
 
-        // Testnet Smartiecoin addresses start with 'y'
+        // Testnet Ratatoskr addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Testnet Smartiecoin script addresses start with '8' or '9'
+        // Testnet Ratatoskr script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Smartiecoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Ratatoskr BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Smartiecoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Ratatoskr BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Smartiecoin BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Ratatoskr BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params — keep original types for v0.1.3 compatibility
@@ -583,8 +583,8 @@ public:
         consensus.WithdrawalsHeight = 2;   // withdrawals activated immediately on devnet
         consensus.MinBIP9WarningHeight = 2 + 60; // withdrawals activation height + miner confirmation window
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 60 * 60; // Smartiecoin: 1 hour (match mainnet)
-        consensus.nPowTargetSpacing = 60; // Smartiecoin: 1 minute (match mainnet)
+        consensus.nPowTargetTimespan = 60 * 60; // Ratatoskr: 1 hour (match mainnet)
+        consensus.nPowTargetSpacing = 60; // Ratatoskr: 1 minute (match mainnet)
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowKGWHeight = 4001; // nPowKGWHeight >= nPowDGWHeight means "no KGW"
@@ -636,18 +636,18 @@ public:
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("dashevo.org.",  "devnet-seed.dashevo.org."));
 
-        // Testnet Smartiecoin addresses start with 'y'
+        // Testnet Ratatoskr addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Testnet Smartiecoin script addresses start with '8' or '9'
+        // Testnet Ratatoskr script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Smartiecoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Ratatoskr BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Smartiecoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Ratatoskr BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Smartiecoin BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Ratatoskr BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -827,8 +827,8 @@ public:
         consensus.WithdrawalsHeight = 600;
         consensus.MinBIP9WarningHeight = 0;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 60 * 60; // Smartiecoin: 1 hour (match mainnet)
-        consensus.nPowTargetSpacing = 60; // Smartiecoin: 1 minute (match mainnet)
+        consensus.nPowTargetTimespan = 60 * 60; // Ratatoskr: 1 hour (match mainnet)
+        consensus.nPowTargetSpacing = 60; // Ratatoskr: 1 minute (match mainnet)
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.nPowKGWHeight = 15200; // irrelevant: fPowNoRetargeting is true
@@ -923,18 +923,18 @@ public:
             0
         };
 
-        // Regtest Smartiecoin addresses start with 'y'
+        // Regtest Ratatoskr addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Regtest Smartiecoin script addresses start with '8' or '9'
+        // Regtest Ratatoskr script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Regtest Smartiecoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest Ratatoskr BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Regtest Smartiecoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest Ratatoskr BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Regtest Smartiecoin BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest Ratatoskr BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params

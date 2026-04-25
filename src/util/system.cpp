@@ -75,7 +75,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-//Smartiecoin only features
+//Ratatoskr only features
 const std::string gCoinJoinName = "PrivateSend";
 
 /**
@@ -341,7 +341,7 @@ bool ArgsManager::ParseParameters(int argc, const char* const argv[], std::strin
 
         if (key[0] != '-') {
             if (!m_accept_any_command && m_command.empty()) {
-                // The first non-smartiecoin arg is a registered command
+                // The first non-ratatoskr arg is a registered command
                 std::optional<unsigned int> flags = GetArgFlags(key);
                 if (!flags || !(*flags & ArgsManager::COMMAND)) {
                     error = strprintf("Invalid command '%s'", argv[i]);
@@ -1084,7 +1084,7 @@ bool ArgsManager::ReadConfigFiles(std::string& error, bool ignore_invalid_keys)
             }
         }
     } else {
-        // Create an empty smartiecoin.conf if it does not exist
+        // Create an empty ratatoskr.conf if it does not exist
         std::ofstream configFile{GetConfigFile(conf_path), std::ios_base::app};
         if (!configFile.good())
             return false;

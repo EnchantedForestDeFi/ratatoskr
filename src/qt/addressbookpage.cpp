@@ -18,10 +18,12 @@
 #include <qt/optionsmodel.h>
 #include <qt/qrdialog.h>
 
+#include <QDesktopServices>
 #include <QIcon>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
+#include <QUrl>
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 #include <QRegularExpression>
 #else
@@ -112,6 +114,7 @@ AddressBookPage::AddressBookPage(Mode _mode, Tabs _tab, QWidget* parent) :
 #ifndef USE_QRCODE
     qrAction->setEnabled(false);
 #endif
+    contextMenu->addAction(tr("View on block &explorer"), this, &AddressBookPage::onShowAddressOnExplorer);
 
     if (tab == SendingTab) {
         contextMenu->addAction(tr("&Delete"), this, &AddressBookPage::on_deleteAddress_clicked);
@@ -235,6 +238,19 @@ void AddressBookPage::on_showAddressQRCode_clicked()
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setInfo(tr("QR code"), "ratatoskr:"+strAddress, "", strAddress);
     dialog->show();
+}
+
+void AddressBookPage::onShowAddressOnExplorer()
+{
+    QList<QModelIndex> entries = GUIUtil::getEntryData(ui->tableView, AddressTableModel::Address);
+    if (entries.empty()) {
+        return;
+    }
+    const QString strAddress = entries.at(0).data(Qt::EditRole).toString();
+    if (strAddress.isEmpty()) return;
+
+    QDesktopServices::openUrl(QUrl(
+        "https://explorer.ratatoskr.enchantedforestdefi.com/address/" + strAddress));
 }
 
 void AddressBookPage::selectionChanged()

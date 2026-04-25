@@ -70,6 +70,8 @@ private Q_SLOTS:
     void onEditAction();
     /** Show QR code for the currently selected address */
     void on_showAddressQRCode_clicked();
+    /** Open the currently selected address on the block explorer */
+    void onShowAddressOnExplorer();
     /** Export button clicked */
     void on_exportButton_clicked();
 

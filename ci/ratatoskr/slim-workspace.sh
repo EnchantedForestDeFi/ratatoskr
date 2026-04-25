@@ -21,15 +21,15 @@ TARGETS=(
   # Bundle restored from artifact
   "${BUNDLE_KEY}.tar.zst"
   # Binaries not needed by functional tests
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/smartiecoin-tx"
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/bench/bench_dash"
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/qt/smartiecoin-qt"
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/qt/test/test_dash-qt"
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/test/test_dash"
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/test/fuzz/fuzz"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/ratatoskr-tx"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/bench/bench_ratatoskr"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/qt/ratatoskr-qt"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/qt/test/test_ratatoskr-qt"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/test/test_ratatoskr"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/test/fuzz/fuzz"
   # Misc. files that can be heavy
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/qt/qrc_bitcoin.cpp"
-  "build-ci/smartiecoin-${BUILD_TARGET}/src/qt/qrc_dash_locale.cpp"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/qt/qrc_bitcoin.cpp"
+  "build-ci/ratatoskr-${BUILD_TARGET}/src/qt/qrc_dash_locale.cpp"
 )
 
 # Delete what we don't need

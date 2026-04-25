@@ -259,19 +259,23 @@ bool OptionsModel::Init(bilingual_str& error)
         if (settings.contains(kLegacyDisplayUnitSetting)) {
             settings.setValue(kDisplayUnitSetting, settings.value(kLegacyDisplayUnitSetting));
         } else {
-            settings.setValue(kDisplayUnitSetting, QVariant::fromValue(BitcoinUnit::SMT));
+            settings.setValue(kDisplayUnitSetting, QVariant::fromValue(BitcoinUnit::RATR));
         }
     }
     QVariant unit = settings.value(kDisplayUnitSetting);
     if (unit.canConvert<BitcoinUnit>()) {
         m_display_bitcoin_unit = unit.value<BitcoinUnit>();
     } else {
-        m_display_bitcoin_unit = BitcoinUnit::SMT;
+        m_display_bitcoin_unit = BitcoinUnit::RATR;
         settings.setValue(kDisplayUnitSetting, QVariant::fromValue(m_display_bitcoin_unit));
     }
 
+    // Default the block-explorer URL to the Ratatoskr explorer on first run.
+    // %s is replaced at click-time with the selected transaction hash.
+    // User can override / clear / append additional URLs via Settings → Options.
     if (!settings.contains("strThirdPartyTxUrls"))
-        settings.setValue("strThirdPartyTxUrls", "");
+        settings.setValue("strThirdPartyTxUrls",
+            "https://explorer.ratatoskr.enchantedforestdefi.com/tx/%s");
     strThirdPartyTxUrls = settings.value("strThirdPartyTxUrls", "").toString();
 
     // Appearance

@@ -127,7 +127,7 @@ public:
         return {ITEM_HEIGHT + 8 + minimum_text_width, ITEM_HEIGHT};
     }
 
-    BitcoinUnit unit{BitcoinUnit::SMT};
+    BitcoinUnit unit{BitcoinUnit::RATR};
 
 Q_SIGNALS:
     //! An intermediate signal for emitting from the `paint() const` member function.

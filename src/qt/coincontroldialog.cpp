@@ -545,7 +545,7 @@ void CoinControlDialog::updateLabels(CCoinControl& m_coin_control, WalletModel *
     }
 
     // actually update labels
-    BitcoinUnit nDisplayUnit = BitcoinUnit::SMT;
+    BitcoinUnit nDisplayUnit = BitcoinUnit::RATR;
     if (model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 

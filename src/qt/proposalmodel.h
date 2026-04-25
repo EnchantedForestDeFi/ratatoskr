@@ -99,7 +99,7 @@ class ProposalModel : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    BitcoinUnit m_display_unit{BitcoinUnit::SMT};
+    BitcoinUnit m_display_unit{BitcoinUnit::RATR};
     int nAbsVoteReq{0};
     ProposalList m_data;
     QIcon m_icon_failing;

@@ -37,13 +37,13 @@ class BitcoinUnits: public QAbstractListModel
 public:
     explicit BitcoinUnits(QObject *parent);
 
-    /** Smartiecoin units.
+    /** Ratatoskr units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum class Unit {
-        SMT,
-        mDASH,
-        uDASH,
+        RATR,
+        mRATR,
+        uRATR,
         duffs
     };
     Q_ENUM(Unit)

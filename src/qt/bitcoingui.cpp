@@ -502,6 +502,10 @@ void BitcoinGUI::createActions()
     openBridgeAction->setMenuRole(QAction::NoRole);
     openBridgeAction->setStatusTip(tr("Open the Ratatoskr Bridge in your browser to wrap RATR to wRATR on Alephium"));
 
+    showWelcomeAction = new QAction(tr("&Welcome to Ratatoskr"), this);
+    showWelcomeAction->setMenuRole(QAction::NoRole);
+    showWelcomeAction->setStatusTip(tr("Show an orientation page with quick-start tips and project resources"));
+
     showCoinJoinHelpAction = new QAction(tr("%1 &information").arg(strCoinJoinName), this);
     showCoinJoinHelpAction->setMenuRole(QAction::NoRole);
     showCoinJoinHelpAction->setStatusTip(tr("Show the %1 basic information").arg(strCoinJoinName));
@@ -518,6 +522,7 @@ void BitcoinGUI::createActions()
     connect(showHelpMessageAction, &QAction::triggered, this, &BitcoinGUI::showHelpMessageClicked);
     connect(showMiningInfoAction, &QAction::triggered, this, &BitcoinGUI::showMiningInfoClicked);
     connect(openBridgeAction, &QAction::triggered, this, &BitcoinGUI::openBridgeWebsite);
+    connect(showWelcomeAction, &QAction::triggered, this, &BitcoinGUI::showWelcomeClicked);
     connect(showCoinJoinHelpAction, &QAction::triggered, this, &BitcoinGUI::showCoinJoinHelpClicked);
 
     // Jump directly to tabs in RPC-console
@@ -722,6 +727,8 @@ void BitcoinGUI::createMenuBar()
     }
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
+    help->addAction(showWelcomeAction);
+    help->addSeparator();
     help->addAction(showHelpMessageAction);
     help->addAction(showMiningInfoAction);
     help->addAction(openBridgeAction);
@@ -1275,6 +1282,12 @@ void BitcoinGUI::showMiningInfoClicked()
 void BitcoinGUI::openBridgeWebsite()
 {
     QDesktopServices::openUrl(QUrl("https://ratatoskrbridge.enchantedforestdefi.com"));
+}
+
+void BitcoinGUI::showWelcomeClicked()
+{
+    auto dlg = new HelpMessageDialog(this, HelpMessageDialog::welcome);
+    GUIUtil::ShowModalDialogAsynchronously(dlg);
 }
 
 void BitcoinGUI::showCoinJoinHelpClicked()

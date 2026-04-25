@@ -26,7 +26,8 @@ public:
         about,
         cmdline,
         pshelp,
-        miningInfo
+        miningInfo,
+        welcome
     };
 
     explicit HelpMessageDialog(QWidget *parent, HelpMode helpMode);

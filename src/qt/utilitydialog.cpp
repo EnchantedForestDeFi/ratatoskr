@@ -230,6 +230,79 @@ For more information, see the <a style=\"%2\" href=\"%3\">%1 documentation</a>."
         ui->aboutMessage->setText(miningHtml);
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);
+    } else if (helpMode == welcome) {
+        setWindowTitle(tr("Welcome to %1").arg(PACKAGE_NAME));
+
+        ui->aboutMessage->setTextFormat(Qt::RichText);
+        ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+        QString linkStyle = GUIUtil::getThemedStyleQString(GUIUtil::ThemedStyle::TS_COMMAND);
+        auto link = [&linkStyle](const QString& url, const QString& label) {
+            return QString("<a style=\"%1\" href=\"%2\">%3</a>")
+                .arg(linkStyle, url, label);
+        };
+
+        QString welcomeHtml =
+            "<h3>" + tr("Welcome to %1").arg(PACKAGE_NAME) + "</h3>"
+            + "<p>" + tr("%1 is a yespower-mineable proof-of-work masternode "
+                         "chain in the EnchantedForestDeFi ecosystem. In Norse "
+                         "cosmology, Ratatoskr is the squirrel that runs up "
+                         "and down Yggdrasil — the world tree — carrying "
+                         "messages between realms. The project's bridge layer "
+                         "is the modern incarnation of that role.").arg(PACKAGE_NAME) + "</p>"
+
+            + "<h4>" + tr("First time here?") + "</h4>"
+            + "<ul>"
+            + "<li>" + tr("Use the <i>Receive</i> tab to generate an address "
+                         "for incoming RATR.") + "</li>"
+            + "<li>" + tr("Use the <i>Send</i> tab to send RATR to other "
+                         "addresses.") + "</li>"
+            + "<li>" + tr("If you want to mine, see <i>Help → Mining info</i> "
+                         "for the yespower setup.") + "</li>"
+            + "<li>" + tr("To move RATR onto Alephium as wRATR, use "
+                         "<i>Help → Bridge to Alephium</i>.") + "</li>"
+            + "<li>" + tr("Manage masternodes from the <i>Masternodes</i> "
+                         "tab once you have the collateral and a configured "
+                         "remote node.") + "</li>"
+            + "</ul>"
+
+            + "<h4>" + tr("The Alephium ↔ Alfheim connection") + "</h4>"
+            + "<p>" + tr("The partner chain RATR bridges to is called "
+                         "<b>Alephium</b> — phonetically cognate with "
+                         "<b>Alfheim</b>, one of the upper realms of "
+                         "Yggdrasil and home of the light elves. The "
+                         "lore-mapping isn't a marketing stretch; the names "
+                         "line up. Each future bridge endpoint becomes "
+                         "another realm hanging from Yggdrasil's branches.") + "</p>"
+
+            + "<h4>" + tr("Resources") + "</h4>"
+            + "<ul>"
+            + "<li>" + tr("Website") + ": "
+              + link("https://ratatoskr.enchantedforestdefi.com",
+                     "ratatoskr.enchantedforestdefi.com") + "</li>"
+            + "<li>" + tr("Bridge to Alephium") + ": "
+              + link("https://ratatoskrbridge.enchantedforestdefi.com",
+                     "ratatoskrbridge.enchantedforestdefi.com") + "</li>"
+            + "<li>" + tr("Block explorer") + ": "
+              + link("https://explorer.ratatoskr.enchantedforestdefi.com",
+                     "explorer.ratatoskr.enchantedforestdefi.com") + "</li>"
+            + "<li>" + tr("Discord (community + support)") + ": "
+              + link("https://discord.gg/SrffQVYqee",
+                     "discord.gg/SrffQVYqee") + "</li>"
+            + "<li>" + tr("Source code") + ": "
+              + link("https://github.com/EnchantedForestDeFi/ratatoskr",
+                     "github.com/EnchantedForestDeFi/ratatoskr") + "</li>"
+            + "</ul>"
+
+            + "<p><small>" + tr("This is experimental software. Not financial "
+                                "advice. Read the whitepaper, run a testnet "
+                                "node first if you're unsure, and never put "
+                                "in more than you can afford to lose.") + "</small></p>";
+
+        text = welcomeHtml;
+        ui->aboutMessage->setText(welcomeHtml);
+        ui->aboutMessage->setWordWrap(true);
+        ui->helpMessage->setVisible(false);
     }
 
     GUIUtil::handleCloseWindowShortcut(this);

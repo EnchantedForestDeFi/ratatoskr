@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"com.smartiescoin.Smartiecoin-Qt";
+        return @"com.enchantedforestdefi.Ratatoskr-Qt";
     } else {
         return [self __bundleIdentifier];
     }

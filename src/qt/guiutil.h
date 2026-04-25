@@ -51,7 +51,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Smartiecoin Qt UI.
+/** Utility functions used by the Ratatoskr Qt UI.
  */
 namespace GUIUtil
 {
@@ -139,7 +139,7 @@ namespace GUIUtil
      */
     void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut);
 
-    // Parse "smartiecoin:" URI into recipient object, return true on successful parsing
+    // Parse "ratatoskr:" URI into recipient object, return true on successful parsing
     bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
     bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
     bool validateBitcoinURI(const QString& uri);
@@ -240,7 +240,7 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 
-    // Open smartiecoin.conf
+    // Open ratatoskr.conf
     void openConfigfile();
 
     // Browse backup folder
@@ -308,7 +308,7 @@ namespace GUIUtil
     /** Return the name of the currently active theme.*/
     QString getActiveTheme();
 
-    /** Check if a smartiecoin specific theme is activated (light/dark).*/
+    /** Check if a ratatoskr specific theme is activated (light/dark).*/
     bool dashThemeActive();
 
     /** Load the theme and update all UI elements according to the appearance settings. */

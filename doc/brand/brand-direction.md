@@ -26,8 +26,9 @@ and messages between chains.**
 | Lore element | What it represents in the project |
 |---|---|
 | Yggdrasil (the tree) | The multi-chain ecosystem (RATR L1, Alephium, future bridges) |
-| The eagle at the crown | High-throughput counterparty chain — Alephium today |
-| Niðhöggr at the roots | The PoW foundation — RATR's own chain |
+| **Alfheim (home of the light elves)** | **Alephium — the partner chain. The names are phonetic cognates: ALF-heim → AL-EPH-ium. This is the strongest single piece of brand kismet the project has, and it should be foregrounded everywhere the cosmology gets explained.** |
+| The eagle at the crown | The bright upper realms (Asgard / Alfheim) — high-throughput counterparty chains |
+| Niðhöggr at the roots | The PoW foundation — RATR's own chain at the base of the tree |
 | **Ratatoskr running the trunk** | **The bridge — messages and value moving between chains** |
 | The nine worlds | Future bridge endpoints / DeFi venues we plug into |
 | EnchantedForestDeFi | The project umbrella; the forest where Yggdrasil grows |
@@ -36,6 +37,39 @@ The single most important thing this metaphor gives us: the project's
 mascot is a **bridge by definition**. Ratatoskr exists to move things
 between layers. The token, the bridge, and the brand all reinforce
 each other.
+
+### The Alephium ↔ Alfheim cognate (lock this in)
+
+The phonetic alignment between **Alephium** (the partner chain RATR
+bridges to) and **Alfheim** (one of the upper realms of Yggdrasil,
+home of the light elves) is too clean to be coincidence — and even
+if it *was* coincidence, the moment the project notices it, it
+becomes part of the brand.
+
+What this gives us:
+
+- **A concrete realm-to-chain mapping.** When future readers ask
+  "why a Norse mascot for an Alephium bridge?", the answer is no
+  longer "we liked the lore" — it's "Alephium *is* Alfheim in the
+  metaphor; the names are cognate; Ratatoskr running between
+  Alfheim (high realm) and the RATR root layer (lower realm) is
+  literally what the bridge does."
+- **A natural extension path.** When the project bridges to a
+  second chain, that chain becomes a different realm. Bitcoin →
+  Asgard (the gold-domed citadel of the Aesir, home of Odin). A
+  privacy-focused chain → Niflheim (mist and ice, hidden things).
+  An EVM L2 → Vanaheim (a parallel realm, related but distinct).
+  Each new chain gets a realm; each realm has Norse character to
+  draw from.
+- **A piece of language for the docs.** Project copy can say
+  things like "messages between Yggdrasil's branches" or "the
+  Alfheim leg of the bridge" without sounding pretentious — once
+  the cognate is established, the lore-language is grounded.
+
+Use this. In website hero copy, in whitepaper introductions, in
+the "How the bridge works" page — establish the
+Alephium-as-Alfheim mapping early and let everything else hang
+off it.
 
 ---
 

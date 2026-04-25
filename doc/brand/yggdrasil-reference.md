@@ -71,6 +71,35 @@ The map is in `brand-direction.md` already. In short:
 - The project's larger umbrella, **EnchantedForestDeFi**, is the
   forest where Yggdrasil grows.
 
+### The Alephium ↔ Alfheim cognate
+
+Worth surfacing prominently because it locks the metaphor in:
+**"Alephium" and "Alfheim" are phonetic cognates.** Alfheim
+(*Álfheimr* in Old Norse) is one of the nine realms — home of the
+light elves, one of the bright upper realms of the cosmos. The
+Alephium chain that RATR bridges to therefore *is* Alfheim in the
+project's brand metaphor, not just "a chain that happens to live
+above the RATR L1 in our diagrams."
+
+Practical implications:
+
+- When new chains are added later, each one gets its own realm.
+  Bitcoin would slot naturally into Asgard (gold-domed, ancient,
+  the home of the highest-tier god in the pantheon). A privacy
+  chain into Niflheim (mist, hidden things). An EVM L2 into
+  Vanaheim (parallel realm, related-but-distinct gods).
+- Marketing copy can use realm-language confidently: "the Alfheim
+  leg of the bridge," "messages from Alfheim into the RATR root
+  layer," etc.
+- The fact that the operator noticed this *during the design
+  iteration phase* — not during a contrived branding workshop —
+  is itself part of the project's story. Real brand discovery,
+  not synthetic.
+
+Don't bury this. Brand-direction.md flags it; reference it from
+website copy, the whitepaper introduction, and any "how does the
+bridge work" explainer.
+
 The metaphor is durable: as the project adds bridges to other
 chains, each new chain becomes another world hanging from
 Yggdrasil's branches. Ratatoskr's job — message-bearing — doesn't

@@ -106,6 +106,45 @@ their auto-generated `image_*.png` filenames.
   blog/Medium explainer posts, Twitter explainer threads, bridge
   UI first-time-user splash. **Not** an icon, hero, or merch piece.
 
+### `candidate-6-narrative-map-svartalfheim-1024.png`
+- **Style**: same cartographic / aged-parchment direction as
+  candidate-5, but a substantial refinement
+- **Composition**: wider 16:9 aspect, all nine realms uniquely
+  labeled with canonical Norse names (Asgard / Vanaheim / Alfheim /
+  **Svartalfheim** / Midgard / Jotunheim / Muspelheim / Niflheim /
+  Hel), Bifröst rainbow bridge from Asgard to Midgard, Jörmungandr
+  ringing Midgard, Urd's Well noted, two squirrels visible on the
+  trunk
+- **Strengths over candidate-5**:
+  - **"YGGDRASIL" spelled correctly** in the title (candidate-5's
+    "YGDRASIL" typo is fixed)
+  - **All 9 realms uniquely labeled** (candidate-5's double-Helheim
+    error is fixed)
+  - Rich cosmological detail — Bifröst, Jörmungandr, Urd's Well —
+    that wasn't in candidate-5
+  - Subtitle "The Nine Realms of Norse Cosmology" reads cleanly
+- **Realm-naming choice**: uses **Svartalfheim** ("Realm of the
+  Dark Elves") for the middle-left slot. Both Svartalfheim and
+  Nidavellir are canon-defensible there; Snorri's *Prose Edda*
+  treats them as related. The operator also has a v2 of this map
+  with **Nidavellir** ("Realm of the Dwarves") in the same slot —
+  not committed, available in `Downloads/image_e7f64e55.png` if
+  the operator wants it added later as candidate-7.
+- **Remaining issues (minor, fixable post-hoc)**:
+  1. **"Urd's Well" appears twice** (once near the upper trunk,
+     once near the bottom). Urd's Well is a single feature in
+     canon. AI artifact; one label is enough.
+  2. **Garbled text near the central squirrel** (looks like the
+     model attempted "YGGDRASIL" or "RATATOSKR" and produced
+     non-word characters). Acceptable for design history; should
+     be cropped or re-rolled before public deployment.
+- **Best role**: **canonical narrative explainer**, replacing
+  candidate-5 in production positions. Same role mapping as
+  candidate-5 — "How the bridge works" page, whitepaper inside
+  cover, Twitter / Medium explainer threads, bridge UI onboarding.
+  candidate-5 stays in the repo as design history but is not the
+  one to deploy.
+
 ---
 
 ## Recommended role mapping (proposed)

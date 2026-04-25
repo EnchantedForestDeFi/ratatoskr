@@ -35,7 +35,8 @@ jobs:
           brew install \
             automake libtool boost gmp pkg-config libevent \
             miniupnpc libnatpmp zeromq qrencode \
-            berkeley-db@5 sqlite3 python@3
+            berkeley-db@5 sqlite3 python@3 \
+            qt@5
           brew --version
           clang --version
 
@@ -49,8 +50,14 @@ jobs:
           set -euxo pipefail
           BREW_PREFIX=$(brew --prefix)
           BDB_PREFIX=$(brew --prefix berkeley-db@5)
+          QT5_PREFIX=$(brew --prefix qt@5)
           echo "Using BREW_PREFIX=$BREW_PREFIX"
           echo "Using BDB_PREFIX=$BDB_PREFIX"
+          echo "Using QT5_PREFIX=$QT5_PREFIX"
+          # qt@5 is keg-only on Homebrew — must be exposed via PATH +
+          # PKG_CONFIG_PATH so configure's Qt detection picks it up.
+          export PATH="${QT5_PREFIX}/bin:${PATH}"
+          export PKG_CONFIG_PATH="${QT5_PREFIX}/lib/pkgconfig:${BREW_PREFIX}/lib/pkgconfig"
           # --with-incompatible-bdb lets us use modern BDB (>=5) instead of 4.8.
           # Wallets created/read by this build use newer BDB format; acceptable
           # for alpha but noted in release notes.
@@ -58,13 +65,13 @@ jobs:
             --disable-tests \
             --disable-bench \
             --disable-gui-tests \
-            --without-gui \
+            --with-gui=qt5 \
             --with-incompatible-bdb \
             --disable-stacktraces \
             BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-5" \
             BDB_CFLAGS="-I${BDB_PREFIX}/include" \
-            CPPFLAGS="-I${BREW_PREFIX}/include" \
-            LDFLAGS="-L${BREW_PREFIX}/lib"
+            CPPFLAGS="-I${BREW_PREFIX}/include -I${QT5_PREFIX}/include" \
+            LDFLAGS="-L${BREW_PREFIX}/lib -L${QT5_PREFIX}/lib"
 
       - name: Build
         run: |
@@ -74,8 +81,9 @@ jobs:
       - name: Verify build artifacts exist
         run: |
           set -euxo pipefail
-          ls -l src/ratatoskrd src/ratatoskr-cli src/ratatoskr-tx
+          ls -l src/ratatoskrd src/ratatoskr-cli src/ratatoskr-tx src/qt/ratatoskr-qt
           file src/ratatoskrd
+          file src/qt/ratatoskr-qt
 
       - name: Smoke-test binary
         run: |
@@ -106,7 +114,7 @@ jobs:
           STAGE="ratatoskr-${VERSION}-macos-arm64"
           mkdir -p "${STAGE}/bin" "${STAGE}/doc"
 
-          # binaries
+          # CLI/daemon binaries
           for b in ratatoskrd ratatoskr-cli ratatoskr-tx; do
             if [ -f "src/$b" ]; then
               cp "src/$b" "${STAGE}/bin/"
@@ -116,6 +124,15 @@ jobs:
               exit 1
             fi
           done
+
+          # Qt GUI wallet (lives in src/qt/)
+          if [ -f "src/qt/ratatoskr-qt" ]; then
+            cp "src/qt/ratatoskr-qt" "${STAGE}/bin/"
+            strip "${STAGE}/bin/ratatoskr-qt" 2>/dev/null || true
+          else
+            echo "!! missing expected binary: src/qt/ratatoskr-qt"
+            exit 1
+          fi
 
           # docs (best-effort — any missing ones just skipped)
           for d in whitepaper mining quickstart pool-operator-spec masternode-setup \
@@ -155,9 +172,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Notes for future iterations:
-      # - Qt GUI wallet is still disabled (--without-gui). Adding Qt on Apple
-      #   Silicon means brew install qt@5 + --with-gui=qt5. Deferred until there
-      #   is demonstrated user demand for a macOS Qt build.
+      # - Qt GUI wallet is now enabled via brew qt@5 + --with-gui=qt5. Output
+      #   binary is src/qt/ratatoskr-qt and ships in the tarball alongside the
+      #   CLI binaries. .app bundle / .dmg packaging is a separate future step
+      #   (requires `make deploy` plus codesigning).
       # - Wallet support IS enabled via --with-incompatible-bdb with BDB 5.
       #   Wallets created by this build use BDB 5 format; not backward-compatible
       #   with BDB 4.8 wallets from official Dash binaries. Noted in release notes.

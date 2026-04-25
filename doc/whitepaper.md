@@ -426,7 +426,38 @@ Ratatoskr community at launch is too small to credibly fill cosigner roles.
 **Planned transition**: 2-of-3 multisig at v1.1+ once trusted community
 contributors emerge (6-12 months post-launch estimated).
 
-### 7.3 Fractional Masternode NFTs (Phase 3, exploratory)
+### 7.3 Treasury Masternode Operation and Governance Abstention
+
+The treasury may use its accumulating RATR balance as collateral for
+masternodes operated by the project. These treasury-operated masternodes
+contribute to network security in the normal way — block validation,
+ChainLocks signing, InstantSend signing — and earn their proportional
+share of masternode rewards from the consensus subsidy. That income
+flows back to the treasury balance.
+
+**Treasury-operated masternodes will cast `ABSTAIN` on every on-chain
+governance proposal. No exceptions.** This includes proposals that
+specifically benefit the treasury, security or emergency proposals, and
+any future governance mechanism. The operator's individual voice in
+governance, when desired, is exercised through personal masternodes
+registered separately to operator-owned addresses, not through the
+treasury.
+
+The motivation: the 10% treasury drip generates approximately 7,200 RATR
+per day. Without abstention, even a modest number of treasury EvoNodes
+could control a meaningful share of governance weight in the early
+chain — an unacceptable concentration. Abstention separates treasury's
+economic role (fund ecosystem development, LP seeding, audits, listings)
+from any potential governance role.
+
+To make this externally auditable, the operator commits to publishing a
+public list of all treasury masternode collateral addresses, signed by
+the treasury private key. Anyone can then verify on-chain that no
+`YES`/`NO` votes ever originate from those addresses. Full policy
+specification, edge cases, and verification procedure are in
+`doc/treasury-governance-policy.md`.
+
+### 7.4 Fractional Masternode NFTs (Phase 3, exploratory)
 
 A planned Phase 3 feature (target ~6 months post-launch) would mint NFTs
 on Alephium representing fractional ownership of treasury-operated
@@ -436,13 +467,13 @@ pooled MN, minus a small treasury operator fee. This creates an
 entry-level MN-yield product for participants who have not yet
 accumulated full collateral (7,500 RATR Regular / 30,000 EvoNode).
 
-Critical governance rule if this ships: all treasury-operated MNs must
-be designated **non-voting** in any governance tally. Otherwise pooled
-capital would concentrate voting weight in the treasury's hands —
-exactly the failure mode §1 guards against. Enforcement is social at
-v1.0 (addresses public, any governance vote from a treasury MN would be
-a visible trust violation); formalisation in the v1.1 governance
-contract is a candidate feature.
+All masternodes operated by such a pool inherit the abstention policy
+from §7.3 — treasury-funded MNs cast `ABSTAIN` on every governance
+proposal regardless of whether the underlying capital is direct treasury
+RATR or pooled NFT-holder capital. This is not a Phase-3-conditional
+rule; it is the chain-wide treasury MN policy already adopted in §7.3.
+The Phase 3 product simply scales the operating model without changing
+the governance posture.
 
 Phase 3 remains exploratory; this whitepaper should not be read as a
 commitment to build it in its current form.

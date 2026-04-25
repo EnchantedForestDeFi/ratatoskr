@@ -196,7 +196,7 @@ CAmount GetTreasuryPayment(int nBlockHeight, const CAmount blockSubsidy, const C
 *   Determine if coinbase outgoing created money is the correct value
 *
 *   Why is this needed?
-*   - In Smartiecoin some blocks are superblocks, which output much higher amounts of coins
+*   - In Ratatoskr some blocks are superblocks, which output much higher amounts of coins
 *   - Other blocks are 10% lower in outgoing value, so in total, no extra coins are created
 *   - When non-superblocks are detected, the normal schedule should be maintained
 */

@@ -60,7 +60,7 @@ static const char* SettingName(OptionsModel::OptionID option)
     case OptionsModel::ProxyPortTor: return "onion";
     case OptionsModel::ProxyUseTor: return "onion";
     case OptionsModel::Language: return "lang";
-    //! Smartiecoin
+    //! Ratatoskr
     case OptionsModel::CoinJoinAmount: return "coinjoinamount";
     case OptionsModel::CoinJoinDenomsGoal: return "coinjoindenomsgoal";
     case OptionsModel::CoinJoinDenomsHardCap: return "coinjoindenomshardcap";
@@ -253,7 +253,7 @@ bool OptionsModel::Init(bilingual_str& error)
     fMinimizeOnClose = settings.value("fMinimizeOnClose").toBool();
 
     // Display
-    static const QString kDisplayUnitSetting{"DisplaySmartiecoinUnit"};
+    static const QString kDisplayUnitSetting{"DisplayRatatoskrUnit"};
     static const QString kLegacyDisplayUnitSetting{"DisplayDashUnit"};
     if (!settings.contains(kDisplayUnitSetting)) {
         if (settings.contains(kLegacyDisplayUnitSetting)) {
@@ -1098,7 +1098,7 @@ void OptionsModel::setDisplayUnit(const QVariant& new_unit)
     if (new_unit.isNull() || new_unit.value<BitcoinUnit>() == m_display_bitcoin_unit) return;
     m_display_bitcoin_unit = new_unit.value<BitcoinUnit>();
     QSettings settings;
-    settings.setValue("DisplaySmartiecoinUnit", QVariant::fromValue(m_display_bitcoin_unit));
+    settings.setValue("DisplayRatatoskrUnit", QVariant::fromValue(m_display_bitcoin_unit));
     Q_EMIT displayUnitChanged(m_display_bitcoin_unit);
 }
 
@@ -1209,7 +1209,7 @@ void OptionsModel::checkAndMigrate()
     migrate_setting(ProxyUseTor, "fUseSeparateProxyTor");
     migrate_setting(Language, "language");
 
-    //! Smartiecoin
+    //! Ratatoskr
     if (GUIUtil::fontsLoaded()) {
         migrate_setting(FontFamily, "fontFamily");
         migrate_setting(FontScale, "fontScale");

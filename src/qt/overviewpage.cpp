@@ -308,7 +308,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
     this->walletModel = model;
     if(model && model->getOptionsModel())
     {
-        // update the display unit, to not use the default ("SMT")
+        // update the display unit, to not use the default ("RATR")
         updateDisplayUnit();
         // Keep up to date with wallet
         interfaces::Wallet& wallet = model->wallet();

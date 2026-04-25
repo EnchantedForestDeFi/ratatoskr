@@ -13,11 +13,12 @@ For the metaphor + production spec see:
 
 ---
 
-## The four candidates (round 2)
+## The five candidates
 
-Filenames are placeholders — the operator will save the original
-Google AI outputs into this folder under these names so that the
-rest of the docs can reference them stably.
+Files are committed into this folder under canonical names so the
+docs reference them stably. The original Google AI session outputs
+are preserved in the operator's `Pictures/Screenshots/` folder under
+their auto-generated `image_*.png` filenames.
 
 ### `candidate-1-rope-cartoon.png`
 - **Style**: simple cartoon woodcut, rope-frame border
@@ -76,6 +77,35 @@ rest of the docs can reference them stably.
   hero, About dialog small-format header, whitepaper cover, social
   banners, anywhere the project introduces itself
 
+### `candidate-5-narrative-map-1024.png`
+- **Style**: cartographic / explainer illustration on aged parchment;
+  shows the message-path between realms in a single composition
+- **Composition**: Yggdrasil tree on the left with Asgard at the
+  crown and roots descending into Helheim; on the right, a separate
+  panel showing the same trunk + cave continuing down; squirrels
+  with scrolls move between the labeled realms; runic borders top
+  and bottom; compass rose; title "Yggdrasil: The Nine Worlds —
+  Ratatoskr's Message Path"
+- **Strengths**: tells the *story* of what the project does in one
+  image; no other candidate does this. Useful for explainer
+  contexts where a single mark wouldn't suffice.
+- **Weaknesses (production-blocking — fix before deploying)**:
+  1. **"YGDRASIL" is missing a G in the title** (should be
+     YGGDRASIL — double G). Re-roll or post-edit before any
+     public use.
+  2. **"HELHEIM — REALM OF THE DEAD" appears twice** (bottom-left
+     panel and bottom-right panel). The right-side panel should be
+     a different realm — most likely NIFLHEIM (icy realm; matches
+     the cave/skeleton aesthetic) or ASGARD if showing the
+     messenger origin.
+  3. Runic borders are mixed actual runes + decorative noise.
+     Acceptable for a stylized brand asset but not literally
+     translatable.
+- **Best role**: **narrative explainer / lore illustration** —
+  "How the bridge works" website page, whitepaper inside cover,
+  blog/Medium explainer posts, Twitter explainer threads, bridge
+  UI first-time-user splash. **Not** an icon, hero, or merch piece.
+
 ---
 
 ## Recommended role mapping (proposed)
@@ -93,10 +123,16 @@ rest of the docs can reference them stably.
 | Whitepaper cover page | **4** full | Full lore on the cover sets the document tone |
 | Twitter / social banner | **4** stretched horizontal | Same as whitepaper logic |
 | Merch (T-shirts, mugs, hats) | **1** for casual; **4** for premium | Two SKU tiers |
+| Whitepaper inside cover / "How the bridge works" page | **5** (after typo + duplicate-realm fixes) | Tells the full message-path story |
+| Bridge UI first-time-user splash / onboarding | **5** | Explains the metaphor for new users |
+| Twitter / Medium explainer threads | **5** | Cartographic style draws engagement |
 
 This is intentionally a system, not a single mark. Once committed,
 each surface uses its assigned variant — no improvising. Consistency
 matters more than which variant wins.
+
+The brand system now spans **five roles**: icon source, color hero,
+B&W canonical mark, casual/merch, and narrative explainer.
 
 ---
 

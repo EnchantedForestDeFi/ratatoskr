@@ -6,6 +6,8 @@
 #include <qt/overviewpage.h>
 #include <qt/forms/ui_overviewpage.h>
 
+#include <clientversion.h>
+
 #include <qt/bitcoinunits.h>
 #include <qt/clientmodel.h>
 #include <qt/guiutil.h>
@@ -27,11 +29,16 @@
 
 #include <QAbstractItemDelegate>
 #include <QApplication>
+#include <QDesktopServices>
+#include <QLabel>
 #include <QMessageBox>
 #include <QPainter>
 #include <QSettings>
 #include <QStatusTipEvent>
 #include <QTimer>
+#include <QToolButton>
+#include <QUrl>
+#include <QVBoxLayout>
 
 #define ITEM_HEIGHT 54
 #define NUM_ITEMS_DISABLED 5
@@ -189,6 +196,47 @@ OverviewPage::OverviewPage(QWidget* parent) :
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, [this]{ coinJoinStatus(); });
+
+    // ── Ratatoskr brand strip ────────────────────────────────────
+    // Small one-line tagline + quick links above the alert area.
+    // Operator can hide permanently via Help → (toggle) or by
+    // setting QSettings key fOverviewBrandStripHidden.
+    {
+        QSettings strip_settings;
+        const bool brand_hidden = strip_settings.value(
+            "fOverviewBrandStripHidden", false).toBool();
+        if (!brand_hidden) {
+            auto *brand_strip = new QLabel(this);
+            brand_strip->setObjectName("overviewBrandStrip");
+            brand_strip->setTextFormat(Qt::RichText);
+            brand_strip->setWordWrap(true);
+            brand_strip->setOpenExternalLinks(true);
+            brand_strip->setTextInteractionFlags(
+                Qt::TextBrowserInteraction);
+            brand_strip->setText(
+                tr("🌳 <b>%1</b> — the messenger that runs the tree. "
+                   "&nbsp;&nbsp; "
+                   "<a href=\"https://ratatoskrbridge.enchantedforestdefi.com\">Bridge to Alephium</a>"
+                   " &nbsp;·&nbsp; "
+                   "<a href=\"https://discord.gg/SrffQVYqee\">Discord</a>"
+                   " &nbsp;·&nbsp; "
+                   "<a href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">Block explorer</a>")
+                    .arg(QString{PACKAGE_NAME}));
+            brand_strip->setStyleSheet(
+                "QLabel#overviewBrandStrip {"
+                "  padding: 8px 12px;"
+                "  border-radius: 6px;"
+                "  background-color: rgba(45, 83, 57, 0.08);"  // forest-green tint, theme-neutral
+                "  font-size: 11px;"
+                "}");
+
+            // Insert at the very top of topLayout, above labelAlerts
+            // (the alert label that shows network warnings, if any).
+            if (auto *vbox = qobject_cast<QVBoxLayout*>(this->layout())) {
+                vbox->insertWidget(0, brand_strip);
+            }
+        }
+    }
 }
 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)

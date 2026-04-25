@@ -106,7 +106,7 @@ void SendCoinsEntry::clear()
     ui->messageTextLabel->hide();
     ui->messageLabel->hide();
 
-    // update the display unit, to not use the default ("SMT")
+    // update the display unit, to not use the default ("RATR")
     updateDisplayUnit();
 }
 

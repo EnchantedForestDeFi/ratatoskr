@@ -39,7 +39,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.ratatoskr.Ratatoskr-Qt</string>
+  <string>com.enchantedforestdefi.Ratatoskr-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -47,7 +47,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.ratatoskr.RatatoskrPayment</string>
+      <string>com.enchantedforestdefi.RatatoskrPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>ratatoskr</string>

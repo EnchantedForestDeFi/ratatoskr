@@ -17,12 +17,12 @@ Loaded in GUIUtil::loadStyleSheet() in guitil.cpp.
 /* do not modify! section updated by update-css-files.py
 <colors>
 
-# Used colors in dark.css for commit 44de8a93f2
+# Used colors in dark.css for the Ratatoskr brand palette
 
 #00000000
 #333
-#7f7bff
-#6964e6
+#7fb88f
+#5a8c6c
 #ff9328
 #ff6e32
 #e5651f
@@ -81,7 +81,7 @@ QComboBox,
 QPlainTextEdit,
 QLineEdit {
     background-color: #2d2d2e;
-    border-color: #7f7bff;
+    border-color: #7fb88f;
     color: #c7c7c7;
 }
 
@@ -91,7 +91,7 @@ QComboBox:hover:!focus,
 QPlainTextEdit:hover:!focus,
 QLineEdit:hover:!focus {
     background-color: #2d2d2e;
-    border-color: #6964e6;
+    border-color: #5a8c6c;
 }
 
 
@@ -102,7 +102,7 @@ QComboBox:focus,
 QPlainTextEdit:focus,
 QLineEdit:focus {
     background-color: #39393b;
-    border-color: #6964e6;
+    border-color: #5a8c6c;
 }
 
 BitcoinAmountField:disabled,
@@ -282,12 +282,12 @@ QHeaderView
 ******************************************************/
 
 QHeaderView::section { /* Table Header Sections */
-    background-color: #7f7bff;
+    background-color: #7fb88f;
     color: #c7c7c7;
 }
 
 QHeaderView::section:hover { /* Table Header Sections */
-    background-color: #6964e6;
+    background-color: #5a8c6c;
     color: #c7c7c7;
 }
 
@@ -351,7 +351,7 @@ QProgressBar {
 }
 
 QProgressBar::chunk {
-    background-color: #7f7bff;
+    background-color: #7fb88f;
 }
 
 /******************************************************
@@ -368,12 +368,12 @@ QPushButton
 ******************************************************/
 
 QPushButton {
-    background-color: #7f7bff;
+    background-color: #7fb88f;
     color: #c7c7c7;
 }
 
 QPushButton:hover {
-    background-color: #6964e6;
+    background-color: #5a8c6c;
 }
 
 QPushButton:focus {
@@ -382,7 +382,7 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-    background-color: #7f7bff;
+    background-color: #7fb88f;
 }
 
 QPushButton:disabled {
@@ -513,7 +513,7 @@ QPushButton - Special case, tabbar replacement buttons
 /* Sign/Verify dialog buttons */
 #btnSignMessage,
 #btnVerifyMessage {
-    border-color: #7f7bff;
+    border-color: #7fb88f;
     color: #818181;
 }
 
@@ -553,7 +553,7 @@ QPushButton - Special case, tabbar replacement buttons
 /* Sign/Verify dialog buttons */
 #btnSignMessage:hover:!checked,
 #btnVerifyMessage:hover:!checked {
-    border-color: #7f7bff;
+    border-color: #7fb88f;
     color: #c7c7c7;
 }
 
@@ -622,10 +622,10 @@ QSlider
 ******************************************************/
 
 QSlider::handle:horizontal {
-	background-color: #7f7bff;
+	background-color: #7fb88f;
 }
 QSlider::handle:horizontal:hover {
-	background-color: #6964e6;
+	background-color: #5a8c6c;
 }
 QSlider::sub-page:horizontal {
 	background-color: #c7c7c7;
@@ -693,7 +693,7 @@ QToolBar / QToolButton
 ******************************************************/
 
 QToolBar {
-    background-color: #7f7bff;
+    background-color: #7fb88f;
 }
 
 QToolBar > QToolButton {
@@ -702,7 +702,7 @@ QToolBar > QToolButton {
 }
 
 QToolBar > QToolButton:hover:!checked {
-    background-color: #6964e6;
+    background-color: #5a8c6c;
     color: #c7c7c7;
 }
 

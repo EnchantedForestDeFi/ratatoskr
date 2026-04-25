@@ -1,4 +1,4 @@
-This directory contains the source code for the Smartiecoin Core graphical user interface (GUI). It uses the [Qt](https://www1.qt.io/developers/) cross-platform framework.
+This directory contains the source code for the Ratatoskr Core graphical user interface (GUI). It uses the [Qt](https://www1.qt.io/developers/) cross-platform framework.
 
 The current precise version for Qt 5 is specified in [qt.mk](/depends/packages/qt.mk). Qt 4 is not supported.
 
@@ -34,7 +34,7 @@ To run:
 
 #### bitcoingui.(h/cpp)
 
-- Represents the main window of the Smartiecoin UI.
+- Represents the main window of the Ratatoskr UI.
 
 #### \*model.(h/cpp)
 
@@ -50,9 +50,9 @@ To run:
 - Various dialogs, e.g. to open a URL. Inherit from [QDialog](https://doc.qt.io/qt-5/qdialog.html).
 
 #### paymentserver.(h/cpp)
-- (Deprecated) Used to process BIP21 payment URI requests. Also handles URI-based application switching (e.g. when following a smartiecoin:... link from a browser).
+- (Deprecated) Used to process BIP21 payment URI requests. Also handles URI-based application switching (e.g. when following a ratatoskr:... link from a browser).
 
-Used to process BIP21 payment URI requests. Also handles URI based application switching (e.g. when following a smartiecoin:... link from a browser).
+Used to process BIP21 payment URI requests. Also handles URI based application switching (e.g. when following a ratatoskr:... link from a browser).
 
 #### walletview.(h/cpp)
 
@@ -122,4 +122,4 @@ sudo apt-get install qtcreator
 
 8. While in the `Projects` tab, ensure that you have the `ratatoskr-qt` executable specified under `Run`
  - If the executable is not specified: click `"Choose..."`, navigate to `src/qt`, and select `ratatoskr-qt`
-9. You're all set! Start developing, building, and debugging the Smartiecoin Core GUI
+9. You're all set! Start developing, building, and debugging the Ratatoskr Core GUI

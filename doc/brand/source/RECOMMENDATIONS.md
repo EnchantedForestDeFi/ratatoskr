@@ -1,10 +1,15 @@
 # Brand Mark Selection — Working Notes
 
-Status: **iterating in Google AI**, not yet finalized. This file
-captures the four candidate marks generated in the second prompt
-cycle (the woodcut / manuscript-illumination round) and the role
-each one is best suited for. When the operator picks finals, this
-file gets updated to reflect the chosen set.
+Status: **DEPLOYED 2026-04-25.** All six candidates committed; each
+is now serving its assigned role. The wallet icon family
+(`share/pixmaps/ratatoskr*` and `src/qt/res/icons/ratatoskr.{ico,
+icns,png}`) is built from `candidate-1` (rope-cartoon, tight crop) —
+the only candidate whose silhouette survives the 16×16
+readability test. Hero illustrations live in `doc/brand/heroes/`
+and pull from candidates 2, 4, and 6. The line-art candidates
+(3, 4) and the color manuscript (2) remain in `source/` as
+working masters; candidate-5 stays as design history (superseded
+by candidate-6).
 
 For the metaphor + production spec see:
 - `../brand-direction.md` — the brand compass

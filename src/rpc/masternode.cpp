@@ -762,7 +762,7 @@ static RPCHelpMan masternodelist_composite()
 Span<const CRPCCommand> GetWalletMasternodeRPCCommands()
 {
     static const CRPCCommand commands[]{
-        {"smartiecoin", &masternode_outputs},
+        {"ratatoskr", &masternode_outputs},
     };
     return commands;
 }
@@ -771,14 +771,14 @@ Span<const CRPCCommand> GetWalletMasternodeRPCCommands()
 void RegisterMasternodeRPCCommands(CRPCTable &t)
 {
     static const CRPCCommand commands[]{
-        {"smartiecoin", &masternode_help},
-        {"smartiecoin", &masternodelist_composite},
-        {"smartiecoin", &masternodelist},
-        {"smartiecoin", &masternode_connect},
-        {"smartiecoin", &masternode_count},
-        {"smartiecoin", &masternode_status},
-        {"smartiecoin", &masternode_payments},
-        {"smartiecoin", &masternode_winners},
+        {"ratatoskr", &masternode_help},
+        {"ratatoskr", &masternodelist_composite},
+        {"ratatoskr", &masternodelist},
+        {"ratatoskr", &masternode_connect},
+        {"ratatoskr", &masternode_count},
+        {"ratatoskr", &masternode_status},
+        {"ratatoskr", &masternode_payments},
+        {"ratatoskr", &masternode_winners},
     };
     for (const auto& command : commands) {
         t.appendCommand(command.name, &command);

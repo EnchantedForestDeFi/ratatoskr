@@ -506,16 +506,16 @@ static RPCHelpMan getcoinjoininfo()
 Span<const CRPCCommand> GetWalletCoinJoinRPCCommands()
 {
     static const CRPCCommand commands[]{
-        {"smartiecoin", &coinjoin},
-        {"smartiecoin", &coinjoin_reset},
-        {"smartiecoin", &coinjoin_start},
-        {"smartiecoin", &coinjoin_status},
-        {"smartiecoin", &coinjoin_stop},
-        {"smartiecoin", &coinjoinsalt},
-        {"smartiecoin", &coinjoinsalt_generate},
-        {"smartiecoin", &coinjoinsalt_get},
-        {"smartiecoin", &coinjoinsalt_set},
-        {"smartiecoin", &getcoinjoininfo},
+        {"ratatoskr", &coinjoin},
+        {"ratatoskr", &coinjoin_reset},
+        {"ratatoskr", &coinjoin_start},
+        {"ratatoskr", &coinjoin_status},
+        {"ratatoskr", &coinjoin_stop},
+        {"ratatoskr", &coinjoinsalt},
+        {"ratatoskr", &coinjoinsalt_generate},
+        {"ratatoskr", &coinjoinsalt_get},
+        {"ratatoskr", &coinjoinsalt_set},
+        {"ratatoskr", &getcoinjoininfo},
     };
     return commands;
 }
@@ -524,7 +524,7 @@ Span<const CRPCCommand> GetWalletCoinJoinRPCCommands()
 void RegisterCoinJoinRPCCommands(CRPCTable& t)
 {
     static const CRPCCommand commands_wallet[]{
-        {"smartiecoin", &getcoinjoininfo},
+        {"ratatoskr", &getcoinjoininfo},
     };
     // If we aren't compiling with wallet support, we still need to register RPCs that are
     // capable of working without wallet support. We have to do this even if wallet support

@@ -1022,10 +1022,10 @@ static RPCHelpMan getsuperblockbudget()
 Span<const CRPCCommand> GetWalletGovernanceRPCCommands()
 {
     static const CRPCCommand commands[]{
-        {"smartiecoin", &gobject_prepare},
-        {"smartiecoin", &gobject_list_prepared},
-        {"smartiecoin", &gobject_vote_many},
-        {"smartiecoin", &gobject_vote_alias},
+        {"ratatoskr", &gobject_prepare},
+        {"ratatoskr", &gobject_list_prepared},
+        {"ratatoskr", &gobject_vote_many},
+        {"ratatoskr", &gobject_vote_alias},
     };
     return commands;
 }
@@ -1034,18 +1034,18 @@ Span<const CRPCCommand> GetWalletGovernanceRPCCommands()
 void RegisterGovernanceRPCCommands(CRPCTable &t)
 {
     static const CRPCCommand commands[]{
-        {"smartiecoin", &getgovernanceinfo},
-        {"smartiecoin", &getsuperblockbudget},
-        {"smartiecoin", &gobject},
-        {"smartiecoin", &gobject_count},
-        {"smartiecoin", &gobject_deserialize},
-        {"smartiecoin", &gobject_check},
-        {"smartiecoin", &gobject_submit},
-        {"smartiecoin", &gobject_list},
-        {"smartiecoin", &gobject_diff},
-        {"smartiecoin", &gobject_get},
-        {"smartiecoin", &gobject_getcurrentvotes},
-        {"smartiecoin", &voteraw},
+        {"ratatoskr", &getgovernanceinfo},
+        {"ratatoskr", &getsuperblockbudget},
+        {"ratatoskr", &gobject},
+        {"ratatoskr", &gobject_count},
+        {"ratatoskr", &gobject_deserialize},
+        {"ratatoskr", &gobject_check},
+        {"ratatoskr", &gobject_submit},
+        {"ratatoskr", &gobject_list},
+        {"ratatoskr", &gobject_diff},
+        {"ratatoskr", &gobject_get},
+        {"ratatoskr", &gobject_getcurrentvotes},
+        {"ratatoskr", &voteraw},
     };
     for (const auto& command : commands) {
         t.appendCommand(command.name, &command);

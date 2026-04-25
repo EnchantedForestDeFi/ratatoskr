@@ -64,8 +64,8 @@ static RPCHelpMan debug()
             RPCResult::Type::STR, "result", "\"Debug mode: \" followed by the specified category",
         },
         RPCExamples {
-            HelpExampleCli("debug", "smartiecoin")
-    + HelpExampleRpc("debug", "smartiecoin+net")
+            HelpExampleCli("debug", "ratatoskr")
+    + HelpExampleRpc("debug", "ratatoskr+net")
         },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
@@ -1172,9 +1172,9 @@ static const CRPCCommand commands[] =
     { "addressindex",       &getaddressbalance,       },
 
     /* Smartiecoin features */
-    { "smartiecoin",               &mnsync,                  },
-    { "smartiecoin",               &spork,                   },
-    { "smartiecoin",               &sporkupdate,             },
+    { "ratatoskr",               &mnsync,                  },
+    { "ratatoskr",               &spork,                   },
+    { "ratatoskr",               &sporkupdate,             },
 
     /* Not shown in help */
     { "hidden",             &setmocktime,             },

@@ -20,8 +20,8 @@ enum class LLMQType : uint8_t {
     LLMQ_100_67 = 4, // 100 members, 67 (67%) threshold, one per hour
     LLMQ_60_75 = 5,  // 60 members, 45 (75%) threshold, one every 12 hours
     LLMQ_25_67 = 6, // 25 members, 17 (67%) threshold, one per hour
-    LLMQ_10_60 = 7, // 10 members, 6 (60%) threshold, one per hour (Smartiecoin small-network)
-    LLMQ_10_75 = 8, // 10 members, 8 (75%) threshold, rotated (Smartiecoin InstantSend)
+    LLMQ_10_60 = 7, // 10 members, 6 (60%) threshold, one per hour (small-network, Ratatoskr/Smartiecoin lineage)
+    LLMQ_10_75 = 8, // 10 members, 8 (75%) threshold, rotated (small-network InstantSend, Ratatoskr/Smartiecoin lineage)
 
     // for testing only
     LLMQ_TEST = 100, // 3 members, 2 (66%) threshold, one per hour. Params might differ when -llmqtestparams is used
@@ -187,7 +187,7 @@ static constexpr std::array<LLMQParams, 16> available_llmqs = {
     },
 
     /**
-     * llmq_test (Smartiecoin Core 0.17) aka llmq_test_v17
+     * llmq_test_v17 — added in Dash Core 0.17 lineage
      * This quorum is only used for testing
      *
      */
@@ -454,7 +454,7 @@ static constexpr std::array<LLMQParams, 16> available_llmqs = {
      * This quorum is deployed on mainnet and requires
      * 80 - 100 participants
      *
-     * Used by Smartiecoin Platform
+     * Used by Ratatoskr Platform (EvoNode L2 layer, post-launch)
      */
     LLMQParams{
         .type = LLMQType::LLMQ_100_67,
@@ -482,7 +482,7 @@ static constexpr std::array<LLMQParams, 16> available_llmqs = {
      * This quorum is deployed on Testnet and requires
      * 25 participants
      *
-     * Used by Smartiecoin Platform
+     * Used by Ratatoskr Platform (EvoNode L2 layer, post-launch)
      */
     LLMQParams{
         .type = LLMQType::LLMQ_25_67,
@@ -507,7 +507,7 @@ static constexpr std::array<LLMQParams, 16> available_llmqs = {
 
     /**
      * llmq_10_60
-     * Smartiecoin small-network quorum for ChainLocks and general signing
+     * Small-network quorum for ChainLocks (Ratatoskr/Smartiecoin lineage) and general signing
      * Suitable for networks with 15+ masternodes
      */
     LLMQParams{
@@ -533,7 +533,7 @@ static constexpr std::array<LLMQParams, 16> available_llmqs = {
 
     /**
      * llmq_10_75
-     * Smartiecoin small-network rotated quorum for InstantSend (DIP0024)
+     * Small-network rotated quorum for InstantSend (Ratatoskr/Smartiecoin lineage) (DIP0024)
      * Suitable for networks with 15+ masternodes
      */
     LLMQParams{

@@ -62,28 +62,29 @@ The 25,000-block delay on MN payments (~17 days at 60-second blocks) gives
 hashrate time to stabilize and the early mining community to establish
 before MN economics go live.
 
-## Changes from Smartiecoin v0.2.0 baseline
+## Configuration & consensus
 
 ### Identity & installation
-- New network magic bytes (`ac c0 f0 52` mainnet, `ad c1 f1 53` testnet)
-  so Ratatoskr nodes and SMT nodes cannot connect to each other
-- New P2P port 9393 (testnet 19393)
+- Network magic bytes: `ac c0 f0 52` (mainnet), `ad c1 f1 53` (testnet)
+  — distinct from upstream so Ratatoskr nodes form their own network
+- P2P port 9393 (testnet 19393)
 - Address prefix 60 (addresses start with `R`)
 - BIP44 coin type 530 (SLIP-0044 registration target)
 - Config file: `ratatoskr.conf`
 - Data directory: `RatatoskrCore` (Windows/macOS) / `.ratatoskrcore` (Linux)
 - Binary names: `ratatoskrd`, `ratatoskr-qt`, `ratatoskr-cli`, etc.
 
-### Consensus changes
-- **Reward split**: 60% miner / 30% MN / 10% treasury (was SMT's 45/45/10
-  schedule). The legacy Dash Block Reward Reallocation (BRR) code and
-  SMT v0.1.4 reward schedule have been removed.
-- **MN collateral**: 7,500 RATR for Regular, 30,000 RATR for EvoNode
-  (was SMT's 15,000 / 75,000). Chosen to sit between Dash (0.0056% of
-  supply per MN) and Firo (0.0047%) — the two longest-surviving MN coins.
-- **EvoNode voting weight**: 4× (was 5× in SMT; matches Dash's proven ratio).
-- **MN payments activation**: block 25,000 (was block 50).
-- **First superblock**: block 30,000 (was 27,700).
+### Consensus parameters
+- **Reward split**: 60% miner / 30% MN / 10% treasury. The legacy Dash
+  Block Reward Reallocation (BRR) code is not active in v1.0.
+- **MN collateral**: 7,500 RATR for Regular, 30,000 RATR for EvoNode.
+  Chosen to sit between Dash (0.0056% of supply per MN) and Firo
+  (0.0047%) — the two longest-surviving MN coins.
+- **EvoNode voting weight**: 4× (matches Dash's proven ratio).
+- **MN payments activation**: block 25,000 — gives early hashrate time
+  to stabilise before MN economics go live.
+- **First superblock**: block 30,000 (mainnet superblocks disabled in
+  v1.0 — see Treasury section for the per-block drip model).
 
 ### Treasury
 - 10% of every block subsidy flows continuously to a treasury wallet

@@ -68,8 +68,9 @@ Ratatoskr bakes a different social contract into consensus:
 ### Bridge users
 
 - Alephium bridge live at launch. Wrap RATR → wRATR and back.
-- Alephium side operated by the same team as the proven Smartiecoin ↔
-  Alephium bridge (running since April 2026, bidirectional verified).
+- Bridge architecture is the same proven design that runs the Smartiecoin ↔
+  Alephium bridge in production (live since April 2026, bidirectional
+  verified).
 
 ### Pool operators
 

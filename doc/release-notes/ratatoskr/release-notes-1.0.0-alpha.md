@@ -87,18 +87,20 @@ before MN economics go live.
 
 ### Treasury
 - 10% of every block subsidy flows continuously to a treasury wallet
-  (hardware-wallet-secured, single-sig at v1.0 — see limitations below).
-- Treasury purpose: primarily Elexium gauge participation (EX lock ladder,
-  protocol-owned liquidity in wRATR/NUTTY pool, tactical bribes), plus
-  operational needs.
-- Primary LP pair at launch: wRATR/NUTTY on Elexium (operator controls
-  both sides of the pair). Future pairs (wRATR/ALPH, wRATR/EX, wRATR/USDC)
-  optional expansion based on partnership interest.
+  (hardware-wallet-secured at v1.0; multisig migration is on the
+  post-launch roadmap — see limitations below).
+- Treasury purpose: Alephium DeFi ecosystem participation (gauge
+  incentives where available, liquidity provisioning for wRATR trading
+  pairs), bridge infrastructure costs, and operational needs.
+- Initial wRATR liquidity will be seeded on an Alephium DEX venue at
+  launch. Pair selection and venue will reflect ecosystem conditions
+  at the time. Additional pairs are expected to emerge as usage grows.
 - Monthly on-chain treasury reports posted publicly. All treasury
   addresses public from launch.
-- Routine bribe + LP deployment at operator discretion within documented
-  scope; anything outside this scope (audits, listings, NFT program,
-  etc.) requires masternode vote.
+- Liquidity provisioning and ecosystem participation are routine
+  treasury operations within documented scope; anything outside this
+  scope (audits, listings, NFT program, etc.) requires masternode
+  vote.
 
 ### Roadmap: NFTs as a revenue stream for miners (Phase 3)
 

@@ -97,10 +97,10 @@ Why now and not later:
 ### T+0 to T+~5 days (blocks 0 → 7,500): Pure-PoW window
 
 - Chain runs on PoW security alone. No ChainLocks yet.
-- This is the **MRR defensive-rental window** per
-  `mrr_launch_day_playbook.md`. Operator should have rented hashrate
-  pointed at the chain to defend against 51% attacks during this
-  period.
+- This is the most attack-sensitive window of the launch — PoW is
+  the only consensus mechanism until ChainLocks come online at block
+  7,500. Operators of small chains commonly supplement security with
+  rented hashrate or other defensive measures during this period.
 - No additional spork action.
 - Monitor via `getmininginfo` (network hashrate), `protx list`
   (active MNs), and `quorum dkgstatus` (DKG progress — should
@@ -131,8 +131,9 @@ What to do:
 3. **Verify ChainLocks are firing** by watching `getblockchaininfo`
    or `getbestchainlock` for a few blocks after enabling. You should
    see chainlocks appear within minutes if quorums are healthy.
-4. **Once stable, wind down the MRR rental.** ChainLocks now provide
-   the 51%-attack protection that the rental was substituting for.
+4. **Once ChainLocks are stable, any supplemental defensive
+   hashrate is no longer required** — ChainLocks now provide the
+   51%-attack protection that pure PoW was carrying alone.
 
 ### T+~6-7 days (block ~10,000): Enable PoSe
 

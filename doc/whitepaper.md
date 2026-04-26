@@ -11,8 +11,8 @@ Ratatoskr (RATR) is a small, opinionated yespower proof-of-work cryptocurrency
 with deterministic masternodes, a consensus-enforced per-block treasury drip,
 bounded governance, and a native bridge to Alephium.
 
-It is a technical fork of Smartiecoin v0.2.0 — itself a Dash derivative —
-with tokenomics deliberately rebalanced around two lessons from prior
+It builds on the Dash Core code lineage, with tokenomics deliberately
+rebalanced around two lessons from prior
 masternode-coin failures: **miners must remain profitable for the network
 to stay secure**, and **governance must not be able to extract value from
 the people securing the network**. Neither is aspirational here; both are
@@ -91,10 +91,10 @@ floors. No single vote can radically reshape the economy.
 
 Ratatoskr launches with a native bridge to Alephium, giving the coin immediate
 utility beyond speculative mining. Through a single bridge hop, RATR holders
-reach an established DeFi ecosystem (Elexium gauge-voted DEX, NUTTY community
-token, bridged-in majors and stables) — and through Alephium's own bridge
-infrastructure, Ethereum and BSC presence without needing Ratatoskr-operated
-EVM bridges. See §6 for the full architecture.
+reach an established DeFi ecosystem — Alephium DEX venues, Alephium-native
+community tokens, and bridged-in majors and stables — and through Alephium's
+own bridge infrastructure, Ethereum and BSC presence without needing
+Ratatoskr-operated EVM bridges. See §6 for the full architecture.
 
 ### 2.6 Accessible Mining
 
@@ -203,12 +203,13 @@ early mining community to establish before MN economics go live.
 
 The 60/30/10 ratio is informed by three data points. First, Dash's long
 operational history under varied reward splits. Second, Firo's steady-state
-configuration, which has survived several market cycles. Third, the recent
-trajectory of SMT — Ratatoskr's immediate fork source — where an April 2026
-governance vote shifted the split to 18/72/10, cutting miner rewards
-approximately 60% overnight. That outcome is the specific case study behind
-§1's "extractive governance" argument and is referenced here without hostility:
-it simply illustrates the pattern the design prevents.
+configuration, which has survived several market cycles. Third, recent
+patterns observed in the broader masternode-coin space, where governance
+votes have shifted reward splits substantially in ways that compressed
+miner profitability and weakened PoW security. Those patterns are the
+specific case studies behind §1's "extractive governance" argument and
+are referenced here without hostility — they illustrate the dynamics the
+design prevents.
 
 Comparative analysis of active and failed masternode coins suggests
 sustainable equilibria cluster in the 50/35/15 to 65/25/10 band. 60/30/10
@@ -238,9 +239,9 @@ v1.1 introduces governance-editable reward splits with consensus guardrails:
 - **60% supermajority** of voting weight required
 - **Phased quorum requirement**: 20% at launch → 25% at growth → 30% at maturity
 
-This structure is designed to prevent the "governance death spiral" observed
-in SMT, ESBC, and other failed projects, where a simple-majority MN vote
-can instantly reshape miner economics.
+This structure is designed to prevent the "governance death spiral"
+observed in past masternode-coin failures, where a simple-majority MN
+vote can instantly reshape miner economics.
 
 ### 5.3 MN Collateral Adjustments (v1.1+)
 
@@ -315,10 +316,10 @@ does as cleanly:
   ERC-20 simulacra
 - **Low transaction fees** (sub-cent typical) — bridging economics work
   for small transactions, not just whales
-- **Established DeFi ecosystem** — Elexium (ve(3,3) DEX with gauge
-  voting, bribes, and EX emissions); PowFi (Alephium-native DEX from
-  the core team, currently on testnet); multi-chain bridged assets
-  (wBTC, wETH, wUSDC, wUSDT, wBNB) accessible on Alephium via
+- **Established DeFi ecosystem** — multiple DEX venues operating on
+  Alephium today plus PowFi (Alephium-native DEX from the core team,
+  currently on testnet); multi-chain bridged assets (wBTC, wETH,
+  wUSDC, wUSDT, wBNB) accessible on Alephium via
   `bridge.alephium.org` — the same bridge we adopt for cross-chain
   wRATR access (§6.3)
 - **Four+ years of production operation** with active development, real
@@ -361,23 +362,23 @@ Users who want wRATR on Ethereum or BSC are free to use Alephium Bridge
 at any time after wRATR-Alephium exists. This post-launch workflow is
 documented separately.
 
-### 6.4 Primary liquidity: Elexium
+### 6.4 Trading liquidity
 
-The primary liquidity pair at launch is **wRATR / NUTTY** on Elexium,
-with a **wRATR / wUSDC** stable pair added for price discovery.
+wRATR is designed to be tradable on Alephium DEX venues. The Alephium
+DeFi landscape includes ve(3,3) DEX infrastructure already operating on
+mainnet, PowFi (an Alephium-native DEX from the core team, currently on
+testnet), and a range of community tokens and bridged majors and stables
+(ALPH, NUTTY, wBTC, wETH, wUSDC, wUSDT, wBNB).
 
-NUTTY is a community token operated by the same team and already trades
-across multiple Elexium pools — NUTTY/ALPH (with an active gauge vote),
-NUTTY/EX, NUTTY/USDC.eth, and NUTTY/wSMT — meaning any holder of ALPH,
-EX, USDC, or wSMT can route into wRATR through NUTTY from day one,
-without waiting for additional direct wRATR legs to be seeded.
-
-NUTTY is also used to bootstrap voting incentives on the wRATR pool
-through self-minted bribes — a low-cost mechanism to direct Elexium EX
-emissions toward the new pool while organic liquidity accumulates. As
-usage grows, additional direct pairs (wRATR/ALPH, wRATR/wETH, wRATR/wBTC)
-are expected to emerge and concentrate rather than fragment liquidity,
-because all of them live on the same venue.
+Initial wRATR liquidity will be seeded on Alephium ve(3,3) DEX
+infrastructure against an appropriate Alephium-native asset at launch.
+The specific pairing and venue selection will reflect ecosystem
+conditions at the time — gauge-vote whitelist availability, relative
+liquidity depth, and routing efficiency for incoming flow. Additional
+direct pairs (wRATR/ALPH, wRATR/wETH, wRATR/wBTC, wRATR/wUSDC) are
+expected to emerge as usage grows, with a deliberate preference for
+concentration on a primary venue rather than fragmentation across
+many.
 
 ### 6.5 What's explicitly not built
 
@@ -385,9 +386,10 @@ To be clear on scope:
 
 - **No independent RATR ↔ Ethereum bridge.** Alephium Bridge handles it.
 - **No independent RATR ↔ BSC bridge.** Same.
-- **No Uniswap/PancakeSwap pools as primary markets.** Elexium is the
-  primary venue. Secondary-chain pools may emerge organically post-launch
-  but are not a project-operated priority.
+- **No Uniswap/PancakeSwap pools as primary markets at launch.** Alephium
+  DEX venues are the primary trading layer. Secondary-chain pools may
+  emerge organically post-launch but are not a project-operated priority
+  in v1.0.
 
 This is a concentration-over-expansion bet. If real demand for native
 cross-chain bridges materialises post-launch, the decision is
@@ -401,8 +403,8 @@ revisitable; until then, depth on one venue beats dispersion across many.
 
 Treasury funds support the ongoing operational needs of the ecosystem:
 
-- Alephium gauge participation (EX lock ladder, bribes to wRATR pools)
-- Protocol-owned liquidity in wRATR pairs
+- Alephium DeFi ecosystem participation (gauge incentives where available,
+  liquidity provisioning for wRATR trading pairs)
 - Bridge infrastructure operational costs
 - Community development and grants (post v1.1 via governance)
 - Audit funding (Phase 2 roadmap item)
@@ -487,7 +489,7 @@ commitment to build it in its current form.
 - Mainnet launch June 1, 2026
 - Linux, Windows, macOS binaries (Linux + Windows at launch; macOS soon after)
 - Bridge to Alephium live day one
-- wRATR/NUTTY pool seeded on Elexium
+- Initial wRATR liquidity seeded on Alephium DEX venue
 - Mining via partner pool (stratum) and daemon internal miner
 - 3+ seed nodes online
 
@@ -569,10 +571,10 @@ more capital than they can afford to lose.
 
 ## 10. Team and Transparency
 
-Ratatoskr is operated by the same team behind the Smartiecoin ↔ Alephium
-bridge, which has run on mainnet since Q1 2026 (bidirectional operation
-verified April 2026) without custodial incident. The operator is a single
-individual with published contact points:
+Ratatoskr is operated by a single individual under the EnchantedForestDeFi
+umbrella. The operator's bridge architecture has been deployed and
+verified on prior production cross-chain infrastructure with bidirectional
+operation and no custodial incident. Published contact points:
 
 - GitHub organisation: `EnchantedForestDeFi`
 - Email: `NexusAether@protonmail.com`
@@ -609,9 +611,9 @@ gradually or not at all. Name the known attack vectors — treasury-MN
 voting concentration, rental-hash disruption, superblock extraction — and
 structurally prevent them rather than hope they stay theoretical.
 
-The bridge to Alephium provides immediate utility beyond mining. Elexium
-pools offer multi-asset exposure without cross-chain complexity. The
-roadmap (audit, v1.1 governance activation, multisig treasury, Phase 3
+The bridge to Alephium provides immediate utility beyond mining. Alephium
+DeFi venues offer multi-asset exposure without cross-chain complexity.
+The roadmap (audit, v1.1 governance activation, multisig treasury, Phase 3
 community features) defines a credible path from a solo-operated alpha to
 a maturing decentralised system.
 
@@ -622,13 +624,11 @@ The chain starts on **June 1, 2026, 00:00 UTC**. See you at block 1. 🐿️
 ## Appendix A: Relevant References
 
 - Dash Core Documentation: https://dash.org/
-- Smartiecoin (fork source): https://github.com/SmartiesCoin/Smartiecoin
 - yespower: https://www.openwall.com/yespower/
 - Alephium: https://alephium.org/
 - Alephium whitepaper (BlockFlow + protocol spec): https://github.com/alephium/white-paper
 - Alephium tokenomics (official, supply schedule + genesis allocation): https://medium.com/@alephium/tokenomics-of-alephium-61d59b51029c
 - Alephium Bridge (official cross-chain path, Wormhole-fork): https://bridge.alephium.org/
-- Elexium: https://elexium.finance/
 - PowFi (Alephium-native DEX, testnet): https://powfi.alephium.org/
 - EnchantedForestDeFi: https://enchantedforestdefi.com
 

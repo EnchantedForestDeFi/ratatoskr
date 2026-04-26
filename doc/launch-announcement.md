@@ -68,9 +68,8 @@ Ratatoskr bakes a different social contract into consensus:
 ### Bridge users
 
 - Alephium bridge live at launch. Wrap RATR → wRATR and back.
-- Bridge architecture is the same proven design that runs the Smartiecoin ↔
-  Alephium bridge in production (live since April 2026, bidirectional
-  verified).
+- Bridge architecture has been deployed and verified in production
+  since April 2026 (bidirectional operation, no custodial incident).
 
 ### Pool operators
 
@@ -111,11 +110,11 @@ Every drip is visible on-chain in real time; any wallet can verify
 
 ## Team & transparency
 
-Ratatoskr is built by the same operator who runs the
-Smartiecoin ↔ Alephium bridge (live on mainnet, bidirectional verified
-April 2026). Code is a small delta on top of the well-audited Dash
-codebase — RATR-specific consensus changes are documented in
-`doc/pool-operator-spec.md` and the whitepaper.
+Ratatoskr is built by an operator with production cross-chain bridge
+infrastructure already running on Alephium since April 2026 (bidirectional
+operation, no custodial incident). Code is a small delta on top of the
+well-audited Dash codebase — RATR-specific consensus changes are documented
+in `doc/pool-operator-spec.md` and the whitepaper.
 
 **Alpha caveats (honest list):**
 

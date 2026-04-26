@@ -44,6 +44,7 @@ enum SporkId : int32_t {
     SPORK_21_QUORUM_ALL_CONNECTED                          = 10020,
     SPORK_23_QUORUM_POSE                                   = 10022,
     // SPORK_24_DEPRECATED = 10023,
+    SPORK_25_MN_PAYMENT_BPS                                = 10024,
 
     SPORK_INVALID                                          = -1,
 };
@@ -69,7 +70,7 @@ struct CSporkDef
 };
 
 #define MAKE_SPORK_DEF(name, defaultValue) CSporkDef{name, defaultValue, #name}
-[[maybe_unused]] static constexpr std::array<CSporkDef, 7> sporkDefs = {
+[[maybe_unused]] static constexpr std::array<CSporkDef, 8> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_2_INSTANTSEND_ENABLED,            4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_3_INSTANTSEND_BLOCK_FILTERING,    4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_9_SUPERBLOCKS_ENABLED,            4070908800ULL), // OFF
@@ -77,6 +78,13 @@ struct CSporkDef
     MAKE_SPORK_DEF(SPORK_19_CHAINLOCKS_ENABLED,            4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_21_QUORUM_ALL_CONNECTED,          4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_23_QUORUM_POSE,                   4070908800ULL), // OFF
+    // Ratatoskr governance-adjustable MN payment share, in basis points (1bp = 0.01%).
+    // Default 3000bp = 30% of TOTAL block subsidy (matches 60/30/10 launch design).
+    // Consensus-clamped to [2000, 4000]bp = [20%, 40%] of total. See validation.cpp
+    // GetMasternodePayment() and doc/whitepaper.md §4 for the floor rationale.
+    // Operator self-disciplines to 5pp per change as gradualism cap (formalised in
+    // v1.1 governance migration). Out-of-range or unset values fall back to 3000bp.
+    MAKE_SPORK_DEF(SPORK_25_MN_PAYMENT_BPS,                3000ULL),       // ON @ default 30% MN share
 };
 #undef MAKE_SPORK_DEF
 

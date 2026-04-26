@@ -33,6 +33,9 @@
 #include <script/script.h>
 #include <script/sigcache.h>
 #include <shutdown.h>
+#include <spork.h>
+
+#include <atomic>
 
 #include <timedata.h>
 #include <tinyformat.h>
@@ -1598,22 +1601,68 @@ CAmount GetBlockSubsidy(const CBlockIndex* const pindex, const Consensus::Params
     return GetBlockSubsidyInner(pindex->pprev->nBits, pindex->pprev->nHeight, consensusParams, isV20Active);
 }
 
+// SetGetMasternodePaymentSporkManager / GetMasternodePayment singleton wiring.
+//
+// We intentionally use a file-scope pointer rather than threading
+// CSporkManager& through every call site of GetMasternodePayment() (there are
+// ~11 of them across consensus, miner, credit-pool, and tests). Bitcoin Core
+// has been refactoring away from globals, but the cost of full DI here is
+// touching CCreditPoolDiff, GetCreditPoolDiffForBlock, BlockAssembler, and
+// 2 test-fixture files — high blast radius for pre-launch. Singleton with a
+// nullptr-safe fallback to the consensus default is the pragmatic choice for
+// v1.0; v1.1 governance migration will refactor this to proper DI.
+namespace {
+    std::atomic<const CSporkManager*> g_mn_payment_sporkman{nullptr};
+}
+
+void SetGetMasternodePaymentSporkManager(const CSporkManager* sporkman)
+{
+    g_mn_payment_sporkman.store(sporkman, std::memory_order_release);
+}
+
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue, bool fV20Active)
 {
-    // Ratatoskr fixed reward split (active from block 0):
+    // Ratatoskr governance-adjustable reward split:
     //   Total subsidy = 100%
     //     Treasury: 10% (deducted upstream; arrives here as blockValue already reduced)
-    //     Miner:    60% of total = 2/3 of (post-treasury) blockValue
-    //     MN:       30% of total = 1/3 of (post-treasury) blockValue
+    //     Miner:    [50%, 70%] of total
+    //     MN:       [20%, 40%] of total  <-- adjustable via SPORK_25_MN_PAYMENT_BPS
     //
-    // Consensus-enforced floors: miner >= 50%, MN >= 20% (see governance validator).
-    // No single proposal may shift split by more than 5 percentage points (gradualism cap).
+    // Default split (block 0, before any spork): MN = 30% of total -> 60/30/10 baseline.
+    //
+    // SPORK_25_MN_PAYMENT_BPS encodes the MN share in basis points (10000 = 100%).
+    // Default 3000bp = 30%. Consensus-clamped to [2000, 4000]bp -> [20%, 40%].
+    // Out-of-range or otherwise-unset values (including spork manager not yet
+    // injected, e.g. during early init or in test fixtures) fall back to 3000bp.
+    //
+    // Operator self-disciplines to a 5-percentage-point cap per spork update as
+    // gradualism guidance (formalised structurally in v1.1 governance migration).
+    //
+    // Math: blockValue is post-treasury (90% of total subsidy).
+    //   MN payment = (mnShareBps * blockValue) / 9000
+    //   At default 3000bp: (3000 * blockValue) / 9000 = blockValue / 3 (legacy parity)
     //
     // The nHeight / fV20Active parameters are kept for ABI compatibility with
-    // callers but are intentionally unused on Ratatoskr — the split is fixed.
+    // callers but are intentionally unused on Ratatoskr.
     (void)nHeight;
     (void)fV20Active;
-    return blockValue / 3;
+
+    constexpr int64_t kDefaultBps = 3000; // 30%
+    constexpr int64_t kFloorBps   = 2000; // 20% (MN share floor)
+    constexpr int64_t kCeilingBps = 4000; // 40% (MN share ceiling = miner floor 50% complement to treasury 10%)
+
+    int64_t mnShareBps = kDefaultBps;
+    if (const CSporkManager* sporkman = g_mn_payment_sporkman.load(std::memory_order_acquire)) {
+        const int64_t spork_value = sporkman->GetSporkValue(SPORK_25_MN_PAYMENT_BPS);
+        if (spork_value >= kFloorBps && spork_value <= kCeilingBps) {
+            mnShareBps = spork_value;
+        }
+        // Out-of-range or sentinel: keep default. (Sporks default to 4070908800
+        // for OFF, and to 3000 for SPORK_25's "use default" sentinel — both fall
+        // outside [2000, 4000] except SPORK_25's default which equals kDefaultBps.)
+    }
+
+    return (blockValue * mnShareBps) / 9000;
 }
 
 CoinsViews::CoinsViews(

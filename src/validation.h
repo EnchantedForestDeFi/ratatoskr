@@ -54,6 +54,7 @@ class CMNHFManager;
 class CTxMemPool;
 class TxValidationState;
 class CChainstateHelper;
+class CSporkManager;
 class ChainstateManager;
 struct PrecomputedTransactionData;
 struct ChainTxData;
@@ -154,6 +155,13 @@ CAmount GetBlockSubsidyInner(int nPrevBits, int nPrevHeight, const Consensus::Pa
 CAmount GetSuperblockSubsidyInner(int nPrevBits, int nPrevHeight, const Consensus::Params& consensusParams, bool fV20Active);
 CAmount GetBlockSubsidy(const CBlockIndex* const pindex, const Consensus::Params& consensusParams);
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue, bool fV20Active);
+
+// Inject the chain's CSporkManager so GetMasternodePayment() can read
+// SPORK_25_MN_PAYMENT_BPS without requiring every call-site to thread the
+// dependency through. Call once during node init after NodeContext.sporkman
+// is constructed; pass nullptr at shutdown. If never called, GetMasternodePayment
+// falls back to the consensus default (30% MN share = 60/30/10 split).
+void SetGetMasternodePaymentSporkManager(const CSporkManager* sporkman);
 
 bool AbortNode(BlockValidationState& state, const std::string& strMessage, const bilingual_str& userMessage = bilingual_str{});
 

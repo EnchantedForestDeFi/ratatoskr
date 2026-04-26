@@ -373,6 +373,10 @@ void PrepareShutdown(NodeContext& node)
     node.observer_ctx.reset();
     node.active_ctx.reset();
     node.mn_sync.reset();
+    // Detach the validation::GetMasternodePayment() spork manager pointer
+    // BEFORE destroying node.sporkman to avoid use-after-free during late
+    // consensus paths.
+    SetGetMasternodePaymentSporkManager(nullptr);
     node.sporkman.reset();
     node.govman.reset();
     node.netfulfilledman.reset();
@@ -1692,6 +1696,10 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
     assert(!node.sporkman);
     node.sporkman = std::make_unique<CSporkManager>();
     node.chainlocks = std::make_unique<chainlock::Chainlocks>(*node.sporkman);
+
+    // Wire SPORK_25_MN_PAYMENT_BPS into validation::GetMasternodePayment().
+    // Cleared in shutdown via SetGetMasternodePaymentSporkManager(nullptr).
+    SetGetMasternodePaymentSporkManager(node.sporkman.get());
 
     std::vector<std::string> vSporkAddresses;
     if (args.IsArgSet("-sporkaddr")) {

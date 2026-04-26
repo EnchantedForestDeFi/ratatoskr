@@ -234,6 +234,7 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName, const std::ve
     m_node.netfulfilledman = std::make_unique<CNetFulfilledRequestManager>();
     m_node.sporkman = std::make_unique<CSporkManager>();
     m_node.chainlocks = std::make_unique<chainlock::Chainlocks>(*m_node.sporkman);
+    SetGetMasternodePaymentSporkManager(m_node.sporkman.get());
     m_node.evodb = std::make_unique<CEvoDB>(util::DbWrapperParams{.path = m_node.args->GetDataDirNet(), .memory = true, .wipe = true});
 
     static bool noui_connected = false;
@@ -253,6 +254,7 @@ BasicTestingSetup::~BasicTestingSetup()
     gArgs.ClearArgs();
 
     m_node.evodb.reset();
+    SetGetMasternodePaymentSporkManager(nullptr);
     m_node.sporkman.reset();
     m_node.netfulfilledman.reset();
     m_node.mn_metaman.reset();

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ratatoskr · Mainnet Launch 2026-06-01</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Ratatoskr (RATR) — yespower CPU-mineable masternode coin with native Alephium bridge. Mainnet launches 2026-06-01.">
+<meta property="og:title" content="Ratatoskr · Mainnet Launch 2026-06-01">
+<meta property="og:description" content="The squirrel-messenger of Yggdrasil. yespower CPU PoW + DIP3 masternodes + native Alephium bridge.">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg-0:#0a1410; --bg-1:#0f1a14; --panel:rgba(20,32,24,.72); --panel-b:rgba(127,184,143,.18);
+    --text:#e8ecea; --muted:#8aa295; --green:#7fb88f; --green-d:#5a8c6c; --gold:#f0b67f;
+    --orange:#ffa55a; --blue:#8bb8ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(ellipse at top,#143020 0%,var(--bg-0) 60%) fixed;color:var(--text);font-family:'Inter','Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+  body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(127,184,143,.06) 0%,transparent 40%),radial-gradient(circle at 80% 70%,rgba(240,182,127,.05) 0%,transparent 45%);pointer-events:none;z-index:0}
+  main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:48px 28px 72px}
+  header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#7fb88f,#5a8c6c);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 6px 24px rgba(127,184,143,.25)}
+  .brand-text{display:flex;flex-direction:column}
+  .brand-name{font-family:'Cinzel Decorative','Cinzel',serif;font-weight:700;font-size:18px;letter-spacing:.5px;color:var(--text)}
+  .brand-sub{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .nav-links{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:50px;border:1px solid var(--panel-b);background:var(--panel);color:var(--text);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;transition:border-color .2s,background .2s}
+  .pill:hover{border-color:rgba(127,184,143,.4);background:rgba(127,184,143,.08)}
+  .pill.discord{border-color:rgba(88,101,242,.35);color:#a5b1ff;background:rgba(88,101,242,.08)}
+  .pill.discord:hover{background:rgba(88,101,242,.18)}
+
+  .hero{text-align:center;padding:32px 0 16px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:50px;background:rgba(255,165,0,.08);border:1px solid rgba(255,165,0,.35);color:#ffd27a;font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange)}
+  h1{font-family:'Cinzel Decorative','Cinzel',serif;font-size:54px;line-height:1.05;margin:0 0 14px;font-weight:700;background:linear-gradient(135deg,#fff 0%,#a5cdb1 60%,#7fb88f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.5px}
+  .tagline{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto 8px;line-height:1.55}
+  .lineage{font-size:13px;color:var(--green);margin-top:10px;font-style:italic;opacity:.85}
+
+  .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:540px;margin:48px auto 0}
+  .unit{background:var(--panel);border:1px solid var(--panel-b);border-radius:14px;padding:20px 8px;backdrop-filter:blur(12px)}
+  .num{font-family:'Cinzel',serif;font-size:36px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1}
+  .lbl{font-size:10px;text-transform:uppercase;color:var(--muted);letter-spacing:1.5px;margin-top:6px}
+  .live-msg{display:none;text-align:center;color:#7fe081;font-size:22px;margin:32px auto 0;padding:18px;background:rgba(127,224,129,.06);border:1px solid rgba(127,224,129,.3);border-radius:14px;max-width:540px}
+  .target{text-align:center;color:var(--muted);font-size:13px;margin-top:18px;letter-spacing:.5px}
+  .target strong{color:var(--gold);font-weight:600}
+
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;max-width:920px;margin:64px auto 0}
+  .feat{background:var(--panel);border:1px solid var(--panel-b);border-radius:14px;padding:22px;transition:transform .2s,border-color .2s}
+  .feat:hover{transform:translateY(-2px);border-color:rgba(127,184,143,.35)}
+  .feat-ic{font-size:22px;margin-bottom:10px;display:block}
+  .feat h3{font-family:'Cinzel',serif;font-size:14px;margin:0 0 6px;color:var(--text);letter-spacing:.5px}
+  .feat p{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+
+  .resources{margin:56px auto 0;text-align:center}
+  .resources h2{font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 18px;font-weight:500}
+  .res-grid{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .res-grid .pill{font-size:12.5px}
+
+  footer{margin-top:72px;padding-top:24px;border-top:1px solid rgba(127,184,143,.12);text-align:center;font-size:12px;color:var(--muted)}
+  footer a{color:var(--green);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media (max-width:640px){
+    h1{font-size:38px}
+    .num{font-size:28px}
+    .countdown{gap:8px}
+    .unit{padding:14px 4px}
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">
+      <div class="mark">&#128056;</div>
+      <div class="brand-text">
+        <span class="brand-name">Ratatoskr</span>
+        <span class="brand-sub">RATR &middot; EnchantedForestDeFi</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a class="pill" href="https://github.com/EnchantedForestDeFi/ratatoskr">GitHub</a>
+      <a class="pill discord" href="https://discord.gg/SrffQVYqee" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span>Pre-launch &middot; Mainnet 2026-06-01</div>
+    <h1>The squirrel-messenger<br>of Yggdrasil.</h1>
+    <p class="tagline">Ratatoskr is a yespower CPU-mineable masternode coin with a native bridge to Alephium. Norse cosmology, modern tech, fair-launch economics.</p>
+    <p class="lineage">Alfheim &harr; Alephium &middot; the realm of light, finally reachable.</p>
+
+    <div id="cd" class="countdown">
+      <div class="unit"><div class="num" id="d">--</div><div class="lbl">days</div></div>
+      <div class="unit"><div class="num" id="h">--</div><div class="lbl">hours</div></div>
+      <div class="unit"><div class="num" id="m">--</div><div class="lbl">min</div></div>
+      <div class="unit"><div class="num" id="s">--</div><div class="lbl">sec</div></div>
+    </div>
+    <div id="live" class="live-msg">&#9889; LIVE &mdash; see you at block 1</div>
+    <div class="target">Target launch: <strong>2026-06-01 00:00 UTC</strong></div>
+  </section>
+
+  <section class="features">
+    <div class="feat">
+      <span class="feat-ic">&#9881;&#65039;</span>
+      <h3>yespower CPU PoW</h3>
+      <p>ASIC-resistant. Anyone with a CPU can mine. Fair-launch &mdash; no premine.</p>
+    </div>
+    <div class="feat">
+      <span class="feat-ic">&#127789;</span>
+      <h3>DIP3 Masternodes</h3>
+      <p>7,500 RATR collateral. Owner / operator / voting / payout key separation. ChainLocks &amp; InstantSend.</p>
+    </div>
+    <div class="feat">
+      <span class="feat-ic">&#128279;</span>
+      <h3>Native Alephium Bridge</h3>
+      <p>Wrap RATR &harr; wRATR on Alephium. 10-layer on-chain enforcement. No EVM detour.</p>
+    </div>
+    <div class="feat">
+      <span class="feat-ic">&#127807;</span>
+      <h3>Treasury Drip</h3>
+      <p>Per-block treasury allocation, multisig-secured. Funds development without superblock games.</p>
+    </div>
+  </section>
+
+  <section class="resources">
+    <h2>Resources</h2>
+    <div class="res-grid">
+      <a class="pill" href="https://github.com/EnchantedForestDeFi/ratatoskr/releases">Releases</a>
+      <a class="pill" href="https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/doc/whitepaper.md">Whitepaper</a>
+      <a class="pill" href="https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/doc/mining.md">Mining Guide</a>
+      <a class="pill" href="https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/doc/masternode-setup.md">Masternode Setup</a>
+      <a class="pill" href="https://ratatoskrbridge.enchantedforestdefi.com">wRATR Bridge</a>
+      <a class="pill" href="https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/doc/quickstart.md">Quickstart</a>
+    </div>
+  </section>
+
+  <footer>
+    Part of <a href="https://enchantedforestdefi.com">EnchantedForestDeFi</a> &middot;
+    <a href="https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/COPYING">MIT License</a> &middot;
+    Built on the lineage of Bitcoin Core &amp; Dash Core
+  </footer>
+</main>
+
+<script>
+(function(){
+  const target = Date.UTC(2026, 5, 1, 0, 0, 0); // months 0-indexed; 5 = June
+  const $d = document.getElementById('d');
+  const $h = document.getElementById('h');
+  const $m = document.getElementById('m');
+  const $s = document.getElementById('s');
+  const $cd = document.getElementById('cd');
+  const $live = document.getElementById('live');
+  function pad(n){return n<10?'0'+n:''+n;}
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+    if (diff <= 0) {
+      $cd.style.display = 'none';
+      $live.style.display = 'block';
+      return;
+    }
+    const days = Math.floor(diff/86400000); diff -= days*86400000;
+    const hours = Math.floor(diff/3600000); diff -= hours*3600000;
+    const mins  = Math.floor(diff/60000);   diff -= mins*60000;
+    const secs  = Math.floor(diff/1000);
+    $d.textContent = days;
+    $h.textContent = pad(hours);
+    $m.textContent = pad(mins);
+    $s.textContent = pad(secs);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>

@@ -259,11 +259,18 @@ bool CSporkManager::IsSporkActive(SporkId nSporkID) const
 
 SporkValue CSporkManager::GetSporkValue(SporkId nSporkID) const
 {
-    // Harden all sporks on Mainnet
+    // Harden most sporks on Mainnet by short-circuiting to fixed values.
+    // Sporks that DO need to be operator-adjustable on mainnet (SPORK_25 for
+    // the MN payment bps split) fall through to the live-lookup logic below.
     if (!Params().IsTestChain()) {
         switch (nSporkID) {
             case SPORK_21_QUORUM_ALL_CONNECTED:
                 return 1;
+            case SPORK_25_MN_PAYMENT_BPS:
+                // Operator-adjustable: fall through to live SporkValueIfActive()
+                // lookup. Consensus clamps the value to [2000, 4000]bp at the
+                // call site (validation::GetMasternodePayment).
+                break;
             default:
                 return 0;
         }

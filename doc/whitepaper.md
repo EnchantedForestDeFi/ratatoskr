@@ -207,9 +207,8 @@ configuration, which has survived several market cycles. Third, recent
 patterns observed in the broader masternode-coin space, where governance
 votes have shifted reward splits substantially in ways that compressed
 miner profitability and weakened PoW security. Those patterns are the
-specific case studies behind §1's "extractive governance" argument and
-are referenced here without hostility — they illustrate the dynamics the
-design prevents.
+case studies behind §1's "extractive governance" argument — they
+illustrate the dynamics the design prevents.
 
 Comparative analysis of active and failed masternode coins suggests
 sustainable equilibria cluster in the 50/35/15 to 65/25/10 band. 60/30/10
@@ -373,12 +372,10 @@ testnet), and a range of community tokens and bridged majors and stables
 Initial wRATR liquidity will be seeded on Alephium ve(3,3) DEX
 infrastructure against an appropriate Alephium-native asset at launch.
 The specific pairing and venue selection will reflect ecosystem
-conditions at the time — gauge-vote whitelist availability, relative
-liquidity depth, and routing efficiency for incoming flow. Additional
-direct pairs (wRATR/ALPH, wRATR/wETH, wRATR/wBTC, wRATR/wUSDC) are
-expected to emerge as usage grows, with a deliberate preference for
-concentration on a primary venue rather than fragmentation across
-many.
+conditions at the time. Additional direct pairs (wRATR/ALPH,
+wRATR/wETH, wRATR/wBTC, wRATR/wUSDC) are expected to emerge as usage
+grows, with a deliberate preference for concentration on a primary
+venue rather than fragmentation across many.
 
 ### 6.5 What's explicitly not built
 

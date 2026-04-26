@@ -152,8 +152,10 @@ chainparams updated.
 
 As of launch:
 
-- `seed1.ratatoskr.enchantedforestdefi.com` — VPS1 (IP: `74.208.37.172`)
-- `seed2.ratatoskr.enchantedforestdefi.com` — VPS2 (TBD)
+- `seed1.ratatoskr.enchantedforestdefi.com`
+- `seed2.ratatoskr.enchantedforestdefi.com`
+
+Resolve to current IPs via DNS — addresses may rotate; the hostnames are stable.
 
 Add to `ratatoskr.conf`:
 

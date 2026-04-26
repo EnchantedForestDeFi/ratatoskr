@@ -171,18 +171,41 @@ public:
 
         // Ratatoskr activation schedule (60s blocks):
         //   Block 0      - Chain launch, miners earn 60% of subsidy
+        //   Block 7,500  - ~5 days:  Small-network LLMQ quorums activate
+        //                            (ChainLocks + InstantSend become signable)
         //   Block 25,000 - ~17 days: MN payments start (hashrate stabilizes first)
-        //   Block 30,000 - ~21 days: First superblock / governance activates
-        //   Block 21,600 - ~15 days: Superblock cycle (biweekly treasury batches)
+        //
+        // SUPERBLOCKS / on-chain governance budget: DISABLED on mainnet.
+        // The Dash-style superblock pool is replaced by a single per-block
+        // treasury drip (configured below at 10% of subsidy starting block 1)
+        // that pays directly to the operator's air-gapped multisig. This keeps
+        // the chain-funded share at exactly 10% (the drip) instead of stacking
+        // a 10% drip on top of a 10% superblock pool, which would drift the
+        // overall economics from the documented 60/30/10 to a 53/27/10/10
+        // post-block-29,900 split. The 10% treasury share is fixed by the
+        // drip mechanism; the 60/30 miner/MN allocation is currently fixed
+        // by GetMasternodePayment in validation.cpp (returns blockValue/3)
+        // and is targeted to become governance-adjustable in a future
+        // release per the design comment in that function.
+        //
+        // Governance RPCs (`gobject submit`, `gobject vote`) continue to
+        // function for community signal-of-intent, but no chain-side payout
+        // fires -- proposals are advisory, with funding disbursed manually
+        // by the operator from the drip-funded treasury multisig.
         consensus.nMasternodePaymentsStartBlock = 25000;
         consensus.nMasternodePaymentsIncreaseBlock = 101;      // legacy, unused after reward split commit
         consensus.nMasternodePaymentsIncreasePeriod = 262800;  // legacy, unused after reward split commit
         consensus.nInstantSendConfirmationsRequired = 2;
         consensus.nInstantSendKeepLock = 24;
-        consensus.nBudgetPaymentsStartBlock = 29900;
+        // Superblock-related fields below are present for ABI compatibility
+        // with upstream Dash code paths but are inert on mainnet because
+        // nBudgetPaymentsStartBlock / nSuperblockStartBlock are pinned at
+        // INT_MAX. Cycle / window / maturity values left at sensible
+        // defaults for if a future hard-fork ever re-enables superblocks.
+        consensus.nBudgetPaymentsStartBlock = std::numeric_limits<int>::max();
         consensus.nBudgetPaymentsCycleBlocks = 21600;
         consensus.nBudgetPaymentsWindowBlocks = 100;
-        consensus.nSuperblockStartBlock = 30000;
+        consensus.nSuperblockStartBlock = std::numeric_limits<int>::max();
         consensus.nSuperblockStartHash = uint256();
         consensus.nSuperblockCycle = 21600;
         consensus.nSuperblockMaturityWindow = 1662;
@@ -319,22 +342,38 @@ public:
         vFixedSeeds.clear();
 
         // long living quorum params
-        // Default: use large quorum types (compatible with v0.1.5)
-        // When SPORK_21_QUORUM_ALL_CONNECTED is activated, nodes switch to
-        // LLMQ_10_60/10_75 for small-network operation (see llmq/quorums.cpp)
+        //
+        // Quorum tier strategy for Ratatoskr's actual scale:
+        //   - Small tier (LLMQ_10_60 / LLMQ_10_75) handles ChainLocks +
+        //     InstantSend from block 7,500 onwards (~5 days post-launch).
+        //     With ~17 day-1 MNs (7 treasury EvoNodes + ~10 operator MNs)
+        //     plus early community uptake, the 10-member quorum forms
+        //     reliably from the activation height.
+        //   - Full tier (LLMQ_50_60 / LLMQ_60_75 / LLMQ_100_67) is the
+        //     graduation target: realistic when MN count reaches ~50-100,
+        //     plausible 6-12 months post-launch.
+        //   - LLMQ_400_60 and LLMQ_400_85 stay in the pool as a longshot
+        //     ceiling: only relevant if RATR ever scales to ~400+ MNs.
+        //     Inherited from upstream Dash where 400-MN quorums were the
+        //     default; left available so that if the chain ever reaches
+        //     that scale, the consensus path exists.
         AddLLMQ(Consensus::LLMQType::LLMQ_50_60);
         AddLLMQ(Consensus::LLMQType::LLMQ_60_75);
-        AddLLMQ(Consensus::LLMQType::LLMQ_400_60);
-        AddLLMQ(Consensus::LLMQType::LLMQ_400_85);
+        AddLLMQ(Consensus::LLMQType::LLMQ_400_60);   // longshot ceiling
+        AddLLMQ(Consensus::LLMQType::LLMQ_400_85);   // longshot ceiling
         AddLLMQ(Consensus::LLMQType::LLMQ_100_67);
         AddLLMQ(Consensus::LLMQType::LLMQ_10_60);
         AddLLMQ(Consensus::LLMQType::LLMQ_10_75);
-        consensus.llmqTypeChainLocks = Consensus::LLMQType::LLMQ_400_60;
+        consensus.llmqTypeChainLocks = Consensus::LLMQType::LLMQ_50_60;
         consensus.llmqTypeDIP0024InstantSend = Consensus::LLMQType::LLMQ_60_75;
         consensus.llmqTypePlatform = Consensus::LLMQType::LLMQ_100_67;
-        consensus.llmqTypeMnhf = Consensus::LLMQType::LLMQ_400_85;
-        // Small-network quorum types activate at block 45,000
-        consensus.nSMTSmallQuorumsHeight = 45000;
+        consensus.llmqTypeMnhf = Consensus::LLMQType::LLMQ_50_60;
+        // Small-network quorum types activate at block 7,500 (~5 days
+        // post-launch at 60-second blocks). Compresses the no-ChainLocks
+        // window from the upstream-inherited 31 days to ~5 days, which
+        // matches the operator's MRR defensive-rental window in
+        // mrr_launch_day_playbook.md.
+        consensus.nSMTSmallQuorumsHeight = 7500;
         consensus.llmqTypeSmallChainLocks = Consensus::LLMQType::LLMQ_10_60;
         consensus.llmqTypeSmallInstantSend = Consensus::LLMQType::LLMQ_10_75;
         consensus.llmqTypeSmallPlatform = Consensus::LLMQType::LLMQ_10_75;

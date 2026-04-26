@@ -6046,7 +6046,7 @@ bool ChainstateManager::IsQuorumTypeEnabled(const Consensus::LLMQType llmqType,
     case Consensus::LLMQType::LLMQ_25_67:
         return pindexPrev->nHeight >= TESTNET_LLMQ_25_67_ACTIVATION_HEIGHT;
 
-    // Ratatoskr small-network quorums: enabled after nSMTSmallQuorumsHeight (block 45,000)
+    // Ratatoskr small-network quorums: enabled after nSMTSmallQuorumsHeight (block 7,500 mainnet)
     case Consensus::LLMQType::LLMQ_10_60:
         return pindexPrev->nHeight >= GetConsensus().nSMTSmallQuorumsHeight;
     case Consensus::LLMQType::LLMQ_10_75:

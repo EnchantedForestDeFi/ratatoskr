@@ -228,17 +228,32 @@ public:
         consensus.BIP147Height = 0;
         consensus.CSVHeight = 0;
         consensus.DIP0001Height = 2;
-        // Deterministic MNs registered from genesis; enforcement gate aligns with MN payments start
+        // Deterministic MNs registered from genesis.
+        // DIP0003 enforcement was previously at 25,000 (bundled with MN payments start),
+        // but that produced a 17-day "registered but inactive" period that confused community
+        // operators. Decoupling: enforcement at 100 (daemons claim identity early, can serve
+        // quorums + ChainLocks pre-MN-payments), payments stay at 25,000 (miners establish
+        // hashrate). See ratr_mn_activation_timeline_and_wizard_ux.md for full UX analysis.
         consensus.DIP0003Height = 2;
-        consensus.DIP0003EnforcementHeight = 25000;
+        consensus.DIP0003EnforcementHeight = 100;  // was 25000 — see comment above
         consensus.DIP0003EnforcementHash = uint256();
         consensus.DIP0008Height = 2;
         consensus.BRRHeight = 20000;
         consensus.nBRRFixHeight = 27700;
-        consensus.DIP0020Height = 20000;
-        consensus.DIP0024Height = 20000;
-        consensus.DIP0024QuorumsHeight = 20000;
-        consensus.V19Height = 20000;
+        // V19 / DIP0020 / DIP0024 lowered to height 2 (2026-05-05) to make basic-scheme
+        // BLS native from launch. Pre-V19 daemons cannot recognize on-chain ProRegTx
+        // entries registered with the modern `protx register` command (basic scheme),
+        // resulting in WAITING_FOR_PROTX even when keys match. Empirical evidence
+        // from RATR testnet 2026-05-05: 15 of 23 enrolled MNs were stuck due to this.
+        // Lowering V19Height to 2 ensures all MN registrations work from launch
+        // regardless of which RPC the operator uses (`register` or `register_legacy`).
+        // DIP0024 must be paired with V19 because LLMQ_10_75 (rotated, used for
+        // small-network InstantSend) requires DIP0024 active. See
+        // efd_smt_archaeology_2026_05_05.md and ratr_v19_basic_scheme_finding.md.
+        consensus.DIP0020Height = 2;
+        consensus.DIP0024Height = 2;
+        consensus.DIP0024QuorumsHeight = 2;
+        consensus.V19Height = 2;
         consensus.V20Height = 20000;
         consensus.MN_RRHeight = 999999999;
         consensus.nSMTv014Height = 40000;

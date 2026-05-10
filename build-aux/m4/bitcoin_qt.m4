@@ -139,16 +139,65 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
       fi
     fi
 
+    if test "$TARGET_OS" = "windows"; then
+      dnl Static Qt layouts differ between MSYS2 and depends builds. The
+      dnl package metadata already supplies Qt's bundled private archives in
+      dnl depends builds, so only add Win32 system libraries here.
+      WINDOWS_QT_STATIC_EXTRAS="-ldwrite -ld2d1 -ld3d11 -ldxgi -ldxguid -lmpr -luserenv -lversion -lnetapi32 -lshlwapi -lwtsapi32 -ldwmapi -lwinspool -luxtheme -limm32"
+      QT_LIBS="$QT_LIBS $WINDOWS_QT_STATIC_EXTRAS"
+    fi
+
     if test "$TARGET_OS" != "android"; then
-      _BITCOIN_QT_CHECK_STATIC_PLUGIN([QMinimalIntegrationPlugin], [-lqminimal])
-      AC_DEFINE([QT_QPA_PLATFORM_MINIMAL], [1], [Define this symbol if the minimal qt platform exists])
+      if test "$TARGET_OS" = "windows"; then
+        dnl Some MSYS2 Qt5-static layouts can fail to link qminimal during
+        dnl configure even when the regular Windows platform plugins work.
+        dnl Treat qminimal as optional on Windows so wallet builds can proceed.
+        AC_MSG_CHECKING([for QMinimalIntegrationPlugin (-lqminimal)])
+        CHECK_STATIC_PLUGINS_TEMP_LIBS="$LIBS"
+        WINDOWS_MINIMAL_PLUGIN_LIBS="-lqminimal${qt_lib_suffix} -l${qt_lib_prefix}EventDispatcherSupport${qt_lib_suffix} -l${qt_lib_prefix}FontDatabaseSupport${qt_lib_suffix} -ldwrite -ld2d1 -ld3d11 -ldxgi -ldxguid -lmpr -luserenv -lversion -lnetapi32"
+        LIBS="$WINDOWS_MINIMAL_PLUGIN_LIBS $QT_LIBS $LIBS"
+        AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+            #include <QtPlugin>
+            Q_IMPORT_PLUGIN(QMinimalIntegrationPlugin)
+          ]])],
+          [AC_MSG_RESULT([yes]); QT_LIBS="$WINDOWS_MINIMAL_PLUGIN_LIBS $QT_LIBS"; AC_DEFINE([QT_QPA_PLATFORM_MINIMAL], [1], [Define this symbol if the minimal qt platform exists])],
+          [AC_MSG_RESULT([no]); AC_MSG_WARN([QMinimalIntegrationPlugin not found; continuing without QT_QPA_PLATFORM_MINIMAL])])
+        LIBS="$CHECK_STATIC_PLUGINS_TEMP_LIBS"
+      else
+        _BITCOIN_QT_CHECK_STATIC_PLUGIN([QMinimalIntegrationPlugin], [-lqminimal])
+        AC_DEFINE([QT_QPA_PLATFORM_MINIMAL], [1], [Define this symbol if the minimal qt platform exists])
+      fi
     fi
     if test "$TARGET_OS" = "windows"; then
       dnl Linking against wtsapi32 is required. See #17749 and
       dnl https://bugreports.qt.io/browse/QTBUG-27097.
       AX_CHECK_LINK_FLAG([-lwtsapi32], [QT_LIBS="$QT_LIBS -lwtsapi32"], [AC_MSG_ERROR([could not link against -lwtsapi32])])
-      _BITCOIN_QT_CHECK_STATIC_PLUGIN([QWindowsIntegrationPlugin], [-lqwindows])
-      _BITCOIN_QT_CHECK_STATIC_PLUGIN([QWindowsVistaStylePlugin], [-lqwindowsvistastyle])
+      dnl Keep plugin extras limited to Win32 system libraries. Qt support
+      dnl archives come from pkg-config when using depends and from the static
+      dnl Qt metadata when using MSYS2.
+      AC_MSG_CHECKING([for QWindowsIntegrationPlugin (-lqwindows)])
+      CHECK_STATIC_PLUGINS_TEMP_LIBS="$LIBS"
+      WINDOWS_QPA_PLUGIN_LIBS="-lqwindows${qt_lib_suffix} -ldwmapi -lwinspool -lshlwapi -lwtsapi32 -limm32"
+      LIBS="$WINDOWS_QPA_PLUGIN_LIBS $QT_LIBS $LIBS"
+      AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+          #include <QtPlugin>
+          Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
+        ]])],
+        [AC_MSG_RESULT([yes]); QT_LIBS="$WINDOWS_QPA_PLUGIN_LIBS $QT_LIBS"],
+        [AC_MSG_RESULT([no]); BITCOIN_QT_FAIL([QWindowsIntegrationPlugin not found.])])
+      LIBS="$CHECK_STATIC_PLUGINS_TEMP_LIBS"
+
+      AC_MSG_CHECKING([for QWindowsVistaStylePlugin (-lqwindowsvistastyle)])
+      CHECK_STATIC_PLUGINS_TEMP_LIBS="$LIBS"
+      WINDOWS_STYLE_PLUGIN_LIBS="-lqwindowsvistastyle${qt_lib_suffix} -luxtheme -ldwmapi -limm32"
+      LIBS="$WINDOWS_STYLE_PLUGIN_LIBS $QT_LIBS $LIBS"
+      AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+          #include <QtPlugin>
+          Q_IMPORT_PLUGIN(QWindowsVistaStylePlugin)
+        ]])],
+        [AC_MSG_RESULT([yes]); QT_LIBS="$WINDOWS_STYLE_PLUGIN_LIBS $QT_LIBS"],
+        [AC_MSG_RESULT([no]); BITCOIN_QT_FAIL([QWindowsVistaStylePlugin not found.])])
+      LIBS="$CHECK_STATIC_PLUGINS_TEMP_LIBS"
       AC_DEFINE([QT_QPA_PLATFORM_WINDOWS], [1], [Define this symbol if the qt platform is windows])
     elif test "$TARGET_OS" = "linux" -o "$TARGET_OS" = "freebsd"; then
       _BITCOIN_QT_CHECK_STATIC_PLUGIN([QXcbIntegrationPlugin], [-lqxcb])

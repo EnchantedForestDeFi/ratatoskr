@@ -154,6 +154,28 @@ ratatoskr-cli setgenerate false
 
 ---
 
+## Hardware expectations
+
+Yespower is memory-hard and CPU-bound. There's no ASIC for it (by design)
+and GPU mining isn't worthwhile (the memory access pattern doesn't suit GPU
+parallelism). Hashrate scales roughly linearly with CPU core count for
+well-cooled chips with adequate memory bandwidth.
+
+| CPU class | Approximate hashrate | Notes |
+|---|---|---|
+| Modern desktop (Ryzen 5/7, Intel i5/i7 12th gen+) | 5–15 KH/s | Per machine, all cores. Best $/hash for hobbyists. |
+| Older desktop (Ryzen 1xxx, Intel i5 8th gen) | 2–6 KH/s | Still viable, particularly with cheap power |
+| Laptop CPU | 0.5–3 KH/s | Heat is the bottleneck — sustained mining throttles fast |
+| Server CPU (EPYC, Xeon W) | 20–80 KH/s | Best total hashrate if you have one idle |
+| ARM (Raspberry Pi, mobile) | 0.05–0.3 KH/s | More for hobby than profit |
+
+**Power draw:** typical yespower mining consumes ~80–90% of TDP on the CPU.
+A 65W desktop CPU running flat-out is ~55W under load. Power-bill math
+is the dominant variable for profitability after launch — see the EFD
+discord for community calculators.
+
+---
+
 ## What addresses look like
 
 Ratatoskr addresses start with `R` (version byte 60). Examples:
@@ -176,8 +198,42 @@ Mainnet launches **June 1, 2026**. Before launch:
 
 ---
 
+## FAQ
+
+**Q: Can I use a GPU?**
+A: Not effectively. Yespower's memory access pattern doesn't parallelize well on GPU memory. Any GPU yespower miner you find will be slower than a modern CPU. ASIC mining is structurally impossible by design (yespower's memory-hardness defeats efficient ASIC implementation — that's the whole point).
+
+**Q: Will mining damage my CPU?**
+A: Mining is intensive but not unusual. Modern CPUs are designed to run at full load indefinitely as long as cooling is adequate. Keep an eye on temperatures (under ~80°C is comfortable for most chips); if you're hitting thermal limits, reduce thread count or add airflow. Laptops are the worst case — they're not built for sustained 100% CPU load.
+
+**Q: What's the difference between pool mining and solo mining?**
+A: Pool mining = smaller, predictable, frequent payouts (you get a share of every block the pool finds, proportional to your contribution). Solo mining = lottery-style — you keep the full ~50 RATR reward of every block you find, but blocks may be days or weeks apart on a small CPU.
+
+**Q: How much RATR will I earn per day?**
+A: Depends on network hashrate, your CPU hashrate, and the block reward. At launch with low hashrate, hobbyist miners can earn meaningfully — as more miners join, share-per-CPU drops. Use a pool's calculator (each pool typically publishes one) once mainnet is live.
+
+**Q: Why is the daemon's internal miner slower than cpuminer-opt?**
+A: The daemon's `setgenerate` uses a generic mining loop optimized for simplicity, not raw hash throughput. JayDDee's cpuminer-opt has hand-tuned yespower assembly that exploits CPU instruction-level parallelism. For solo mining where speed matters more than convenience, point cpuminer-opt at the daemon's RPC port instead of using `setgenerate`.
+
+**Q: Can I mine on a VPS?**
+A: Technically yes, but most VPS providers prohibit cryptocurrency mining in their TOS and will terminate your account. Read the fine print. Hetzner, OVH, and most major providers explicitly ban it. If you do mine on a VPS, it's at your own risk.
+
+**Q: Where can I check if I'm mining successfully?**
+A: For pool mining: the pool's stats page will show your worker hashrate and shares submitted. For solo (daemon): run `ratatoskr-cli getmininginfo` to see current difficulty + your hashrate, and `ratatoskr-cli listtransactions` to see any block rewards as they land.
+
+**Q: Is there a minimum to start mining?**
+A: No minimum. Any modern computer with adequate cooling can mine. For pool mining, pools typically have a minimum payout threshold (commonly 0.5–1.0 RATR) before they release accumulated balance — pool operator publishes this.
+
+---
+
 ## Support
 
 - Discord: (EnchantedForestDeFi server, see project site)
 - GitHub issues: <https://github.com/EnchantedForestDeFi/ratatoskr/issues>
 - Pool operator contact: TBD (published at launch)
+
+## See also
+
+- [`doc/pool-operator-spec.md`](pool-operator-spec.md) — for operators standing up their own pool
+- [`README.md`](../README.md) — project overview and wallet downloads
+- [`doc/whitepaper.md`](whitepaper.md) §2.6 (Accessible Mining) — design rationale for yespower

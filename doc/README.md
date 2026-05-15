@@ -1,37 +1,37 @@
-Smartiecoin Core
+Ratatoskr Core
 ==========
 
-This is the official reference wallet for Smartiecoin digital currency and comprises the backbone of the Smartiecoin peer-to-peer network. You can [download Smartiecoin Core](https://www.smartiecoin.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Ratatoskr digital currency and comprises the backbone of the Ratatoskr peer-to-peer network. You can [download Ratatoskr Core](https://www.ratatoskr.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Smartiecoin Core on your native platform.
+The following are some helpful notes on how to run Ratatoskr Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/smartiecoin-qt` (GUI) or
-- `bin/smartiecoind` (headless)
+- `bin/ratatoskr-qt` (GUI) or
+- `bin/ratatoskrd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run smartiecoin-qt.exe.
+Unpack the files into a directory, and then run ratatoskr-qt.exe.
 
 ### macOS
 
-Drag Smartiecoin Core to your applications folder, and then run Smartiecoin Core.
+Drag Ratatoskr Core to your applications folder, and then run Ratatoskr Core.
 
 ### Need Help?
 
-* See the [Smartiecoin documentation](https://docs.smartiecoin.org)
+* See the [Ratatoskr documentation](https://docs.ratatoskr.org)
 for help and more information.
 * Community support links are maintained in project announcements.
-* Ask for help on the [Smartiecoin Forum](https://smartiecoin.org/forum)
+* Ask for help on the [Ratatoskr Forum](https://ratatoskr.org/forum)
 
 Building
 ---------------------
-The following are developer notes on how to build Smartiecoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Ratatoskr Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -43,7 +43,7 @@ The following are developer notes on how to build Smartiecoin Core on your nativ
 
 Development
 ---------------------
-The Smartiecoin Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Ratatoskr Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -65,7 +65,7 @@ Official external documentation and community links are maintained in project an
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
-- [smartiecoin.conf Configuration File](smartiecoin-conf.md)
+- [ratatoskr.conf Configuration File](ratatoskr-conf.md)
 - [CJDNS Support](cjdns.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)

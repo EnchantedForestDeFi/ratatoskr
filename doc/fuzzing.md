@@ -1,12 +1,12 @@
-# Fuzzing Smartiecoin Core using libFuzzer
+# Fuzzing Ratatoskr Core using libFuzzer
 
 ## Quickstart guide
 
-To quickly get started fuzzing Smartiecoin Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
+To quickly get started fuzzing Ratatoskr Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
 
 ```sh
 $ git clone https://github.com/SmartiesCoin/Smartiecoin
-$ cd smartiecoin/
+$ cd ratatoskr/
 $ ./autogen.sh
 $ CC=clang CXX=clang++ ./configure --enable-fuzz --with-sanitizers=address,fuzzer,undefined
 # macOS users: If you have problem with this step then make sure to read "macOS hints for
@@ -71,9 +71,9 @@ block^@M-^?M-^?M-^?M-^?M-^?nM-^?M-^?
 
 In this case the fuzzer managed to create a `block` message which when passed to `ProcessMessage(...)` increased coverage.
 
-It is possible to specify `smartiecoind` arguments to the `fuzz` executable.
+It is possible to specify `ratatoskrd` arguments to the `fuzz` executable.
 Depending on the test, they may be ignored or consumed and alter the behavior
-of the test. Just make sure to use double-smartiecoin to distinguish them from the
+of the test. Just make sure to use double-ratatoskr to distinguish them from the
 fuzzer's own arguments:
 
 ```sh
@@ -119,7 +119,7 @@ Fuzzing on a harness compiled with `--with-sanitizers=address,fuzzer,undefined` 
 
 If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo.
 
-Every single pull request submitted against the Smartiecoin Core repo is automatically tested against all inputs in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Smartiecoin Core more robust.
+Every single pull request submitted against the Ratatoskr Core repo is automatically tested against all inputs in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Ratatoskr Core more robust.
 
 ## macOS hints for libFuzzer
 
@@ -139,15 +139,15 @@ Full configure that was tested on macOS with `brew` installed `llvm`:
 
 Read the [libFuzzer documentation](https://llvm.org/docs/LibFuzzer.html) for more information. This [libFuzzer tutorial](https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md) might also be of interest.
 
-# Fuzzing Smartiecoin Core using afl++
+# Fuzzing Ratatoskr Core using afl++
 
 ## Quickstart guide
 
-To quickly get started fuzzing Smartiecoin Core using [afl++](https://github.com/AFLplusplus/AFLplusplus):
+To quickly get started fuzzing Ratatoskr Core using [afl++](https://github.com/AFLplusplus/AFLplusplus):
 
 ```sh
 $ git clone https://github.com/SmartiesCoin/Smartiecoin
-$ cd smartiecoin/
+$ cd ratatoskr/
 $ git clone https://github.com/AFLplusplus/AFLplusplus
 $ make -C AFLplusplus/ source-only
 $ ./autogen.sh
@@ -166,15 +166,15 @@ $ FUZZ=bech32 AFLplusplus/afl-fuzz -i inputs/ -o outputs/ -- src/test/fuzz/fuzz
 
 Read the [afl++ documentation](https://github.com/AFLplusplus/AFLplusplus) for more information.
 
-# Fuzzing Smartiecoin Core using Honggfuzz
+# Fuzzing Ratatoskr Core using Honggfuzz
 
 ## Quickstart guide
 
-To quickly get started fuzzing Smartiecoin Core using [Honggfuzz](https://github.com/google/honggfuzz):
+To quickly get started fuzzing Ratatoskr Core using [Honggfuzz](https://github.com/google/honggfuzz):
 
 ```sh
 $ git clone https://github.com/SmartiesCoin/Smartiecoin
-$ cd smartiecoin/
+$ cd ratatoskr/
 $ ./autogen.sh
 $ git clone https://github.com/google/honggfuzz
 $ cd honggfuzz/
@@ -188,10 +188,10 @@ $ FUZZ=process_message honggfuzz/honggfuzz -i inputs/ -- src/test/fuzz/fuzz
 
 Read the [Honggfuzz documentation](https://github.com/google/honggfuzz/blob/master/docs/USAGE.md) for more information.
 
-## Fuzzing the Smartiecoin Core P2P layer using Honggfuzz NetDriver
+## Fuzzing the Ratatoskr Core P2P layer using Honggfuzz NetDriver
 
-Honggfuzz NetDriver allows for very easy fuzzing of TCP servers such as Smartiecoin
-Core without having to write any custom fuzzing harness. The `smartiecoind` server
+Honggfuzz NetDriver allows for very easy fuzzing of TCP servers such as Ratatoskr
+Core without having to write any custom fuzzing harness. The `ratatoskrd` server
 process is largely fuzzed without modification.
 
 This makes the fuzzing highly realistic: a bug reachable by the fuzzer is likely
@@ -203,7 +203,7 @@ To quickly get started fuzzing the P2P layer using Honggfuzz NetDriver:
 $ mkdir bitcoin-honggfuzz-p2p/
 $ cd bitcoin-honggfuzz-p2p/
 $ git clone https://github.com/SmartiesCoin/Smartiecoin/
-$ cd smartiecoin/
+$ cd ratatoskr/
 $ ./autogen.sh
 $ git clone https://github.com/google/honggfuzz
 $ cd honggfuzz/
@@ -254,11 +254,11 @@ index 7601a6ea84..702d0f56ce 100644
                   SanitizeString(msg.m_type), msg.m_message_size,
                   HexStr(Span{hash}.first(CMessageHeader::CHECKSUM_SIZE)),
 EOF
-$ make -C src/ smartiecoind
+$ make -C src/ ratatoskrd
 $ mkdir -p inputs/
 $ honggfuzz/honggfuzz --exit_upon_crash --quiet --timeout 4 -n 1 -Q \
       -E HFND_TCP_PORT=18444 -f inputs/ -- \
-          src/smartiecoind -regtest -discover=0 -dns=0 -dnsseed=0 -listenonion=0 \
+          src/ratatoskrd -regtest -discover=0 -dns=0 -dnsseed=0 -listenonion=0 \
                        -nodebuglogfile -bind=127.0.0.1:18444 -logthreadnames \
                        -debug
 ```

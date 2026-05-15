@@ -2,7 +2,7 @@
 
 **Updated for macOS [14](https://developer.apple.com/documentation/macos-release-notes/macos-14-release-notes/)**
 
-This guide describes how to build smartiecoind, command-line utilities, and GUI on macOS.
+This guide describes how to build ratatoskrd, command-line utilities, and GUI on macOS.
 
 ## Preparation
 
@@ -16,7 +16,7 @@ macOS comes with a built-in Terminal located in:
 ### 1. Xcode Command Line Tools
 
 The Xcode Command Line Tools are a collection of build tools for macOS.
-These tools must be installed in order to build Smartiecoin Core from source.
+These tools must be installed in order to build Ratatoskr Core from source.
 
 To install, run the following command from your terminal:
 
@@ -50,10 +50,10 @@ See [dependencies.md](dependencies.md) for a complete overview.
 brew install automake libtool boost gmp pkg-config libevent
 ```
 
-### 4. Clone Smartiecoin repository
+### 4. Clone Ratatoskr repository
 
 `git` should already be installed by default on your system.
-Now that all the required dependencies are installed, let's clone the Smartiecoin Core repository to a directory.
+Now that all the required dependencies are installed, let's clone the Ratatoskr Core repository to a directory.
 All build scripts and commands will run from this directory.
 
 ``` bash
@@ -64,7 +64,7 @@ git clone https://github.com/SmartiesCoin/Smartiecoin.git
 
 #### Wallet Dependencies
 
-It is not necessary to build wallet functionality to run `smartiecoind` or  `smartiecoin-qt`.
+It is not necessary to build wallet functionality to run `ratatoskrd` or  `ratatoskr-qt`.
 
 ###### Descriptor Wallet Support
 
@@ -87,7 +87,7 @@ brew install berkeley-db@4
 
 ###### Qt
 
-Smartiecoin Core includes a GUI built with the cross-platform Qt Framework.
+Ratatoskr Core includes a GUI built with the cross-platform Qt Framework.
 To compile the GUI, we need to install `qt@5`.
 Skip if you don't intend to use the GUI.
 
@@ -162,14 +162,14 @@ brew install python
 
 #### Deploy Dependencies
 
-You can deploy a `.zip` containing the Smartiecoin Core application using `make deploy`.
+You can deploy a `.zip` containing the Ratatoskr Core application using `make deploy`.
 It is required that you have `python` installed.
 
-## Building Smartiecoin Core
+## Building Ratatoskr Core
 
 ### 1. Configuration
 
-There are many ways to configure Smartiecoin Core, here are a few common examples:
+There are many ways to configure Ratatoskr Core, here are a few common examples:
 
 ##### Wallet (BDB + SQlite) Support, No GUI:
 
@@ -212,7 +212,7 @@ Examine the output of the following command for a full list of configuration opt
 ### 2. Compile
 
 After configuration, you are ready to compile.
-Run the following in your terminal to compile Smartiecoin Core:
+Run the following in your terminal to compile Ratatoskr Core:
 
 ``` bash
 make        # use "-j N" here for N parallel jobs
@@ -227,41 +227,41 @@ You can also create a  `.zip` containing the `.app` bundle by running the follow
 make deploy
 ```
 
-## Running Smartiecoin Core
+## Running Ratatoskr Core
 
-Smartiecoin Core should now be available at `./src/smartiecoind`.
-If you compiled support for the GUI, it should be available at `./src/qt/smartiecoin-qt`.
+Ratatoskr Core should now be available at `./src/ratatoskrd`.
+If you compiled support for the GUI, it should be available at `./src/qt/ratatoskr-qt`.
 
-The first time you run `smartiecoind` or `smartiecoin-qt`, it will start downloading the blockchain.
+The first time you run `ratatoskrd` or `ratatoskr-qt`, it will start downloading the blockchain.
 This process could take many hours, or even days on slower than average systems.
 
 By default, blockchain and wallet data files will be stored in:
 
 ``` bash
-/Users/${USER}/Library/Application Support/SmartiecoinCore/
+/Users/${USER}/Library/Application Support/RatatoskrCore/
 ```
 
 Before running, you may create an empty configuration file:
 
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/SmartiecoinCore"
+mkdir -p "/Users/${USER}/Library/Application Support/RatatoskrCore"
 
-touch "/Users/${USER}/Library/Application Support/SmartiecoinCore/smartiecoin.conf"
+touch "/Users/${USER}/Library/Application Support/RatatoskrCore/ratatoskr.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/SmartiecoinCore/smartiecoin.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/RatatoskrCore/ratatoskr.conf"
 ```
 
 You can monitor the download process by looking at the debug.log file:
 
 ```shell
-tail -f $HOME/Library/Application\ Support/SmartiecoinCore/debug.log
+tail -f $HOME/Library/Application\ Support/RatatoskrCore/debug.log
 ```
 
 ## Other commands:
 
 ```shell
-./src/smartiecoind -daemon      # Starts the smartiecoind daemon.
-./src/smartiecoin-cli --help    # Outputs a list of command-line options.
-./src/smartiecoin-cli help      # Outputs a list of RPC commands when the daemon is running.
-./src/qt/smartiecoin-qt -server # Starts the smartiecoin-qt server mode, allows smartiecoin-cli control
+./src/ratatoskrd -daemon      # Starts the ratatoskrd daemon.
+./src/ratatoskr-cli --help    # Outputs a list of command-line options.
+./src/ratatoskr-cli help      # Outputs a list of RPC commands when the daemon is running.
+./src/qt/ratatoskr-qt -server # Starts the ratatoskr-qt server mode, allows ratatoskr-cli control
 ```

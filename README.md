@@ -5,15 +5,23 @@
 Ratatoskr Core (RATR)
 =====================
 
+<p align="center">
+  <a href="https://github.com/EnchantedForestDeFi/ratatoskr/releases"><img src="https://img.shields.io/github/v/release/EnchantedForestDeFi/ratatoskr?include_prereleases&label=latest%20release" alt="Latest release" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" /></a>
+  <a href="https://discord.gg/SrffQVYqee"><img src="https://img.shields.io/badge/discord-EnchantedForestDeFi-7289DA?logo=discord&logoColor=white" alt="Discord" /></a>
+  <a href="https://ratatoskr.enchantedforestdefi.com"><img src="https://img.shields.io/badge/website-ratatoskr.enchantedforestdefi.com-2E5D3A" alt="Website" /></a>
+</p>
+
 > ⚠️ **Pre-launch. Mainnet goes live 2026-06-01 00:00 UTC.**
 >
-> The current `v1.0.0-alpha` release is a **pre-launch package for pool
-> operators, seed node runners, and infrastructure partners** who want to
-> pre-stage their setup. It is **not intended for end-user mining or
-> wallet use**. The chain is not yet live; running the daemon now will
-> simply idle at height 0 with no peers. The final `v1.0.0` release
-> (with the real air-gapped treasury address baked in) will be published
-> before launch.
+> The current release `v1.0.0-rc3` is a **release candidate** for the
+> June 1 mainnet launch. It is suitable for pool operators and
+> infrastructure partners pre-staging their setup, and for end-users
+> who want to verify wallet UI / build process ahead of launch. The
+> chain is not yet live; running the daemon now will simply idle at
+> height 0 with no peers. The final `v1.0.0` release (with finalized
+> chainparams and treasury address baked in) will be published before
+> launch.
 
 🌰 *The squirrel that runs the tree.* 🌳
 
@@ -33,6 +41,38 @@ Built on the Smartiecoin/Dash lineage, with the tokenomics rebalanced around
 two lessons learned from prior MN coins: **miners must remain profitable for
 the network to stay secure**, and **governance must be bounded so it cannot
 extract value from the people securing the network**.
+
+Quick links
+-----------
+
+| Resource | Link |
+|---|---|
+| 🌐 Website | <https://ratatoskr.enchantedforestdefi.com> |
+| 💬 Discord | <https://discord.gg/SrffQVYqee> |
+| 🔗 Block explorer | <https://ratrexplorer.enchantedforestdefi.com> *(testnet now, mainnet at T-0)* |
+| 🌉 Bridge UI | <https://ratatoskrbridge.enchantedforestdefi.com> *(activates T+6h)* |
+| 💼 Web wallet | <https://wallet.ratatoskr.enchantedforestdefi.com> *(network selector flips to mainnet at T-0)* |
+| ⬇️ Latest release | <https://github.com/EnchantedForestDeFi/ratatoskr/releases/latest> |
+| 📄 Whitepaper | [doc/whitepaper.md](doc/whitepaper.md) |
+| ⛏️ Mining guide | [doc/mining.md](doc/mining.md) |
+| 📅 Changelog | [CHANGELOG.md](CHANGELOG.md) |
+| 🔒 Security policy | [SECURITY.md](SECURITY.md) |
+| 🤝 Code of Conduct | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
+| ✉️ Contact | [NexusAether@protonmail.com](mailto:NexusAether@protonmail.com) |
+
+Download
+--------
+
+Pre-built binaries for the current release candidate are available at:
+**[github.com/EnchantedForestDeFi/ratatoskr/releases](https://github.com/EnchantedForestDeFi/ratatoskr/releases)**
+
+| Platform | Tarball |
+|---|---|
+| Linux x86_64 | `ratatoskr-v1.0.0-rc3-linux-x86_64.tar.gz` |
+| Windows x86_64 | `ratatoskr-v1.0.0-rc3-win64.tar.gz` |
+| macOS | building post-launch (see [build-osx.md](doc/build-osx.md) to compile from source) |
+
+Each release tarball contains six binaries: `ratatoskrd` (daemon), `ratatoskr-qt` (GUI wallet), `ratatoskr-cli`, `ratatoskr-tx`, `ratatoskr-util`, `ratatoskr-wallet`. Verify download integrity with the published `SHA256SUMS` file.
 
 At a glance
 -----------
@@ -150,6 +190,19 @@ be run with: `test/functional/test_runner.py`
 Ecosystem
 ---------
 
-- **Bridge**: Ratatoskr ↔ Alephium (wRATR) — cross-chain liquidity
-- **Elexium integration**: wRATR LP pools on Alephium's native DEX
-- **EnchantedForestDeFi**: umbrella brand for the Ratatoskr ecosystem
+Ratatoskr is one piece of the **EnchantedForestDeFi (EFD)** ecosystem. RATR is the messenger; the rest is what RATR moves between:
+
+- **wRATR bridge** — Ratatoskr ↔ Alephium native lock-and-mint bridge for cross-chain liquidity. From wRATR-on-Alephium, the Alephium Bridge provides further hops to Ethereum and BSC (so we don't run separate EVM bridges)
+- **Elexium gauge integration** — wRATR/ALPH and wRATR/NUTTY liquidity on Alephium's ve(3,3) DEX (Elexium). The treasury participates in gauge governance
+- **EFD pool** — operator-run mining pool for RATR at launch ([stratum docs in doc/pool-operator-spec.md](doc/pool-operator-spec.md))
+- **NUTTY** — Alephium-native memecoin in the EFD orbit (87% operator-held supply, separate from RATR)
+- **Lore / community** — Norse mythology framing (Ratatoskr the messenger, Yggdrasil the tree, Alfheim = Alephium); Discord community at [discord.gg/SrffQVYqee](https://discord.gg/SrffQVYqee)
+
+Contributing
+------------
+
+Contributions are welcome from anyone willing to put in the work. See [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow, code style, and review process.
+
+Security disclosures: please follow [SECURITY.md](SECURITY.md) — do not open public issues for vulnerabilities.
+
+Community conduct: see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).

@@ -2,18 +2,18 @@
 
 | Name                     | Description |
 |--------------------------|-------------|
-| *libbitcoin_cli*         | RPC client functionality used by *smartiecoin-cli* executable |
+| *libbitcoin_cli*         | RPC client functionality used by *ratatoskr-cli* executable |
 | *libbitcoin_common*      | Home for common functionality shared by different executables and libraries. Similar to *libbitcoin_util*, but higher-level (see [Dependencies](#dependencies)). |
 | *libdash_consensus*      | Stable, backwards-compatible consensus functionality used by *libbitcoin_node* and *libbitcoin_wallet* and also exposed as a [shared library](../shared-libraries.md). |
 | *libbitcoinconsensus*    | Shared library build of static *libdash_consensus* library |
 | *libbitcoin_kernel*      | Consensus engine and support library used for validation by *libbitcoin_node* and also exposed as a [shared library](../shared-libraries.md). |
-| *libbitcoinqt*           | GUI functionality used by *smartiecoin-qt* and *smartiecoin-gui* executables |
-| *libbitcoin_ipc*         | IPC functionality used by *smartiecoin-node*, *smartiecoin-wallet*, *smartiecoin-gui* executables to communicate when [`--enable-multiprocess`](multiprocess.md) is used. |
-| *libbitcoin_node*        | P2P and RPC server functionality used by *smartiecoind* and *smartiecoin-qt* executables. |
+| *libbitcoinqt*           | GUI functionality used by *ratatoskr-qt* and *ratatoskr-gui* executables |
+| *libbitcoin_ipc*         | IPC functionality used by *ratatoskr-node*, *ratatoskr-wallet*, *ratatoskr-gui* executables to communicate when [`--enable-multiprocess`](multiprocess.md) is used. |
+| *libbitcoin_node*        | P2P and RPC server functionality used by *ratatoskrd* and *ratatoskr-qt* executables. |
 | *libbitcoin_util*        | Home for common functionality shared by different executables and libraries. Similar to *libbitcoin_common*, but lower-level (see [Dependencies](#dependencies)). |
-| *libbitcoin_wallet*      | Wallet functionality used by *smartiecoind* and *smartiecoin-wallet* executables. |
-| *libbitcoin_wallet_tool* | Lower-level wallet functionality used by *smartiecoin-wallet* executable. |
-| *libbitcoin_zmq*         | [ZeroMQ](../zmq.md) functionality used by *smartiecoind* and *smartiecoin-qt* executables. |
+| *libbitcoin_wallet*      | Wallet functionality used by *ratatoskrd* and *ratatoskr-wallet* executables. |
+| *libbitcoin_wallet_tool* | Lower-level wallet functionality used by *ratatoskr-wallet* executable. |
+| *libbitcoin_zmq*         | [ZeroMQ](../zmq.md) functionality used by *ratatoskrd* and *ratatoskr-qt* executables. |
 
 Note: libbitcoin_kernel is a subject to be backported & dashified.
 
@@ -41,17 +41,17 @@ Note: libbitcoin_kernel is a subject to be backported & dashified.
 
 graph TD;
 
-smartiecoin-cli[smartiecoin-cli]-->libbitcoin_cli;
+ratatoskr-cli[ratatoskr-cli]-->libbitcoin_cli;
 
-smartiecoind[smartiecoind]-->libbitcoin_node;
-smartiecoind[smartiecoind]-->libbitcoin_wallet;
+ratatoskrd[ratatoskrd]-->libbitcoin_node;
+ratatoskrd[ratatoskrd]-->libbitcoin_wallet;
 
-smartiecoin-qt[smartiecoin-qt]-->libbitcoin_node;
-smartiecoin-qt[smartiecoin-qt]-->libbitcoinqt;
-smartiecoin-qt[smartiecoin-qt]-->libbitcoin_wallet;
+ratatoskr-qt[ratatoskr-qt]-->libbitcoin_node;
+ratatoskr-qt[ratatoskr-qt]-->libbitcoinqt;
+ratatoskr-qt[ratatoskr-qt]-->libbitcoin_wallet;
 
-smartiecoin-wallet[smartiecoin-wallet]-->libbitcoin_wallet;
-smartiecoin-wallet[smartiecoin-wallet]-->libbitcoin_wallet_tool;
+ratatoskr-wallet[ratatoskr-wallet]-->libbitcoin_wallet;
+ratatoskr-wallet[ratatoskr-wallet]-->libbitcoin_wallet_tool;
 
 libbitcoin_cli-->libbitcoin_util;
 libbitcoin_cli-->libbitcoin_common;
@@ -78,7 +78,7 @@ libbitcoin_wallet_tool-->libbitcoin_wallet;
 libbitcoin_wallet_tool-->libbitcoin_util;
 
 classDef bold stroke-width:2px, font-weight:bold, font-size: smaller;
-class smartiecoin-qt,smartiecoind,smartiecoin-cli,smartiecoin-wallet bold
+class ratatoskr-qt,ratatoskrd,ratatoskr-cli,ratatoskr-wallet bold
 ```
 </td></tr><tr><td>
 

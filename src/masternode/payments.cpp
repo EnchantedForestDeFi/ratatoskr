@@ -48,12 +48,18 @@ CAmount GetTreasuryPayment(int nBlockHeight, const CAmount blockSubsidy, const C
     const int nBlockHeight = pindexPrev  == nullptr ? 0 : pindexPrev->nHeight + 1;
 
     bool fV20Active = DeploymentActiveAfter(pindexPrev, m_consensus_params, Consensus::DEPLOYMENT_V20);
-    CAmount masternodeReward = GetMasternodePayment(nBlockHeight, blockSubsidy + feeReward, fV20Active);
+    // Reward-split fix 2026-05-21: GetMasternodePayment expects post-treasury blockValue per its
+    // documented contract (validation.cpp::GetMasternodePayment comment block). Deduct the
+    // treasury vout amount before calling so the function returns mnShareBps/10000 of the
+    // FULL subsidy. Without this, MN gets 1/3 of full subsidy instead of 30%, producing
+    // a 57/33/10 split instead of the whitepaper-specified 60/30/10.
+    const CAmount treasuryAmount = GetTreasuryPayment(nBlockHeight, blockSubsidy, m_consensus_params);
+    CAmount masternodeReward = GetMasternodePayment(nBlockHeight, blockSubsidy - treasuryAmount + feeReward, fV20Active);
 
     // Credit Pool doesn't exist before V20. If any part of reward will re-allocated to credit pool before v20
     // activation these fund will be just permanently lost. Applicable for devnets, regtest, testnet
     if (fV20Active && DeploymentActiveAfter(pindexPrev, m_consensus_params, Consensus::DEPLOYMENT_MN_RR)) {
-        CAmount masternodeSubsidyReward = GetMasternodePayment(nBlockHeight, blockSubsidy, fV20Active);
+        CAmount masternodeSubsidyReward = GetMasternodePayment(nBlockHeight, blockSubsidy - treasuryAmount, fV20Active);
         const CAmount platformReward = PlatformShare(masternodeSubsidyReward);
         masternodeReward -= platformReward;
 

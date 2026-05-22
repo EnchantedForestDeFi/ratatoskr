@@ -184,7 +184,9 @@ public:
         // overall economics from the documented 60/30/10 to a 53/27/10/10
         // post-block-29,900 split. The 10% treasury share is fixed by the
         // drip mechanism; the 60/30 miner/MN allocation is currently fixed
-        // by GetMasternodePayment in validation.cpp (returns blockValue/3)
+        // by GetMasternodePayment in validation.cpp. Callers must pass post-treasury
+        // blockValue; function returns mnShareBps/10000 of TOTAL subsidy via the /9000
+        // denominator. Default 3000bp = 30% of total. Clamped to [2000, 4000]bp.
         // and is targeted to become governance-adjustable in a future
         // release per the design comment in that function.
         //

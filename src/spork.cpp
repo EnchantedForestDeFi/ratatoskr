@@ -259,9 +259,33 @@ bool CSporkManager::IsSporkActive(SporkId nSporkID) const
 
 SporkValue CSporkManager::GetSporkValue(SporkId nSporkID) const
 {
-    // Harden most sporks on Mainnet by short-circuiting to fixed values.
-    // Sporks that DO need to be operator-adjustable on mainnet (SPORK_25 for
-    // the MN payment bps split) fall through to the live-lookup logic below.
+    // Mainnet spork hardening (added in 0e0d513, 2026-04-26):
+    //
+    // On mainnet, this function short-circuits most sporks to fixed values,
+    // ignoring any received spork messages:
+    //   - SPORK_21_QUORUM_ALL_CONNECTED -> returns 1 (hardcoded active)
+    //   - SPORK_25_MN_PAYMENT_BPS       -> falls through to live SporkValueIfActive()
+    //   - all others                    -> returns 0
+    //
+    // IMPORTANT: `return 0` makes the spork ACTIVE on mainnet, NOT inactive.
+    // IsSporkActive() evaluates `nSporkValue < GetAdjustedTime()`, so a value
+    // of 0 satisfies the inequality (0 < current_time = true). Returning 0
+    // semantically means "active since Unix epoch" = always active.
+    //
+    // (The original commit message wording "(sporks default-OFF)" referred
+    //  to the sporkDefs array defaults — runtime mainnet behavior is the
+    //  opposite: hardcoded-ACTIVE for all-but-SPORK_25.)
+    //
+    // Intent: eliminate the documented Dash-family operational failure mode
+    // where the chain becomes unjoinable for new daemons because SPORK_17
+    // was never flipped post-launch. On RATR mainnet, the daemon ALWAYS
+    // sees SPORK_17 as active, so DKG runs from block 1 regardless of
+    // operator action. This matches Dash master's pattern for SPORK_21
+    // and extends the same hardening to SPORK_17/19/etc.
+    //
+    // Test chains (m_is_test_chain = true: testnet/devnet/regtest/rehearsal)
+    // bypass this hardening and use the standard message-driven spork system,
+    // preserving operator-flip testability for sandbox/development work.
     if (!Params().IsTestChain()) {
         switch (nSporkID) {
             case SPORK_21_QUORUM_ALL_CONNECTED:

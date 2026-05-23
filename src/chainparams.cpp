@@ -216,10 +216,13 @@ public:
         // actual treasury address script generated via air-gapped keygen before mainnet launch.
         consensus.nTreasuryPaymentStartBlock = 1;
         consensus.nTreasuryPaymentPercentage = 10;
-        // PLACEHOLDER: OP_RETURN-"RATR" burn script. Any value sent here is unspendable.
-        // MUST BE REPLACED with a real P2PKH/P2SH treasury script in a follow-up commit
-        // before mainnet launch on 2026-06-01.
-        consensus.treasuryPaymentScript = CScript() << OP_RETURN << ParseHex("52415452");
+        // Treasury P2PKH: pays the operator-multisig vault address generated
+        // during the T-10 mainnet keygen ceremony on 2026-05-22. See
+        // doc/keygen-ceremony-2026-05-22.md for the public artifacts +
+        // proof-of-control signature.
+        //   Address:  RDt67AAyyqAG3u7h2STJ5kvfzbuiTUa9WN
+        //   hash160:  327a13af66075bbf182c55393106befbb607d0ac
+        consensus.treasuryPaymentScript = CScript() << OP_DUP << OP_HASH160 << ParseHex("327a13af66075bbf182c55393106befbb607d0ac") << OP_EQUALVERIFY << OP_CHECKSIG;
         consensus.nGovernanceMinQuorum = 2;
         consensus.nGovernanceFilterElements = 15000;
         consensus.nMasternodeMinimumConfirmations = 15;
@@ -408,7 +411,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"RKexdLvbo5W9NPfDKphhkTjXUbedx5U8yk"};
+        vSporkAddresses = {"RYJoaj2cuAo4ApV4fiJds2Umnumhzrxvhg"};  // baked in from T-10 keygen ceremony 2026-05-22
         nMinSporkKeys = 1;
 
         nCreditPoolPeriodBlocks = 576;

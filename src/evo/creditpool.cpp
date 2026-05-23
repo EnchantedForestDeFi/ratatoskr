@@ -27,6 +27,7 @@ using node::ReadBlockFromDisk;
 
 // Forward declaration to prevent a new circular dependencies through masternode/payments.h
 CAmount PlatformShare(const CAmount masternodeReward);
+CAmount GetTreasuryPayment(int nBlockHeight, const CAmount blockSubsidy, const Consensus::Params& consensusParams);
 
 static const std::string DB_CREDITPOOL_SNAPSHOT = "cpm_S";
 
@@ -255,7 +256,9 @@ CCreditPoolDiff::CCreditPoolDiff(CCreditPool starter, const CBlockIndex* pindexP
 
     if (DeploymentActiveAfter(pindexPrev, consensusParams, Consensus::DEPLOYMENT_MN_RR)) {
         // If credit pool exists, it means v20 is activated
-        platformReward = PlatformShare(GetMasternodePayment(pindexPrev->nHeight + 1, blockSubsidy, /*fV20Active=*/ true));
+        // Reward-split fix 2026-05-21: pass post-treasury blockValue per GetMasternodePayment's contract.
+        const CAmount treasuryAmount = GetTreasuryPayment(pindexPrev->nHeight + 1, blockSubsidy, consensusParams);
+        platformReward = PlatformShare(GetMasternodePayment(pindexPrev->nHeight + 1, blockSubsidy - treasuryAmount, /*fV20Active=*/ true));
     }
 }
 

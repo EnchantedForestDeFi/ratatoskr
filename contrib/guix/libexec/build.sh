@@ -411,9 +411,9 @@ mkdir -p "$DISTSRC"
                 ;;
         esac
 
-        # copy over the example smartiecoin.conf file. if contrib/devtools/gen-smartiecoin-conf.sh
+        # copy over the example ratatoskr.conf file. if contrib/devtools/gen-ratatoskr.conf.sh
         # has not been run before buildling, this file will be a stub
-        cp "${DISTSRC}/contrib/debian/examples/smartiecoin.conf" "${DISTNAME}/"
+        cp "${DISTSRC}/contrib/debian/examples/ratatoskr.conf" "${DISTNAME}/"
 
         cp -r "${DISTSRC}/share/rpcauth" "${DISTNAME}/share/"
 

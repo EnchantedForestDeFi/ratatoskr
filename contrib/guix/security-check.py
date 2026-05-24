@@ -123,8 +123,11 @@ def check_ELF_CONTROL_FLOW(binary) -> bool:
     return False
 
 def check_ELF_FORTIFY(binary) -> bool:
-    # smartiecoin-util does not currently contain any fortified functions
-    if 'Smartiecoin Core smartiecoin-util utility version ' in binary.strings:
+    # ratatoskr-util does not currently contain any fortified functions
+    # (kept as a string-match exception: the binary is small enough that the
+    # compiler emits no __*_chk wrappers, so the standard chk-symbol check
+    # would false-positive. Renamed from upstream Smartiecoin baseline.)
+    if 'Ratatoskr Core ratatoskr-util utility version ' in binary.strings:
         return True
 
     chk_funcs = set()

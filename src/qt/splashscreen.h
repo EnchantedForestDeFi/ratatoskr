@@ -67,6 +67,15 @@ private:
     std::unique_ptr<interfaces::Handler> m_handler_load_wallet;
     std::list<std::unique_ptr<interfaces::Wallet>> m_connected_wallets;
     std::list<std::unique_ptr<interfaces::Handler>> m_connected_wallet_handlers;
+
+private:
+    qint64 m_start_ms{0};
+
+public:
+    /** Block return until splash has been visible for at least minimum_ms milliseconds.
+     *  Uses QEventLoop so painting/UI events continue during the wait. */
+    void waitForMinimumDuration(qint64 minimum_ms);
+
 };
 
 #endif // BITCOIN_QT_SPLASHSCREEN_H

@@ -62,6 +62,8 @@
 
 #if defined(QT_STATIC)
 #include <QtPlugin>
+
+static constexpr int DEFAULT_SPLASH_MIN_DURATION_MS = 3000;
 #if defined(QT_QPA_PLATFORM_XCB)
 Q_IMPORT_PLUGIN(QXcbIntegrationPlugin);
 #elif defined(QT_QPA_PLATFORM_WINDOWS)
@@ -408,6 +410,10 @@ void BitcoinApplication::initializeResult(bool success, interfaces::BlockAndHead
     // Set exit result.
     returnValue = success ? EXIT_SUCCESS : EXIT_FAILURE;
     if(success) {
+        if (m_splash) {
+            int splash_min_ms = gArgs.GetIntArg("-splashduration", DEFAULT_SPLASH_MIN_DURATION_MS);
+            m_splash->waitForMinimumDuration(splash_min_ms);
+        }
         delete m_splash;
         m_splash = nullptr;
 
@@ -508,6 +514,7 @@ static void SetupUIArgs(ArgsManager& argsman)
     argsman.AddArg("-min", QObject::tr("Start minimized").toStdString(), ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     argsman.AddArg("-resetguisettings", QObject::tr("Reset all settings changed in the GUI").toStdString(), ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     argsman.AddArg("-splash", strprintf(QObject::tr("Show splash screen on startup (default: %u)").toStdString(), DEFAULT_SPLASHSCREEN), ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
+    argsman.AddArg("-splashduration=<ms>", strprintf("Minimum splash screen display duration in milliseconds (default: %u; 0 = hide immediately when ready)", DEFAULT_SPLASH_MIN_DURATION_MS), ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     argsman.AddArg("-uiplatform", strprintf("Select platform to customize UI for (one of windows, macosx, other; default: %s)", BitcoinGUI::DEFAULT_UIPLATFORM), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::GUI);
     argsman.AddArg("-debug-ui", "Updates the UI's stylesheets in realtime with changes made to the css files in -custom-css-dir and forces some widgets to show up which are usually only visible under certain circumstances. (default: 0)", ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::GUI);
     argsman.AddArg("-windowtitle=<name>", _("Sets a window title which is appended to \"Ratatoskr Core - \"").translated, ArgsManager::ALLOW_ANY, OptionsCategory::GUI);

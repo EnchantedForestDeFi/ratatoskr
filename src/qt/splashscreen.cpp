@@ -5,6 +5,9 @@
 
 #if defined(HAVE_CONFIG_H)
 #include <config/bitcoin-config.h>
+#include <QTimer>
+#include <QEventLoop>
+#include <QDateTime>
 #endif
 
 #include <qt/splashscreen.h>
@@ -34,6 +37,7 @@ SplashScreen::SplashScreen(const NetworkStyle* networkStyle)
     : QWidget()
 {
 
+    m_start_ms = QDateTime::currentMSecsSinceEpoch();
     // transparent background
     setAttribute(Qt::WA_TranslucentBackground);
     setStyleSheet("background:transparent;");
@@ -233,4 +237,16 @@ void SplashScreen::closeEvent(QCloseEvent *event)
 {
     shutdown(); // allows an "emergency" shutdown during startup
     event->ignore();
+}
+
+void SplashScreen::waitForMinimumDuration(qint64 minimum_ms)
+{
+    if (minimum_ms <= 0) return;
+    qint64 elapsed = QDateTime::currentMSecsSinceEpoch() - m_start_ms;
+    if (elapsed >= minimum_ms) return;
+
+    qint64 remaining = minimum_ms - elapsed;
+    QEventLoop loop;
+    QTimer::singleShot(remaining, &loop, &QEventLoop::quit);
+    loop.exec();
 }

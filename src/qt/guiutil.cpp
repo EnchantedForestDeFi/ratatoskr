@@ -109,7 +109,9 @@ static const QString generalTheme = "general";
 static const std::map<QString, QString> mapThemeToStyle{
     {generalTheme, "general.css"},
     {"Dark", "dark.css"},
+    {"DarkForest", "forest.css"},
     {"Light", "light.css"},
+    {"Parchment", "parchment.css"},
     {"Traditional", "traditional.css"},
 };
 
@@ -882,7 +884,8 @@ QString getDefaultTheme()
 
 bool isValidTheme(const QString& strTheme)
 {
-    return strTheme == defaultTheme || strTheme == darkThemePrefix || strTheme == traditionalTheme;
+    // Accept any theme registered in mapThemeToStyle (excluding generalTheme).
+    return mapThemeToStyle.count(strTheme) > 0 && strTheme != generalTheme;
 }
 
 void loadStyleSheet(bool fForceUpdate)
@@ -945,7 +948,24 @@ void loadStyleSheet(bool fForceUpdate)
                 qApp->setStyle(default_style);
             }
         }
-        const QPalette standard_palette = qApp->style() ? qApp->style()->standardPalette() : QApplication::palette();
+        QPalette standard_palette = qApp->style() ? qApp->style()->standardPalette() : QApplication::palette();
+        // PARCHMENT THEME: paint the aged-paper image as the window background brush.
+        // Qt QSS doesn't reliably render background-image on QMainWindow; QPalette brush does.
+        if (active_theme == "Parchment") {
+            QPixmap bg_img(":/images/bg_parchment");
+            if (!bg_img.isNull()) {
+                standard_palette.setBrush(QPalette::Window, QBrush(bg_img));
+                standard_palette.setBrush(QPalette::Base, QBrush(QColor(245, 239, 225)));
+                standard_palette.setColor(QPalette::WindowText, QColor(42, 53, 48));
+                standard_palette.setColor(QPalette::Text, QColor(42, 53, 48));
+                standard_palette.setColor(QPalette::Button, QColor(245, 239, 225));
+                standard_palette.setColor(QPalette::ButtonText, QColor(26, 71, 49));
+                standard_palette.setColor(QPalette::Highlight, QColor(26, 71, 49));
+                standard_palette.setColor(QPalette::HighlightedText, QColor(245, 239, 225));
+                standard_palette.setColor(QPalette::Link, QColor(26, 71, 49));
+                standard_palette.setColor(QPalette::LinkVisited, QColor(122, 48, 24));
+            }
+        }
         qApp->setPalette(standard_palette);
         QToolTip::setPalette(standard_palette);
     }

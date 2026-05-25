@@ -347,8 +347,9 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
         vSeeds.clear();
-        vSeeds.emplace_back("207.180.230.125");
-        vSeeds.emplace_back("smartiescoin.com");
+        vSeeds.emplace_back("178.238.224.23");                       // vps2 (Contabo)
+        vSeeds.emplace_back("198.71.49.142");                        // vps-mn (IONOS)
+        vSeeds.emplace_back("mainnet-seed.enchantedforestdefi.com"); // DNS A record set up T-3 to T-1
 
         // Ratatoskr address prefixes — addresses start with 'R'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);   // 'R...'

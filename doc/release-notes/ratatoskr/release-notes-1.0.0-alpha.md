@@ -88,8 +88,9 @@ before MN economics go live.
 
 ### Treasury
 - 10% of every block subsidy flows continuously to a treasury wallet
-  (hardware-wallet-secured at v1.0; multisig migration is on the
-  post-launch roadmap — see limitations below).
+  (air-gapped cold-storage at v1.0; Ledger support tracked for when
+  Ratatoskr support lands; multisig migration is on the post-launch
+  roadmap — see limitations below).
 - Treasury purpose: Alephium DeFi ecosystem participation (gauge
   incentives where available, liquidity provisioning for wRATR trading
   pairs), bridge infrastructure costs, and operational needs.

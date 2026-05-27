@@ -270,11 +270,13 @@ still offering multi-chain accessibility.
 The native bridge locks RATR on Ratatoskr and mints wRATR on Alephium
 (and burns wRATR to unlock RATR on the return trip).
 
-- **Mechanism:** lock-and-mint, with a hardware-wallet-secured custodian
-  holding locked RATR on the Ratatoskr side and a Ralph smart contract
-  handling mint/burn on the Alephium side
-- **Custodial model at v1.0:** single operator, Ledger-backed.
-  Multi-operator federation is on the Phase 2 roadmap
+- **Mechanism:** lock-and-mint, with an air-gapped cold-storage
+  custodian holding locked RATR on the Ratatoskr side and a Ralph smart
+  contract handling mint/burn on the Alephium side
+- **Custodial model at v1.0:** single operator. Alephium-side bridge
+  contracts are Ledger-secured; native RATR custody is air-gapped cold
+  storage (RATR Ledger support not yet available — tracked for Phase 2).
+  Multi-operator federation is also on the Phase 2 roadmap
 - **Published limits:** per-tx and daily caps at launch, raised as
   operational confidence grows
 - **Transparency:** bridge custodian address and wRATR contract are
@@ -409,8 +411,9 @@ Treasury funds support the ongoing operational needs of the ecosystem:
 
 ### 7.2 Security
 
-**v1.0 (launch)**: Single-signature, hardware-wallet-secured by the project
-operator. This is an intentional simplification for alpha — multisig only
+**v1.0 (launch)**: Single-signature, air-gapped cold-storage by the project
+operator (Ratatoskr Ledger support not yet available; tracked for a future
+release). This is an intentional simplification for alpha — multisig only
 works with engaged cosigners who can evaluate transactions, and the
 Ratatoskr community at launch is too small to credibly fill cosigner roles.
 
@@ -418,7 +421,7 @@ Ratatoskr community at launch is too small to credibly fill cosigner roles.
 
 - All treasury addresses published on day 1
 - Monthly on-chain treasury reports published to public Discord
-- Hardware wallet + offline seed backup at multiple physical locations
+- Air-gapped key generation + offline seed backup at multiple physical locations
 - Operator spending scope publicly documented; anything outside scope
   requires masternode governance approval
 

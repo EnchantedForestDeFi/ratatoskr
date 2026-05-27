@@ -68,7 +68,7 @@ Dash-lineage chain. Coinbase is a **CbTx special transaction** (DIP0003):
 
 **Treasury address (mainnet, locked in chainparams):** TBD — will be posted
 publicly and included in release notes before June 1. The treasury address is
-hardware-wallet-secured; pool just pays to it as dictated by
+air-gapped cold-storage secured; pool just pays to it as dictated by
 `ratatoskrd`'s `getblocktemplate`.
 
 ## Algorithm

@@ -100,7 +100,7 @@ Miners who show up on day one are protected from being diluted by day 100.
 
 - **v1.0 launch:** single-sig, air-gapped cold key. Address published in
   release notes before June 1.
-- **v1.1 roadmap:** multisig (3-of-5 or 2-of-3), hardware-wallet-secured.
+- **v1.1 roadmap:** multisig (3-of-5 or 2-of-3) across separate cold-storage devices (Ledger when Ratatoskr support lands).
 
 Every drip is visible on-chain in real time; any wallet can verify
 `sum(treasury_outputs) == blocks_mined × 10% × subsidy`.

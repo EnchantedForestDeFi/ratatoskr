@@ -100,45 +100,8 @@ before MN economics go live.
   addresses public from launch.
 - Liquidity provisioning and ecosystem participation are routine
   treasury operations within documented scope; anything outside this
-  scope (audits, listings, NFT program, etc.) requires masternode
+  scope (audits, listings, etc.) requires masternode
   vote.
-
-### Roadmap: NFTs as a revenue stream for miners (Phase 3)
-
-A revenue distribution program is **planned but NOT live at launch**.
-Block rewards (60% miner, 30% MN) are live from day 1. The additional
-revenue stream below is a planned Phase 3 (~6 months post-launch).
-
-**The miner angle:** NFTs are the entry point for miners to receive
-on-going LP/treasury revenue without having to first accumulate the
-full 7,500 RATR collateral required for a masternode. A miner who has
-mined any amount of RATR can purchase an NFT and start receiving their
-share of weekly/monthly distributions.
-
-Target design:
-- NFT collection minted on Alephium, capped supply (specifics TBD)
-- NFT sale proceeds expand protocol-owned liquidity in wRATR pools
-- Weekly or monthly distribution of LP earnings (trading fees + EX
-  emissions captured by treasury LP positions) split between:
-  - MN holders (pro-rata by collateral weight)
-  - NFT holders (pro-rata by NFT count)
-- Three participation paths for miners (use any or all):
-  1. Block rewards only (mine, sell, repeat) — no extra setup needed
-  2. Mine → buy NFT → earn distributions (low entry cost)
-  3. Mine → save up 7,500 RATR → run MN → earn block rewards +
-     distributions (highest yield, highest commitment)
-
-Why not at launch:
-- Bridge + LP must be operational and earning before there's anything
-  to distribute (Phase 2 territory)
-- Distribution contract requires audit before handling real revenue
-- NFT mint mechanics need design + community input
-- Better to launch chain cleanly and add rewards layer on top once
-  base infrastructure is proven
-
-This roadmap is intent, not commitment. Subject to refinement based on
-launch experience and community feedback. Will be developed transparently
-in Discord with masternode operator input.
 
 ## Known limitations (v1.0.0-alpha)
 

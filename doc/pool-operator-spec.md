@@ -184,7 +184,7 @@ Or via command line: `-addnode=seed1.ratatoskr.enchantedforestdefi.com`
 - Issues: <https://github.com/EnchantedForestDeFi/ratatoskr/issues>
 - Discord: EnchantedForestDeFi server (channel `#ratatoskr` will be live
   before launch)
-- Project operator direct: NexusAether@protonmail.com
+- Project operator direct: releases@enchantedforestdefi.com
 
 Please let the project know your pool URL(s) so miners can find you on
 launch day.

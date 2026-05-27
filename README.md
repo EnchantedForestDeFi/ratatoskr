@@ -58,7 +58,7 @@ Quick links
 | 📅 Changelog | [CHANGELOG.md](CHANGELOG.md) |
 | 🔒 Security policy | [SECURITY.md](SECURITY.md) |
 | 🤝 Code of Conduct | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
-| ✉️ Contact | [NexusAether@protonmail.com](mailto:NexusAether@protonmail.com) |
+| ✉️ Contact | [releases@enchantedforestdefi.com](mailto:releases@enchantedforestdefi.com) |
 
 Download
 --------

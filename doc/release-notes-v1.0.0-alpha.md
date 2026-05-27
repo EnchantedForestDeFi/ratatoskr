@@ -177,7 +177,7 @@ in `src/masternode/payments.cpp` (`GetTreasuryPayment`, `FillBlockPayments`,
 - **Launch-day runbook:** [`doc/launch-day-runbook.md`](https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/doc/launch-day-runbook.md)
 - **Treasury keygen runbook:** [`doc/treasury-keygen-runbook.md`](https://github.com/EnchantedForestDeFi/ratatoskr/blob/main/doc/treasury-keygen-runbook.md)
 - **Discord:** EnchantedForestDeFi server, channel `#ratatoskr`
-- **Contact:** `NexusAether@protonmail.com`
+- **Contact:** `releases@enchantedforestdefi.com`
 
 ---
 

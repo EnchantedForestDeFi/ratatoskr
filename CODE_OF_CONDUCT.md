@@ -46,7 +46,7 @@ Community spaces specifically covered:
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainer at [NexusAether@protonmail.com](mailto:NexusAether@protonmail.com). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainer at [releases@enchantedforestdefi.com](mailto:releases@enchantedforestdefi.com). All complaints will be reviewed and investigated promptly and fairly.
 
 The maintainer is obligated to respect the privacy and security of the reporter of any incident.
 

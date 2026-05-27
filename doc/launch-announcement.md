@@ -74,7 +74,7 @@ Ratatoskr bakes a different social contract into consensus:
 ### Pool operators
 
 - Full integration spec: [`doc/pool-operator-spec.md`](pool-operator-spec.md).
-- Please email `NexusAether@protonmail.com` with your pool URL so we can
+- Please email `releases@enchantedforestdefi.com` with your pool URL so we can
   list you on day one.
 
 ---
@@ -101,7 +101,6 @@ Miners who show up on day one are protected from being diluted by day 100.
 - **v1.0 launch:** single-sig, air-gapped cold key. Address published in
   release notes before June 1.
 - **v1.1 roadmap:** multisig (3-of-5 or 2-of-3), hardware-wallet-secured.
-- **Phase 3:** community NFT-gated treasury co-signers (exploration).
 
 Every drip is visible on-chain in real time; any wallet can verify
 `sum(treasury_outputs) == blocks_mined × 10% × subsidy`.
@@ -134,7 +133,7 @@ in `doc/pool-operator-spec.md` and the whitepaper.
 - **Miner guide:** [`doc/mining.md`](mining.md)
 - **Pool spec:** [`doc/pool-operator-spec.md`](pool-operator-spec.md)
 - **Discord:** EnchantedForestDeFi server, channel `#ratatoskr` (live before launch)
-- **Contact:** `NexusAether@protonmail.com`
+- **Contact:** `releases@enchantedforestdefi.com`
 
 ---
 

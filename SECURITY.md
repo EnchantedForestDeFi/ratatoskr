@@ -4,7 +4,7 @@
 
 If you believe you have found a security vulnerability in Ratatoskr Core, the bridge contract, or any operator-run infrastructure, please report it privately rather than opening a public issue.
 
-**Contact:** [NexusAether@protonmail.com](mailto:NexusAether@protonmail.com)
+**Contact:** [releases@enchantedforestdefi.com](mailto:releases@enchantedforestdefi.com)
 
 Please include:
 

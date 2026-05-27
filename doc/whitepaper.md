@@ -456,27 +456,6 @@ the treasury private key. Anyone can then verify on-chain that no
 specification, edge cases, and verification procedure are in
 `doc/treasury-governance-policy.md`.
 
-### 7.4 Fractional Masternode NFTs (Phase 3, exploratory)
-
-A planned Phase 3 feature (target ~6 months post-launch) would mint NFTs
-on Alephium representing fractional ownership of treasury-operated
-masternodes. Buyers contribute capital that the treasury pools to
-register new MNs; NFT holders receive pro-rata block rewards from the
-pooled MN, minus a small treasury operator fee. This creates an
-entry-level MN-yield product for participants who have not yet
-accumulated full collateral (7,500 RATR Regular / 30,000 EvoNode).
-
-All masternodes operated by such a pool inherit the abstention policy
-from §7.3 — treasury-funded MNs cast `ABSTAIN` on every governance
-proposal regardless of whether the underlying capital is direct treasury
-RATR or pooled NFT-holder capital. This is not a Phase-3-conditional
-rule; it is the chain-wide treasury MN policy already adopted in §7.3.
-The Phase 3 product simply scales the operating model without changing
-the governance posture.
-
-Phase 3 remains exploratory; this whitepaper should not be read as a
-commitment to build it in its current form.
-
 ---
 
 ## 8. Roadmap
@@ -500,7 +479,6 @@ commitment to build it in its current form.
 
 ### Phase 3: Growth (Q4 2026 onwards)
 
-- NFT fractional-MN program launch
 - MN collateral governance (raise-only)
 - Additional integrations and partnerships
 - Transition to multi-sig treasury
@@ -574,7 +552,7 @@ verified on prior production cross-chain infrastructure with bidirectional
 operation and no custodial incident. Published contact points:
 
 - GitHub organisation: `EnchantedForestDeFi`
-- Email: `NexusAether@protonmail.com`
+- Email: `releases@enchantedforestdefi.com`
 - Discord: EnchantedForestDeFi server, `#ratatoskr` channel
 
 Transparency commitments:

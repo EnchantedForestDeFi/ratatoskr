@@ -56,7 +56,7 @@ For both keypairs, paper backup contains:
 - WIF (52-char base58, starts with `U` for RATR mainnet, version byte 0xBC=188)
 - HEX (64-char uppercase, the 32-byte raw private key)
 
-Storage plan (per `ratr_keygen_bundle_usb_2026_05_18.md` Phase 10-11):
+Storage plan:
 - Paper backups → notebook → 2 physically separated locations
 - HEX → 9 metal washers per key × 2 keys = 18 washers total, stamped post-ceremony, distributed across same 2 locations
 
@@ -112,8 +112,5 @@ These all go into a revised README for any future keygen ceremony (RATR v1.1, RA
 
 ## Cross-references
 
-- `ratr_keygen_bundle_usb_2026_05_18.md` — USB bundle staging
-- `ratr_treasury_spork_keygen_ops.md` — ceremony theory predecessor
-- `ratr_mainnet_block1_soft_launch_plan.md` — T-7 founder phase, needs chainparams update
-- `MEMORY.md` — pinned constants block lists treasury/spork integration points
-- `efd_treasury_design_doctrine.md` — treasury-as-policy doctrine
+- Founder phase + chainparams integration: see the `share/genesis/` directory and `src/chainparams.cpp`
+- Treasury policy: see `doc/treasury-governance-policy.md`

@@ -253,8 +253,7 @@ public:
         // Lowering V19Height to 2 ensures all MN registrations work from launch
         // regardless of which RPC the operator uses (`register` or `register_legacy`).
         // DIP0024 must be paired with V19 because LLMQ_10_75 (rotated, used for
-        // small-network InstantSend) requires DIP0024 active. See
-        // efd_smt_archaeology_2026_05_05.md and ratr_v19_basic_scheme_finding.md.
+        // small-network InstantSend) requires DIP0024 active.
         consensus.DIP0020Height = 2;
         consensus.DIP0024Height = 2;
         consensus.DIP0024QuorumsHeight = 2;
@@ -347,9 +346,9 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
         vSeeds.clear();
-        vSeeds.emplace_back("178.238.224.23");                       // vps2 (Contabo)
-        vSeeds.emplace_back("198.71.49.142");                        // vps-mn (IONOS)
-        vSeeds.emplace_back("mainnet-seed.enchantedforestdefi.com"); // DNS A record set up T-3 to T-1
+        vSeeds.emplace_back("178.238.224.23");                       // seed-1
+        vSeeds.emplace_back("198.71.49.142");                        // seed-2
+        vSeeds.emplace_back("mainnet-seed.enchantedforestdefi.com"); // DNS seed
 
         // Ratatoskr address prefixes — addresses start with 'R'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);   // 'R...'

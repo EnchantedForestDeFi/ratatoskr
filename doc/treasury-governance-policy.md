@@ -216,7 +216,7 @@ analyst, or community member without operator cooperation.
 
 ---
 
-*Operator: NexusAether (`releases@enchantedforestdefi.com`).
+*Maintainer: EFD (`releases@enchantedforestdefi.com`).
 Repository: `EnchantedForestDeFi/ratatoskr`.
 Policy may be amended by future hard fork; the abstention principle is
 not amendable without a vote that does NOT include treasury masternode

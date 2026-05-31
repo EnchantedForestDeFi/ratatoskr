@@ -8,7 +8,7 @@ Pre-release candidates (`-rc1`, `-rc2`, etc.) precede each major release.
 
 ## [Unreleased]
 
-Tracking work intended for v1.0.0 final or later. See the `efd_listing_assets_production_plan` and `ratr_full_project_calendar` operator memories for the active queue.
+Tracking work intended for v1.0.0 final or later. The active queue is tracked in EFD's internal project calendar.
 
 ---
 
@@ -41,7 +41,7 @@ Tracking work intended for v1.0.0 final or later. See the `efd_listing_assets_pr
 - **build:** include `<cstdint>` for UI interface ([`f788e5a`](../../commit/f788e5a))
 - **build:** make fixed-width integer headers self-contained across 116 headers ([`c3f0d9a`](../../commit/c3f0d9a))
 
-These are mechanical hygiene cherry-picks from upstream SMT v0.3.1 (Batch 1 of the hybrid pragmatic upstream-tracking policy — see operator memory `smt_v0_3_1_ratr_port_analysis_2026_05_14`).
+These are mechanical hygiene cherry-picks from upstream SMT v0.3.1, part of EFD's hybrid pragmatic upstream-tracking policy.
 
 ---
 

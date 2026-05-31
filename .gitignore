@@ -178,3 +178,18 @@ compile_commands.json
 
 # Generated whitepaper PDFs (regenerable via pandoc)
 doc/whitepaper*.pdf
+
+# Safety patterns added pre-public-flip 2026-05-31
+# Never commit env files, wallet data, private keys, or PEM/cert material
+.env
+.env.*
+!.env.example
+*.dat
+!share/genesis/*.dat
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials/

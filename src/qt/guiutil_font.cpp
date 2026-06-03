@@ -581,10 +581,9 @@ void updateFonts()
             // Do not apply styling logic if ignored or handled separately
             continue;
         }
-        ++nUpdatable;
-
         QFont font = w->font();
-        assert(font.pointSize() > 0);
+        if (font.pointSize() <= 0) continue;  // Skip widgets with pixel-sized fonts (system internals)
+        ++nUpdatable;
         font.setFamily(qApp->font().family());
         font.setWeight(g_font_registry.GetWeightNormal());
         font.setStyleName(qApp->font().styleName());

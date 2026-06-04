@@ -77,7 +77,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
             "<b>" + tr("Ratatoskr resources") + "</b><br>"
             + tr("Website") + ": <a style=\"" + linkStyle + "\" href=\"https://ratatoskr.enchantedforestdefi.com\">ratatoskr.enchantedforestdefi.com</a><br>"
             + tr("Source code") + ": <a style=\"" + linkStyle + "\" href=\"https://github.com/EnchantedForestDeFi/ratatoskr\">github.com/EnchantedForestDeFi/ratatoskr</a><br>"
-            + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">explorer.ratatoskr.enchantedforestdefi.com</a><br>"
+            + tr("Block explorer") + ": <a style=\"" + linkStyle + "\" href=\"https://ratrexplorer.enchantedforestdefi.com\">ratrexplorer.enchantedforestdefi.com</a><br>"
             + tr("Bridge to Alephium") + ": <a style=\"" + linkStyle + "\" href=\"https://ratatoskrbridge.enchantedforestdefi.com\">ratatoskrbridge.enchantedforestdefi.com</a><br>"
             + tr("Discord") + ": <a style=\"" + linkStyle + "\" href=\"https://discord.gg/SrffQVYqee\">discord.gg/SrffQVYqee</a>"
             + "<br><br>"
@@ -303,11 +303,14 @@ For more information, see the <a style=\"%2\" href=\"%3\">%1 documentation</a>."
               + link("https://ratatoskrbridge.enchantedforestdefi.com",
                      "ratatoskrbridge.enchantedforestdefi.com") + "</li>"
             + "<li>" + tr("Block explorer") + ": "
-              + link("https://explorer.ratatoskr.enchantedforestdefi.com",
-                     "explorer.ratatoskr.enchantedforestdefi.com") + "</li>"
-            + "<li>" + tr("Pool (mining)") + ": "
+              + link("https://ratrexplorer.enchantedforestdefi.com",
+                     "ratrexplorer.enchantedforestdefi.com") + "</li>"
+            + "<li>" + tr("Pool (EU)") + ": "
               + link("https://pool.ratatoskr.enchantedforestdefi.com",
                      "pool.ratatoskr.enchantedforestdefi.com") + "</li>"
+            + "<li>" + tr("Pool (US)") + ": "
+              + link("https://pool-us.ratatoskr.enchantedforestdefi.com",
+                     "pool-us.ratatoskr.enchantedforestdefi.com") + "</li>"
             + "<li>" + tr("Masternode hosting (Nodes24 — $1.75/mo, non-custodial)") + ": "
               + link("https://nodes24.online/supported-coins/RATR/",
                      "nodes24.online/supported-coins/RATR/") + "</li>"

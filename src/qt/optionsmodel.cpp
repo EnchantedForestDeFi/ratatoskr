@@ -275,7 +275,7 @@ bool OptionsModel::Init(bilingual_str& error)
     // User can override / clear / append additional URLs via Settings → Options.
     if (!settings.contains("strThirdPartyTxUrls"))
         settings.setValue("strThirdPartyTxUrls",
-            "https://explorer.ratatoskr.enchantedforestdefi.com/tx/%s");
+            "https://ratrexplorer.enchantedforestdefi.com/tx/%s");
     strThirdPartyTxUrls = settings.value("strThirdPartyTxUrls", "").toString();
 
     // Appearance

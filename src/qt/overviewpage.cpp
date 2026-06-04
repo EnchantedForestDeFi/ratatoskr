@@ -220,7 +220,7 @@ OverviewPage::OverviewPage(QWidget* parent) :
                    " &nbsp;·&nbsp; "
                    "<a href=\"https://discord.gg/SrffQVYqee\">Discord</a>"
                    " &nbsp;·&nbsp; "
-                   "<a href=\"https://explorer.ratatoskr.enchantedforestdefi.com\">Block explorer</a>")
+                   "<a href=\"https://ratrexplorer.enchantedforestdefi.com\">Block explorer</a>")
                     .arg(QString{PACKAGE_NAME}));
             brand_strip->setStyleSheet(
                 "QLabel#overviewBrandStrip {"

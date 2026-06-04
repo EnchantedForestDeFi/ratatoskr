@@ -250,7 +250,7 @@ void AddressBookPage::onShowAddressOnExplorer()
     if (strAddress.isEmpty()) return;
 
     QDesktopServices::openUrl(QUrl(
-        "https://explorer.ratatoskr.enchantedforestdefi.com/address/" + strAddress));
+        "https://ratrexplorer.enchantedforestdefi.com/address/" + strAddress));
 }
 
 void AddressBookPage::selectionChanged()

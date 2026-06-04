@@ -47,6 +47,41 @@ CAmount GetTreasuryPayment(int nBlockHeight, const CAmount blockSubsidy, const C
 
     const int nBlockHeight = pindexPrev  == nullptr ? 0 : pindexPrev->nHeight + 1;
 
+    // RATR v1.0.2 (2026-06-03): hard-fork MN payment gate activating at mainnet block 7500.
+    //
+    // Pre-v1.0.2 (v1.0.0/v1.0.1), the gate-enforcement code that should have suppressed
+    // MN payments before nMasternodePaymentsStartBlock was refactored into unreachable
+    // code at commit e398a63 (2026-05-10) — DIP3 enforcement decoupling inadvertently
+    // removed the implicit gate, so MN payments started flowing at block 100 (DIP3 enforce
+    // height) instead of block 25000 (whitepaper §6 documented start).
+    //
+    // This explicit gate restores whitepaper §6 from activation height onward:
+    //   - Pre-activation (blocks 0 → nMNPaymentGateActivationHeight): pre-v1.0.2 behavior
+    //     preserved (no gate). This is the v1.0.2 rollout window — no chain split before
+    //     activation, gives miners + MN operators + wallets time to upgrade.
+    //   - Post-activation, pre-MN-start (gate height → nMasternodePaymentsStartBlock):
+    //     gate engaged. Blocks emit miner+treasury only (45 RATR + 5 RATR), no MN payment.
+    //   - Post-MN-start (nMasternodePaymentsStartBlock+): natural MN payment schedule
+    //     activates per 60/30/10 split.
+    //
+    // Asymmetric hard fork: at activation height, pre-v1.0.2 nodes reject v1.0.2's
+    // 2-vout blocks (they still expect the MN payment vout); v1.0.2 nodes reject
+    // pre-v1.0.2's 3-vout blocks (gate forbids them). Chain physically splits until
+    // the minority side upgrades. See ratr_v1_0_2_fork_deploy_plan_2026_06_03.md for the
+    // full audience-math + activation-height-locking rationale.
+    //
+    // Symmetric across mining (FillBlockPayments) and validation (IsTransactionValid)
+    // via the shared GetBlockTxOuts callsite — same gate, both sides.
+    if (nBlockHeight >= m_consensus_params.nMNPaymentGateActivationHeight &&
+        nBlockHeight < m_consensus_params.nMasternodePaymentsStartBlock) {
+        LogPrint(BCLog::MNPAYMENTS,
+                 "CMNPaymentsProcessor::%s -- gate active: activation=%d <= height=%d < start=%d, "
+                 "no MN payment (whitepaper §6 pre-block-25000 split: 90/0/10)\n",
+                 __func__, m_consensus_params.nMNPaymentGateActivationHeight, nBlockHeight,
+                 m_consensus_params.nMasternodePaymentsStartBlock);
+        return true;  // empty voutMasternodePaymentsRet — gate active
+    }
+
     bool fV20Active = DeploymentActiveAfter(pindexPrev, m_consensus_params, Consensus::DEPLOYMENT_V20);
     // Reward-split fix 2026-05-21: GetMasternodePayment expects post-treasury blockValue per its
     // documented contract (validation.cpp::GetMasternodePayment comment block). Deduct the

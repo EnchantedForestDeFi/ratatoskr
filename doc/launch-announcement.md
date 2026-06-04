@@ -52,18 +52,22 @@ Ratatoskr bakes a different social contract into consensus:
 
 ### Miners
 
-- **Pool** (recommended) — standard stratum+yespower. Pool URL TBD, will
-  be posted at <https://github.com/EnchantedForestDeFi/ratatoskr>.
-- **Daemon solo** — `ratatoskrd -gen=1 -genproclimit=N` or
-  `setgenerate true N` in Qt debug console. Zero dependencies.
+- **Pool — PPLNS** (recommended) — `stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3035`
+  with cpuminer-opt. 1.5% fee.
+- **Pool — SOLO** — same host, port `3036`. 2.0% fee.
+- **US endpoint** — `pool-us.ratatoskr.enchantedforestdefi.com:3035` / `:3036`.
+- Other pools (e.g., `rplant.xyz`) also support RATR — same algorithm + miner.
 - Full guide: [`doc/mining.md`](mining.md).
 
 ### Masternode operators
 
 - Two MN tiers: **Regular 7,500 RATR** (1× vote) and **EvoNode 30,000 RATR**
-  (4× vote). MN payments activate at block **25,000** (~17 days post-launch).
-  Standard DIP0003 deterministic MN registration.
-- Setup guide published before launch.
+  (4× vote, post-v1.1). MN payments activate at block **25,000** (~17 days
+  post-launch). Standard DIP0003 deterministic MN registration.
+- **Hosted (easiest):** Nodes24.online — $1.75/month, non-custodial.
+  Your 7,500 RATR collateral stays in your wallet. <https://nodes24.online/supported-coins/RATR/>
+- **Self-host:** see [`doc/masternode-setup.md`](masternode-setup.md) for the
+  technical path (VPS + ratatoskrd + ProRegTx).
 
 ### Bridge users
 

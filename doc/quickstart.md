@@ -1,14 +1,8 @@
 # Ratatoskr Quickstart
 
-> ⚠️ **Pre-launch — do not follow this guide yet unless you are a pool
-> operator or infrastructure partner.**
->
-> Mainnet launches **2026-06-01 00:00 UTC**. The current alpha release
-> is for pre-staging only. Running the daemon before mainnet goes live
-> will not produce blocks or rewards — there is no chain to mine against.
-> Bookmark this page and come back on June 1.
+**Download, unzip, mine. 5 minutes.**
 
-**Download, unzip, mine. 5 minutes. (After 2026-06-01.)**
+Mainnet has been live since **2026-06-01 00:00 UTC**. Pool endpoints below are operational.
 
 This is the one-page version. The full details are in [`mining.md`](mining.md)
 (miners), [`masternode-setup.md`](masternode-setup.md) (MN operators), and
@@ -60,18 +54,19 @@ Data dir is `~/.ratatoskrcore` (Linux) or `%APPDATA%\RatatoskrCore` (Windows).
 
 ## 4. Mine
 
-**Pool** (steady payouts):
+**Pool — PPLNS** (steady payouts, port 3035):
 ```bash
-cpuminer -a yespower -o stratum+tcp://POOL_URL:PORT -u YOUR_RATR_ADDRESS -p x
+cpuminer -a yespower -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3035 -u YOUR_RATR_ADDRESS -p x
 ```
-Pool URLs will be posted in Discord `#ratatoskr` when live.
 
-**Solo** (own your blocks, daemon mines against itself):
+**Pool — SOLO** (lottery — full block reward when you find one, port 3036):
+```bash
+cpuminer -a yespower -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3036 -u YOUR_RATR_ADDRESS -p x
+```
 
-- GUI: Tools → Debug Console → `setgenerate true 4`
-- Headless: `./bin/ratatoskr-cli setgenerate true 4`
+US endpoint: `pool-us.ratatoskr.enchantedforestdefi.com:3035` (PPLNS) / `:3036` (SOLO).
 
-`4` = CPU threads. Stop with `setgenerate false`.
+Modern Dash-derived clients don't have a built-in daemon miner — the legacy `setgenerate` RPC was removed years ago. All mining goes through `cpuminer-opt` against a pool stratum. See [`mining.md`](mining.md) for the full guide.
 
 ---
 
@@ -79,5 +74,6 @@ Pool URLs will be posted in Discord `#ratatoskr` when live.
 
 Questions: Discord `#ratatoskr` or <https://github.com/EnchantedForestDeFi/ratatoskr/issues>.
 
-Mainnet launches **2026-06-01 00:00 UTC**. Before that, the chain isn't live —
-you can install now but `getblockcount` will stay at 0 until launch.
+Mainnet has been live since **2026-06-01 00:00 UTC**. `getblockcount` should
+report the current tip height; if it stays at 0, your daemon hasn't connected
+to peers yet (see [`mining.md`](mining.md) FAQ for sync troubleshooting).

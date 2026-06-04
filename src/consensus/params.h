@@ -101,6 +101,14 @@ struct Params {
     int nSubsidyHalvingInterval;
     /** Block height at which BIP16 becomes active */
     int nMasternodePaymentsStartBlock;
+    /** Block height at which the v1.0.2 MN payment gate activates. Before this height,
+     *  pre-v1.0.2 (v1.0.0/v1.0.1) behavior is preserved (no gate — chain compatibility
+     *  during the v1.0.2 rollout window). At and after this height, the gate enforces
+     *  whitepaper §6: no MN payment until nMasternodePaymentsStartBlock.
+     *  Mainnet: 7500 (locked 2026-06-03 — ~28h post-v1.0.2-ship upgrade window).
+     *  Test environments (testnet/devnet/regtest): 0 (gate always active so test
+     *  behavior matches post-fork mainnet semantics). */
+    int nMNPaymentGateActivationHeight;
     int nMasternodePaymentsIncreaseBlock;
     int nMasternodePaymentsIncreasePeriod; // in blocks
     int nInstantSendConfirmationsRequired; // in blocks

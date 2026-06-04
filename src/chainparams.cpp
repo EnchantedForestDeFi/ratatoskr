@@ -195,6 +195,12 @@ public:
         // fires -- proposals are advisory, with funding disbursed manually
         // by the operator from the drip-funded treasury multisig.
         consensus.nMasternodePaymentsStartBlock = 25000;
+        // RATR v1.0.2 MN payment gate activation height (locked 2026-06-03 T+2):
+        // hard fork engages at block 7500, suppressing MN payment vouts on v1.0.2 nodes
+        // through block 25000 (whitepaper §6 documented MN-payment start). See
+        // ratr_v1_0_2_fork_deploy_plan_2026_06_03.md for audience-math + activation rationale.
+        // ETA at nominal 60s blocks: Sat Jun 6 ~03:24 UTC / Fri Jun 5 ~23:24 EDT.
+        consensus.nMNPaymentGateActivationHeight = 7500;
         consensus.nMasternodePaymentsIncreaseBlock = 101;      // legacy, unused after reward split commit
         consensus.nMasternodePaymentsIncreasePeriod = 262800;  // legacy, unused after reward split commit
         consensus.nInstantSendConfirmationsRequired = 2;
@@ -346,8 +352,15 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
         vSeeds.clear();
-        vSeeds.emplace_back("178.238.224.23");                       // seed-1
-        vSeeds.emplace_back("198.71.49.142");                        // seed-2
+        vSeeds.emplace_back("178.238.224.23");                       // seed-1 (vps2 / IONOS DE)
+        vSeeds.emplace_back("198.71.49.142");                        // seed-2 (vps-mn / IONOS — also hosts MN swarm)
+        // RATR v1.0.2 (2026-06-03): added two more healthy mainnet daemons after smoke-test
+        // discovered vps2 has a per-IP eviction quirk that strands fresh wallet installs
+        // when seed-1 is the only reachable peer. Giving fresh installs 4 candidate daemons
+        // dramatically improves first-sync reliability. All four are operator-controlled,
+        // serving mainnet on default port 9393.
+        vSeeds.emplace_back("167.86.103.121");                       // seed-3 (vps5 / Contabo FR — pool engine daemon)
+        vSeeds.emplace_back("104.129.131.156");                      // seed-4 (vps6 / Kamatera US — US pool daemon)
         vSeeds.emplace_back("mainnet-seed.enchantedforestdefi.com"); // DNS seed
 
         // Ratatoskr address prefixes — addresses start with 'R'
@@ -443,6 +456,7 @@ public:
         strNetworkID = CBaseChainParams::TESTNET;
         consensus.nSubsidyHalvingInterval = 1030596;
         consensus.nMasternodePaymentsStartBlock = 50;
+        consensus.nMNPaymentGateActivationHeight = 0;  // testnet: gate always active (post-fork semantics)
         consensus.nMasternodePaymentsIncreaseBlock = 101;
         consensus.nMasternodePaymentsIncreasePeriod = 262800;
         consensus.nInstantSendConfirmationsRequired = 2;
@@ -602,6 +616,7 @@ public:
         strNetworkID = CBaseChainParams::DEVNET;
         consensus.nSubsidyHalvingInterval = 210240;
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
+        consensus.nMNPaymentGateActivationHeight = 0;  // devnet: gate always active (post-fork semantics)
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
         consensus.nInstantSendConfirmationsRequired = 2;
@@ -843,6 +858,7 @@ public:
         strNetworkID =  CBaseChainParams::REGTEST;
         consensus.nSubsidyHalvingInterval = 150;
         consensus.nMasternodePaymentsStartBlock = 240;
+        consensus.nMNPaymentGateActivationHeight = 0;  // regtest: gate always active (post-fork semantics)
         consensus.nMasternodePaymentsIncreaseBlock = 350;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
         consensus.nInstantSendConfirmationsRequired = 2;

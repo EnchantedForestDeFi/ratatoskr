@@ -17,6 +17,9 @@
 #include <util/underlying.h>
 #include <validation.h>
 
+#include <algorithm>
+#include <ranges>
+
 namespace llmq
 {
 
@@ -231,8 +234,11 @@ bool CheckLLMQCommitment(const llmq::UtilParameters& util_params, const CTransac
     }
 
     if (LogAcceptDebug(BCLog::LLMQ)) {
+        // Clamp to validMembers.size() because the wire-format DYNBITSET may be smaller than
+        // llmq_params.size for malformed payloads; VerifySizes() below catches the mismatch.
         std::stringstream ss;
-        for (const auto i: irange::range(llmq_params_opt->size)) {
+        const auto log_size = std::min<size_t>(llmq_params_opt->size, qcTx.commitment.validMembers.size());
+        for (const auto i : irange::range(log_size)) {
             ss << "v[" << i << "]=" << qcTx.commitment.validMembers[i];
         }
         LogPrint(BCLog::LLMQ, "CFinalCommitment -- %s llmqType[%d] validMembers[%s] signers[]\n", __func__,

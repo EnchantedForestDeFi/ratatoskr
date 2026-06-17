@@ -1,205 +1,191 @@
-# Ratatoskr Masternode Setup Guide
+# RATR Masternode Setup — Qt-Side Walkthrough
 
-Short, direct, old-school: send collateral to yourself, register, done.
+*The official RATR masternode setup guide — the Qt-side steps every operator does, whether you self-host or use a managed host like Nodes24. Battle-tested on real setups. Questions? `#ratr-masternode` in the EnchantedForestDeFi Discord.*
 
-**Network values:**
-- **Regular MN collateral:** `7,500 RATR` (1× voting weight)
-- **EvoNode collateral:** `30,000 RATR` (4× voting weight)
-- **P2P port:** `9393`
-- **RPC port:** `8282` (default; localhost-bound recommended)
-- **Collateral confirmations:** `15`
-- **MN payments activate:** block **25,000** (~17 days post-launch)
+**Network values:** Regular collateral `7,500 RATR` (1× vote) · EvoNode `30,000 RATR` (4× vote, future tier) · P2P port `9393` · 15 collateral confirmations · MN payments activate at block **25,000**.
 
 ---
 
-## 1. Reality check
+## SECTION 1 — Qt Wallet Walkthrough (everything you do before handing off the collateral packet)
 
-- You **can** run the MN and wallet in the same `ratatoskrd` process.
-- You **do not need** a VPS if your home machine is reachable from the
-  internet (`9393/tcp` open + stable public IP). Most operators use a VPS
-  anyway for uptime.
-- Ratatoskr uses Dash-style deterministic masternodes (ProTx), so one
-  registration transaction is required.
+This is the **owner side** — everything you do in the RATR Qt wallet up to the point you hand off the collateral packet. A managed host (e.g. Nodes24) then takes it from there (BLS operator key, daemon config, ProRegTx draft); if you self-host, see **Section 5** for the daemon side.
+
+### Step 1 — Download & install the RATR Qt wallet
+- Official build from the Ratatoskr GitHub releases.
+- **Windows:** installer / portable `.exe`.
+- **macOS:** the `.dmg` — ⚠️ **separate Intel and Apple Silicon (M-series) builds exist; grab the right one** or it won't launch.
+- **Linux:** the tarball — extract and run the Qt binary (or build from source).
+- ⚠️ **Verify your download** — match the SHA256 against `SHA256SUMS` and the GPG signature against `SHA256SUMS.asc` (signing key `50B8E0E4EADA2FF29B1DE68F7A33CFF563BB2E0A`, `releases@enchantedforestdefi.com`).
+- Let it **fully sync** to the chain tip before doing anything (block height should match the explorer).
+
+### Step 2 — Encrypt the wallet
+- Settings → Encrypt Wallet → strong passphrase.
+- ⚠️ **The passphrase cannot be recovered.** Write it offline. Lost passphrase = lost collateral.
+
+### Step 3 — Back up wallet.dat
+- File → Backup Wallet → save `wallet.dat` somewhere safe (offline / second location).
+- Back up **again after Step 5** (the new keys only live in the wallet once generated).
+- The MN collateral wallet is the most important one you'll ever own.
+
+### Step 4 — Enable Coin Control
+- Settings → Options → Wallet tab → check **"Enable coin control features"** → OK (restart if prompted).
+- Unlocks the "Inputs…" button on Send + right-click UTXO locking — both needed later.
+
+### Step 5 — Generate the 4 masternode addresses
+Tools → **Debug Console**, run (replace `NAME` with your handle):
+```
+getnewaddress "NAME-mn1-owner"
+getnewaddress "NAME-mn1-voting"
+getnewaddress "NAME-mn1-payout"
+getnewaddress "NAME-mn1-collateral"
+```
+**The 4-role split (Dash-family architecture):**
+- **Owner** — controls the MN; signs any future registration update. *The* key — back it up.
+- **Voting** — casts governance/treasury votes; can be delegated separately from owner.
+- **Payout** — where the MN's block-reward share lands (from block 25,000).
+- **Collateral** — holds the 7,500 RATR stake (funded next).
+
+Labels are local-only. ✅ Check: 4 distinct addresses starting with **`R`**. A **`y`** prefix means a **testnet** wallet — wrong build.
+
+### Step 6 — Fund the collateral: EXACTLY 7,500 RATR in a SINGLE UTXO
+🚨 **The #1 rule, and the #1 thing newcomers get wrong:** exactly **7,500 RATR in ONE single UTXO.** Not 7,499.99, not 7,500.01, and **NOT 7,500 split across two transactions — even if both land at the same address.** The chain rejects registration without one UTXO of exactly 7,500.
+
+⚠️ **No "test send" first.** Sending a little to "check the address" then topping up makes TWO UTXOs → registration fails. **One transaction, one UTXO. No test-sends, no top-ups.**
+
+How (Qt Send tab): paste collateral address, enter `7500`, send. ⚠️ **Do NOT tick "subtract fee from amount"** — fee comes from change, or the destination lands at 7,499.99x and fails.
+
+Then wait ~1 block to confirm, then **15+ confirmations** (~15 min) before registration.
+
+### Step 7 — Capture txid + vout (verify, don't assume)
+After 15+ confirmations, in Debug Console:
+```
+masternode outputs
+```
+- Returns a `txid-vout` line → a **valid, exactly-7,500** collateral. Green light. (Lists *only* valid MN-collateral UTXOs — the chain-canonical check.)
+- Returns nothing → amount wrong, multi-UTXO, or wrong address (see Q&A → consolidation).
+
+⚠️ **The vout can be `0` OR `1`** depending on whether the tx had change. **Verify it — don't assume 0.** (Qt's "Output index" field on Send refers to the *change* output, not the collateral — trust `masternode outputs`.)
+
+### Step 8 — Lock the collateral UTXO
+- Send tab → "Inputs…" (Coin Control) → right-click the 7,500 UTXO → **Lock Unspent.**
+- ⚠️ **If the collateral UTXO ever moves, the MN auto-deregisters** on the next block.
+
+### Step 9 — Hand off the collateral packet
+Provide (to your managed host, or to yourself for the self-host registration in Section 5):
+```
+Owner address:      [step 5]
+Voting address:     [step 5]
+Payout address:     [step 5]
+Collateral address: [step 5]
+Collateral txid:    [step 7, verified]
+Collateral vout:    [step 7, verified — 0 or 1]
+```
+**Custody note (managed hosting):** A managed host generates the BLS operator key on its own infrastructure and runs the daemon — but **cannot spend the collateral or change the registration.** The owner key signs from *your* Qt; it never leaves your wallet. You don't trust the host with your money, only with uptime.
 
 ---
 
-## 2. Minimal `ratatoskr.conf`
+## SECTION 2 — Pre-Handoff Checklist
+- [ ] RATR Qt wallet **latest release**, fully synced
+- [ ] Wallet **encrypted** + `wallet.dat` **backed up**
+- [ ] **Coin Control enabled**
+- [ ] **4 addresses** (owner / voting / payout / collateral) — all start with `R`
+- [ ] Collateral funded: **exactly 7,500 RATR, single UTXO** (verified via `masternode outputs`)
+- [ ] Collateral UTXO **locked**
+- [ ] **txid + vout** captured and verified (vout 0 or 1 — not assumed)
 
+---
+
+## SECTION 3 — Common Q&A
+
+**Q: When do MN payments start?** Block **25,000** — baked into chainparams. MNs go ENABLED earlier (from ~block 7,500 they join ChainLocks/DKG quorums), but the *reward* share doesn't flow until 25,000. The gap lets MN count bootstrap before payments begin.
+
+**Q: My addresses start with `y`, not `R`.** That's a **testnet** wallet. Download the mainnet RATR Qt build and regenerate.
+
+**Q: I already sent the collateral in two pieces.** Consolidate into one fresh UTXO: coin control → select all the pieces + a tiny fee input → generate a fresh `…-collateral-v2` address → send exactly 7,500 (no "subtract fee") → wait 15+ confs → `masternode outputs` shows it → lock it.
+
+**Q: `masternode outputs` shows nothing.** Not enough confirmations, amount isn't exactly 7,500, multi-UTXO, or wrong address.
+
+**Q: I'm coming from a web/exchange wallet.** Just **send** native RATR to a fresh Qt receive address (don't "import"). Then proceed from Step 5.
+
+**Q: My MN shows POSE_BANNED.** PoSe ban = node stopped answering network probes for 1+ hour (usually host downtime). Recoverable with `protx update_service`. On managed hosting, the host fixes it.
+
+**Q: Can I move my collateral after the MN is live?** No — moving the 7,500 UTXO auto-deregisters the MN. Leave it locked.
+
+---
+
+## SECTION 4 — Cross-Platform Gotchas Catalog
+- **Exactly 7,500, single UTXO** — the universal #1 failure. No test-sends, no top-ups, no "subtract fee from amount."
+- **vout is 0 OR 1** — verify with `masternode outputs`; don't trust the Send-tab "Output index."
+- **`R` not `y`** — `y` = testnet wallet.
+- **Port must be `9393`** — chainparams hard-enforce the default port; the daemon's `externalip` must end in `:9393` or registration is rejected.
+- **Windows has no `-daemon` flag** — run the daemon in a console/service, or use Qt. *(Linux/macOS support `-daemon`.)*
+- **Linux:** run the daemon under a **systemd service** for auto-restart + boot persistence.
+- **macOS:** **separate Intel vs Apple Silicon binaries** — wrong arch won't launch.
+- **IPv4 only** — IPv6 MN externalip isn't supported yet; use a public IPv4.
+- **Lock the collateral UTXO** — unlocked collateral can get spent → instant deregister.
+- **15 confirmations** before registration (PRE_ENABLED → ENABLED ≈ 15 min).
+
+---
+
+## SECTION 5 — Self-host: daemon + registration (CLI)
+
+For operators running their own VPS/daemon instead of a managed host.
+
+### Minimal `ratatoskr.conf`
 ```ini
 server=1
 daemon=1
 listen=1
 port=9393
 externalip=YOUR_PUBLIC_IP:9393
-
 txindex=1
 prune=0
-
 masternodeblsprivkey=PASTE_OPERATOR_SECRET_HERE
 disablewallet=0
-
 rpcuser=CHOOSE_A_USERNAME
 rpcpassword=CHOOSE_A_STRONG_PASSWORD
 rpcallowip=127.0.0.1
 ```
+The `masternodeblsprivkey` line is added after you generate keys below; restart `ratatoskrd` after editing.
 
-Restart `ratatoskrd` after editing. The `masternodeblsprivkey` line is added
-after you generate keys below (Step A).
-
----
-
-## 3. Fast flow (Regular MN, 7,500 RATR)
-
+### Generate the operator BLS key
 ```bash
 CLI=ratatoskr-cli
-WALLET=main
-
-# create the wallet if needed
-$CLI createwallet "$WALLET" 2>/dev/null || true
+$CLI bls generate    # -> {"secret": "...", "public": "..."}
 ```
+Put `secret` into `ratatoskr.conf` as `masternodeblsprivkey=...`, restart once. Keep `public` for the ProTx.
 
-### Step A — generate keys + addresses
-
+### One-call registration (creates collateral + registers)
 ```bash
-BLS_JSON=$($CLI bls generate)
-OPERATOR_SECRET=$(echo "$BLS_JSON" | jq -r '.secret')
-OPERATOR_PUB=$(echo "$BLS_JSON" | jq -r '.public')
-
-COLLATERAL_ADDR=$($CLI -rpcwallet=$WALLET getnewaddress "mn_collateral")
-OWNER_ADDR=$($CLI -rpcwallet=$WALLET getnewaddress "mn_owner")
-VOTING_ADDR=$($CLI -rpcwallet=$WALLET getnewaddress "mn_voting")
-PAYOUT_ADDR=$($CLI -rpcwallet=$WALLET getnewaddress "mn_payout")
-FEE_ADDR=$($CLI -rpcwallet=$WALLET getnewaddress "mn_fee")
-```
-
-Put `OPERATOR_SECRET` into `ratatoskr.conf` as `masternodeblsprivkey=...`
-and restart `ratatoskrd` once before continuing.
-
-### Step B — send collateral to yourself
-
-```bash
-TXID=$($CLI -rpcwallet=$WALLET sendtoaddress "$COLLATERAL_ADDR" 7500)
-echo "$TXID"
-```
-
-Wait for **15 confirmations** (~15 minutes at 60s blocks).
-
-### Step C — get collateral outpoint
-
-```bash
-OUTPOINT=$($CLI -rpcwallet=$WALLET masternode outputs | jq -r 'to_entries[0] | "\(.key)-\(.value)"')
-COLL_TXID="${OUTPOINT%-*}"
-COLL_VOUT="${OUTPOINT##*-}"
-echo "$COLL_TXID $COLL_VOUT"
-```
-
-### Step D — register the masternode
-
-```bash
-MN_IP="YOUR_PUBLIC_IP"
-
-PROTX_HASH=$($CLI -rpcwallet=$WALLET protx register \
-    "$COLL_TXID" "$COLL_VOUT" "[\"$MN_IP:9393\"]" \
-    "$OWNER_ADDR" "$OPERATOR_PUB" "$VOTING_ADDR" \
-    0 "$PAYOUT_ADDR" "$FEE_ADDR" true)
-
-echo "$PROTX_HASH"
-```
-
-### Step E — verify
-
-```bash
-$CLI protx info "$PROTX_HASH"
-$CLI masternode list status
-$CLI masternode status
-```
-
-Status should land on `READY` / `ENABLED` within a few blocks. If it takes
-longer, check the log (`debug.log`) for errors and confirm port 9393 is
-actually reachable from the outside (`nc -zv YOUR_PUBLIC_IP 9393` from a
-different network).
-
----
-
-## 4. One-call alternative
-
-If you want fewer steps, use `protx register_fund` — it creates the
-collateral output and registers the MN in a single transaction:
-
-```bash
-$CLI -rpcwallet=$WALLET protx register_fund \
+$CLI -rpcwallet=main protx register_fund \
     "$COLLATERAL_ADDR" "[\"$MN_IP:9393\"]" \
     "$OWNER_ADDR" "$OPERATOR_PUB" "$VOTING_ADDR" \
     0 "$PAYOUT_ADDR" "$FEE_ADDR" true
 ```
+Or, if collateral is already funded + verified (from Section 1), use `protx register` with the `txid vout` instead of `register_fund` with the address.
 
----
+### Verify
+```bash
+$CLI protx info "$PROTX_HASH"
+$CLI masternode status
+```
+Status should reach `READY` / `ENABLED` within a few blocks. If not, check `debug.log` and confirm `9393/tcp` is reachable from another network (`nc -zv YOUR_PUBLIC_IP 9393`).
 
-## 5. EvoNode (30,000 RATR, 4× voting)
+### EvoNode (30,000 RATR, future tier)
+Same flow with `protx register_evo` / `protx register_fund_evo` and **30,000 RATR** collateral. EvoNodes carry 4× voting weight — note this tier is planned for a future release.
 
-Same flow but use:
-- `protx register_evo` (replaces `protx register`)
-- `protx register_fund_evo` (replaces `protx register_fund`)
-- Send **30,000 RATR** collateral (not 7,500)
+### Top mistakes
+1. Collateral not exactly `7,500` (Regular) / `30,000` (Evo). 2. Fewer than 15 confirmations before registering. 3. `masternodeblsprivkey` doesn't match the operator public key in the ProTx. 4. Port `9393/tcp` closed on firewall / cloud security group. 5. Node unreachable at `externalip` (test from a different network).
 
-EvoNodes have 4× voting weight in governance but also host additional
-services (InstantSend signing, ChainLocks, LLMQ quorums). Only run one if
-you can commit to high uptime.
-
----
-
-## 6. Payments timing
-
-- **Before block 25,000** (~17 days post-launch 2026-06-01): MN payments
-  are **not yet active**. Miners get 90% of subsidy, treasury gets 10%.
-  Your MN won't earn during this phase — it's intended. Register anyway
-  to claim a spot early.
-- **From block 25,000 onwards**: 30% of subsidy goes to MNs, selected
-  deterministically from the registered MN set.
-- Average pay frequency depends on total registered MNs. With 20 MNs
-  registered, each MN pays approximately every 20 × 60 seconds = 20 min
-  on average.
-
----
-
-## 7. Top 5 mistakes
-
-1. Collateral amount is not exactly `7,500` (Regular) or `30,000` (Evo).
-2. Fewer than 15 confirmations before registering.
-3. `masternodeblsprivkey` in config doesn't match the operator public key
-   used in the ProTx.
-4. Port `9393/tcp` closed on firewall or cloud provider security group.
-5. Node not reachable at `externalip` (test from a different network).
-
----
-
-## 8. Backing up
-
-- **Wallet:** `backupwallet /path/to/wallet-backup.dat` via RPC/CLI, or
-  File → Backup wallet in the Qt GUI. Store offline.
-- **BLS operator key:** the `OPERATOR_SECRET` from Step A. Back it up
-  alongside the wallet — if you lose it, you can't operate the MN even
-  if you still control the collateral.
-- **Collateral privkey:** `dumpprivkey "$COLLATERAL_ADDR"` — guards the
-  7,500 or 30,000 RATR. Store offline (paper or metal).
-
----
-
-## 9. Operating costs
-
-At VPS pricing (~$1.75/month for minimal MN hosting via Nodes24 or similar):
-- Regular MN opex: ~$21/year
-- Break-even at any RATR/USD > $0 given the 30% MN subsidy share post-block-25k
-- EvoNode: same opex, 4× voting weight, same payment frequency but only
-  at EvoNode tier — diminishing returns unless governance voting is
-  important to you
+### Back up
+- **Wallet:** `backupwallet /path/to/backup.dat` (or File → Backup Wallet in Qt). Offline.
+- **BLS operator key:** the `secret` from `bls generate` — lose it and you can't operate the MN even with the collateral.
+- **Collateral privkey:** `dumpprivkey "$COLLATERAL_ADDR"` — guards the stake. Offline (paper/metal).
 
 ---
 
 ## Links
-
-- Pool operator spec: [`doc/pool-operator-spec.md`](pool-operator-spec.md)
 - Mining guide: [`doc/mining.md`](mining.md)
 - Whitepaper: [`doc/whitepaper.md`](whitepaper.md)
-- Discord: EnchantedForestDeFi server, `#ratatoskr`
+- Discord: EnchantedForestDeFi server, `#ratr-masternode`
 - Issues: <https://github.com/EnchantedForestDeFi/ratatoskr/issues>

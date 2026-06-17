@@ -12,17 +12,22 @@ This is the one-page version. The full details are in [`mining.md`](mining.md)
 
 ## 1. Grab the binary
 
-- **Windows:** <https://github.com/EnchantedForestDeFi/ratatoskr/releases/latest>
-  — download `ratatoskr-*-win64.tar.gz`, extract with 7-Zip or Windows built-in.
-- **Linux:** same release page, grab `ratatoskr-*-linux-x86_64.tar.gz`.
-  ```bash
-  tar xzf ratatoskr-*-linux-x86_64.tar.gz
-  cd ratatoskr-*-linux-x86_64
-  ```
+Latest release: <https://github.com/EnchantedForestDeFi/ratatoskr/releases/latest> (**v1.0.2**)
 
-Verify the SHA256 before extracting:
+- **Windows:** `ratatoskr-1.0.2-win64-setup-unsigned.exe` (installer) or `ratatoskr-1.0.2-win64.zip` (portable — extract with 7-Zip or Windows built-in).
+- **Linux:** `ratatoskr-1.0.2-x86_64-linux-gnu.tar.gz`.
+  ```bash
+  tar xzf ratatoskr-1.0.2-x86_64-linux-gnu.tar.gz
+  cd ratatoskr-1.0.2-x86_64-linux-gnu
+  ```
+- **macOS:** `ratatoskr-1.0.2-arm64-apple-darwin.tar.gz` (Apple Silicon) or `ratatoskr-1.0.2-x86_64-apple-darwin.tar.gz` (Intel) — grab the matching one.
+
+**Verify before you run it.** The release ships one `SHA256SUMS` plus a GPG signature `SHA256SUMS.asc`:
 ```bash
-sha256sum -c ratatoskr-1.0.0-alpha-linux-x86_64.tar.gz.sha256
+# 1. checksum your download against the manifest
+sha256sum --ignore-missing -c SHA256SUMS
+# 2. confirm the manifest is genuinely ours (key 50B8E0E4EADA2FF29B1DE68F7A33CFF563BB2E0A · releases@enchantedforestdefi.com)
+gpg --verify SHA256SUMS.asc SHA256SUMS
 ```
 
 ---
@@ -56,15 +61,15 @@ Data dir is `~/.ratatoskrcore` (Linux) or `%APPDATA%\RatatoskrCore` (Windows).
 
 **Pool — PPLNS** (steady payouts, port 3035):
 ```bash
-cpuminer -a yespower -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3035 -u YOUR_RATR_ADDRESS -p x
+cpuminer -a yespower -o stratum+tcp://pool-eu.ratatoskr.enchantedforestdefi.com:3035 -u YOUR_RATR_ADDRESS -p x
 ```
 
-**Pool — SOLO** (lottery — full block reward when you find one, port 3036):
+**Pool — SOLO** (lottery — the block's miner share when you find one, port 3036):
 ```bash
-cpuminer -a yespower -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3036 -u YOUR_RATR_ADDRESS -p x
+cpuminer -a yespower -o stratum+tcp://pool-eu.ratatoskr.enchantedforestdefi.com:3036 -u YOUR_RATR_ADDRESS -p x
 ```
 
-US endpoint: `pool-us.ratatoskr.enchantedforestdefi.com:3035` (PPLNS) / `:3036` (SOLO).
+US: `pool-us.ratatoskr.enchantedforestdefi.com` · Asia: `pool-asia.ratatoskr.enchantedforestdefi.com` — same ports (3035 PPLNS / 3036 SOLO). Full list + community pools in [`mining.md`](mining.md).
 
 Modern Dash-derived clients don't have a built-in daemon miner — the legacy `setgenerate` RPC was removed years ago. All mining goes through `cpuminer-opt` against a pool stratum. See [`mining.md`](mining.md) for the full guide.
 

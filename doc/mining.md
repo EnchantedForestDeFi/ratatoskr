@@ -11,8 +11,9 @@ the complexity). Any modern CPU can mine.
 - No personalization string
 
 **Block time:** 60 seconds (target)
-**Block reward at launch:** 50 RATR (halving every 1,030,596 blocks)
+**Block subsidy at launch:** 50 RATR per block (halving every 1,030,596 blocks)
 **Max supply:** 100,000,000 RATR
+**Miner share:** 90% of the subsidy at launch (~45 RATR) — 10% funds the treasury from block 1. From block 25,000, masternodes take 30%, leaving miners 60% (~30 RATR). See the [whitepaper](whitepaper.md) for the full emission schedule.
 
 **Status:** Mainnet live since 2026-06-01. All endpoints below are operational.
 
@@ -47,18 +48,20 @@ block rewards proportionally among miners.
 
 | Region | Stratum host | PPLNS port | SOLO port | Pool fee |
 |---|---|---|---|---|
-| EU (primary) | `pool.ratatoskr.enchantedforestdefi.com` | 3035 | 3036 | 1.5% PPLNS / 2.0% SOLO |
-| EU (alt engine) | `pool2.ratatoskr.enchantedforestdefi.com` | 3035 | 3036 | same |
-| US | `pool-us.ratatoskr.enchantedforestdefi.com` | 3035 | 3036 | same |
+| 🇪🇺 EU | `pool-eu.ratatoskr.enchantedforestdefi.com` | 3035 | 3036 | 1.5% PPLNS / 2.0% SOLO |
+| 🇺🇸 US | `pool-us.ratatoskr.enchantedforestdefi.com` | 3035 | 3036 | same |
+| 🌏 Asia | `pool-asia.ratatoskr.enchantedforestdefi.com` | 3035 | 3036 | same |
 
-Other pools (e.g., `rplant.xyz`) also support RATR mining — same algorithm and miner, different stratum URL. Pick whatever's closest to you.
+Pick the region closest to you. **Community-run pools** also mine RATR (same algorithm + miner, different stratum) — more pools = a healthier network:
+- **AriaPool** — `pool.ariabrain.com` PPLNS port `3335`, 1% fee — <https://pool.ariabrain.com/ratr.html>
+- **rplant** (multi-coin) — pick Ratatoskr from the list — <https://pool.rplant.xyz/>
 
 ### Windows
 
 Download cpuminer-opt Windows release, extract, create `start-mining.bat`:
 
 ```bat
-cpuminer.exe -a yespower -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3035 -u YOUR_RATR_ADDRESS -p x -t 4
+cpuminer.exe -a yespower -o stratum+tcp://pool-eu.ratatoskr.enchantedforestdefi.com:3035 -u YOUR_RATR_ADDRESS -p x -t 4
 ```
 
 Replace:
@@ -71,7 +74,7 @@ Double-click the .bat file to start.
 
 ```bash
 ./cpuminer -a yespower \
-  -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3035 \
+  -o stratum+tcp://pool-eu.ratatoskr.enchantedforestdefi.com:3035 \
   -u YOUR_RATR_ADDRESS \
   -p x \
   -t $(nproc)
@@ -81,20 +84,21 @@ Double-click the .bat file to start.
 
 ## 2. Pool solo mode
 
-Same `cpuminer-opt` command, different port. SOLO mode: you keep the full
-~50 RATR block reward when you find a block. Variance is high — small CPUs
-may wait days between finds. For predictable income, use PPLNS.
+Same `cpuminer-opt` command, different port. SOLO mode: you keep the miner's
+share of the block (~45 RATR at launch, ~30 RATR after block 25,000 when
+masternodes take their 30%) when you find a block. Variance is high — small
+CPUs may wait days between finds. For predictable income, use PPLNS.
 
 ```bash
 cpuminer -a yespower \
-  -o stratum+tcp://pool.ratatoskr.enchantedforestdefi.com:3036 \
+  -o stratum+tcp://pool-eu.ratatoskr.enchantedforestdefi.com:3036 \
   -u YOUR_RATR_ADDRESS \
   -p x \
   -t $(nproc)
 ```
 
-The only change from PPLNS: port `3036` instead of `3035`. The other
-endpoints (`pool2.` and `pool-us.`) also have port 3036 for SOLO.
+The only change from PPLNS: port `3036` instead of `3035`. The `pool-us.`
+and `pool-asia.` endpoints also have port 3036 for SOLO.
 
 ---
 
@@ -153,7 +157,7 @@ A: No — that RPC was removed in modern Dash-derived clients, including Ratatos
 A: Mining is intensive but not unusual. Modern CPUs are designed to run at full load indefinitely as long as cooling is adequate. Keep an eye on temperatures (under ~80°C is comfortable for most chips); if you're hitting thermal limits, reduce thread count or add airflow. Laptops are the worst case — they're not built for sustained 100% CPU load.
 
 **Q: What's the difference between pool mining and solo mining?**
-A: Pool mining (PPLNS) = smaller, predictable, frequent payouts (you get a share of every block the pool finds, proportional to your contribution). Solo mining (pool SOLO port) = lottery-style — you keep the full ~50 RATR reward of every block you find, but blocks may be days or weeks apart on a small CPU.
+A: Pool mining (PPLNS) = smaller, predictable, frequent payouts (you get a share of every block the pool finds, proportional to your contribution). Solo mining (pool SOLO port) = lottery-style — you keep the block's miner share (~45 RATR at launch, ~30 RATR after block 25,000) of every block you find, but blocks may be days or weeks apart on a small CPU.
 
 **Q: How much RATR will I earn per day?**
 A: Depends on network hashrate, your CPU hashrate, and the block reward. At launch with low hashrate, hobbyist miners can earn meaningfully — as more miners join, share-per-CPU drops. Pool dashboards publish per-worker hashrate and estimated payouts.
@@ -173,7 +177,7 @@ A: No minimum. Any modern computer with adequate cooling can mine. For pool mini
 
 - Discord: EnchantedForestDeFi server, channel `#ratr-mining`
 - GitHub issues: <https://github.com/EnchantedForestDeFi/ratatoskr/issues>
-- Pool dashboard (EU): <https://pool.ratatoskr.enchantedforestdefi.com/>
+- Pool dashboard (EU): <https://pool-eu.ratatoskr.enchantedforestdefi.com/>
 
 ## See also
 

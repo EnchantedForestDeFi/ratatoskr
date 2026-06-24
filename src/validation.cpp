@@ -6065,6 +6065,24 @@ bool ChainstateManager::IsQuorumTypeEnabled(const Consensus::LLMQType llmqType,
         DeploymentActiveAfter(pindexPrev, GetConsensus(), Consensus::DEPLOYMENT_DIP0024))};
     const bool fHaveDIP0024Quorums{
         optHaveDIP0024Quorums.value_or(pindexPrev->nHeight >= GetConsensus().DIP0024QuorumsHeight)};
+
+    // At/after the v1.0.3 fork height, stop forming the oversized quorum types the current
+    // network is not yet large enough to support — LLMQ_60_75, LLMQ_100_67, LLMQ_400_60,
+    // LLMQ_400_85. The small LLMQ_10_60 / LLMQ_10_75 quorums carry ChainLocks / InstantSend /
+    // Platform past nSMTSmallQuorumsHeight, so disabling the oversized set does not affect them.
+    // The height is INT_MAX on testnet/devnet, so they are unaffected there. A future release
+    // restores the oversized set via count-gated formation once the network is large enough.
+    if (pindexPrev->nHeight >= GetConsensus().nSMTOversizedQuorumDisableHeight) {
+        switch (llmqType) {
+        case Consensus::LLMQType::LLMQ_60_75:
+        case Consensus::LLMQType::LLMQ_100_67:
+        case Consensus::LLMQType::LLMQ_400_60:
+        case Consensus::LLMQType::LLMQ_400_85:
+            return false;
+        default:
+            break;
+        }
+    }
     switch (llmqType) {
     case Consensus::LLMQType::LLMQ_DEVNET:
         return true;
@@ -6087,7 +6105,10 @@ bool ChainstateManager::IsQuorumTypeEnabled(const Consensus::LLMQType llmqType,
     case Consensus::LLMQType::LLMQ_100_67:
         return DeploymentActiveAfter(pindexPrev, GetConsensus(), Consensus::DEPLOYMENT_DIP0020);
 
-    case Consensus::LLMQType::LLMQ_60_75:
+    case Consensus::LLMQType::LLMQ_60_75: {
+        // Oversized-quorum disable (past the fork height) is handled by the guard above.
+        return fDIP0024IsActive;
+    }
     case Consensus::LLMQType::LLMQ_DEVNET_DIP0024:
     case Consensus::LLMQType::LLMQ_TEST_DIP0024: {
         return fDIP0024IsActive;

@@ -763,8 +763,17 @@ bool CSpecialTxProcessor::CheckCreditPoolDiffForBlock(const CBlock& block, const
 }
 
 template <typename ProTx>
-static bool CheckService(const ProTx& proTx, TxValidationState& state)
+static bool CheckService(const ProTx& proTx, gsl::not_null<const CBlockIndex*> pindexPrev, TxValidationState& state)
 {
+    // v1.0.3 IPv6 hard fork: reject IPv6 entries in ProTx before activation height
+    const int nHeight = pindexPrev->nHeight + 1;
+    if (nHeight < Params().GetConsensus().nIPv6MnActivationHeight) {
+        for (const auto& entry : proTx.netInfo->GetEntries(NetInfoPurpose::CORE_P2P)) {
+            if (const auto svc_opt = entry.GetAddrPort(); svc_opt && svc_opt->IsIPv6()) {
+                return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-protx-netinfo-ipv6-not-active");
+            }
+        }
+    }
     switch (proTx.netInfo->Validate()) {
     case NetInfoStatus::BadAddress:
         return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-protx-netinfo-addr");
@@ -933,7 +942,7 @@ bool CheckProRegTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> pin
 
     // It's allowed to set addr to 0, which will put the MN into PoSe-banned state and require a ProUpServTx to be
     // issues later. If any of both is set, it must be valid however
-    if (!opt_ptx->netInfo->IsEmpty() && !CheckService(*opt_ptx, state)) {
+    if (!opt_ptx->netInfo->IsEmpty() && !CheckService(*opt_ptx, pindexPrev, state)) {
         // pass the state returned by the function above
         return false;
     }
@@ -1059,7 +1068,7 @@ bool CheckProUpServTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> 
         return false;
     }
 
-    if (!CheckService(*opt_ptx, state)) {
+    if (!CheckService(*opt_ptx, pindexPrev, state)) {
         // pass the state returned by the function above
         return false;
     }

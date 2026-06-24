@@ -201,6 +201,7 @@ public:
         // ratr_v1_0_2_fork_deploy_plan_2026_06_03.md for audience-math + activation rationale.
         // ETA at nominal 60s blocks: Sat Jun 6 ~03:24 UTC / Fri Jun 5 ~23:24 EDT.
         consensus.nMNPaymentGateActivationHeight = 7500;
+        consensus.nIPv6MnActivationHeight = 36000;  // v1.0.3 hard fork — IPv6 MNs accepted from this height
         consensus.nMasternodePaymentsIncreaseBlock = 101;      // legacy, unused after reward split commit
         consensus.nMasternodePaymentsIncreasePeriod = 262800;  // legacy, unused after reward split commit
         consensus.nInstantSendConfirmationsRequired = 2;
@@ -411,6 +412,13 @@ public:
         consensus.llmqTypeSmallInstantSend = Consensus::LLMQType::LLMQ_10_75;
         consensus.llmqTypeSmallPlatform = Consensus::LLMQType::LLMQ_10_75;
         consensus.llmqTypeSmallMnhf = Consensus::LLMQType::LLMQ_10_60;
+        // v1.0.3 hard fork at block 36000: stop forming the oversized quorums
+        // (60_75 / 100_67 / 400_60 / 400_85) on a network not yet large enough to support them.
+        // InstantSend and ChainLocks already run on the small 10-member quorums past
+        // nSMTSmallQuorumsHeight, so the oversized set is formed-but-unused here and halting
+        // its formation has no functional effect. A future release restores it via
+        // count-gated formation once the network is large enough.
+        consensus.nSMTOversizedQuorumDisableHeight = 36000;
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -457,6 +465,7 @@ public:
         consensus.nSubsidyHalvingInterval = 1030596;
         consensus.nMasternodePaymentsStartBlock = 50;
         consensus.nMNPaymentGateActivationHeight = 0;  // testnet: gate always active (post-fork semantics)
+        consensus.nIPv6MnActivationHeight = 0;  // testnet: IPv6 MNs always allowed
         consensus.nMasternodePaymentsIncreaseBlock = 101;
         consensus.nMasternodePaymentsIncreasePeriod = 262800;
         consensus.nInstantSendConfirmationsRequired = 2;
@@ -617,6 +626,7 @@ public:
         consensus.nSubsidyHalvingInterval = 210240;
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMNPaymentGateActivationHeight = 0;  // devnet: gate always active (post-fork semantics)
+        consensus.nIPv6MnActivationHeight = 0;  // devnet: IPv6 MNs always allowed
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
         consensus.nInstantSendConfirmationsRequired = 2;
@@ -859,6 +869,7 @@ public:
         consensus.nSubsidyHalvingInterval = 150;
         consensus.nMasternodePaymentsStartBlock = 240;
         consensus.nMNPaymentGateActivationHeight = 0;  // regtest: gate always active (post-fork semantics)
+        consensus.nIPv6MnActivationHeight = 0;  // regtest: IPv6 MNs always allowed
         consensus.nMasternodePaymentsIncreaseBlock = 350;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
         consensus.nInstantSendConfirmationsRequired = 2;

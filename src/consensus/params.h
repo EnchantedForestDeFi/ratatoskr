@@ -109,6 +109,10 @@ struct Params {
      *  Test environments (testnet/devnet/regtest): 0 (gate always active so test
      *  behavior matches post-fork mainnet semantics). */
     int nMNPaymentGateActivationHeight;
+    // v1.0.3: IPv6 ProRegTx/ProUpServTx accepted from this block onward (hard fork).
+    // Pre-activation: legacy IPv4-only behavior (matches v1.0.2).
+    // Set to 0 on testnet/devnet/regtest = always-active.
+    int nIPv6MnActivationHeight;
     int nMasternodePaymentsIncreaseBlock;
     int nMasternodePaymentsIncreasePeriod; // in blocks
     int nInstantSendConfirmationsRequired; // in blocks
@@ -170,6 +174,13 @@ struct Params {
     int nSMTv014Height;
     /** Block height at which small-network LLMQ quorums activate (LLMQ_10_60/10_75) */
     int nSMTSmallQuorumsHeight;
+    /** Block height at/after which the oversized quorums (60_75 / 100_67 / 400_60 / 400_85)
+     *  stop forming on networks not yet large enough to support them. The small LLMQ_10_60 /
+     *  LLMQ_10_75 quorums carry ChainLocks / InstantSend / Platform past nSMTSmallQuorumsHeight.
+     *  Defaults to INT_MAX (never disabled); only mainnet sets a real height (v1.0.3 hard fork).
+     *  A future release restores the oversized set via count-gated formation once the network
+     *  is large enough. */
+    int nSMTOversizedQuorumDisableHeight{std::numeric_limits<int>::max()};
     /** Block height at which WITHDRAWALS (Deployment of quorum fix and higher limits for withdrawals) becomes active */
     int WithdrawalsHeight;
     /** Don't warn about unknown BIP 9 activations below this height.

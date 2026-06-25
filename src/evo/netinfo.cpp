@@ -284,7 +284,7 @@ NetInfoStatus MnNetInfo::ValidateService(const CService& service)
     if (!service.IsValid()) {
         return NetInfoStatus::BadAddress;
     }
-    if (!service.IsIPv4()) {
+    if (!service.IsIPv4() && !service.IsIPv6()) {
         return NetInfoStatus::BadType;
     }
     if (Params().RequireRoutableExternalIP() && !service.IsRoutable()) {
@@ -310,7 +310,7 @@ NetInfoStatus MnNetInfo::AddEntry(const NetInfoPurpose purpose, const std::strin
     uint16_t port{Params().GetDefaultPort()};
     SplitHostPort(input, port, addr);
     // Contains invalid characters, unlikely to pass Lookup(), fast-fail
-    if (!MatchCharsFilter(addr, SAFE_CHARS_IPV4)) {
+    if (!MatchCharsFilter(addr, SAFE_CHARS_IPV4_6)) {
         return NetInfoStatus::BadInput;
     }
 

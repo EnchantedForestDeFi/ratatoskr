@@ -57,9 +57,10 @@ static std::vector<TestEntry> GetAddrValsMain()
     {{NetInfoPurpose::CORE_P2P, AddrPort("0.0.0.0", main_port)}, NetInfoStatus::BadAddress, NetInfoStatus::BadAddress},
     // Port greater than uint16_t max
     {{NetInfoPurpose::CORE_P2P, "1.1.1.1:99999"}, NetInfoStatus::BadInput, NetInfoStatus::BadInput},
-    // - Non-IPv4 addresses are prohibited in MnNetInfo
+    // - v1.0.3 IPv6 hard fork: routable IPv6 is now allowed in MnNetInfo (the pre-activation
+    //   height gate that rejects it lives in CheckService, not in NetInfo validation)
     // - Any valid BIP155 address is allowed in ExtNetInfo
-    {{NetInfoPurpose::CORE_P2P, AddrPort("[2606:4700:4700::1111]", main_port)}, NetInfoStatus::BadInput, NetInfoStatus::Success},
+    {{NetInfoPurpose::CORE_P2P, AddrPort("[2606:4700:4700::1111]", main_port)}, NetInfoStatus::Success, NetInfoStatus::Success},
     // - MnNetInfo doesn't allow storing anything except a Core P2P address
     // - Privacy network domains are allowed in ExtNetInfo but internet domains are not
     {{NetInfoPurpose::CORE_P2P, AddrPort("example.com", main_port)}, NetInfoStatus::BadInput, NetInfoStatus::BadInput},
@@ -419,10 +420,11 @@ BOOST_AUTO_TEST_CASE(cservice_compatible)
     BOOST_CHECK_EQUAL(netInfo.AddEntry(NetInfoPurpose::CORE_P2P, "example.com"), NetInfoStatus::BadInput);
     BOOST_CHECK(CheckIfSerSame(service, netInfo));
 
-    // Validation failure (non-IPv4 not allowed), MnNetInfo should remain empty if ValidateService() failed
-    service = CService();
+    // v1.0.3 IPv6 hard fork: routable IPv6 is now accepted by MnNetInfo and serializes
+    // identically to the equivalent CService (legacy ProTx wire compatibility preserved)
+    service = LookupNumeric("2606:4700:4700::1111", main_port);
     netInfo.Clear();
-    BOOST_CHECK_EQUAL(netInfo.AddEntry(NetInfoPurpose::CORE_P2P, AddrPort("[2606:4700:4700::1111]", main_port)), NetInfoStatus::BadInput);
+    BOOST_CHECK_EQUAL(netInfo.AddEntry(NetInfoPurpose::CORE_P2P, AddrPort("[2606:4700:4700::1111]", main_port)), NetInfoStatus::Success);
     BOOST_CHECK(CheckIfSerSame(service, netInfo));
 }
 

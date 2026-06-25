@@ -35,9 +35,8 @@ struct mntype_struct
 //   EvoNode:    30,000 RATR collateral,  4x voting weight (matches Dash's proven ratio)
 //
 // Rationale: 7,500 = 0.0075% of 100M supply, sits between Dash (0.0056%) and
-// Firo (0.0047%) — the two longest-surviving MN coins. At $0.01 launch price
-// that's $75 entry cost for a regular MN, well above the $21/yr Nodes24
-// hosting opex. Accessible to miners converting mining rewards to MN positions.
+// Firo (0.0047%) — the two longest-surviving MN coins. Low enough that miners
+// converting mining rewards into an MN position is accessible from day one.
 //
 // Future upgrades: governance-editable raise-only with grandfathering,
 // activated in v1.1 hard fork. Existing MNs always remain valid at their

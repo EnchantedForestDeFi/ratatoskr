@@ -2,7 +2,7 @@
 
 *The official RATR masternode setup guide — the Qt-side steps every operator does, whether you self-host or use a managed host like Nodes24. Battle-tested on real setups. Questions? `#ratr-masternode` in the EnchantedForestDeFi Discord.*
 
-**Network values:** Regular collateral `7,500 RATR` (1× vote) · EvoNode `30,000 RATR` (4× vote, future tier) · P2P port `9393` · 15 collateral confirmations · MN payments activate at block **25,000**.
+**Network values:** Regular collateral `7,500 RATR` (1× vote) · EvoNode `30,000 RATR` (4× vote, live) · P2P port `9393` · 15 collateral confirmations · MN payments **live** (activated at block 25,000).
 
 ---
 
@@ -42,7 +42,7 @@ getnewaddress "NAME-mn1-collateral"
 **The 4-role split (Dash-family architecture):**
 - **Owner** — controls the MN; signs any future registration update. *The* key — back it up.
 - **Voting** — casts governance/treasury votes; can be delegated separately from owner.
-- **Payout** — where the MN's block-reward share lands (from block 25,000).
+- **Payout** — where the MN's block-reward share lands (live since block 25,000).
 - **Collateral** — holds the 7,500 RATR stake (funded next).
 
 Labels are local-only. ✅ Check: 4 distinct addresses starting with **`R`**. A **`y`** prefix means a **testnet** wallet — wrong build.
@@ -97,7 +97,7 @@ Collateral vout:    [step 7, verified — 0 or 1]
 
 ## SECTION 3 — Common Q&A
 
-**Q: When do MN payments start?** Block **25,000** — baked into chainparams. MNs go ENABLED earlier (from ~block 7,500 they join ChainLocks/DKG quorums), but the *reward* share doesn't flow until 25,000. The gap lets MN count bootstrap before payments begin.
+**Q: When do MN payments start?** They're **already live** — payments activated at block **25,000** (passed in June 2026) and are flowing now. MNs go ENABLED earlier (from ~block 7,500 they join ChainLocks/DKG quorums); the reward share began at 25,000, after the bootstrap gap that let the MN count build up first.
 
 **Q: My addresses start with `y`, not `R`.** That's a **testnet** wallet. Download the mainnet RATR Qt build and regenerate.
 
@@ -155,14 +155,26 @@ $CLI bls generate    # -> {"secret": "...", "public": "..."}
 ```
 Put `secret` into `ratatoskr.conf` as `masternodeblsprivkey=...`, restart once. Keep `public` for the ProTx.
 
-### One-call registration (creates collateral + registers)
+### Registration
+
+**Normal path — collateral already funded in Section 1.** Register against that existing collateral using its verified `txid` + `vout` (from Section 1, Step 7):
+```bash
+$CLI -rpcwallet=main protx register \
+    "$COLLATERAL_TXID" $COLLATERAL_VOUT "[\"$MN_IP:9393\"]" \
+    "$OWNER_ADDR" "$OPERATOR_PUB" "$VOTING_ADDR" \
+    0 "$PAYOUT_ADDR" "$FEE_ADDR"
+```
+⚠️ **Do NOT use `register_fund` if you already funded collateral in Section 1** — it *creates and funds a second 7,500 UTXO.*
+
+**Alternative — fund + register in one call (only if you skipped Section 1).** `register_fund` takes the collateral *address* and creates the 7,500 UTXO for you:
 ```bash
 $CLI -rpcwallet=main protx register_fund \
     "$COLLATERAL_ADDR" "[\"$MN_IP:9393\"]" \
     "$OWNER_ADDR" "$OPERATOR_PUB" "$VOTING_ADDR" \
     0 "$PAYOUT_ADDR" "$FEE_ADDR" true
 ```
-Or, if collateral is already funded + verified (from Section 1), use `protx register` with the `txid vout` instead of `register_fund` with the address.
+
+**External / managed-host signing.** If the collateral key lives in a separate wallet (e.g. your Qt while a host runs the daemon): `protx register_prepare` returns an unsigned tx + a message → sign that message with the collateral key (`signmessage`) → `protx register_submit "tx" "sig"` broadcasts it. The collateral key never leaves your wallet.
 
 ### Verify
 ```bash
@@ -171,8 +183,8 @@ $CLI masternode status
 ```
 Status should reach `READY` / `ENABLED` within a few blocks. If not, check `debug.log` and confirm `9393/tcp` is reachable from another network (`nc -zv YOUR_PUBLIC_IP 9393`).
 
-### EvoNode (30,000 RATR, future tier)
-Same flow with `protx register_evo` / `protx register_fund_evo` and **30,000 RATR** collateral. EvoNodes carry 4× voting weight — note this tier is planned for a future release.
+### EvoNode (30,000 RATR)
+Same flow with `protx register_evo` (existing collateral) / `protx register_fund_evo` (creates the collateral) and **30,000 RATR**. EvoNodes carry **4× voting weight and are live now** — register exactly like a Regular MN, just with the 30,000 collateral and the evo variant of the command.
 
 ### Top mistakes
 1. Collateral not exactly `7,500` (Regular) / `30,000` (Evo). 2. Fewer than 15 confirmations before registering. 3. `masternodeblsprivkey` doesn't match the operator public key in the ProTx. 4. Port `9393/tcp` closed on firewall / cloud security group. 5. Node unreachable at `externalip` (test from a different network).

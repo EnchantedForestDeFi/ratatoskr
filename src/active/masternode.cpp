@@ -246,7 +246,7 @@ bool CActiveMasternodeManager::GetLocalAddress(CService& addrRet)
         });
         // nothing and no live connections, can't do anything for now
         if (empty) {
-            m_error = "Can't detect valid external address. Please consider using the externalip configuration option if problem persists. Make sure to use IPv4 address only.";
+            m_error = "Can't detect valid external address. Please consider using the externalip configuration option if problem persists.";
             LogPrintf("CActiveMasternodeManager::GetLocalAddress -- ERROR: %s\n", m_error);
             return false;
         }
@@ -256,7 +256,7 @@ bool CActiveMasternodeManager::GetLocalAddress(CService& addrRet)
 
 bool CActiveMasternodeManager::IsValidNetAddr(const CService& addrIn)
 {
-    if (!addrIn.IsValid() || !addrIn.IsIPv4()) return false;
+    if (!addrIn.IsValid() || (!addrIn.IsIPv4() && !addrIn.IsIPv6())) return false;
     // TODO: regtest is fine with any addresses for now,
     // should probably be a bit smarter if one day we start to implement tests for this
     return !Params().RequireRoutableExternalIP() || (g_reachable_nets.Contains(addrIn) && addrIn.IsRoutable());

@@ -121,7 +121,7 @@ Collateral vout:    [step 7, verified — 0 or 1]
 - **Windows has no `-daemon` flag** — run the daemon in a console/service, or use Qt. *(Linux/macOS support `-daemon`.)*
 - **Linux:** run the daemon under a **systemd service** for auto-restart + boot persistence.
 - **macOS:** **separate Intel vs Apple Silicon binaries** — wrong arch won't launch.
-- **IPv4 only** — IPv6 MN externalip isn't supported yet; use a public IPv4.
+- **IPv6 works (v1.0.4+)** — set `externalip=[YOUR_IPV6]:9393` **and** add `bind=[YOUR_IPV6]:9393` (bracketed), and pass `coreP2PAddrs` as the array `["[YOUR_IPV6]:9393"]`. Often the easiest path for **home** hosting, where a stable public IPv6 is common even when the IPv4 is dynamic/CGNAT. IPv4 still works (static IP + forward `9393`).
 - **Lock the collateral UTXO** — unlocked collateral can get spent → instant deregister.
 - **15 confirmations** before registration (PRE_ENABLED → ENABLED ≈ 15 min).
 
@@ -147,6 +147,8 @@ rpcpassword=CHOOSE_A_STRONG_PASSWORD
 rpcallowip=127.0.0.1
 ```
 The `masternodeblsprivkey` line is added after you generate keys below; restart `ratatoskrd` after editing.
+
+**Home / IPv6 (v1.0.4+):** on IPv6, use `externalip=[YOUR_IPV6]:9393` and add `bind=[YOUR_IPV6]:9393`, and make sure the address is on the interface (`ip -6 addr add YOUR_IPV6/64 dev eth0`, persisted across reboots). On a home IPv4 line you need a **static** IP + a port-forward for `9393` on the router; IPv6 usually skips the NAT/forward step, which is why it's the easier home path.
 
 ### Generate the operator BLS key
 ```bash
@@ -184,7 +186,19 @@ $CLI masternode status
 Status should reach `READY` / `ENABLED` within a few blocks. If not, check `debug.log` and confirm `9393/tcp` is reachable from another network (`nc -zv YOUR_PUBLIC_IP 9393`).
 
 ### EvoNode (30,000 RATR)
-Same flow with `protx register_evo` (existing collateral) / `protx register_fund_evo` (creates the collateral) and **30,000 RATR**. EvoNodes carry **4× voting weight and are live now** — register exactly like a Regular MN, just with the 30,000 collateral and the evo variant of the command.
+EvoNodes carry **4× voting weight and are live now.** The command is **NOT** the same as a Regular MN — `register_evo` takes three extra platform arguments after the payout address:
+```bash
+$CLI -rpcwallet=main protx register_evo \
+    "$COLLATERAL_TXID" $COLLATERAL_VOUT "[\"$MN_IP:9393\"]" \
+    "$OWNER_ADDR" "$OPERATOR_PUB" "$VOTING_ADDR" \
+    0 "$PAYOUT_ADDR" \
+    "$PLATFORM_NODE_ID" 39256 39257 "$FEE_ADDR"
+```
+- **`platformNodeID`** = generate with `openssl rand -hex 20`. RATR has no Platform layer, so it's a placeholder — but required.
+- **The two platform ports are BARE NUMBERS** (e.g. `39256 39257`), **not arrays.** ⚠️ The daemon's own `help protx register_evo` prints them as `["address",...]`, but that's inherited generic text — this build only accepts bare port integers and errors on an array (`ProTx version only supports ports, code -8`).
+- Collateral is still **two separate args** (`txid` then `vout`) — never `txid:vout`.
+- IPv6: `coreP2PAddrs` becomes `"[\"[$MN_IP6]:9393\"]"` (brackets around the v6 address, quotes escaped in the Qt console).
+- `register_fund_evo` is the fund-and-register variant (creates the 30,000 collateral for you) if you skipped Section 1.
 
 ### Top mistakes
 1. Collateral not exactly `7,500` (Regular) / `30,000` (Evo). 2. Fewer than 15 confirmations before registering. 3. `masternodeblsprivkey` doesn't match the operator public key in the ProTx. 4. Port `9393/tcp` closed on firewall / cloud security group. 5. Node unreachable at `externalip` (test from a different network).

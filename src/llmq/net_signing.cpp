@@ -143,10 +143,12 @@ void NetSigning::WorkThreadMain()
         constexpr auto CLEANUP_INTERVAL{5s};
         if (cleanupThrottler.TryCleanup(CLEANUP_INTERVAL)) {
             m_sig_manager.Cleanup();
-            // Drop pending recovered sigs queued by banned peers so a flood's backlog does not
-            // persist after the peer is banned (RemoveBannedNodeStates only cleans the sig-shares
-            // subsystem, not m_sig_manager's pending recovered sigs).
-            m_sig_manager.RemoveNodesIf([this](NodeId node_id) { return m_peer_manager->PeerIsBanned(node_id); });
+            // NOTE (RATR v1.0.5 hardening): Dash's 95e160d20 also proactively drops a banned
+            // peer's pending recovered sigs here via m_peer_manager->PeerIsBanned(). That path
+            // takes cs_main under the sig-manager's cs_pending (RemoveNodesIf); the lock order is
+            // unverified against RATR's single-thread signing model, so it is deferred to the
+            // pre-v1.1 consensus workbench (devnet + TSAN). The global/per-node caps below already
+            // bound the queue, so omitting the proactive drop only delays reclaim to natural drain.
         }
 
         // TODO Wakeup when pending signing is needed?

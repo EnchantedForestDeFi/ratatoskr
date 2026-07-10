@@ -140,8 +140,7 @@ MessageProcessingResult CSporkManager::ProcessSpork(NodeId from, CDataStream& vR
     try {
         vRecv >> spork;
     } catch (const std::ios_base::failure& e) {
-        LogPrint(BCLog::SPORK, "CSporkManager::ProcessSpork -- ERROR: malformed spork peer=%d error=%s
-", from, e.what());
+        LogPrint(BCLog::SPORK, "CSporkManager::ProcessSpork -- ERROR: malformed spork peer=%d error=%s\n", from, e.what());
         MessageProcessingResult err{};
         err.m_error = MisbehavingError{100};
         return err;

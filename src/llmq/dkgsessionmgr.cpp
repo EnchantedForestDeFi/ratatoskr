@@ -88,8 +88,14 @@ bool CheckDKGMessageStructure(std::string_view msg_type, const CDataStream& vRec
         if (msg_type == NetMsgType::QCONTRIB) {
             CDKGContribution qc;
             s >> qc;
+            // Contribution blobs are per-member, and quorums may legitimately form
+            // undersized (minSize <= members <= size), so bound as a range rather
+            // than requiring the full params size.
+            const size_t min_size = params.minSize > 0 ? static_cast<size_t>(params.minSize) : 0;
             return qc.vvec != nullptr && qc.vvec->size() == threshold &&
-                   qc.contributions != nullptr && qc.contributions->blobs.size() == size;
+                   qc.contributions != nullptr &&
+                   qc.contributions->blobs.size() >= min_size &&
+                   qc.contributions->blobs.size() <= size;
         } else if (msg_type == NetMsgType::QCOMPLAINT) {
             CDKGComplaint qc;
             s >> qc;

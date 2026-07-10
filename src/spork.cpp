@@ -137,7 +137,15 @@ MessageProcessingResult CSporkManager::ProcessMessage(CNode& peer, CConnman& con
 MessageProcessingResult CSporkManager::ProcessSpork(NodeId from, CDataStream& vRecv)
 {
     CSporkMessage spork;
-    vRecv >> spork;
+    try {
+        vRecv >> spork;
+    } catch (const std::ios_base::failure& e) {
+        LogPrint(BCLog::SPORK, "CSporkManager::ProcessSpork -- ERROR: malformed spork peer=%d error=%s
+", from, e.what());
+        MessageProcessingResult err{};
+        err.m_error = MisbehavingError{100};
+        return err;
+    }
 
     uint256 hash = spork.GetHash();
 

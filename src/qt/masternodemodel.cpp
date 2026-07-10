@@ -263,7 +263,7 @@ QVariant MasternodeModel::data(const QModelIndex& index, int role) const
         case Column::STATUS:
             return {};
         case Column::COLLATERAL_AMOUNT:
-            return entry->type() == MnType::Evo ? QString("75,000") : QString("15,000");
+            return entry->type() == MnType::Evo ? QString("30,000") : QString("7,500");
         case Column::POSE:
             return QString::number(entry->posePenalty());
         case Column::REGISTERED:
@@ -297,7 +297,7 @@ QVariant MasternodeModel::data(const QModelIndex& index, int role) const
         case Column::STATUS:
             return entry->isBanned() ? 1 : 0;
         case Column::COLLATERAL_AMOUNT:
-            return entry->type() == MnType::Evo ? 75000 : 15000;
+            return entry->type() == MnType::Evo ? 30000 : 7500;
         case Column::POSE:
             return entry->posePenalty();
         case Column::REGISTERED:

@@ -362,9 +362,13 @@ public:
         // serving mainnet on default port 9393.
         vSeeds.emplace_back("167.86.103.121");                       // seed-3 (vps5 / Contabo FR — pool engine daemon)
         vSeeds.emplace_back("104.129.131.156");                      // seed-4 (vps6 / Kamatera US — US pool daemon)
+        vSeeds.emplace_back("66.154.102.216");                       // seed-5 (cc1 / CloudCone STL)
+        vSeeds.emplace_back("66.154.103.76");                        // seed-6 (cc2 / CloudCone STL)
+        vSeeds.emplace_back("103.167.150.40");                       // seed-7 (vps9 / HostHatch SG)
     vSeeds.emplace_back("2a02:c207:2325:3265::1");               // IPv6 seed
     vSeeds.emplace_back("2a02:c207:2328:1422::1");               // IPv6 seed
     vSeeds.emplace_back("2607:f1c0:f08f:3400::1");               // IPv6 seed
+    vSeeds.emplace_back("2406:ef80:2:7d5c::d1");               // IPv6 seed (vps9 / HostHatch SG)
         vSeeds.emplace_back("mainnet-seed.enchantedforestdefi.com"); // DNS seed
 
         // Ratatoskr address prefixes — addresses start with 'R'
